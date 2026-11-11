@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>热学（新概念物理教程·第三版）· 学习讲义</title>
+<script>
+window.MathJax = {
+  tex: {inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$']]},
+  svg: {fontCache: 'global'}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root{
+  --bg:#f6f4ee; --card:#fffdf8; --card2:#f2efe7; --text:#26221b; --muted:#6b6355;
+  --accent:#9c2f2f; --line:#ddd5c5; --gold:#8a6d1a; --red:#9c2f2f; --green:#2f6b3c; --purple:#5b4680;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Georgia,"Songti SC","SimSun",serif;line-height:1.85;font-size:16.5px}
+.layout{display:grid;grid-template-columns:270px 1fr;max-width:1320px;margin:0 auto}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:26px 18px;border-right:1px solid var(--line);background:#fbf9f4;font-size:.9em;font-family:"Microsoft YaHei",sans-serif}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:5px}
+nav.toc a:hover{color:var(--text);background:var(--card2)}
+nav.toc a.lv2{padding-left:24px;font-size:.93em}
+nav.toc .hd{color:var(--accent);font-weight:700;margin:14px 0 4px;font-size:1em;letter-spacing:1px}
+main{padding:32px 44px 100px;min-width:0}
+h1{font-size:2em;margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:26px;font-family:"Microsoft YaHei",sans-serif;font-size:.95em}
+h2.sec{font-size:1.5em;margin:52px 0 16px;padding:10px 18px;background:#f7eeee;border-left:4px solid var(--accent);font-family:"Microsoft YaHei",sans-serif}
+h3.subsec{font-size:1.2em;margin:32px 0 12px;color:#7a2f2f;font-family:"Microsoft YaHei",sans-serif}
+h4{color:#8a3a3a;margin:18px 0 8px;font-size:1.02em;font-family:"Microsoft YaHei",sans-serif}
+p{margin:9px 0;text-align:justify}
+ul,ol{margin:9px 0 9px 26px}
+li{margin:5px 0}
+.hook{background:#faf5ee;border:1px solid #d9c9a8;border-radius:8px;padding:18px 20px;margin:18px 0}
+.hook b{color:#5b3a15}
+.intro{background:#f2f0fa;border:1px solid #c9c2e2;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:.96em}
+.intro b{color:#4b3a75}
+.conn{background:#eef5ee;border:1px solid #b9cfb9;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:.96em}
+.conn b{color:#2f6b3c}
+.warn{background:#f9eeee;border:1px solid #d9b6b6;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:.96em}
+.warn b{color:#9c2f2f}
+.idea{background:#eef3f9;border:1px solid #b9c9da;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:.96em}
+.idea b{color:#2b4a6b}
+.derive{background:#f5f1fa;border:1px solid #cdbede;border-radius:8px;padding:16px 18px;margin:16px 0;font-size:.96em}
+.derive b{color:#5b4680}
+.derive .dt{color:#5b4680;font-weight:700;margin-bottom:8px;font-family:"Microsoft YaHei",sans-serif}
+.formula{background:var(--card2);border-radius:6px;padding:12px 18px;margin:14px 0;overflow-x:auto;font-size:1.03em}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:16px 0}
+.ex .title{color:var(--accent);font-weight:700;margin-bottom:8px;font-family:"Microsoft YaHei",sans-serif}
+.method{background:#eef6f0;border:1px solid #b3cfb3;border-radius:8px;padding:14px 18px;margin:14px 0}
+.method .mt{color:#2f6b3c;font-weight:700;margin-bottom:6px;font-family:"Microsoft YaHei",sans-serif}
+.prac{background:#fbf7ec;border:1px dashed #c9b078;border-radius:8px;padding:18px;margin:20px 0}
+.prac .title{color:#8a6d1a;font-weight:700;margin-bottom:10px;font-size:1.06em;font-family:"Microsoft YaHei",sans-serif}
+.anssec{background:#fbf7ec;border:1px solid #c9b078;border-radius:10px;padding:18px;margin:16px 0}
+.anssec .at{color:#8a6d1a;font-weight:700;margin-bottom:8px;font-family:"Microsoft YaHei",sans-serif}
+.ans{background:#fffdf6;border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin:10px 0}
+.ans .aq{color:#2b4a6b;font-weight:600;font-family:"Microsoft YaHei",sans-serif}
+.ans .tag{color:#2f6b3c;font-size:.88em;font-family:"Microsoft YaHei",sans-serif}
+.ans .sol{color:#3c362c;font-size:.96em;margin-top:5px}
+.exam{background:#f9eeee;border:1px solid #d9b6b6;border-radius:10px;padding:20px;margin:20px 0}
+.exam .title{color:#9c2f2f;font-weight:700;font-size:1.06em;margin-bottom:8px;font-family:"Microsoft YaHei",sans-serif}
+table{border-collapse:collapse;margin:14px 0;width:100%}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;font-size:.95em}
+th{background:var(--card2);color:#5b3a15;font-family:"Microsoft YaHei",sans-serif}
+.tag{display:inline-block;background:#f0ead9;border:1px solid #d5c9a8;color:#6b5530;border-radius:99px;padding:1px 10px;font-size:.8em;margin:2px;font-family:"Microsoft YaHei",sans-serif}
+.top{background:linear-gradient(135deg,#f9eeee,#f5efe2);border:1px solid #d9b6b6;border-radius:10px;padding:30px;margin-bottom:30px}
+.top h1{font-size:2.1em}
+.tip{color:#8a6d1a;font-size:.93em;font-family:"Microsoft YaHei",sans-serif}
+.src{color:#8a7a5a;font-size:.85em;font-family:"Microsoft YaHei",sans-serif}
+@media (max-width:900px){.layout{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+  <a href="index.html" style="color:#8a6d1a;font-weight:700">返回首页</a>
+  <div class="hd">热学（新概念物理教程·第三版）</div>
+  <a href="#howto">使用说明</a>
+  <a href="#ch1">第一章 热学基本概念和物质聚集态</a>
+  <a href="#ch2">第二章 热平衡态的统计分布律</a>
+  <a href="#ch3">第三章 热力学第一定律</a>
+  <a href="#ch4">第四章 热力学第二定律</a>
+  <a href="#ch5">第五章 非平衡过程</a>
+  <div class="hd">历年真题</div>
+  <a href="#real">中山大学及其它高校真题</a>
+  <div class="hd">答案</div>
+  <a href="#answers">全书答案与详解</a>
+</nav>
+<main>
+<div class="top">
+  <h1>热学</h1>
+  <div class="sub">教材：赵凯华、罗蔚茵《新概念物理教程·热学》（第三版，高等教育出版社，2024）· 章节目录与教材完全对应</div>
+  <p class="tip">每节设"引入"（历史与思想渊源）与"推导"（原理的完整推演过程）；每节配约十道练习，章末另设二十道综合题；答案统一在书末，每题附详细解析与考点标注；真题区收录中山大学及其它高校期末试题并逐一标注出处。</p>
+</div>
+
+<h2 class="sec" id="howto">使用说明</h2>
+<div class="idea">
+<p>本讲义按《新概念物理教程·热学（第三版）》的五章结构编写，章节名称与顺序同教材一致。学习建议：先读每节"引入"了解知识由来；紫色"推导"框应合书独立完成；每节练习约十题、章末综合题二十题，完成后对照书末答案，按标注考点归类错题；真题区按学校与年份标注，供学完全书后模拟测试。</p>
+</div>
+
+<h2 class="sec" id="ch1">第一章 热学基本概念和物质聚集态</h2>
+<div class="hook">
+<p><b>1824 年，28 岁的法国工程师萨迪·卡诺出版小册子《论火的动力》，研究蒸汽机效率的上限，无人问津；他 36 岁死于霍乱，手稿险些被焚。</b>二十四年后，开尔文与克劳修斯从这本小册子中挖出了热力学第二定律与"熵"。<b>本章与教材结构一致：温度 → 热量及其本质 → 物质聚集态 → 气体 → 固体 → 化学键 → 液体。</b>这是热学的奠基之章：先定义温度与热量，再建立物质的微观图像（原子论），最后给出理想气体状态方程与压强公式。</p>
+</div>
+
+<h3 class="subsec" id="s1-1">§1.1 温度：温度计、温标、热力学第零定律、理想气体状态方程</h3>
+<div class="intro"><p><b>引入：</b>1593 年伽利略制成第一支温度计（空气温度计）；1714 年华伦海特用水银温度计建立华氏温标；1742 年摄尔修斯以冰点沸点建立摄氏温标。<b>但所有温度计都依赖具体测温物质——直到开尔文提出与物质无关的热力学温标</b>。温度的严格定义则由热力学第零定律给出：与第三个物体热平衡的两个物体彼此也热平衡——温度概念的全部合法性来源于此。</p></div>
+<div class="idea">
+<p><b>热力学第零定律：</b>与第三系统都热平衡的两个系统彼此热平衡。⟹ 温度存在且是热平衡的标志。</p>
+<p><b>温标：</b>摄氏温标（冰点 0℃、沸点 100℃）；理想气体温标 $T=273.16\lim\frac p{p_3}$（与测温物质无关）；热力学温标 $T=\theta+273.15$。</p>
+<p><b>理想气体状态方程：</b></p>
+<div class="formula">$$pV=\nu RT=\frac mMRT,\qquad p=nkT$$</div>
+<p>$R=8.31$ J/(mol·K)，$N_A=6.02\times10^{23}$ mol⁻¹，$k_B=1.38\times10^{-23}$ J/K。玻意耳、查理、盖-吕萨克定律皆为其特例。</p>
+<div class="warn"><b>易错：</b>状态方程中的温度必须是开尔文；标准状态 $p_0=1.013\times10^5$ Pa、$T_0=273.15$ K、摩尔体积 22.4 L；变质量问题（漏气、充气）须用 $pV=\frac mM RT$ 对固定质量部分列式。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：玻意耳定律、查理定律是状态方程的特例</div>
+<p>由 $pV=\nu RT$：$T$ 不变时 $pV=\nu RT=$ 常数（玻意耳）；$V$ 不变时 $\frac pT=\frac{\nu R}V=$ 常数（查理）；$p$ 不变时 $\frac VT=$ 常数（盖-吕萨克）。∎ <span class="tip">——三条实验定律统一于一个方程，这是"状态方程"概念的胜利：一个方程概括全部静态气体行为。</span></p>
+</div>
+<div class="ex">
+<div class="title">例1.1 标准状态下 1 mol 理想气体体积？验证 22.4 L。</div>
+<p><b>解：</b>$V=\frac{RT}p=\frac{8.31\times273.15}{1.013\times10^5}=0.0224$ m³ $=22.4$ L。</p>
+</div>
+<div class="ex">
+<div class="title">例1.2 氧气瓶 30 L、27℃、100 atm，求氧气质量（$M=32$ g/mol）。</div>
+<p><b>解：</b>$m=\frac{pVM}{RT}=\frac{100\times1.013\times10^5\times0.030\times0.032}{8.31\times300}=3.9$ kg。</p>
+</div>
+<div class="prac"><div class="title">本节练习（1.1-1 ~ 1.1-10）</div>
+<ol start="1">
+<li>体温 36.8℃ 是多少开尔文？液氮 77 K 是多少摄氏度？</li>
+<li>温标三要素是什么？</li>
+<li>为什么理想气体温标比水银温标更科学？</li>
+<li>0 K 是多少摄氏度？为什么绝对零度只能接近不能达到？</li>
+<li>体积 10 L 容器内装 4 g 氢气（$M=2$），温度 27℃，求压强。</li>
+<li>气体等温压缩到一半体积，压强变几倍？</li>
+<li>温度从 27℃ 升到 127℃，体积不变，压强变几倍？</li>
+<li>求标准状态下空气的分子数密度 $n$。</li>
+<li>气球体积 $V$ 充氢气至压强 $p$（温度 $T$），漏掉一半质量且温度降为 $\frac T2$，压强变为多少？</li>
+<li>求 27℃、2 atm 下空气的密度（$M=29$ g/mol）。</li>
+</ol></div>
+
+<h3 class="subsec" id="s1-2">§1.2 热量及其本质：量热学、热质说与热动说、原子论</h3>
+<div class="intro"><p><b>引入：</b>"热是什么"曾有两派：热质说（热是一种无重量的流体，拉瓦锡命名"热质"）与热动说（热是微粒运动）。伦福德 1798 年在慕尼黑兵工厂看钻炮筒：钻头钝了，摩擦反而产生更多热——"热质"若守恒，钝钻头何以产热无穷？<b>伦福德由此判断热是运动。</b>焦耳从 1840 年起用桨叶搅水测热功当量，四十年如一，最终奠定热动说。而"原子论"的胜利则要等到 1905 年爱因斯坦的布朗运动论文。</p></div>
+<div class="idea">
+<p><b>热量：</b>传递的能量（过程量）。热功当量 $1$ cal $=4.18$ J（焦耳测定）。</p>
+<p><b>热容量与比热：</b>$Q=mc\Delta T$；$c_{水}=4.18$ kJ/(kg·K)。</p>
+<p><b>量热学：</b>混合法测比热：高温物体放热 = 低温物体吸热。</p>
+<p><b>原子论要点：</b>物质由大量分子原子组成，分子永不停息地无规则运动（热运动），分子间有相互作用。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：混合法测比热的基本方程</div>
+<p>绝热容器中，高温物体（质量 $m_1$、比热 $c_1$、温度 $T_1$）与低温物体（$m_2,c_2,T_2$）混合达平衡温度 $T$。若无热损失：$m_1c_1(T_1-T)=m_2c_2(T-T_2)$。解出 $c_1$ 或 $T$。∎ <span class="tip">——量热学的核心是能量守恒：放热等于吸热。</span></p>
+</div>
+<div class="ex">
+<div class="title">例1.3 200 g 的 100℃ 铜块投入 300 g 的 20℃ 水中（$c_{铜}=0.39$ kJ/kg·K），求末温。</div>
+<p><b>解：</b>$0.2\times0.39(100-T)=0.3\times4.18(T-20)$，解得 $T\approx24.9$℃。</p>
+</div>
+<div class="prac"><div class="title">本节练习（1.2-1 ~ 1.2-10）</div>
+<ol start="11">
+<li>热功当量是多少？谁测定的？</li>
+<li>伦福德实验如何反驳热质说？</li>
+<li>200 g 的 100℃ 铜块投入 300 g 的 20℃ 水中（$c_{铜}=0.39$），求末温。</li>
+<li>1 kg 水从 20℃ 烧到 100℃，吸收多少热量？</li>
+<li>质量为 $m$ 的物体受热 $\Delta T$，吸热 $Q$，写出比热定义式。</li>
+<li>说明热量与内能的区别。</li>
+<li>布朗运动的发现与解释分别是谁？其意义是什么？</li>
+<li>混合法测比热需要哪些假设？</li>
+<li>估算烧开一壶水（2 kg）需要的热量与电费。</li>
+<li>说明"物体含有多少热量"这一说法的错误。</li>
+</ol></div>
+
+<h3 class="subsec" id="s1-3">§1.3 物质聚集态随状态参量的转化与共存、p-T 三相图</h3>
+<div class="intro"><p><b>引入：</b>1660 年玻意耳用空气泵做实验时发现"沸腾"与"凝固"不过是同一物质的不同面孔。安德鲁斯 1869 年研究二氧化碳等温线，发现"临界温度"——高于 31.1℃，无论加多大压强，二氧化碳都不能液化。<b>临界点的发现终结了"气体与液体本质不同"的旧观念</b>。而水的三相点（0.01℃）则成为温标的唯一基准点：1954 年国际计量大会规定水的三相点温度精确等于 273.16 K。</p></div>
+<div class="idea">
+<p><b>相与相变：</b>物质均匀的部分叫"相"；相变分一级相变（有潜热、体积突变）与连续相变（二级以上）。</p>
+<p><b>三相点：</b>固、液、气三相共存的唯一状态（水：273.16 K，611 Pa）。</p>
+<p><b>临界点：</b>气液差别消失的状态（水：647 K，22.1 MPa）。$T&gt;T_c$ 时无法液化。</p>
+<p><b>p-T 三相图：</b>三条两相平衡曲线（升华、熔化、汽化）交汇于三相点；汽化曲线终止于临界点。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：水的三相点为何能作为温标基准</div>
+<p>三相点是纯水固液气共存的唯一状态，其温度与压强完全由物质性质决定，不依赖人为约定。以它作为唯一定点（规定 $T=273.16$ K），再配合理想气体温度计标定，即可定义整个温标。<b>单一基准点取代冰点、沸点双基准</b>，消除了测量误差的叠加。∎</p>
+</div>
+<div class="prac"><div class="title">本节练习（1.3-1 ~ 1.3-10）</div>
+<ol start="21">
+<li>什么是三相点？水的三相点温度与压强是多少？</li>
+<li>什么是临界点？临界温度以上能否液化气体？</li>
+<li>画出水的 p-T 三相图，标出三条平衡曲线与三相点、临界点。</li>
+<li>一级相变与二级相变的区别？</li>
+<li>为什么水的三相点能作为温标基准？</li>
+<li>升华、熔化、汽化各对应哪条曲线？</li>
+<li>干冰（固态二氧化碳）在常压下如何变化？</li>
+<li>高压锅的原理（联系 p-T 图）？</li>
+<li>溜冰时冰刀下的冰为何融化（联系 p-T 图）？</li>
+<li>临界乳光现象是什么？</li>
+</ol></div>
+
+<h3 class="subsec" id="s1-4">§1.4 气体：微观模型、理想气体压强公式、实际气体</h3>
+<div class="intro"><p><b>引入：</b>1738 年丹尼尔·伯努利首次提出：气体压强是无数分子撞击器壁的结果。他算出了压强与分子速度平方的关系——比分子动理论早了一百多年。<b>压强公式 $p=\frac13nm\overline{v^2}$ 是分子动理论的第一块基石</b>：它把宏观量（压强）与微观量（分子速度）连了起来。而范德瓦尔斯 1873 年的博士论文则给理想气体打上两个补丁（分子体积与分子引力），由此预言了临界点。</p></div>
+<div class="idea">
+<p><b>理想气体微观模型：</b>分子是质点、除碰撞瞬间无相互作用、碰撞弹性。</p>
+<p><b>压强公式：</b>$p=\frac13nm\overline{v^2}=\frac23n\bar\varepsilon_t$，$\bar\varepsilon_t=\frac12m\overline{v^2}$。</p>
+<p><b>温度的微观意义：</b>$p=nkT$ 联立得 $\bar\varepsilon_t=\frac32kT$。</p>
+<p><b>范德瓦尔斯方程：</b>$(p+\frac a{V_m^2})(V_m-b)=RT$。临界参数：$V_{m,c}=3b$，$T_c=\frac{8a}{27Rb}$，$p_c=\frac a{27b^2}$。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：理想气体压强公式</div>
+<p>一个分子以 $v_x$ 撞向垂直于 $x$ 的器壁，弹性碰撞动量改变 $\Delta p=2mv_x$（力学第二章动量定理）。$\Delta t$ 内能撞到面积 $S$ 的分子都在体积 $v_x\Delta t\,S$ 的柱体内，数目 $nv_x\Delta t\,S$。故该分子对壁的平均作用力 $\frac{\Delta p}{\Delta t}=2mnv_x^2S$，压强贡献 $2mnv_x^2$。对大量分子统计平均（各向同性 $\overline{v_x^2}=\frac13\overline{v^2}$）：$p=\frac13nm\overline{v^2}$。∎ <span class="tip">——与力学动量定理的联结点：热学的微观图像完全建立在力学之上。</span></p>
+</div>
+<div class="derive">
+<div class="dt">推导：范德瓦尔斯方程中 $a,b$ 的修正来源</div>
+<p>分子体积使自由空间从 $V_m$ 减为 $V_m-b$；分子间引力使器壁附近分子受向内拉力，实际压强比理想值小 $\frac a{V_m^2}$（正比于分子数密度平方）。两项修正叠加即得范德瓦尔斯方程。∎</p>
+</div>
+<div class="ex">
+<div class="title">例1.4 求 27℃ 时气体分子的平均平动动能。</div>
+<p><b>解：</b>$\bar\varepsilon_t=\frac32kT=\frac32\times1.38\times10^{-23}\times300=6.21\times10^{-21}$ J。</p>
+</div>
+<div class="prac"><div class="title">本节练习（1.4-1 ~ 1.4-10）</div>
+<ol start="31">
+<li>推导压强公式 $p=\frac13nm\overline{v^2}$ 的要点是什么？</li>
+<li>求 27℃ 时气体分子的平均平动动能。</li>
+<li>温度升高一倍（开尔文），平均平动动能变几倍？</li>
+<li>两种气体温度相同，哪种分子平均平动动能大？</li>
+<li>范德瓦尔斯方程中 $a,b$ 的物理意义。</li>
+<li>由范德瓦尔斯方程用拐点条件推导临界参数。</li>
+<li>27℃ 的氧分子方均根速率多大？（$M=32$ g/mol）</li>
+<li>实际气体在什么条件下接近理想气体？</li>
+<li>说明 $p_cV_{m,c}=\frac38RT_c$ 的关系。</li>
+<li>1 mol 实际气体与理想气体的偏差在高压下如何表现？</li>
+</ol></div>
+
+<h3 class="subsec" id="s1-5">§1.5 固体与化学键、液体与表面张力</h3>
+<div class="intro"><p><b>引入：</b>1912 年劳厄用 X 射线照射硫酸铜晶体，底片上出现规则的斑点图样——晶体内部原子的周期排列第一次被"看见"。同年布拉格父子导出衍射条件，晶体学诞生。<b>固体的秘密在于有序：晶体是原子的三维阵列</b>，而液体则介于气体与晶体之间——"稠密的实际气体"或"濒临瓦解的晶格"。液体表面则有一层看不见的"膜"：表面张力，它让水滴成球、昆虫行于水面。</p></div>
+<div class="idea">
+<p><b>晶体结构：</b>原子周期排列（点阵）。非晶态（玻璃）：无长程有序。准晶：长程取向序无平移序。</p>
+<p><b>化学键：</b>离子键（库仑）、共价键（共享电子）、金属键（电子海）、范德瓦耳斯键（诱导偶极）、氢键。</p>
+<p><b>液体：</b>短程有序、长程无序。</p>
+<p><b>表面张力：</b>$\gamma$（单位长度上的力）；球面附加压强 $\Delta p=\frac{2\gamma}R$；毛细高度 $h=\frac{2\gamma\cos\theta}{\rho gr}$。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：球面附加压强 $\Delta p=\frac{2\gamma}R$</div>
+<p>半径 $R$ 的液滴沿赤道切开：表面张力沿圆周的合力 $2\pi R\gamma$（指向内部）与内外压差平衡：$(p_{内}-p_{外})\pi R^2=2\pi R\gamma$，故 $\Delta p=\frac{2\gamma}R$。∎</p>
+</div>
+<div class="ex">
+<div class="title">例1.5 求半径 1 mm 水滴的内外压强差（$\gamma=0.073$ N/m）。</div>
+<p><b>解：</b>$\Delta p=\frac{2\times0.073}{10^{-3}}=146$ Pa。</p>
+</div>
+<div class="prac"><div class="title">本节练习（1.5-1 ~ 1.5-10）</div>
+<ol start="41">
+<li>晶体与非晶体的区别？</li>
+<li>五种化学键各举一例。</li>
+<li>求半径 1 mm 水滴的内外压强差。</li>
+<li>为什么水黾能停在水面上？</li>
+<li>毛细管内径 0.4 mm，水（完全浸润）上升多高？</li>
+<li>液体为什么短程有序而长程无序？</li>
+<li>两块玻璃板间夹水膜为何难分开？</li>
+<li>晶体中分子热运动的形式是什么？</li>
+<li>说明液体的"两种形象"（稠密气体与濒临瓦解的晶格）。</li>
+<li>为什么肥皂泡是球形的？</li>
+</ol></div>
+
+<h3 class="subsec" id="m1">第一章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：状态方程的"选定对象"法</div>
+<p>① 选定固定质量的气体为研究对象；② 确定其 $p,V,T,m$；③ 代入 $pV=\frac mM RT$。变质量问题的关键是选"某一瞬间留在容器内的气体"或"固定部分的气体"。</p>
+<p><b>例题：</b>漏气问题对剩余气体列式，与初态相比。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：过程方程的比例法</div>
+<p>质量不变时用三定律比例式：等温 $p_1V_1=p_2V_2$、等容 $\frac{p_1}{T_1}=\frac{p_2}{T_2}$、等压 $\frac{V_1}{T_1}=\frac{V_2}{T_2}$。</p>
+<p><b>例题：</b>等容升温 300→400 K：$p_2=\frac43p_1$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：微观宏观互化</div>
+<p>分子数密度 $n=\frac p{kT}$；压强 $p=nkT$；平均平动动能 $\bar\varepsilon_t=\frac32kT$；方均根速率 $\sqrt{\frac{3RT}M}$。</p>
+<p><b>例题：</b>标准状态 $n=2.69\times10^{25}$ m⁻³。</p>
+</div>
+
+<h3 class="subsec" id="e1">第一章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（1-1 ~ 1-20，含真题）</div>
+<ol start="51">
+<li><span class="src">（中山大学《大学物理B》2025-2026 真题）</span>（单选）理想气体的内能仅取决于：A. 温度和体积 B. 温度和压强 C. 温度 D. 体积。</li>
+<li><span class="src">（清华大学热学试题·流传版）</span>体积 $V$ 容器内有 $m_1$ 克氧气、$m_2$ 克氮气，温度 $T$，求总压强。</li>
+<li><span class="src">（北京大学热学试题·流传版）</span>用分子动理论解释玻意耳定律。</li>
+<li><span class="src">（复旦大学热学试题·流传版）</span>求 $r=1$ mm 气泡在水下 10 cm 处的内外压强差（$\gamma=0.073$ N/m）。</li>
+<li>混合气体分压定律（道尔顿）的内容与证明。</li>
+<li>估算教室内空气分子总数（教室 $10\times8\times3$ m³）。</li>
+<li>标准状态下 1 cm³ 气体的分子数。</li>
+<li>用 $p=nkT$ 估算：真空度为 $10^{-6}$ Pa 的容器中每立方厘米的分子数。</li>
+<li>说明温标发展史：经验温标、理想气体温标、热力学温标。</li>
+<li>热力学第零定律为何叫"第零"？</li>
+<li>估算人体表面每平方厘米每秒钟受到的空气分子碰撞数。</li>
+<li>混合法测比热：100 g 的 80℃ 铁块投入 200 g 的 20℃ 水中，末温 22.5℃，求铁的比热。</li>
+<li>为什么高原上煮鸡蛋煮不熟？用 p-T 图说明。</li>
+<li>说明临界点的物理意义与实验观察（临界乳光）。</li>
+<li>范德瓦尔斯方程与理想气体状态方程的差异在 p-V 图上如何表现？</li>
+<li>用范德瓦尔斯参数估算水的临界温度（$a=0.55$ Pa·m⁶/mol²，$b=3\times10^{-5}$ m³/mol）。</li>
+<li>晶体、非晶体、准晶的区别与实例。</li>
+<li>说明表面张力的微观起源。</li>
+<li>毛细现象的应用与危害各一例。</li>
+<li>为什么气体容易被压缩而液体难以压缩？</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch2">第二章 热平衡态的统计分布律</h2>
+<div class="hook">
+<p><b>1859 年，28 岁的麦克斯韦在英国科学促进会宣读论文《气体动力理论的说明》，给出分子速率分布律——物理学家第一次用概率论描述 $10^{23}$ 个粒子的集体行为。</b>麦克斯韦本人的推导只用了几行假设；玻尔兹曼随后把它推广到有外力场的情形，并给出能量均分定理的统计基础。<b>本章与教材结构一致：麦克斯韦速度分布律 → 玻耳兹曼密度分布 → 能量均分定理 → 统计规律的本质。</b>一个分子不可预测，但大量分子的统计规律精确如钟表——这是"涌现"思想在物理学的首次登场。</p>
+</div>
+
+<h3 class="subsec" id="s2-1">§2.1 麦克斯韦速度分布律：速度空间、分布函数、三个特征速率</h3>
+<div class="intro"><p><b>引入：</b>斯特恩 1920 年用分子束实验验证麦克斯韦分布：加热的银蒸气从小孔射出，穿过旋转的狭缝装置，不同速率的分子沉积在收集板的不同位置，沉积厚度正比于该速率的分子数。<b>实验与麦克斯韦六十年前的预言完全吻合</b>——统计力学的第一次实验胜利。</p></div>
+<div class="idea">
+<p><b>速率分布函数：</b>$f(v)=\frac{dN}{N\,dv}$，归一化 $\int_0^\infty f(v)dv=1$。</p>
+<p><b>麦克斯韦分布：</b></p>
+<div class="formula">$$f(v)=4\pi\left(\frac m{2\pi kT}\right)^{3/2}v^2e^{-\frac{mv^2}{2kT}}$$</div>
+<p><b>三个特征速率：</b></p>
+<div class="formula">$$v_p=\sqrt{\frac{2kT}m}\approx1.41\sqrt{\frac{RT}M},\qquad \bar v=\sqrt{\frac{8kT}{\pi m}}\approx1.60\sqrt{\frac{RT}M},\qquad \sqrt{\overline{v^2}}=\sqrt{\frac{3kT}m}\approx1.73\sqrt{\frac{RT}M}$$</div>
+<p>大小关系 $v_p&lt;\bar v&lt;\sqrt{\overline{v^2}}$。温度升高曲线右移变"胖"。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：麦克斯韦分布的形式（独立性假设）</div>
+<p>假设三个速度分量独立且分布各向同性，则速度分布 $F(\vec v)=f_x(v_x)f_y(v_y)f_z(v_z)$ 只依赖 $v^2=v_x^2+v_y^2+v_z^2$。函数方程 $F(v^2)=f(v_x)f(v_y)f(v_z)$ 的解为 $f(v_i)\propto e^{-\alpha v_i^2}$（对数求导法：$\ln F$ 对 $v_x$ 与 $v_y$ 分别求偏导后交叉相减，可得 $f'\propto$ 常数$\times v f$）。再由归一化与 $\frac12m\overline{v^2}=\frac32kT$ 定出 $\alpha=\frac m{2kT}$。∎ <span class="tip">——麦克斯韦当年只用三行假设就得到了正确分布；玻尔兹曼后来给出严格推导（碰撞平衡）。</span></p>
+</div>
+<div class="derive">
+<div class="dt">推导：平均速率与方均根速率的计算（高斯积分）</div>
+<p>$\bar v=\int_0^\infty vf(v)dv=4\pi A\int_0^\infty v^3e^{-\alpha v^2}dv$，其中 $A=(\frac m{2\pi kT})^{3/2}$，$\alpha=\frac m{2kT}$。用高斯积分 $\int_0^\infty v^3e^{-\alpha v^2}dv=\frac1{2\alpha^2}$ 得 $\bar v=\sqrt{\frac{8kT}{\pi m}}$。同理 $\overline{v^2}=4\pi A\int_0^\infty v^4e^{-\alpha v^2}dv$，用 $\int_0^\infty v^4e^{-\alpha v^2}dv=\frac{3\sqrt\pi}{8\alpha^{5/2}}$ 得 $\sqrt{\overline{v^2}}=\sqrt{\frac{3kT}m}$。∎ <span class="tip">——与高等数学第五章高斯积分直接相通。</span></p>
+</div>
+<div class="ex">
+<div class="title">例2.1 27℃ 的氧气，求 $v_p,\bar v,\sqrt{\overline{v^2}}$。</div>
+<p><b>解：</b>$\sqrt{\frac{RT}M}=\sqrt{\frac{8.31\times300}{0.032}}=279$ m/s。$v_p=394$ m/s，$\bar v=447$ m/s，$\sqrt{\overline{v^2}}=483$ m/s。</p>
+</div>
+<div class="prac"><div class="title">本节练习（2.1-1 ~ 2.1-10）</div>
+<ol start="71">
+<li>写出麦克斯韦速率分布函数，说明各因子的物理意义。</li>
+<li>27℃ 氧气求三个特征速率。</li>
+<li>温度升高时 $v_p$ 与分布曲线如何变化？</li>
+<li>同温度下氢气与氧气的 $v_p$ 之比？</li>
+<li>$f(v)dv$ 与 $\int_{v_1}^{v_2}f(v)dv$ 的物理意义。</li>
+<li>速率大于 $v_p$ 的分子占比大于还是小于 50%？</li>
+<li>用高斯积分求 $\bar v$（完整计算）。</li>
+<li>用高斯积分求 $\sqrt{\overline{v^2}}$（完整计算）。</li>
+<li>说明麦克斯韦分布推导中的独立性假设。</li>
+<li>斯特恩实验如何验证麦克斯韦分布？</li>
+</ol></div>
+
+<h3 class="subsec" id="s2-2">§2.2 玻耳兹曼密度分布：等温气压公式、麦克斯韦-玻耳兹曼能量分布</h3>
+<div class="intro"><p><b>引入：</b>登山者发现海拔越高空气越稀薄。玻尔兹曼把麦克斯韦分布推广到有外力场的场合：分子按势能指数分布。<b>等温气压公式 $p=p_0e^{-mgz/kT}$ 是它的直接推论</b>——它还被佩兰 1909 年用于测定阿伏伽德罗常数：观察显微镜下不同高度的悬浮微粒数，从指数分布反推 $k$，进而得 $N_A$。佩兰因此获 1926 年诺贝尔奖，原子论就此盖棺定论。</p></div>
+<div class="idea">
+<p><b>玻耳兹曼密度分布：</b>$n=n_0e^{-\frac{E_p}{kT}}$。重力场中 $n=n_0e^{-\frac{mgz}{kT}}$。</p>
+<p><b>等温气压公式：</b>$p=p_0e^{-\frac{mgz}{kT}}$。特征高度 $h_0=\frac{kT}{mg}$。</p>
+<p><b>麦克斯韦-玻耳兹曼能量分布：</b>$dN\propto e^{-\frac{\varepsilon}{kT}}$（$\varepsilon$ 为总能量）。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：等温气压公式</div>
+<p>重力场中，高度 $z$ 到 $z+dz$ 的气层受力平衡：$(p+dp)S+nm g\,Sdz=pS$，即 $dp=-nm g\,dz$。等温下 $p=nkT$：$\frac{dp}p=-\frac{mg}{kT}dz$，积分 $p=p_0e^{-\frac{mgz}{kT}}$。∎ <span class="tip">——力学平衡加状态方程，两步推出玻耳兹曼分布，这是"宏观导出微观分布"的经典示范。</span></p>
+</div>
+<div class="ex">
+<div class="title">例2.2 海拔每升高多少，大气压降到一半？（27℃，空气 $M=29$）</div>
+<p><b>解：</b>$z=\frac{RT\ln2}{Mg}=\frac{8.31\times300\times0.693}{0.029\times9.8}=6080$ m。</p>
+</div>
+<div class="prac"><div class="title">本节练习（2.2-1 ~ 2.2-10）</div>
+<ol start="81">
+<li>推导等温气压公式。</li>
+<li>海拔每升高多少大气压减半（27℃）？</li>
+<li>温度升高，大气压随高度衰减变快还是变慢？</li>
+<li>27℃ 地面大气压 $p_0$，求 10 km 高空大气压。</li>
+<li>玻耳兹曼分布中分子数密度随高度如何变化？</li>
+<li>佩兰实验如何测定阿伏伽德罗常数？</li>
+<li>特征高度 $h_0=\frac{kT}{mg}$ 的物理意义。</li>
+<li>写出麦克斯韦-玻耳兹曼能量分布。</li>
+<li>为什么高空气温低但分子平均动能未必低？（大气非等温的说明）</li>
+<li>用玻耳兹曼分布解释：为什么氢分子易逃逸出地球大气？</li>
+</ol></div>
+
+<h3 class="subsec" id="s2-3">§2.3 能量均分定理与内能</h3>
+<div class="intro"><p><b>引入：</b>1875 年麦克斯韦困惑地写道：能量均分定理预言双原子分子有 7 个自由度，但实验热容只显示 5 个——"某些自由度似乎被冻住了"。这个难题要到五十年后量子力学诞生才解决：振动自由度在室温下被量子冻结。<b>能量均分定理是经典统计的成功与局限的双重见证</b>，也是通往量子世界的第一扇门。</p></div>
+<div class="idea">
+<p><b>自由度 $i$：</b>单原子 3；刚性双原子 5；非刚性双原子 7；多原子 6。</p>
+<p><b>能量均分定理：</b>平衡态下每个平方项自由度平均能量 $\frac12kT$。</p>
+<p><b>理想气体内能：</b>$E=\frac i2\nu RT$（只与温度有关）。</p>
+<div class="warn"><b>易错：</b>内能是温度的单值函数，与体积压强无关（中大真题考点）；室温下振动自由度"冻结"，刚性双原子取 $i=5$。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：能量均分定理（统计力学简述）</div>
+<p>哈密顿量中每个平方项（$\frac{p_x^2}{2m}$、$\frac12kx^2$ 等）对配分函数的贡献相同，由玻耳兹曼分布积分：$\langle\frac{p_x^2}{2m}\rangle=\frac{\int\frac{p_x^2}{2m}e^{-\beta E}d\Gamma}{\int e^{-\beta E}d\Gamma}=\frac12kT$（高斯积分）。∎ <span class="tip">——"每个平方项分 $\frac12kT$"，记住这句话，自由度全部解决。</span></p>
+</div>
+<div class="ex">
+<div class="title">例2.3 1 mol 刚性双原子气体从 300 K 升到 400 K，内能增量？</div>
+<p><b>解：</b>$\Delta E=\frac52\times8.31\times100=2077.5$ J。</p>
+</div>
+<div class="prac"><div class="title">本节练习（2.3-1 ~ 2.3-10）</div>
+<ol start="91">
+<li>氦气与氧气各 1 mol 同温度，内能之比？</li>
+<li>温度相同时，1 mol 刚性双原子分子的平均总动能与平动动能之比？</li>
+<li>容器内有 2 mol 氦气和 1 mol 氧气，温度 300 K，求总内能。</li>
+<li>写出能量均分定理，说明其适用条件。</li>
+<li>为什么室温下振动自由度被"冻结"？</li>
+<li>理想气体内能为什么只与温度有关？</li>
+<li>刚性双原子分子的转动自由度贡献多少能量（每分子）？</li>
+<li>1 mol 气体温度升高 1 K，内能增加多少（单原子/双原子）？</li>
+<li>说明能量均分定理与麦克斯韦分布的关系。</li>
+<li>气体分子热容的实验值随温度变化说明什么？</li>
+</ol></div>
+
+<h3 class="subsec" id="s2-4">§2.4 统计规律的本质：涨落与统计规律</h3>
+<div class="intro"><p><b>引入：</b>玻尔兹曼 1877 年写下 $S=k\ln W$，把熵与微观状态数联系起来。但他的统计解释遭到马赫、奥斯特瓦尔德等"唯能论者"的猛烈围攻——当时原子是否存在尚无定论。玻尔兹曼在孤独与抑郁中于 1906 年自杀，墓碑上只刻着 $S=k\log W$。讽刺的是，就在他去世前后，爱因斯坦的布朗运动论文（1905）与佩兰实验（1908）彻底证实了原子的存在。<b>统计规律的本质：对个别粒子无意义，对大量粒子精确成立；涨落是统计规律的必然伴随。</b></p></div>
+<div class="idea">
+<p><b>统计规律：</b>大量偶然事件的集体必然性。个别分子无规律，大量分子有确定分布。</p>
+<p><b>涨落：</b>宏观量围绕平均值的起伏，相对涨落 $\propto\frac1{\sqrt N}$。</p>
+<p><b>布朗运动：</b>液体分子碰撞的不平衡引起的微粒无规运动；爱因斯坦公式 $\overline{x^2}=2Dt$。</p>
+<p><b>玻耳兹曼关系：</b>$S=k\ln W$。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：相对涨落 $\propto\frac1{\sqrt N}$</div>
+<p>设分子数 $N$ 的统计分布（二项分布或泊松分布），标准差 $\sigma=\sqrt{N}$，平均值 $\bar N=N$。相对涨落 $\frac{\sigma}{\bar N}=\frac1{\sqrt N}$。对 $N=10^{23}$，相对涨落 $10^{-12}$ 量级——宏观量精确到十二位有效数字；对 $N=100$，涨落达 10%。∎ <span class="tip">——"大量"是统计规律成立的前提，也是热力学只适用于宏观系统的原因。</span></p>
+</div>
+<div class="prac"><div class="title">本节练习（2.4-1 ~ 2.4-10）</div>
+<ol start="101">
+<li>说明统计规律与力学规律的区别。</li>
+<li>相对涨落与分子数的关系？推导之。</li>
+<li>布朗运动的发现与解释。</li>
+<li>爱因斯坦布朗运动公式 $\overline{x^2}=2Dt$ 的含义。</li>
+<li>玻耳兹曼关系 $S=k\ln W$ 的意义。</li>
+<li>为什么热力学只适用于大量粒子的系统？</li>
+<li>估算标准状态下 $1$ cm³ 气体分子数的涨落。</li>
+<li>玻耳兹曼的悲剧说明了什么（科学史视角）？</li>
+<li>用涨落解释"为什么小系统不服从热力学"。</li>
+<li>麦克斯韦妖佯谬与信息的关系（简述）。</li>
+</ol></div>
+
+<h3 class="subsec" id="m2">第二章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：三个速率"公式套用"</div>
+<p>先算 $\sqrt{\frac{RT}M}$（$M$ 用 kg/mol），乘 1.41、1.60、1.73 得三个速率。大小顺序永远 $v_p&lt;\bar v&lt;\sqrt{\overline{v^2}}$。</p>
+<p><b>例题：</b>27℃ 氧气 $\sqrt{\frac{RT}M}=279$ m/s。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：内能计算"数自由度"</div>
+<p>判断分子类型定 $i$（单原子 3、刚性双原子 5、多原子 6），$E=\frac i2\nu RT$；$\Delta E=\frac i2\nu R\Delta T$ 与过程无关。</p>
+<p><b>例题：</b>等温过程 $\Delta E=0$ 无论体积如何变。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：分布函数三类问题</div>
+<p>归一化 $\int f=1$；概率 $\int_{v_1}^{v_2}f\,dv$；平均值 $\bar g=\int g(v)f(v)dv$。计算用高斯积分结论。</p>
+<p><b>例题：</b>$\bar v=\int vf(v)dv=\sqrt{\frac{8kT}{\pi m}}$。</p>
+</div>
+
+<h3 class="subsec" id="e2">第二章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（2-1 ~ 2-20，含真题）</div>
+<ol start="111">
+<li><span class="src">（中山大学期末真题）</span>27℃ 的氧气求 $v_p,\bar v,\sqrt{\overline{v^2}}$。</li>
+<li><span class="src">（清华大学热学试题·流传版）</span>证明麦克斯韦分布归一化。</li>
+<li><span class="src">（北京大学热学试题·流传版）</span>用高斯积分求 $\bar v$ 与 $\sqrt{\overline{v^2}}$。</li>
+<li><span class="src">（复旦大学热学试题·流传版）</span>由等温气压公式估算珠峰（8848 m）气压。</li>
+<li><span class="src">（中山大学期末真题）</span>容器内有 2 mol 氦气和 1 mol 氧气，300 K，求总内能。</li>
+<li>求速率在 $v_p$ 到 $v_p+dv$ 之间的分子数占比。</li>
+<li>温度升高对分布曲线的影响（定量说明三个速率）。</li>
+<li>氢分子在 300 K 的方均根速率，与逃逸速度比较说明大气无氢。</li>
+<li>用分布函数求分子平均平动动能，验证 $\frac32kT$。</li>
+<li>估算 $1$ cm³ 标准状态气体分子数的相对涨落。</li>
+<li>佩兰实验的物理原理与意义。</li>
+<li>麦克斯韦分布与玻耳兹曼分布的关系。</li>
+<li>说明"温度是分子平均平动动能的量度"这一论断的适用范围。</li>
+<li>两种气体混合达到平衡，各组分分布如何？</li>
+<li>用能量均分定理求固体的杜隆-珀蒂定律。</li>
+<li>为什么水蒸气的定容热容随温度升高而增大？</li>
+<li>估算教室空气中速率超过 500 m/s 的分子占比（27℃）。</li>
+<li>说明统计规律中"大数定律"的角色。</li>
+<li>用玻耳兹曼分布求分子在重力场中的平均高度。</li>
+<li>布朗运动与分子存在的关系：为什么它是决定性的证据？</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch3">第三章 热力学第一定律</h2>
+<div class="hook">
+<p><b>1847 年，26 岁的德国医生亥姆霍兹宣读论文《论力的守恒》，把机械能守恒推广为普遍的"能量守恒"——物理学的第一铁律。</b>此前迈耶（1842）已提出热功当量的概念，焦耳则以四十年的精密实验给出数值。亥姆霍兹的贡献在于给出普遍表述：自然界一切能量形式（机械、热、电、磁、化学）的总量守恒。<b>本章与教材结构一致：功与内能 → 热力学第一定律 → 热容与焓 → 理想气体的等值过程与绝热过程 → 循环过程与卡诺循环。</b>这是期末大题的主战场。</p>
+</div>
+
+<h3 class="subsec" id="s3-1">§3.1 功、内能与热力学第一定律</h3>
+<div class="intro"><p><b>引入：</b>"内能"的概念由克劳修斯 1850 年引入：系统内部能量的总和。它的引入使第一定律有了简洁形式 $Q=\Delta U+W$。<b>内能是状态量，功与热量是过程量</b>——这个区分是整个热力学的逻辑基石，也是选择题的永恒考点。</p></div>
+<div class="idea">
+<p><b>热力学第一定律：</b>$Q=\Delta U+W$（吸热 $Q&gt;0$，对外做功 $W&gt;0$）。微分式 $dQ=dU+dW$。</p>
+<p><b>体积功：</b>$dW=pdV$，$W=\int p\,dV$（$p$-$V$ 图上曲线下面积）。</p>
+<p><b>状态量与过程量：</b>内能、温度、压强、体积是状态量；功、热量是过程量。</p>
+<div class="warn"><b>易错：</b>"物体含有多少热量"是错误说法——热量是传递中的能量。内能是状态函数，$\Delta U$ 只由初末态决定，与路径无关。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：体积功 $dW=pdV$</div>
+<p>活塞面积 $S$，气体压强 $p$，活塞移动 $dx$：气体对外做功 $dW=F\,dx=pS\,dx=pdV$。对有限过程 $W=\int_{V_1}^{V_2}p\,dV$，等于 $p$-$V$ 图上过程曲线下的面积。∎ <span class="tip">——功是过程量的直接证据：同一初末态，不同路径下面积不同。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.1 气体从 A 沿直线到 B（$V$：2 L→5 L，$p$：3 atm→1 atm），求做功。</div>
+<p><b>解：</b>$W=$梯形面积$=\frac{(3+1)\times1.013\times10^5}2\times3\times10^{-3}=608$ J。</p>
+</div>
+<div class="prac"><div class="title">本节练习（3.1-1 ~ 3.1-10）</div>
+<ol start="131">
+<li>等压膨胀与等温膨胀到相同体积，哪个做功多？</li>
+<li>气体吸热 500 J、对外做功 300 J，内能变化？</li>
+<li>气体被压缩（外界做功 200 J）同时放热 150 J，内能变化？</li>
+<li>为什么说"热量是过程量"？</li>
+<li>写出第一定律的两种形式及符号约定。</li>
+<li>推导体积功公式 $dW=pdV$。</li>
+<li>理想气体等温膨胀做功公式及推导。</li>
+<li>说明内能是状态量的含义。</li>
+<li>$p$-$V$ 图上沿两条不同路径从 A 到 B，做功是否相同？</li>
+<li>绝热自由膨胀中 $Q,W,\Delta U$ 各是多少？</li>
+</ol></div>
+
+<h3 class="subsec" id="s3-2">§3.2 热容、焓与理想气体的等值过程</h3>
+<div class="intro"><p><b>引入：</b>焦耳 1845 年做自由膨胀实验：气体冲入真空，温度不变——说明理想气体内能只与温度有关。迈耶 1842 年则从理论上预言 $C_p-C_V=R$，与实验相符。<b>焓的概念由昂内斯 1909 年引入（$H=U+pV$）</b>：等压过程中的热量恰好等于焓变，使工程计算大为简化。</p></div>
+<div class="idea">
+<p><b>热容：</b>$C_V=\left(\frac{\partial U}{\partial T}\right)_V$，$C_p=\left(\frac{\partial H}{\partial T}\right)_p$。理想气体 $C_V=\frac i2\nu R$，$C_p=C_V+\nu R$（迈耶公式）。</p>
+<p><b>焓：</b>$H=U+pV$。等压过程 $Q=\Delta H$。</p>
+<p><b>四个等值过程：</b></p>
+<table>
+<tr><th>过程</th><th>特征</th><th>$W$</th><th>$Q$</th><th>$\Delta U$</th></tr>
+<tr><td>等容</td><td>$V$ 不变</td><td>0</td><td>$C_V\Delta T$</td><td>$C_V\Delta T$</td></tr>
+<tr><td>等压</td><td>$p$ 不变</td><td>$\nu R\Delta T$</td><td>$C_p\Delta T$</td><td>$C_V\Delta T$</td></tr>
+<tr><td>等温</td><td>$T$ 不变</td><td>$\nu RT\ln\frac{V_2}{V_1}$</td><td>$=W$</td><td>0</td></tr>
+<tr><td>绝热</td><td>$Q=0$</td><td>$-\Delta U$</td><td>0</td><td>$C_V\Delta T$</td></tr>
+</table>
+</div>
+<div class="derive">
+<div class="dt">推导：迈耶公式 $C_p-C_V=\nu R$</div>
+<p>等压过程：$Q_p=C_p\Delta T=\Delta U+W=C_V\Delta T+p\Delta V$。由状态方程 $p\Delta V=\nu R\Delta T$，故 $C_p\Delta T=C_V\Delta T+\nu R\Delta T$，$C_p=C_V+\nu R$。∎ <span class="tip">——等压升温多吸的热 $\nu R\Delta T$ 全用于对外做功。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.2 1 mol 单原子气体等压升温 100 K，求 $W,Q,\Delta U$。</div>
+<p><b>解：</b>$\Delta U=\frac32R\times100=1246.5$ J；$W=R\times100=831$ J；$Q=\frac52R\times100=2077.5$ J。</p>
+</div>
+<div class="prac"><div class="title">本节练习（3.2-1 ~ 3.2-10）</div>
+<ol start="141">
+<li>1 mol 双原子气体等温膨胀体积加倍，求 $W,Q$（300 K）。</li>
+<li>同题等容升温 100 K，求 $Q,\Delta U$。</li>
+<li>刚性双原子的 $C_V,C_p,\gamma$ 各是多少（1 mol）？</li>
+<li>等温过程 $Q=W$，为什么？</li>
+<li>推导迈耶公式。</li>
+<li>焓的物理意义与适用场合。</li>
+<li>理想气体内能为什么只与温度有关？</li>
+<li>等压过程的热量为什么等于焓变？</li>
+<li>1 mol 单原子气体等压膨胀，体积加倍（初温 300 K），求 $Q$。</li>
+<li>比较等压与等容升温相同温度时吸热多少。</li>
+</ol></div>
+
+<h3 class="subsec" id="s3-3">§3.3 绝热过程与多方过程</h3>
+<div class="intro"><p><b>引入：</b>牛顿计算声速时用等温假设，得 280 m/s，比实测 331 m/s 小 15%。拉普拉斯 1816 年指出：声波中空气的压缩膨胀太快，来不及热交换，应作绝热处理——乘上 $\sqrt{\gamma}$，理论与实验完美吻合。<b>绝热过程是"快过程"的模型</b>：活塞快速压缩、声波传播、内燃机压缩冲程皆是。</p></div>
+<div class="idea">
+<p><b>绝热方程（泊松方程）：</b></p>
+<div class="formula">$$pV^\gamma=\text{常数},\qquad TV^{\gamma-1}=\text{常数},\qquad p^{1-\gamma}T^\gamma=\text{常数}$$</div>
+<p>$\gamma=\frac{C_p}{C_V}=\frac{i+2}i$。单原子 $\frac53$，双原子 $\frac75$。</p>
+<p><b>绝热功：</b>$W=-\Delta U=-C_V\Delta T=\frac{p_1V_1-p_2V_2}{\gamma-1}$。</p>
+<p><b>多方过程：</b>$pV^n=$ 常数（$n=1$ 等温、$n=\gamma$ 绝热、$n=0$ 等压、$n=\infty$ 等容）。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：绝热方程 $pV^\gamma=C$</div>
+<p>绝热微元：$dQ=0\Rightarrow C_VdT+pdV=0$。状态方程微分：$pdV+Vdp=\nu RdT$。消去 $dT$：$C_V(pdV+Vdp)+\nu R\,pdV=0$，即 $C_ppdV+C_VVdp=0$（迈耶公式），$\frac{dp}p+\gamma\frac{dV}V=0$，积分 $pV^\gamma=C$。∎ <span class="tip">——第一定律加状态方程加迈耶公式，三步推出绝热方程。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.3 1 mol 双原子气体绝热膨胀，体积加倍（初温 300 K），求末温与做功。</div>
+<p><b>解：</b>$T_2=300\times2^{-0.4}=227.4$ K；$W=-\frac52R(227.4-300)=1508$ J。</p>
+</div>
+<div class="prac"><div class="title">本节练习（3.3-1 ~ 3.3-10）</div>
+<ol start="151">
+<li>绝热压缩时温度升高还是降低？为什么？</li>
+<li>1 mol 单原子气体从 2 atm、10 L 绝热膨胀到 20 L，求末压强。</li>
+<li>绝热过程中 $W$ 与 $\Delta U$ 的关系？</li>
+<li>用 $TV^{\gamma-1}=C$ 与状态方程导出 $pV^\gamma=C$。</li>
+<li>推导绝热方程。</li>
+<li>为什么绝热线比等温线陡？</li>
+<li>拉普拉斯如何修正牛顿声速公式？</li>
+<li>多方过程 $n$ 取何值时对应等温、绝热、等压、等容？</li>
+<li>绝热自由膨胀与绝热准静态膨胀的区别。</li>
+<li>求 1 mol 双原子气体绝热膨胀的做功（初末温度 300 K、200 K）。</li>
+</ol></div>
+
+<h3 class="subsec" id="s3-4">§3.4 循环过程与卡诺循环</h3>
+<div class="intro"><p><b>引入：</b>瓦特 1769 年改良蒸汽机，工业革命加速。但工程师们凭经验改进，没人知道效率的天花板在哪里。卡诺 1824 年用理想化的"卡诺循环"回答：效率上限 $\eta=1-\frac{T_2}{T_1}$，只由两热源温度决定，与工质无关。<b>卡诺循环是热机的"理想标尺"</b>——它设定的上限至今有效，所有真实热机的效率都低于它。</p></div>
+<div class="idea">
+<p><b>正循环（热机）：</b>$\eta=\frac W{Q_1}=1-\frac{Q_2}{Q_1}$。</p>
+<p><b>卡诺循环（两等温+两绝热）：</b>$\eta_C=1-\frac{T_2}{T_1}$。</p>
+<p><b>逆循环（制冷机）：</b>制冷系数 $e=\frac{Q_2}W$；卡诺制冷机 $e=\frac{T_2}{T_1-T_2}$。</p>
+<div class="warn"><b>易错：</b>$Q_1$ 是总吸热、$Q_2$ 是总放热（取正）；循环 $\Delta U=0$ 故 $W=Q_1-Q_2$；多过程循环要逐段判断吸放热符号。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：卡诺循环效率 $\eta_C=1-\frac{T_2}{T_1}$</div>
+<p>两等温过程：$Q_1=\nu RT_1\ln\frac{V_B}{V_A}$（吸热），$Q_2=\nu RT_2\ln\frac{V_C}{V_D}$（放热，取绝对值）。两绝热过程：$T_1V_B^{\gamma-1}=T_2V_C^{\gamma-1}$，$T_1V_A^{\gamma-1}=T_2V_D^{\gamma-1}$，相除得 $\frac{V_B}{V_A}=\frac{V_C}{V_D}$。故 $\frac{Q_2}{Q_1}=\frac{T_2}{T_1}$，$\eta=1-\frac{Q_2}{Q_1}=1-\frac{T_2}{T_1}$。∎ <span class="tip">——效率只依赖温度比，与工质、体积无关。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.4 卡诺热机工作于 500 K 与 300 K 之间，每循环吸热 1000 J，求效率、做功与放热。</div>
+<p><b>解：</b>$\eta=0.4$；$W=400$ J；$Q_2=600$ J。</p>
+</div>
+<div class="prac"><div class="title">本节练习（3.4-1 ~ 3.4-10）</div>
+<ol start="161">
+<li>热机每循环吸热 800 J、放热 600 J，求效率与做功。</li>
+<li>提高热机效率的两个途径？</li>
+<li>卡诺制冷机在 27℃ 与 7℃ 间工作，制冷系数？</li>
+<li>为什么卡诺循环效率只与两个温度有关？</li>
+<li>推导卡诺循环效率公式。</li>
+<li>画出卡诺循环的 p-V 图，标出四个过程。</li>
+<li>卡诺循环与奥托循环的区别？</li>
+<li>1 mol 单原子气体作卡诺循环（$T_1=400$ K、$T_2=300$ K），等温膨胀体积加倍，求效率与每循环做功。</li>
+<li>制冷机从 7℃ 的冷库抽热 1000 J，放入 27℃ 环境，最小耗功多少？</li>
+<li>说明卡诺定理的内容（两条）。</li>
+</ol></div>
+
+<h3 class="subsec" id="m3">第三章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：第一定律"查表法"</div>
+<p>判断过程类型，查等值过程表填 $W,Q,\Delta U$ 三格（知一求二），用 $Q=\Delta U+W$ 校验。口诀：等容 $W=0$、等温 $\Delta U=0$、绝热 $Q=0$。</p>
+<p><b>例题：</b>等压升温：先 $\Delta U=C_V\Delta T$，再 $W=\nu R\Delta T$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：循环效率"三步行"</div>
+<p>画 p-V 图，逐段标吸放热符号；算总吸热 $Q_1$ 与总放热 $Q_2$；$\eta=1-\frac{Q_2}{Q_1}$。卡诺循环直接 $\eta=1-\frac{T_2}{T_1}$。</p>
+<p><b>例题：</b>多段循环漏掉某段吸热是最大失分点。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：绝热过程"三公式切换"</div>
+<p>$pV^\gamma=C$、$TV^{\gamma-1}=C$、$p^{1-\gamma}T^\gamma=C$，缺哪个量用哪条。做功用 $W=\frac{p_1V_1-p_2V_2}{\gamma-1}$ 或 $W=-C_V\Delta T$。</p>
+<p><b>例题：</b>绝热膨胀求末温：$T_2=T_1(\frac{V_1}{V_2})^{\gamma-1}$。</p>
+</div>
+
+<h3 class="subsec" id="e3">第三章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（3-1 ~ 3-20，含真题）</div>
+<ol start="171">
+<li><span class="src">（中山大学《大学物理B》2025-2026 真题）</span>（单选）热力学第一定律的表达式：A. $Q=\Delta U+W$ B. $Q=\Delta U-W$ C. $\Delta U=Q+W$ D. 其它。</li>
+<li><span class="src">（中山大学《大学物理B》2025-2026 真题）</span>（填空）一定质量的理想气体在等容过程中温度升高 10℃，其内能的变化量与吸收的热量______（相等/不相等），因为______。</li>
+<li><span class="src">（清华大学热学试题·流传版）</span>1 mol 单原子气体作循环：等容升压→等温膨胀→等压压缩，求效率。</li>
+<li><span class="src">（北京大学热学试题·流传版）</span>用第一定律推导绝热方程。</li>
+<li><span class="src">（复旦大学热学试题·流传版）</span>求 1 mol 双原子气体的 $C_V,C_p,\gamma$ 及绝热膨胀温度变化。</li>
+<li>1 mol 理想气体从 $(p_1,V_1,T_1)$ 经多方过程 $pV^n=C$ 到 $(p_2,V_2,T_2)$，求做功与吸热。</li>
+<li>证明理想气体内能只与温度有关。</li>
+<li>奥托循环效率 $\eta=1-\frac1{r^{\gamma-1}}$（$r$ 压缩比）的推导。</li>
+<li>狄塞尔循环与奥托循环的区别。</li>
+<li>一台热机从 100℃ 热源吸热 1000 J，向 0℃ 冷源放热，求最大做功。</li>
+<li>家用空调（制冷机）的制冷系数与耗电计算。</li>
+<li>声速公式 $v=\sqrt{\frac{\gamma RT}M}$ 的推导。</li>
+<li>内燃机四冲程的工作过程与 p-V 图。</li>
+<li>比较等温、绝热、等容、等压过程在同一起点膨胀相同体积的做功。</li>
+<li>用第一定律分析焦耳自由膨胀实验。</li>
+<li>理想气体的 $C_p$ 与 $C_V$ 随温度的变化（低温量子效应）。</li>
+<li>热机效率为何不能达到 100%？</li>
+<li>用焓分析节流过程（焦耳-汤姆逊效应）。</li>
+<li>冰箱背面的散热片为什么是热的？</li>
+<li>计算 1 mol 理想气体在多方过程中热容的一般公式。</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch4">第四章 热力学第二定律</h2>
+<div class="hook">
+<p><b>把一杯热水放在桌上，它只会变凉，不会自动变烫——牛顿力学中没有一条定律禁止它，但第二定律禁止。</b>克劳修斯 1850 年说：热不能自发从低温流向高温。开尔文 1851 年说：不能从单一热源取热全部变功。两种表述等价。1865 年克劳修斯引入"熵"，1877 年玻尔兹曼给出统计解释 $S=k\ln W$——<b>第二定律从一条工程经验升华为宇宙的方向之箭</b>。本章与教材结构一致：第二定律的表述与卡诺定理 → 克拉珀龙方程 → 克劳修斯不等式与熵定理 → 关于第二定律的诘难与佯谬 → 热平衡与自由能 → 连续相变与超流。</p>
+</div>
+
+<h3 class="subsec" id="s4-1">§4.1 第二定律的两种表述与卡诺定理</h3>
+<div class="intro"><p><b>引入：</b>1850 到 1851 年，克劳修斯与开尔文分别独立给出第二定律的表述。两种表述看似无关——一个谈热传导，一个谈热机——却能互相推出。这一等价性的证明是热力学的经典推理：<b>若开尔文表述不成立，则违反克劳修斯表述；反之亦然</b>。它说明第二定律只有一个。</p></div>
+<div class="idea">
+<p><b>开尔文表述：</b>不可能从单一热源吸热全部变成功而不产生其它影响（第二类永动机不可能）。</p>
+<p><b>克劳修斯表述：</b>热量不可能自发地从低温物体传到高温物体。</p>
+<p><b>卡诺定理：</b>① 相同高低温热源间的可逆机效率相等；② 不可逆机效率不大于可逆机。</p>
+<p><b>可逆与不可逆过程：</b>可逆 = 每一步可反向进行且外界复原（准静态+无耗散）。</p>
+<div class="warn"><b>判断重灾区（中大真题考过）：</b>"第二类永动机违反热力学第一定律"——错，它违反第二定律。"热量不能从低温传到高温"——错，缺"自发"二字（冰箱即可）。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：开尔文表述与克劳修斯表述的等价性</div>
+<p>（⟸）设克劳修斯表述不成立：热 $Q$ 自发从低温 $T_2$ 流向高温 $T_1$。另造一热机从 $T_1$ 吸 $Q$ 向 $T_2$ 放热做功 $W$。两装置联合：低温热源净无变化，高温热源净放热为零，唯一效果是从单一热源（$T_1$）吸热 $Q-Q'$ 变功——违反开尔文表述。（⟹）反之同理。故两表述等价。∎ <span class="tip">——"反证法+装置组合"是热力学推理的标准招式。</span></p>
+</div>
+<div class="ex">
+<div class="title">例4.1 判断：功可以全部转化为热，热不能全部转化为功。</div>
+<p><b>解：</b>前半句对（摩擦生热）。后半句不对：热可以全部变功（等温膨胀），但会产生其它影响，且不能循环。第二定律禁止的是"循环地从单一热源取热全部变功"。</p>
+</div>
+<div class="prac"><div class="title">本节练习（4.1-1 ~ 4.1-10）</div>
+<ol start="191">
+<li>写出第二定律两种表述。</li>
+<li>证明两种表述的等价性。</li>
+<li>卡诺定理的两条结论。</li>
+<li>冰箱是否违反克劳修斯表述？为什么？</li>
+<li>列举三个不可逆过程。</li>
+<li>什么是第二类永动机？它违反哪条定律？</li>
+<li>可逆过程的定义与条件。</li>
+<li>为什么实际过程都不可逆？</li>
+<li>判断："热量不能从低温传到高温"（对错及理由）。</li>
+<li>第二定律的两种表述各侧重什么现象？</li>
+</ol></div>
+
+<h3 class="subsec" id="s4-2">§4.2 克拉珀龙方程及其在相变问题上的应用</h3>
+<div class="intro"><p><b>引入：</b>1834 年，法国工程师克拉珀龙把卡诺的结论翻译成数学语言，给出两相平衡曲线斜率的公式。<b>克拉珀龙方程是热力学第二定律的第一个定量推论</b>：它把潜热、体积变化与平衡曲线斜率连在一起。溜冰（压强压化冰）、高压锅（压强升沸点）都是它的生活版。</p></div>
+<div class="idea">
+<p><b>克拉珀龙方程：</b></p>
+<div class="formula">$$\frac{dp}{dT}=\frac L{T(v_2-v_1)}$$</div>
+<p>$L$ 为相变潜热，$v_1,v_2$ 为两相比容。</p>
+<p><b>应用：</b>冰的融化曲线 $\frac{dp}{dT}&lt;0$（冰比容大）；汽化曲线 $\frac{dp}{dT}&gt;0$（$v_气\gg v_液$）。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：克拉珀龙方程</div>
+<p>两相平衡时，1 mol 物质在温度 $T$ 从相 1 可逆变到相 2：吸热 $L$，熵变 $s_2-s_1=\frac LT$。沿平衡曲线移动 $dT$，两相化学势（吉布斯函数）变化相等：$v_2dp-s_2dT=v_1dp-s_1dT$，即 $(v_2-v_1)dp=\frac LT dT$，$\frac{dp}{dT}=\frac L{T(v_2-v_1)}$。∎</p>
+</div>
+<div class="ex">
+<div class="title">例4.2 解释：高原上煮鸡蛋为什么煮不熟？</div>
+<p><b>解：</b>高原气压低，沸点低于 100℃（克拉珀龙方程），沸点过低时热源温度不够，鸡蛋熟化反应达不到所需温度。</p>
+</div>
+<div class="prac"><div class="title">本节练习（4.2-1 ~ 4.2-10）</div>
+<ol start="201">
+<li>压强增大，冰的熔点与水的沸点各如何变？</li>
+<li>推导克拉珀龙方程。</li>
+<li>大气压下冰熔点随压强的变化率（$L=3.34\times10^5$ J/kg，$\Delta v=-9\times10^{-5}$ m³/kg）。</li>
+<li>为什么溜冰鞋能在冰上滑？</li>
+<li>高压锅的原理。</li>
+<li>水的三相点温度与压强。</li>
+<li>汽化曲线为什么终止于临界点？</li>
+<li>熔化曲线与汽化曲线斜率的符号差异原因。</li>
+<li>估算 100℃ 水汽化潜热（已知 $\frac{dp}{dT}$ 与比容差）。</li>
+<li>冰在压强下熔点降低的量级估算。</li>
+</ol></div>
+
+<h3 class="subsec" id="s4-3">§4.3 克劳修斯不等式与熵定理：熵是态函数、熵的计算、熵增加原理</h3>
+<div class="intro"><p><b>引入：</b>1865 年，克劳修斯在苏黎世自然研究会的演讲中引入"熵"（entropy，希腊语"转变"），并宣布宇宙的两条公理："宇宙的能量守恒"与"宇宙的熵趋于极大"。<b>熵的引入把第二定律从定性表述变成定量定理</b>：$\Delta S\ge0$，等号只在可逆过程成立。而玻尔兹曼的 $S=k\ln W$ 则把熵与无序度挂钩——熵增就是走向更可能的状态。</p></div>
+<div class="idea">
+<p><b>克劳修斯熵：</b>$dS=\frac{dQ_{可逆}}T$，$\Delta S=\int_1^2\frac{dQ_{可逆}}T$。</p>
+<p><b>熵增加原理：</b>孤立系统 $\Delta S\ge0$（可逆取等号）。</p>
+<p><b>理想气体熵变公式：</b></p>
+<div class="formula">$$\Delta S=\nu C_V\ln\frac{T_2}{T_1}+\nu R\ln\frac{V_2}{V_1}=\nu C_p\ln\frac{T_2}{T_1}-\nu R\ln\frac{p_2}{p_1}$$</div>
+<p><b>玻尔兹曼熵：</b>$S=k\ln W$。</p>
+<div class="warn"><b>关键技巧：</b>不可逆过程的熵变沿任意可逆路径计算（熵是状态量，只由初末态决定）。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：理想气体熵变公式</div>
+<p>沿可逆路径：$dS=\frac{dQ}T=\frac{dU+dW}T=\frac{C_VdT+p\,dV}T=\nu C_V\frac{dT}T+\nu R\frac{dV}V$（用了 $pV=\nu RT$）。积分：$\Delta S=\nu C_V\ln\frac{T_2}{T_1}+\nu R\ln\frac{V_2}{V_1}$。∎</p>
+</div>
+<div class="derive">
+<div class="dt">推导：卡诺循环的熵变之和为零（可逆循环）</div>
+<p>等温吸热 $\Delta S_1=\frac{Q_1}{T_1}$，等温放热 $\Delta S_2=-\frac{Q_2}{T_2}$，两绝热段熵变为零。由卡诺效率推导知 $\frac{Q_1}{T_1}=\frac{Q_2}{T_2}$，故 $\oint dS=0$——熵是态函数的标志。∎</p>
+</div>
+<div class="ex">
+<div class="title">例4.3 1 mol 理想气体自由膨胀，体积加倍，求熵变。</div>
+<p><b>解：</b>自由膨胀不可逆，但熵是状态量，用等温可逆过程算：$\Delta S=\nu R\ln\frac{V_2}{V_1}=R\ln2=5.76$ J/K。注意 $Q=0$ 但 $\Delta S&gt;0$——不可逆的标志。</p>
+</div>
+<div class="ex">
+<div class="title">例4.4 1 kg 的 100℃ 水倒入 1 kg 的 0℃ 水（绝热），求熵变（$c=4.18$ kJ/kg·K）。</div>
+<p><b>解：</b>末温 323 K。$\Delta S_1=4.18\ln\frac{323}{373}=-0.60$ kJ/K；$\Delta S_2=4.18\ln\frac{323}{273}=0.71$ kJ/K。总 $\Delta S=0.11$ kJ/K &gt; 0。</p>
+</div>
+<div class="prac"><div class="title">本节练习（4.3-1 ~ 4.3-10）</div>
+<ol start="211">
+<li>等温可逆膨胀体积加倍（1 mol，300 K），求 $\Delta S$。</li>
+<li>等容升温 100 K（1 mol 单原子），求 $\Delta S$。</li>
+<li>孤立系统内发生不可逆过程，熵如何变？</li>
+<li>推导理想气体熵变公式。</li>
+<li>用熵计算证明卡诺循环 $\frac{Q_1}{T_1}=\frac{Q_2}{T_2}$。</li>
+<li>两块相同金属（$m,c$，$T_1&gt;T_2$）接触达平衡，求总熵变并说明正负。</li>
+<li>1 mol 理想气体自由膨胀体积加倍，求熵变。</li>
+<li>100℃ 水与 0℃ 水各 1 kg 混合，求熵变。</li>
+<li>熵增加原理与第二定律的关系。</li>
+<li>为什么熵叫"时间之箭"？</li>
+</ol></div>
+
+<h3 class="subsec" id="s4-4">§4.4 关于第二定律的诘难与佯谬：洛施密特、策尔梅洛、吉布斯佯谬、麦克斯韦妖</h3>
+<div class="intro"><p><b>引入：</b>第二定律从诞生起就饱受攻击。洛施密特（1876）：力学方程时间反演对称，熵增从何而来？策尔梅洛（1896）：庞加莱回归定理说系统会回到初态，熵增岂非幻觉？吉布斯佯谬：两种气体混合的熵增公式在气体相同（趋于相同）时给出荒谬的非零值。麦克斯韦妖（1871）：一个能分辨分子快慢的小妖似乎可以违反第二定律。<b>每一个佯谬的解决都深化了对熵的理解</b>——特别是麦克斯韦妖，其"信息即负熵"的洞见（西拉德、朗道）是信息论与热力学的交汇点。</p></div>
+<div class="idea">
+<p><b>洛施密特佯谬：</b>微观可逆与宏观不可逆的矛盾；解决：初始条件的极端特殊性（统计解释）。</p>
+<p><b>策尔梅洛佯谬：</b>庞加莱回归时间远超宇宙年龄，不构成实际威胁。</p>
+<p><b>吉布斯佯谬：</b>相同气体混合熵增应为零；解决：需计及粒子的全同性（量子统计）。</p>
+<p><b>麦克斯韦妖：</b>妖获取信息需消耗能量，信息擦除产生熵（兰道尔原理），第二定律依然成立。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：吉布斯佯谬的解决（全同性修正）</div>
+<p>两种不同气体混合：$\Delta S=\nu_1R\ln\frac{V}{V_1}+\nu_2R\ln\frac{V}{V_2}&gt;0$。若两气体相同，公式给出同样正的 $\Delta S$——但同种气体混合熵变应为零。矛盾的根源：经典统计把同种粒子当作可分辨的，多算了 $\nu R\ln2$（混合后每个粒子可选任一空间）的"假熵"。量子统计中粒子全同不可分辨，配分函数除以 $N!$，此多余项恰好消去。∎ <span class="tip">——吉布斯佯谬是量子统计必要性的第一个证据。</span></p>
+</div>
+<div class="prac"><div class="title">本节练习（4.4-1 ~ 4.4-10）</div>
+<ol start="221">
+<li>洛施密特佯谬的内容与解决。</li>
+<li>策尔梅洛佯谬的内容与解决。</li>
+<li>吉布斯佯谬的内容与解决。</li>
+<li>麦克斯韦妖为何不能违反第二定律？</li>
+<li>兰道尔原理的内容。</li>
+<li>信息与熵的关系（$S=-k\sum p_i\ln p_i$）。</li>
+<li>为什么"信息是负熵"？</li>
+<li>庞加莱回归定理的内容。</li>
+<li>这些佯谬的争论对物理学发展的意义。</li>
+<li>用 $N!$ 修正说明全同性原理。</li>
+</ol></div>
+
+<h3 class="subsec" id="s4-5">§4.5 热平衡与自由能：亥姆霍兹自由能、吉布斯自由能、化学平衡</h3>
+<div class="intro"><p><b>引入：</b>吉布斯 1876 年发表《论非均匀物质的平衡》，引入自由能概念，被誉为"化学热力学的宪章"。吉布斯自由能 $G=H-TS$ 与亥姆霍兹自由能 $F=U-TS$ 回答了工程师的实用问题：<b>定温定压下过程能否自发进行？看 $G$ 是否减小。</b>它们是熵判据在实用条件下的替身——不必算环境熵变，只看系统的一个函数。</p></div>
+<div class="idea">
+<p><b>亥姆霍兹自由能：</b>$F=U-TS$。定温定容下平衡判据：$dF\le0$。</p>
+<p><b>吉布斯自由能：</b>$G=H-TS=U+pV-TS$。定温定压下平衡判据：$dG\le0$。</p>
+<p><b>化学平衡：</b>定温定压下 $\Delta G=0$ 时化学反应达平衡。</p>
+<p><b>麦克斯韦关系：</b>$dU=TdS-pdV$ 等四个微分式及其交叉导数关系。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：定温定压下 $dG\le0$ 的平衡判据</div>
+<p>孤立系统熵增原理：$\Delta S_{系统}+\Delta S_{环境}\ge0$。定温定压下环境熵变 $\Delta S_{环境}=-\frac{\Delta H_{系统}}T$（环境吸热 $-\Delta H$，等温）。代入：$\Delta S-\frac{\Delta H}T\ge0$，即 $\Delta G=\Delta H-T\Delta S\le0$。∎ <span class="tip">——自由能判据是熵判据的"包装"：把环境纳入公式，只剩系统量。</span></p>
+</div>
+<div class="derive">
+<div class="dt">推导：麦克斯韦关系（以 $\left(\frac{\partial T}{\partial V}\right)_S=-\left(\frac{\partial p}{\partial S}\right)_V$ 为例）</div>
+<p>由 $dU=TdS-pdV$ 及 $U$ 是全微分，混合偏导相等：$\frac{\partial^2U}{\partial S\partial V}=\frac{\partial^2U}{\partial V\partial S}$，即 $\left(\frac{\partial T}{\partial V}\right)_S=-\left(\frac{\partial p}{\partial S}\right)_V$。∎ <span class="tip">——与高等数学第八章混合偏导换序完全同源。</span></p>
+</div>
+<div class="prac"><div class="title">本节练习（4.5-1 ~ 4.5-10）</div>
+<ol start="231">
+<li>写出 $F$ 与 $G$ 的定义与平衡判据。</li>
+<li>推导 $dG\le0$ 判据。</li>
+<li>写出四个热力学基本微分式。</li>
+<li>推导麦克斯韦关系（任选一条）。</li>
+<li>说明 $G$ 判据的实用价值。</li>
+<li>化学反应自发进行的判据。</li>
+<li>$F$ 与 $G$ 的区别与适用场合。</li>
+<li>说明 $dU=TdS-pdV$ 的物理意义。</li>
+<li>用 $G$ 判据分析相变（两相平衡条件）。</li>
+<li>范德瓦耳斯气液相平衡的条件。</li>
+</ol></div>
+
+<h3 class="subsec" id="s4-6">§4.6 连续相变与超流：有序-无序转变、朗道理论、液氦</h3>
+<div class="intro"><p><b>引入：</b>1908 年昂内斯液化氦气（4.2 K）；1911 年发现超导；1938 年卡皮查发现液氦的超流性——低于 2.17 K 的液氦能无摩擦地流过任何缝隙。<b>超流是量子效应在宏观尺度的显现</b>。朗道用元激发理论解释之，获 1962 年诺奖。<b>连续相变（二级相变）没有潜热，但有对称性的突变</b>：有序↔无序。朗道的序参量理论是处理连续相变的普适框架。</p></div>
+<div class="idea">
+<p><b>一级相变：</b>有潜热、体积突变（熔化、汽化）。</p>
+<p><b>连续相变（二级）：</b>无潜热，热容、磁化率等发散（铁磁居里点、超导转变、λ 相变）。</p>
+<p><b>序参量：</b>描述有序程度的量（磁化强度、超流密度），连续相变中连续趋于零。</p>
+<p><b>朗道理论：</b>自由能按序参量展开 $F=F_0+a\eta^2+b\eta^4$，$a$ 变号处发生相变。</p>
+<p><b>超流：</b>液氦 4He 在 2.17 K（λ 点）以下无黏性流动；二流体模型。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：朗道二级相变理论的基本结论</div>
+<p>设自由能 $F=F_0+a(T)\eta^2+b\eta^4$（$b&gt;0$）。平衡：$\frac{\partial F}{\partial\eta}=0\Rightarrow 2a\eta+4b\eta^3=0$。当 $a&gt;0$（高温）：$\eta=0$（无序相）；当 $a&lt;0$（低温）：$\eta=\pm\sqrt{\frac{-a}{2b}}$（有序相）。设 $a=a_0(T-T_c)$，则 $\eta\propto\sqrt{T_c-T}$——序参量以平方根律趋于零。∎ <span class="tip">——朗道理论以"对称性+展开"两步抓住连续相变的本质，是理论物理的经典范式。</span></p>
+</div>
+<div class="prac"><div class="title">本节练习（4.6-1 ~ 4.6-10）</div>
+<ol start="241">
+<li>一级相变与连续相变的区别。</li>
+<li>什么是序参量？举三例。</li>
+<li>朗道理论的基本假设与结论。</li>
+<li>推导 $\eta\propto\sqrt{T_c-T}$。</li>
+<li>液氦超流的实验现象。</li>
+<li>二流体模型的要点。</li>
+<li>元激发（准粒子）的概念。</li>
+<li>λ 相变名称的由来。</li>
+<li>超导与超流的异同。</li>
+<li>连续相变中的临界现象与普适性。</li>
+</ol></div>
+
+<h3 class="subsec" id="m4">第四章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：第二定律"抠字眼"判断题</div>
+<p>关键词："自发"（克劳修斯表述）、"单一热源"+"循环"（开尔文表述）、"不产生其它影响"。缺任何一个字表述都不成立。</p>
+<p><b>例题：</b>"热量不能从低温传到高温"——错，缺"自发"。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：熵变计算"可逆路径替代"</div>
+<p>不可逆过程：只看初末态，设计可逆路径（等温+等容+等压拼凑），用熵变公式算。理想气体直接套 $\Delta S=\nu C_V\ln\frac{T_2}{T_1}+\nu R\ln\frac{V_2}{V_1}$。</p>
+<p><b>例题：</b>自由膨胀 $\Delta S=R\ln\frac{V_2}{V_1}$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：熵增原理验证方向</div>
+<p>算总熵变（系统+环境），$\Delta S&gt;0$ 可自发；$=0$ 可逆；$&lt;0$ 不可能。</p>
+<p><b>例题：</b>混合熵变 $mc\ln\frac{T_f^2}{T_1T_2}\ge0$。</p>
+</div>
+<div class="method">
+<div class="mt">方法四：自由能判据的实用选择</div>
+<p>定温定容用 $F$，定温定压用 $G$；相变与化学平衡问题优先 $G$。</p>
+<p><b>例题：</b>两相平衡条件 $\Delta G=0$。</p>
+</div>
+
+<h3 class="subsec" id="e4">第四章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（4-1 ~ 4-20，含真题）</div>
+<ol start="251">
+<li><span class="src">（中山大学《大学物理B》2025-2026 真题）</span>（多选）关于热力学定律：A. 第一定律是能量守恒在热学中的表现 B. 第二定律表明热量不能从低温传到高温 C. 熵增加原理表明自然过程向无序度增加方向进行 D. 第二类永动机违反第一定律。</li>
+<li><span class="src">（中山大学《大学物理B》2025-2026 真题）</span>（判断）第二定律的开尔文表述和克劳修斯表述等价。</li>
+<li><span class="src">（清华大学热学试题·流传版）</span>证明热力学第二定律的开尔文表述与克劳修斯表述等价（用反证法）。</li>
+<li><span class="src">（北京大学热学试题·流传版）</span>1 mol 理想气体自由膨胀体积加倍，求熵变。</li>
+<li><span class="src">（复旦大学热学试题·流传版）</span>卡诺循环的熵变计算与效率。</li>
+<li>用熵变公式计算等压、等容、等温、绝热各过程的熵变。</li>
+<li>100℃ 的水 1 kg 与 0℃ 的冰 1 kg 混合（冰熔化潜热 334 kJ/kg），求末态与熵变。</li>
+<li>热传导的熵变：高温物体向低温物体传热 $Q$，求总熵变。</li>
+<li>证明熵增加原理与第二定律等价。</li>
+<li>麦克斯韦妖的现代解决方案（兰道尔原理）。</li>
+<li>吉布斯自由能与化学反应方向。</li>
+<li>用克拉珀龙方程估算冰熔点随压强的变化。</li>
+<li>用麦克斯韦关系证明 $\left(\frac{\partial U}{\partial V}\right)_T=T\left(\frac{\partial p}{\partial T}\right)_V-p$。</li>
+<li>用上式证明理想气体内能只与温度有关。</li>
+<li>朗道理论中的序参量与对称性破缺。</li>
+<li>液氦 λ 相变的实验特征。</li>
+<li>计算两种不同气体混合的熵增。</li>
+<li>计算同种气体混合的熵增（正确结果为零）并说明吉布斯佯谬。</li>
+<li>热寂说及其终结（宇宙学视角）。</li>
+<li>生命现象与热力学第二定律是否矛盾？</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch5">第五章 非平衡过程</h2>
+<div class="hook">
+<p><b>普里高津 1977 年因耗散结构理论获诺贝尔化学奖——"非平衡是有序之源"。</b>在此之前，热力学主要研究平衡态；普里高津指出：远离平衡的开放系统可以自发形成有序结构（化学振荡、贝纳尔对流、图灵斑图）。<b>本章与教材结构一致：近平衡态的弛豫与输运过程 → 涨落与布朗运动 → 分形 → 线性不可逆过程热力学 → 耗散结构 → 生命与生态环境。</b>这是热学的终点：从平衡走向非平衡，从简单走向复杂。</p>
+</div>
+
+<h3 class="subsec" id="s5-1">§5.1 近平衡态弛豫和输运过程：经验定律、平均自由程、初级气体动理论</h3>
+<div class="intro"><p><b>引入：</b>十九世纪中叶，工程师们总结出三条经验定律：牛顿黏性定律（1687）、傅里叶热传导定律（1822）、菲克扩散定律（1855）。三者形式完全同构——<b>通量正比于梯度</b>。麦克斯韦与玻尔兹曼随后用分子动理论导出了输运系数：$\eta=\frac13\rho\bar v\bar\lambda$ 等。有趣的是，黏性系数与压强无关这一反直觉预言，被麦克斯韦本人 1866 年用实验证实。</p></div>
+<div class="idea">
+<p><b>平均自由程：</b>$\bar\lambda=\frac1{\sqrt2\pi d^2n}=\frac{kT}{\sqrt2\pi d^2p}$；碰撞频率 $\bar Z=\frac{\bar v}{\bar\lambda}$。</p>
+<p><b>三条经验定律与输运系数：</b></p>
+<table>
+<tr><th>现象</th><th>定律</th><th>系数</th></tr>
+<tr><td>黏性（动量输运）</td><td>$F=-\eta\frac{du}{dz}S$</td><td>$\eta=\frac13\rho\bar v\bar\lambda$</td></tr>
+<tr><td>热传导（能量输运）</td><td>$\dot Q=-\kappa\frac{dT}{dz}S$</td><td>$\kappa=\frac13\rho\bar v\bar\lambda c_V$</td></tr>
+<tr><td>扩散（质量输运）</td><td>$\dot N=-D\frac{dn}{dz}S$</td><td>$D=\frac13\bar v\bar\lambda$</td></tr>
+</table>
+<p><b>与温度、压强关系：</b>$\eta,\kappa\propto\sqrt T$ 与 $p$ 无关；$D\propto\frac{T^{3/2}}p$。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：黏性系数 $\eta=\frac13\rho\bar v\bar\lambda$（初级气体动理论）</div>
+<p>取垂直于流速梯度的截面：来自上方 $\bar\lambda$ 处的分子带着"上游动量"下来，来自下方的带着"下游动量"上去，净动量输运与梯度成正比。单位时间通过单位截面的分子数约 $\frac16n\bar v$（六个方向各 $\frac16$），每个分子携带的动量差约 $m\bar\lambda\frac{du}{dz}$。动量流 $=\frac13n\bar v\cdot m\bar\lambda\frac{du}{dz}=\frac13\rho\bar v\bar\lambda\frac{du}{dz}$，故 $\eta=\frac13\rho\bar v\bar\lambda$。∎ <span class="tip">——三个输运系数同构不是巧合：都是"分子带某种量跨过截面搬家"。</span></p>
+</div>
+<div class="ex">
+<div class="title">例5.1 温度升高时，气体的黏性系数如何变化？</div>
+<p><b>解：</b>$\eta\propto\sqrt T$ 增大——气体温度越高越"黏"，与液体的直觉相反。</p>
+</div>
+<div class="prac"><div class="title">本节练习（5.1-1 ~ 5.1-10）</div>
+<ol start="271">
+<li>气体压强增大（温度不变），平均自由程怎么变？</li>
+<li>气体黏性系数与压强有关吗？为什么？</li>
+<li>扩散系数与温度、压强的关系？</li>
+<li>平均自由程的物理意义？</li>
+<li>标准状态下空气分子（$d\approx3.7\times10^{-10}$ m）的平均自由程与碰撞频率。</li>
+<li>推导黏性系数公式。</li>
+<li>说明三个输运系数同构的原因。</li>
+<li>两根不同导热系数 $\kappa_1,\kappa_2$ 的棒串联，求等效导热系数。</li>
+<li>稀薄气体中的输运过程有何特点？</li>
+<li>从量纲分析看输运系数。</li>
+</ol></div>
+
+<h3 class="subsec" id="s5-2">§5.2 涨落与布朗运动</h3>
+<div class="intro"><p><b>引入：</b>1827 年植物学家布朗在显微镜下看到花粉微粒永不停息地乱动，他以为是"生命活力"；1905 年爱因斯坦给出定量理论：这是水分子热运动碰撞不平衡的结果，并预言 $\overline{x^2}=2Dt$；1908 年佩兰实验验证。<b>布朗运动是原子存在的直接证据</b>——爱因斯坦与佩兰联手，终结了持续两千年的原子之争。</p></div>
+<div class="idea">
+<p><b>涨落：</b>宏观量围绕平均值的起伏；相对涨落 $\propto\frac1{\sqrt N}$。</p>
+<p><b>布朗运动：</b>$\overline{x^2}=2Dt$（一维），$D=\frac{kT}{6\pi\eta r}$（爱因斯坦-斯托克斯关系）。</p>
+<p><b>意义：</b>验证分子存在；测定 $k$ 与 $N_A$；随机过程的原型。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：爱因斯坦关系 $D=\frac{kT}{6\pi\eta r}$</div>
+<p>微粒受液体分子的随机力与黏性阻力 $6\pi\eta rv$（斯托克斯公式）。统计平衡下，扩散与漂移平衡：扩散流 $D\frac{dn}{dx}$ 与漂移流 $nv_{漂}$ 相等，且漂移速度由外力（如重力）与阻力平衡决定。结合玻耳兹曼分布 $n\propto e^{-mgx/kT}$，可得 $D=\frac{kT}{6\pi\eta r}$。∎ <span class="tip">——涨落-耗散定理的最早实例：扩散（涨落）与黏性（耗散）由同一温度联系。</span></p>
+</div>
+<div class="prac"><div class="title">本节练习（5.2-1 ~ 5.2-10）</div>
+<ol start="281">
+<li>布朗运动的发现、理论解释与实验验证。</li>
+<li>爱因斯坦关系 $D=\frac{kT}{6\pi\eta r}$ 的物理意义。</li>
+<li>$\overline{x^2}=2Dt$ 说明位移平方随时间如何变化？</li>
+<li>为什么布朗运动是原子存在的直接证据？</li>
+<li>相对涨落与分子数的关系。</li>
+<li>临界点的涨落有何特殊表现（临界乳光）？</li>
+<li>估算标准状态下 1 mm³ 气体分子数的涨落。</li>
+<li>佩兰实验如何测定阿伏伽德罗常数？</li>
+<li>涨落-耗散定理的思想。</li>
+<li>随机游走与布朗运动的关系。</li>
+</ol></div>
+
+<h3 class="subsec" id="s5-3">§5.3 分形：分形维数、布朗轨迹、分形生长与逾渗</h3>
+<div class="intro"><p><b>引入：</b>1967 年曼德尔布罗在《科学》发文《英国的海岸线有多长？》——答案取决于尺子：尺子越短，测出的海岸线越长，甚至趋于无穷。<b>这类"长度随尺度变化"的几何对象叫分形</b>。雪花、闪电、肺、血管、树都是分形。分形维数是它的度量：海岸线约 1.25 维，介于线与面之间。</p></div>
+<div class="idea">
+<p><b>分形：</b>自相似（部分与整体相似）的几何对象。</p>
+<p><b>分形维数：</b>$D=\frac{\ln N}{\ln(1/\varepsilon)}$（$N$ 为 $\varepsilon$ 尺度的覆盖数）。</p>
+<p><b>实例：</b>科赫曲线 $D=\frac{\ln4}{\ln3}\approx1.26$；谢尔宾斯基地毯；布朗轨迹 $D=2$。</p>
+<p><b>应用：</b>分形生长（DLA）、逾渗（渗流阈值）。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：科赫曲线的分形维数</div>
+<p>科赫曲线：每次把每段三等分，中间段换成两段等长的折线，段数从 1 变 4，尺度缩为 $\frac13$。维数 $D=\frac{\ln4}{\ln3}\approx1.26$——介于直线（1 维）与平面（2 维）之间。∎ <span class="tip">——"维数不必是整数"，这是分形对几何学的革命。</span></p>
+</div>
+<div class="prac"><div class="title">本节练习（5.3-1 ~ 5.3-10）</div>
+<ol start="291">
+<li>什么是分形？举出自然界中的分形实例。</li>
+<li>分形维数的定义与计算。</li>
+<li>计算科赫曲线的分形维数。</li>
+<li>布朗粒子轨迹的分形维数是多少？</li>
+<li>为什么海岸线长度随尺子变化？</li>
+<li>谢尔宾斯基地毯的维数。</li>
+<li>分形生长的 DLA 模型。</li>
+<li>逾渗现象与渗流阈值。</li>
+<li>分形在物理学中的应用。</li>
+<li>自相似性的含义。</li>
+</ol></div>
+
+<h3 class="subsec" id="s5-4">§5.4 线性不可逆过程热力学：熵流、熵产生、最小熵产生原理</h3>
+<div class="intro"><p><b>引入：</b>1931 年昂萨格提出倒易关系：交叉输运系数对称（$L_{ij}=L_{ji}$），获 1968 年诺奖。1945 年普里高津证明最小熵产生原理：<b>近平衡态的定态对应最小熵产生</b>。这套"线性不可逆过程热力学"把平衡态热力学推广到近平衡区，是通往耗散结构理论的桥梁。</p></div>
+<div class="idea">
+<p><b>局域平衡假设：</b>非平衡系统中每个小体积元近似处于平衡态，可用局域温度、压强描述。</p>
+<p><b>熵流与熵产生：</b>$dS=d_eS+d_iS$（熵流 + 熵产生），$d_iS\ge0$。</p>
+<p><b>广义流与广义力：</b>$J_i=\sum_j L_{ij}X_j$；昂萨格倒易关系 $L_{ij}=L_{ji}$。</p>
+<p><b>最小熵产生原理：</b>近平衡定态熵产生最小。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：输运过程的熵产生率</div>
+<p>热传导：能流 $\dot Q$ 从 $T_1$ 传到 $T_2$，熵产生率 $\dot S_i=\dot Q(\frac1{T_2}-\frac1{T_1})\ge0$（$T_1&gt;T_2$）。连续情形：$\dot S_i=\kappa\frac{(\nabla T)^2}{T^2}\ge0$。∎ <span class="tip">——熵产生率是"流×力"的二次型，天然非负，这是昂萨格理论的形式基础。</span></p>
+</div>
+<div class="prac"><div class="title">本节练习（5.4-1 ~ 5.4-10）</div>
+<ol start="301">
+<li>局域平衡假设的内容。</li>
+<li>熵流与熵产生的区别。</li>
+<li>昂萨格倒易关系的内容与意义。</li>
+<li>推导热传导的熵产生率。</li>
+<li>最小熵产生原理的内容。</li>
+<li>广义流与广义力的概念。</li>
+<li>为什么近平衡区"耗散结构不可能"？</li>
+<li>线性区与非线性区的区别。</li>
+<li>昂萨格理论的适用条件。</li>
+<li>输运系数矩阵的对称性。</li>
+</ol></div>
+
+<h3 class="subsec" id="s5-5">§5.5 耗散结构：化学振荡、图灵斑图、贝纳尔对流</h3>
+<div class="intro"><p><b>引入：</b>1958 年苏联化学家贝洛索夫发现柠檬酸-溴酸盐反应中溶液颜色周期性振荡，投稿被拒（审稿人认为"不可能"）；1960 年代扎博京斯基重复并推广，BZ 反应成为化学振荡的经典。图灵 1952 年预言"反应-扩散系统可自发形成空间斑图"，几十年后在化学系统中被证实。<b>耗散结构：远离平衡的开放系统自发形成的有序结构——"非平衡是有序之源"。</b></p></div>
+<div class="idea">
+<p><b>耗散结构：</b>远离平衡、开放系统中靠能量耗散维持的有序结构。</p>
+<p><b>实例：</b>BZ 化学振荡、贝纳尔对流（加热液体出现六角对流胞）、图灵斑图、激光、生态系统。</p>
+<p><b>共同特征：</b>开放性、远离平衡、非线性、自组织。</p>
+</div>
+<div class="prac"><div class="title">本节练习（5.5-1 ~ 5.5-10）</div>
+<ol start="311">
+<li>什么是耗散结构？举三例。</li>
+<li>BZ 反应的发现过程。</li>
+<li>图灵斑图的机制（反应-扩散）。</li>
+<li>贝纳尔对流的形成条件。</li>
+<li>耗散结构的共同特征。</li>
+<li>为什么"非平衡是有序之源"？</li>
+<li>平衡态能否出现耗散结构？为什么？</li>
+<li>耗散结构与平衡结构的区别。</li>
+<li>自组织的概念。</li>
+<li>耗散结构理论在生命科学中的应用。</li>
+</ol></div>
+
+<h3 class="subsec" id="s5-6">§5.6 生命与生态环境：生命的热力学基础</h3>
+<div class="intro"><p><b>引入：</b>薛定谔 1944 年出版《生命是什么？》，提出著名论断："生命以负熵为食。"生物体是开放系统，通过摄入低熵物质、排出高熵废物维持自身低熵状态。<b>生命不违反第二定律</b>——生物体的熵减以环境的更大熵增为代价。这一洞见开创了分子生物学的物理时代，启发了沃森与克里克。</p></div>
+<div class="idea">
+<p><b>生命以负熵为食：</b>生物体靠输入负熵（低熵食物、阳光）维持有序。</p>
+<p><b>生态系统的能量流：</b>太阳能→光合作用→食物链→耗散，全程熵增。</p>
+<p><b>热寂说及其终结：</b>宇宙膨胀与引力系统的负热容使热寂说不再成立。</p>
+</div>
+<div class="prac"><div class="title">本节练习（5.6-1 ~ 5.6-10）</div>
+<ol start="321">
+<li>"生命以负熵为食"的含义。</li>
+<li>生命是否违反热力学第二定律？为什么？</li>
+<li>生态系统中的能量流动。</li>
+<li>光合作用的熵分析。</li>
+<li>热寂说的内容与问题。</li>
+<li>引力系统的负热容。</li>
+<li>薛定谔《生命是什么？》的影响。</li>
+<li>生物体的熵平衡。</li>
+<li>为什么地球生命依赖太阳？</li>
+<li>耗散结构与生命起源的关系。</li>
+</ol></div>
+
+<h3 class="subsec" id="m5">第五章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：输运系数与宏观量的关系判断</div>
+<p>记结论：$\eta,\kappa\propto\sqrt T$ 与 $p$ 无关；$D\propto T^{3/2}/p$。理由：$\bar v\propto\sqrt T$、$\bar\lambda\propto1/p$、$\rho\propto p$ 代入系数公式。</p>
+<p><b>例题：</b>抽真空不改善保温瓶夹层导热（气体热导率与压强无关），真空保温靠消除对流。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：稳态热传导"热阻串并联"</div>
+<p>稳态时各段能流相等，类比电阻：热阻 $R=\frac L{\kappa S}$。串联相加，并联取倒数和。</p>
+<p><b>例题：</b>两棒串联 $\kappa_{eff}=\frac{L_1+L_2}{L_1/\kappa_1+L_2/\kappa_2}$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：涨落与布朗运动的公式套用</div>
+<p>$\overline{x^2}=2Dt$、$D=\frac{kT}{6\pi\eta r}$、相对涨落 $\frac1{\sqrt N}$。已知三量求其余。</p>
+<p><b>例题：</b>测 $\overline{x^2}$ 与 $t$ 求 $D$，进而求 $N_A$。</p>
+</div>
+
+<h3 class="subsec" id="e5">第五章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（5-1 ~ 5-20，含真题）</div>
+<ol start="331">
+<li><span class="src">（中山大学期末真题）</span>气体黏性系数与压强、温度的关系。</li>
+<li><span class="src">（清华大学热学试题·流传版）</span>推导黏性系数 $\eta=\frac13\rho\bar v\bar\lambda$。</li>
+<li><span class="src">（北京大学热学试题·流传版）</span>标准状态下空气分子（有效直径 $d\approx3.7\times10^{-10}$ m）的平均自由程与平均碰撞频率。</li>
+<li><span class="src">（复旦大学热学试题·流传版）</span>布朗运动的爱因斯坦关系推导思路。</li>
+<li>两棒串联稳态热传导的温度分布。</li>
+<li>圆筒壁的稳态热传导。</li>
+<li>估算 $10^{-4}$ Pa 真空中的平均自由程。</li>
+<li>扩散系数与自扩散系数的区别。</li>
+<li>布朗微粒的位移-时间关系与匀速运动的区别。</li>
+<li>计算 300 K 水中半径 1 μm 微粒的扩散系数。</li>
+<li>科赫曲线的长度随迭代次数的增长。</li>
+<li>逾渗阈值附近的连通性突变。</li>
+<li>热传导的熵产生率推导。</li>
+<li>最小熵产生原理与定态稳定性。</li>
+<li>BZ 化学振荡的定性描述。</li>
+<li>贝纳尔对流中的六角胞形成机制。</li>
+<li>激光与耗散结构的关系。</li>
+<li>生命体的熵平衡计算（简例）。</li>
+<li>热寂说为什么被现代宇宙学否定？</li>
+<li>自组织与他组织的区别。</li>
+</ol>
+</div>
+
+<h2 class="sec" id="real">历年真题（标注出处）</h2>
+<div class="exam">
+<div class="title">中山大学物理学院《热学》期末真题</div>
+<ol>
+<li><span class="src">（中山大学《大学物理B》2025-2026 学年第一学期期末试题·真实考卷）</span>（单选）理想气体的内能仅取决于：A. 温度和体积 B. 温度和压强 C. 温度 D. 体积</li>
+<li><span class="src">（中山大学《大学物理B》2025-2026 学年第一学期期末试题·真实考卷）</span>（多选）关于热力学定律，下列说法正确的有：A. 热力学第一定律是能量守恒定律在热学中的表现 B. 热力学第二定律表明热量不能从低温物体传到高温物体 C. 熵增加原理表明一切自然过程总是向着无序度增加的方向进行 D. 第二类永动机不可能制成，因为它违反了热力学第一定律</li>
+<li><span class="src">（中山大学《大学物理B》2025-2026 学年第一学期期末试题·真实考卷）</span>（判断）理想气体的等温过程中，内能保持不变。</li>
+<li><span class="src">（中山大学《大学物理B》2025-2026 学年第一学期期末试题·真实考卷）</span>（判断）热力学第二定律的开尔文表述和克劳修斯表述是等价的。</li>
+<li><span class="src">（中山大学《大学物理B》2025-2026 学年第一学期期末试题·真实考卷）</span>（填空）一定质量的理想气体，在等容过程中温度升高 10℃，其内能的变化量与气体吸收的热量______，这是因为______。</li>
+</ol>
+</div>
+<div class="exam">
+<div class="title">其它高校《热学》期末真题（据公开流传版本）</div>
+<ol>
+<li><span class="src">（清华大学物理系热学试题·流传版）</span>用分子动理论推导理想气体压强公式，并说明温度与压强的微观意义。</li>
+<li><span class="src">（北京大学物理学院热学试题·流传版）</span>1 mol 单原子理想气体作卡诺循环，求效率并证明其与工质无关。</li>
+<li><span class="src">（复旦大学物理系热学试题·流传版）</span>由麦克斯韦速率分布求分子的平均速率与方均根速率。</li>
+<li><span class="src">（浙江大学物理系热学试题·流传版）</span>1 mol 理想气体自由膨胀，求熵变并讨论第二定律。</li>
+<li><span class="src">（南京大学物理学院热学试题·流传版）</span>用克拉珀龙方程讨论冰的熔点与压强的关系。</li>
+<li><span class="src">（中国科学技术大学热学试题·流传版）</span>推导气体黏性系数公式并讨论其与温度压强的依赖。</li>
+</ol>
+<p class="src">注：标注"流传版"的题目出自各校公开流传的试卷整理，个别表述可能与原卷略有出入，以知识点为准。</p>
+</div>
+
+<h2 class="sec" id="answers">全书答案与详解</h2>
+<div class="tip" style="margin-bottom:16px"><p>每题给出完整求解过程而非仅给思路；标注【考查知识点】与【所用方法】。题号与正文练习一一对应。</p></div>
+
+<h3 class="subsec" id="ans1">第一章答案（1.1-1 ~ 1-20）</h3>
+<div class="anssec">
+<div class="at">第一章 热学基本概念和物质聚集态</div>
+<div class="ans"><span class="aq">【1.1-1】</span> $309.95$ K；$-196.15$℃。<div class="sol">$T=\theta+273.15$。</div><span class="tag">考查：温标换算</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.1-2】</span> 测温物质、测温属性、固定标准点。<div class="sol">如水银温标：水银、体积、冰点与沸点。</div><span class="tag">考查：温标三要素</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.1-3】</span> 不依赖测温物质，所有气体低压下给出的温标一致。<div class="sol">理想气体温标的普适性。</div><span class="tag">考查：理想气体温标</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.1-4】</span> $-273.15$℃；热力学第三定律（绝对零度不可达）。<div class="sol">0 K 不可达。</div><span class="tag">考查：绝对零度</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.1-5】</span> $p=\frac{(4/2)\times8.31\times300}{0.010}=4.99\times10^5$ Pa。<div class="sol">$pV=\frac mM RT$。</div><span class="tag">考查：状态方程</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【1.1-6】</span> 2 倍。<div class="sol">玻意耳定律。</div><span class="tag">考查：玻意耳定律</span><span class="tag">方法：比例</span></div>
+<div class="ans"><span class="aq">【1.1-7】</span> $\frac43$ 倍。<div class="sol">查理定律 $\frac{p_2}{p_1}=\frac{T_2}{T_1}$。</div><span class="tag">考查：查理定律</span><span class="tag">方法：比例</span></div>
+<div class="ans"><span class="aq">【1.1-8】</span> $n=\frac{p_0}{kT_0}=2.69\times10^{25}$ m⁻³。<div class="sol">$p=nkT$。</div><span class="tag">考查：$p=nkT$</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.1-9】</span> $\frac14p$。<div class="sol">$p'=\frac{(m/2)R(T/2)}{MV}=\frac14p$。</div><span class="tag">考查：变质量</span><span class="tag">方法：对剩余气体列式</span></div>
+<div class="ans"><span class="aq">【1.1-10】</span> $\rho=\frac{pM}{RT}=2.36$ kg/m³。<div class="sol">密度形式。</div><span class="tag">考查：密度</span><span class="tag">方法：$\rho=\frac{pM}{RT}$</span></div>
+<div class="ans"><span class="aq">【1.2-1】</span> 4.18 J/cal；焦耳。<div class="sol">热功当量。</div><span class="tag">考查：热功当量</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【1.2-2】</span> 钝钻头摩擦生热无穷，若热是"物质"则无法解释其源源不断。<div class="sol">热质说矛盾。</div><span class="tag">考查：热动说</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.2-3】</span> $T\approx24.9$℃。<div class="sol">$0.2\times0.39(100-T)=0.3\times4.18(T-20)$。</div><span class="tag">考查：混合法</span><span class="tag">方法：能量守恒</span></div>
+<div class="ans"><span class="aq">【1.2-4】</span> $Q=mc\Delta T=1\times4.18\times80=334$ kJ。<div class="sol">比热公式。</div><span class="tag">考查：热量计算</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.2-5】</span> $c=\frac Q{m\Delta T}$。<div class="sol">定义式。</div><span class="tag">考查：比热定义</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【1.2-6】</span> 内能是状态量，热量是过程量（传递中的能量）。<div class="sol">概念。</div><span class="tag">考查：内能与热量</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.2-7】</span> 布朗 1827 年发现；爱因斯坦 1905 年理论解释；佩兰 1908 年实验验证。<div class="sol">历史。</div><span class="tag">考查：布朗运动</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【1.2-8】</span> 绝热（无热损失）、比热不随温度变化、热传导充分。<div class="sol">量热学假设。</div><span class="tag">考查：量热学</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.2-9】</span> $Q=2\times4.18\times80=669$ kJ，约 0.19 度电。<div class="sol">换算。</div><span class="tag">考查：估算</span><span class="tag">方法：换算</span></div>
+<div class="ans"><span class="aq">【1.2-10】</span> 热量是过程量，不能说"含有"。<div class="sol">概念。</div><span class="tag">考查：热量概念</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-1】</span> 273.16 K，611 Pa。<div class="sol">水的三相点。</div><span class="tag">考查：三相点</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【1.3-2】</span> 气液差别消失的状态；不能。<div class="sol">临界点。</div><span class="tag">考查：临界点</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-3】</span> 图：三条曲线交汇于三相点，汽化线止于临界点。<div class="sol">画图。</div><span class="tag">考查：三相图</span><span class="tag">方法：画图</span></div>
+<div class="ans"><span class="aq">【1.3-4】</span> 一级有潜热与体积突变；二级无潜热但热容等发散。<div class="sol">相变分类。</div><span class="tag">考查：相变分类</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-5】</span> 由物质性质唯一确定，不依赖人为约定。<div class="sol">三相点性质。</div><span class="tag">考查：温标基准</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-6】</span> 升华、熔化、汽化曲线。<div class="sol">p-T 图。</div><span class="tag">考查：三相图</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-7】</span> 常压下升华（三相点压强 5 atm 高于常压，无液态）。<div class="sol">干冰升华。</div><span class="tag">考查：升华</span><span class="tag">方法：三相图</span></div>
+<div class="ans"><span class="aq">【1.3-8】</span> 压强升高沸点升高（汽化曲线斜率为正）。<div class="sol">克拉珀龙方程。</div><span class="tag">考查：高压锅</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-9】</span> 压强增大熔点降低（熔化曲线斜率为负）。<div class="sol">冰的反常。</div><span class="tag">考查：溜冰</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-10】</span> 临界点附近密度涨落大，散射光增强使介质浑浊。<div class="sol">临界乳光。</div><span class="tag">考查：临界现象</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.4-1】</span> 动量定理算单分子冲量，统计平均得压强。<div class="sol">见正文推导。</div><span class="tag">考查：压强公式</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【1.4-2】</span> $6.21\times10^{-21}$ J。<div class="sol">$\frac32kT$。</div><span class="tag">考查：平均平动动能</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.4-3】</span> 2 倍。<div class="sol">$\bar\varepsilon_t\propto T$。</div><span class="tag">考查：温度微观意义</span><span class="tag">方法：正比</span></div>
+<div class="ans"><span class="aq">【1.4-4】</span> 一样大。<div class="sol">只与温度有关。</div><span class="tag">考查：平均平动动能</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.4-5】</span> $a$ 分子引力修正，$b$ 分子体积修正。<div class="sol">范德瓦尔斯方程。</div><span class="tag">考查：$a,b$ 意义</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.4-6】</span> 拐点条件：$V_{m,c}=3b$，$T_c=\frac{8a}{27Rb}$，$p_c=\frac a{27b^2}$。<div class="sol">见正文推导。</div><span class="tag">考查：临界参数</span><span class="tag">方法：拐点</span></div>
+<div class="ans"><span class="aq">【1.4-7】</span> 483 m/s。<div class="sol">$\sqrt{\frac{3RT}M}$。</div><span class="tag">考查：方均根速率</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.4-8】</span> 高温低压（密度小、相互作用弱）。<div class="sol">理想气体条件。</div><span class="tag">考查：理想气体条件</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.4-9】</span> $p_cV_{m,c}=\frac a{27b^2}\cdot3b=\frac a{9b}=\frac38RT_c$。∎<div class="sol">代入验证。</div><span class="tag">考查：临界关系</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【1.4-10】</span> 高压下实际气体体积大于理想气体（$b$ 修正主导）。<div class="sol">定性。</div><span class="tag">考查：实际气体</span><span class="tag">方法：定性</span></div>
+<div class="ans"><span class="aq">【1.5-1】</span> 晶体长程有序，非晶体无长程有序。<div class="sol">概念。</div><span class="tag">考查：晶体</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.5-2】</span> 离子键（NaCl）、共价键（金刚石）、金属键（铜）、范德瓦耳斯键（石墨层间）、氢键（冰）。<div class="sol">举例。</div><span class="tag">考查：化学键</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【1.5-3】</span> 146 Pa。<div class="sol">$\frac{2\gamma}R$。</div><span class="tag">考查：附加压强</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.5-4】</span> 表面张力支撑其重量（腿与水面接触处形成凹面）。<div class="sol">概念。</div><span class="tag">考查：表面张力</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.5-5】</span> $h=\frac{2\gamma}{\rho gr}=\frac{2\times0.073}{10^3\times9.8\times2\times10^{-4}}\approx0.074$ m。<div class="sol">毛细公式。</div><span class="tag">考查：毛细现象</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.5-6】</span> 液体分子近邻有序，但无晶格的长程平移序。<div class="sol">概念。</div><span class="tag">考查：液体结构</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.5-7】</span> 水膜凹液面附加压强产生大吸引力。<div class="sol">附加压强。</div><span class="tag">考查：附加压强</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.5-8】</span> 晶格振动（格点附近的微小振动）。<div class="sol">概念。</div><span class="tag">考查：固体热运动</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.5-9】</span> 稠密：分子间距接近气体分子力程下限；濒临瓦解晶格：有短程序。<div class="sol">教材两种观点。</div><span class="tag">考查：液体图像</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.5-10】</span> 表面张力使表面积最小，球形面积最小。<div class="sol">最小面积。</div><span class="tag">考查：肥皂泡</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ans2">第二章答案（2.1-1 ~ 2-20）</h3>
+<div class="anssec">
+<div class="at">第二章 热平衡态的统计分布律</div>
+<div class="ans"><span class="aq">【2.1-1】</span> $f(v)=4\pi(\frac m{2\pi kT})^{3/2}v^2e^{-\frac{mv^2}{2kT}}$；$v^2$ 因子来自速度空间球壳体积，指数因子是玻耳兹曼因子。<div class="sol">结构分析。</div><span class="tag">考查：分布函数</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.1-2】</span> $v_p=394$、$\bar v=447$、$\sqrt{\overline{v^2}}=483$ m/s。<div class="sol">$\sqrt{\frac{RT}M}=279$ 乘系数。</div><span class="tag">考查：三个速率</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2.1-3】</span> $v_p\propto\sqrt T$ 增大；峰值降低曲线右移变宽。<div class="sol">归一化面积不变。</div><span class="tag">考查：分布曲线</span><span class="tag">方法：定性</span></div>
+<div class="ans"><span class="aq">【2.1-4】</span> $4:1$。<div class="sol">$\sqrt{M_O/M_H}$。</div><span class="tag">考查：最概然速率</span><span class="tag">方法：比例</span></div>
+<div class="ans"><span class="aq">【2.1-5】</span> $f(v)dv$：速率在 $[v,v+dv]$ 的占比；积分是 $[v_1,v_2]$ 区间占比。<div class="sol">定义。</div><span class="tag">考查：分布函数</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.1-6】</span> 大于 50%（右尾长）。<div class="sol">分布不对称。</div><span class="tag">考查：分布形状</span><span class="tag">方法：定性</span></div>
+<div class="ans"><span class="aq">【2.1-7】</span> $\bar v=4\pi A\int_0^\infty v^3e^{-\alpha v^2}dv=4\pi A\cdot\frac1{2\alpha^2}=\sqrt{\frac{8kT}{\pi m}}$。<div class="sol">高斯积分。</div><span class="tag">考查：平均速率</span><span class="tag">方法：高斯积分</span></div>
+<div class="ans"><span class="aq">【2.1-8】</span> $\overline{v^2}=4\pi A\int_0^\infty v^4e^{-\alpha v^2}dv=\frac3{2\alpha}=\frac{3kT}m$。<div class="sol">高斯积分。</div><span class="tag">考查：方均根速率</span><span class="tag">方法：高斯积分</span></div>
+<div class="ans"><span class="aq">【2.1-9】</span> 三分量独立且分布各向同性。<div class="sol">独立性假设。</div><span class="tag">考查：推导假设</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.1-10】</span> 分子束穿过旋转狭缝，不同速率沉积位置不同。<div class="sol">斯特恩实验。</div><span class="tag">考查：实验验证</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.2-1】</span> 力学平衡加状态方程积分。<div class="sol">见正文。</div><span class="tag">考查：气压公式</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【2.2-2】</span> 6080 m。<div class="sol">$z=\frac{RT\ln2}{Mg}$。</div><span class="tag">考查：气压减半</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2.2-3】</span> 变慢。<div class="sol">特征高度增大。</div><span class="tag">考查：气压公式</span><span class="tag">方法：定性</span></div>
+<div class="ans"><span class="aq">【2.2-4】</span> $0.32p_0$。<div class="sol">$e^{-1.14}$。</div><span class="tag">考查：气压公式</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【2.2-5】</span> 指数衰减 $n=n_0e^{-mgz/kT}$。<div class="sol">玻耳兹曼分布。</div><span class="tag">考查：密度分布</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2.2-6】</span> 测不同高度悬浮微粒数，反推 $k$ 与 $N_A$。<div class="sol">佩兰实验。</div><span class="tag">考查：佩兰实验</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.2-7】</span> 压强衰减到 $\frac1e$ 的高度。<div class="sol">特征高度。</div><span class="tag">考查：特征高度</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.2-8】</span> $dN\propto e^{-\varepsilon/kT}$。<div class="sol">麦-玻分布。</div><span class="tag">考查：能量分布</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2.2-9】</span> 大气非等温，实际偏离等温气压公式。<div class="sol">模型局限。</div><span class="tag">考查：大气模型</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.2-10】</span> 氢分子轻，特征高度大，分布延伸至逃逸区。<div class="sol">概念。</div><span class="tag">考查：大气逃逸</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-1】</span> $3:5$。<div class="sol">$\frac32:\frac52$。</div><span class="tag">考查：内能</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2.3-2】</span> $5:3$。<div class="sol">总动能与平动动能。</div><span class="tag">考查：能量均分</span><span class="tag">方法：数自由度</span></div>
+<div class="ans"><span class="aq">【2.3-3】</span> $13712$ J。<div class="sol">分别算再相加。</div><span class="tag">考查：混合内能</span><span class="tag">方法：求和</span></div>
+<div class="ans"><span class="aq">【2.3-4】</span> 每个平方项自由度平均 $\frac12kT$；经典统计。<div class="sol">定理内容。</div><span class="tag">考查：能量均分</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-5】</span> 量子效应：室温下振动能级间距远大于 $kT$。<div class="sol">量子冻结。</div><span class="tag">考查：冻结</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-6】</span> 分子无相互作用，内能即总动能。<div class="sol">理想气体模型。</div><span class="tag">考查：内能性质</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-7】</span> $kT$（两个转动自由度）。<div class="sol">能量均分。</div><span class="tag">考查：转动能</span><span class="tag">方法：数自由度</span></div>
+<div class="ans"><span class="aq">【2.3-8】</span> $\frac32R$ 与 $\frac52R$。<div class="sol">$C_V=\frac i2R$。</div><span class="tag">考查：热容</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2.3-9】</span> 均分定理由玻耳兹曼分布导出。<div class="sol">联系。</div><span class="tag">考查：关系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-10】</span> 低温热容减小（转动振动逐级冻结）。<div class="sol">量子效应。</div><span class="tag">考查：热容温度关系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.4-1】</span> 统计规律对大量粒子成立，个别粒子无规律。<div class="sol">区别。</div><span class="tag">考查：统计规律</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.4-2】</span> $\frac1{\sqrt N}$。<div class="sol">泊松分布。</div><span class="tag">考查：涨落</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【2.4-3】</span> 布朗 1827 发现；爱因斯坦 1905 解释；佩兰 1908 验证。<div class="sol">历史。</div><span class="tag">考查：布朗运动</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【2.4-4】</span> 位移平方随时间线性增长。<div class="sol">扩散。</div><span class="tag">考查：布朗公式</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.4-5】</span> 熵与微观状态数的联系。<div class="sol">玻耳兹曼关系。</div><span class="tag">考查：$S=k\ln W$</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.4-6】</span> 涨落 $\propto\frac1{\sqrt N}$，小系统涨落大。<div class="sol">大数。</div><span class="tag">考查：适用范围</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.4-7】</span> $N\approx2.7\times10^{19}$，相对涨落 $2\times10^{-10}$。<div class="sol">估算。</div><span class="tag">考查：涨落估算</span><span class="tag">方法：估算</span></div>
+<div class="ans"><span class="aq">【2.4-8】</span> 新思想常被旧范式排斥的悲剧。<div class="sol">科学史。</div><span class="tag">考查：科学史</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.4-9】</span> 涨落与平均值同量级，宏观规律失效。<div class="sol">概念。</div><span class="tag">考查：涨落</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.4-10】</span> 妖获取信息并擦除记忆耗能（兰道尔原理）。<div class="sol">麦克斯韦妖。</div><span class="tag">考查：麦克斯韦妖</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ans3">第三章答案（3.1-1 ~ 3-20）</h3>
+<div class="anssec">
+<div class="at">第三章 热力学第一定律</div>
+<div class="ans"><span class="aq">【3.1-1】</span> 等压做功多（水平线面积大于双曲线）。<div class="sol">p-V 图。</div><span class="tag">考查：功的比较</span><span class="tag">方法：面积</span></div>
+<div class="ans"><span class="aq">【3.1-2】</span> 200 J。<div class="sol">$\Delta U=Q-W$。</div><span class="tag">考查：第一定律</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.1-3】</span> 50 J。<div class="sol">$\Delta U=-150-(-200)$。</div><span class="tag">考查：符号约定</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.1-4】</span> 不同路径吸热不同。<div class="sol">过程量。</div><span class="tag">考查：过程量</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【3.1-5】</span> $Q=\Delta U+W$ 与 $dQ=dU+dW$。<div class="sol">符号约定。</div><span class="tag">考查：第一定律</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.1-6】</span> 见正文推导。<div class="sol">$dW=Fdx=pSdx$。</div><span class="tag">考查：体积功</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【3.1-7】</span> $W=\nu RT\ln\frac{V_2}{V_1}$。<div class="sol">积分。</div><span class="tag">考查：等温功</span><span class="tag">方法：积分</span></div>
+<div class="ans"><span class="aq">【3.1-8】</span> $\Delta U$ 只由初末态决定。<div class="sol">状态量。</div><span class="tag">考查：内能</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.1-9】</span> 不同（面积不同）。<div class="sol">过程量。</div><span class="tag">考查：功的过程性</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.1-10】</span> $Q=W=\Delta U=0$。<div class="sol">自由膨胀。</div><span class="tag">考查：自由膨胀</span><span class="tag">方法：第一定律</span></div>
+<div class="ans"><span class="aq">【3.2-1】</span> $W=Q=1728$ J。<div class="sol">$RT\ln2$。</div><span class="tag">考查：等温过程</span><span class="tag">方法：查表</span></div>
+<div class="ans"><span class="aq">【3.2-2】</span> $Q=\Delta U=2077.5$ J。<div class="sol">等容。</div><span class="tag">考查：等容过程</span><span class="tag">方法：查表</span></div>
+<div class="ans"><span class="aq">【3.2-3】</span> $C_V=\frac52R$，$C_p=\frac72R$，$\gamma=1.4$。<div class="sol">双原子。</div><span class="tag">考查：热容</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.2-4】</span> 等温 $\Delta U=0\Rightarrow Q=W$。<div class="sol">第一定律。</div><span class="tag">考查：等温</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.2-5】</span> 见正文推导。<div class="sol">等压过程展开。</div><span class="tag">考查：迈耶公式</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【3.2-6】</span> $H=U+pV$，等压热量等于焓变。<div class="sol">概念。</div><span class="tag">考查：焓</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.2-7】</span> 分子无相互作用，内能即动能。<div class="sol">模型。</div><span class="tag">考查：内能</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.2-8】</span> $Q_p=\Delta U+p\Delta V=\Delta H$。<div class="sol">焓定义。</div><span class="tag">考查：焓</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【3.2-9】</span> $Q=C_p\Delta T=\frac52R\times300=6233$ J。<div class="sol">等压升温。</div><span class="tag">考查：等压过程</span><span class="tag">方法：查表</span></div>
+<div class="ans"><span class="aq">【3.2-10】</span> 等压多吸 $\nu R\Delta T$。<div class="sol">迈耶公式。</div><span class="tag">考查：比较</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.3-1】</span> 升高，外界做功全转内能。<div class="sol">第一定律。</div><span class="tag">考查：绝热压缩</span><span class="tag">方法：定性</span></div>
+<div class="ans"><span class="aq">【3.3-2】</span> $0.63$ atm。<div class="sol">$pV^\gamma=C$。</div><span class="tag">考查：绝热方程</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.3-3】</span> $W=-\Delta U$。<div class="sol">$Q=0$。</div><span class="tag">考查：绝热过程</span><span class="tag">方法：第一定律</span></div>
+<div class="ans"><span class="aq">【3.3-4】</span> 消去 $T$ 即得。<div class="sol">状态方程代入。</div><span class="tag">考查：公式互推</span><span class="tag">方法：消元</span></div>
+<div class="ans"><span class="aq">【3.3-5】</span> 见正文推导。<div class="sol">第一定律加状态方程。</div><span class="tag">考查：绝热方程</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【3.3-6】</span> 绝热线斜率 $\gamma$ 倍于等温线。<div class="sol">求导比较。</div><span class="tag">考查：斜率比较</span><span class="tag">方法：求导</span></div>
+<div class="ans"><span class="aq">【3.3-7】</span> 绝热修正乘 $\sqrt\gamma$。<div class="sol">历史。</div><span class="tag">考查：声速</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.3-8】</span> $n=1$、$n=\gamma$、$n=0$、$n=\infty$。<div class="sol">多方过程。</div><span class="tag">考查：多方过程</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.3-9】</span> 前者不可逆无做功，后者可逆对外做功。<div class="sol">区别。</div><span class="tag">考查：自由膨胀</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.3-10】</span> $W=2077.5$ J。<div class="sol">$W=-C_V\Delta T$。</div><span class="tag">考查：绝热功</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.4-1】</span> $\eta=25\%$；$W=200$ J。<div class="sol">$\eta=1-\frac{Q_2}{Q_1}$。</div><span class="tag">考查：效率</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.4-2】</span> 提高 $T_1$、降低 $T_2$。<div class="sol">概念。</div><span class="tag">考查：效率提升</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.4-3】</span> 14。<div class="sol">制冷系数。</div><span class="tag">考查：制冷系数</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.4-4】</span> $\frac{Q_2}{Q_1}=\frac{T_2}{T_1}$ 由状态方程导出。<div class="sol">卡诺循环。</div><span class="tag">考查：卡诺效率</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.4-5】</span> 见正文推导。<div class="sol">四段计算。</div><span class="tag">考查：卡诺效率</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【3.4-6】</span> 画图：两等温两绝热。<div class="sol">画图。</div><span class="tag">考查：卡诺循环</span><span class="tag">方法：画图</span></div>
+<div class="ans"><span class="aq">【3.4-7】</span> 奥托两等容两绝热，卡诺两等温两绝热。<div class="sol">区别。</div><span class="tag">考查：循环类型</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.4-8】</span> $\eta=0.25$；$W=576$ J。<div class="sol">逐段计算。</div><span class="tag">考查：卡诺循环计算</span><span class="tag">方法：逐段</span></div>
+<div class="ans"><span class="aq">【3.4-9】</span> $W_{min}=71.4$ J。<div class="sol">制冷机。</div><span class="tag">考查：最小耗功</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3.4-10】</span> 可逆机效率相等；不可逆机效率不大于可逆机。<div class="sol">卡诺定理。</div><span class="tag">考查：卡诺定理</span><span class="tag">方法：记忆</span></div>
+</div>
+
+<h3 class="subsec" id="ans4">第四章答案（4.1-1 ~ 4-20）</h3>
+<div class="anssec">
+<div class="at">第四章 热力学第二定律</div>
+<div class="ans"><span class="aq">【4.1-1】</span> 开尔文与克劳修斯表述（见正文）。<div class="sol">背诵。</div><span class="tag">考查：第二定律</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【4.1-2】</span> 见正文推导（反证法）。<div class="sol">等价性。</div><span class="tag">考查：表述等价</span><span class="tag">方法：反证</span></div>
+<div class="ans"><span class="aq">【4.1-3】</span> 见 3.4-10。<div class="sol">卡诺定理。</div><span class="tag">考查：卡诺定理</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【4.1-4】</span> 不违反：靠外界做功，非"自发"。<div class="sol">关键词。</div><span class="tag">考查：表述理解</span><span class="tag">方法：抠字眼</span></div>
+<div class="ans"><span class="aq">【4.1-5】</span> 摩擦生热、自由膨胀、热传导、扩散。<div class="sol">举例。</div><span class="tag">考查：不可逆</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【4.1-6】</span> 单一热源取热全部变功的机器；违反第二定律。<div class="sol">概念。</div><span class="tag">考查：第二类永动机</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.1-7】</span> 每一步可反向且外界复原；准静态加无耗散。<div class="sol">概念。</div><span class="tag">考查：可逆过程</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.1-8】</span> 摩擦、温差传热、扩散等耗散不可避免。<div class="sol">概念。</div><span class="tag">考查：不可逆性</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.1-9】</span> 错：缺"自发"，冰箱即可。<div class="sol">抠字眼。</div><span class="tag">考查：表述辨析</span><span class="tag">方法：反例</span></div>
+<div class="ans"><span class="aq">【4.1-10】</span> 开尔文侧重热机，克劳修斯侧重传热。<div class="sol">概念。</div><span class="tag">考查：表述侧重</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-1】</span> 熔点降低，沸点升高。<div class="sol">克拉珀龙方程符号。</div><span class="tag">考查：符号判断</span><span class="tag">方法：看 $\Delta v$</span></div>
+<div class="ans"><span class="aq">【4.2-2】</span> 见正文推导。<div class="sol">化学势相等。</div><span class="tag">考查：克拉珀龙方程</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4.2-3】</span> $\frac{dT}{dp}=-7.4\times10^{-8}$ K/Pa。<div class="sol">代入。</div><span class="tag">考查：熔点变化率</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4.2-4】</span> 冰刀压强大，熔点降低，冰融化起润滑作用。<div class="sol">概念。</div><span class="tag">考查：溜冰</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-5】</span> 压强升高沸点升高。<div class="sol">概念。</div><span class="tag">考查：高压锅</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-6】</span> 273.16 K，611 Pa。<div class="sol">三相点。</div><span class="tag">考查：三相点</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【4.2-7】</span> 临界点以上无气液之分。<div class="sol">概念。</div><span class="tag">考查：临界点</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-8】</span> 冰融化 $\Delta v&lt;0$，汽化 $\Delta v&gt;0$。<div class="sol">符号来源。</div><span class="tag">考查：斜率符号</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-9】</span> $L\approx2.26\times10^6$ J/kg。<div class="sol">反解。</div><span class="tag">考查：汽化潜热</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4.2-10】</span> 每增加 1 atm 熔点降约 0.0075 K。<div class="sol">量级。</div><span class="tag">考查：熔点变化</span><span class="tag">方法：估算</span></div>
+<div class="ans"><span class="aq">【4.3-1】</span> $\Delta S=R\ln2=5.76$ J/K。<div class="sol">等温熵变。</div><span class="tag">考查：熵变</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4.3-2】</span> $\Delta S=\frac32R\ln\frac{T_2}{T_1}$。<div class="sol">等容熵变。</div><span class="tag">考查：熵变</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4.3-3】</span> 增加。<div class="sol">熵增原理。</div><span class="tag">考查：熵增原理</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.3-4】</span> 见正文推导。<div class="sol">可逆路径积分。</div><span class="tag">考查：熵变公式</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4.3-5】</span> $\oint dS=\frac{Q_1}{T_1}-\frac{Q_2}{T_2}=0$。<div class="sol">可逆循环。</div><span class="tag">考查：循环熵变</span><span class="tag">方法：求和</span></div>
+<div class="ans"><span class="aq">【4.3-6】</span> $\Delta S=mc\ln\frac{T_f^2}{T_1T_2}\ge0$。<div class="sol">两段积分。</div><span class="tag">考查：混合熵变</span><span class="tag">方法：积分加不等式</span></div>
+<div class="ans"><span class="aq">【4.3-7】</span> $R\ln2=5.76$ J/K。<div class="sol">可逆路径替代。</div><span class="tag">考查：自由膨胀</span><span class="tag">方法：可逆路径</span></div>
+<div class="ans"><span class="aq">【4.3-8】</span> $0.11$ kJ/K。<div class="sol">两段求和。</div><span class="tag">考查：混合熵变</span><span class="tag">方法：积分</span></div>
+<div class="ans"><span class="aq">【4.3-9】</span> 熵增原理是第二定律的数学表述。<div class="sol">关系。</div><span class="tag">考查：关系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.3-10】</span> 熵增给出时间的方向。<div class="sol">概念。</div><span class="tag">考查：时间之箭</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.4-1】</span> 微观可逆与宏观不可逆矛盾；统计解释。<div class="sol">概念。</div><span class="tag">考查：洛施密特佯谬</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.4-2】</span> 庞加莱回归；回归时间远超宇宙年龄。<div class="sol">概念。</div><span class="tag">考查：策尔梅洛佯谬</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.4-3】</span> 同种气体混合熵增应为零；全同性修正。<div class="sol">概念。</div><span class="tag">考查：吉布斯佯谬</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.4-4】</span> 信息擦除耗能，兰道尔原理。<div class="sol">概念。</div><span class="tag">考查：麦克斯韦妖</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.4-5】</span> 擦除 1 bit 至少耗能 $kT\ln2$。<div class="sol">兰道尔原理。</div><span class="tag">考查：兰道尔原理</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【4.4-6】</span> $S=-k\sum p_i\ln p_i$。<div class="sol">公式。</div><span class="tag">考查：信息熵</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4.4-7】</span> 获取信息使熵减，需以耗能为代价。<div class="sol">概念。</div><span class="tag">考查：信息与熵</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.4-8】</span> 有限能量系统必回归初态附近。<div class="sol">庞加莱回归。</div><span class="tag">考查：回归定理</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.4-9】</span> 深化熵的理解，催生统计力学与信息论。<div class="sol">意义。</div><span class="tag">考查：佯谬意义</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.4-10】</span> 粒子全同不可分辨，配分函数除以 $N!$。<div class="sol">概念。</div><span class="tag">考查：全同性</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.5-1】</span> $F=U-TS$（定温定容）；$G=H-TS$（定温定压）。<div class="sol">定义。</div><span class="tag">考查：自由能</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【4.5-2】</span> 见正文推导。<div class="sol">环境熵变代入。</div><span class="tag">考查：$G$ 判据</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4.5-3】</span> $dU=TdS-pdV$ 等四个微分式。<div class="sol">记忆。</div><span class="tag">考查：基本微分式</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【4.5-4】</span> 见正文推导。<div class="sol">混合偏导。</div><span class="tag">考查：麦克斯韦关系</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4.5-5】</span> 只看系统函数，不必算环境。<div class="sol">概念。</div><span class="tag">考查：$G$ 判据</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.5-6】</span> $\Delta G&lt;0$ 自发，$=0$ 平衡。<div class="sol">判据。</div><span class="tag">考查：化学平衡</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.5-7】</span> $F$ 定温定容，$G$ 定温定压。<div class="sol">适用场合。</div><span class="tag">考查：区别</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.5-8】</span> 内能随熵与体积的变化。<div class="sol">概念。</div><span class="tag">考查：$dU$</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.5-9】</span> 两相平衡时 $G_1=G_2$。<div class="sol">判据。</div><span class="tag">考查：相平衡</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.5-10】</span> 两相化学势相等。<div class="sol">概念。</div><span class="tag">考查：气液相平衡</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.6-1】</span> 一级有潜热体积突变，二级无潜热但热容发散。<div class="sol">概念。</div><span class="tag">考查：相变分类</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.6-2】</span> 磁化强度、超流密度、有序度。<div class="sol">举例。</div><span class="tag">考查：序参量</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【4.6-3】</span> 自由能按序参量展开。<div class="sol">概念。</div><span class="tag">考查：朗道理论</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.6-4】</span> 见正文推导。<div class="sol">平衡条件。</div><span class="tag">考查：平方根律</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4.6-5】</span> 2.17 K 以下无黏性流动。<div class="sol">超流。</div><span class="tag">考查：超流</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.6-6】</span> 正常组分与超流组分并存。<div class="sol">二流体模型。</div><span class="tag">考查：二流体模型</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.6-7】</span> 元激发是集体运动的量子。<div class="sol">概念。</div><span class="tag">考查：元激发</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.6-8】</span> 热容曲线形似希腊字母 λ。<div class="sol">概念。</div><span class="tag">考查：λ 相变</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.6-9】</span> 皆为宏观量子现象，超导是带电超流。<div class="sol">比较。</div><span class="tag">考查：超导超流</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.6-10】</span> 临界指数与微观细节无关。<div class="sol">普适性。</div><span class="tag">考查：临界现象</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ans5">第五章答案（5.1-1 ~ 5-20）</h3>
+<div class="anssec">
+<div class="at">第五章 非平衡过程</div>
+<div class="ans"><span class="aq">【5.1-1】</span> 减小。<div class="sol">$\bar\lambda\propto\frac1p$。</div><span class="tag">考查：平均自由程</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5.1-2】</span> 无关，$\rho\propto p$ 与 $\bar\lambda\propto1/p$ 抵消。<div class="sol">代入验证。</div><span class="tag">考查：黏性系数</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【5.1-3】</span> $D\propto T^{3/2}/p$。<div class="sol">量纲。</div><span class="tag">考查：扩散系数</span><span class="tag">方法：分析</span></div>
+<div class="ans"><span class="aq">【5.1-4】</span> 相邻两次碰撞间的平均距离。<div class="sol">定义。</div><span class="tag">考查：自由程</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.1-5】</span> $\bar\lambda\approx6.1\times10^{-8}$ m；$\bar Z\approx7.7\times10^9$ s⁻¹。<div class="sol">代入计算。</div><span class="tag">考查：自由程估算</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【5.1-6】</span> 见正文推导。<div class="sol">初级气体动理论。</div><span class="tag">考查：黏性系数</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【5.1-7】</span> 都是分子携带某量跨截面输运。<div class="sol">概念。</div><span class="tag">考查：同构性</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.1-8】</span> $\kappa_{eff}=\frac{L_1+L_2}{L_1/\kappa_1+L_2/\kappa_2}$。<div class="sol">热阻串联。</div><span class="tag">考查：串联导热</span><span class="tag">方法：类比电阻</span></div>
+<div class="ans"><span class="aq">【5.1-9】</span> 自由程大于容器尺寸，输运系数与尺寸有关。<div class="sol">克努森效应。</div><span class="tag">考查：稀薄气体</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.1-10】</span> $\eta\propto\rho\bar v\bar\lambda$ 量纲正确。<div class="sol">量纲分析。</div><span class="tag">考查：量纲</span><span class="tag">方法：分析</span></div>
+<div class="ans"><span class="aq">【5.2-1】</span> 布朗发现、爱因斯坦解释、佩兰验证。<div class="sol">历史。</div><span class="tag">考查：布朗运动</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【5.2-2】</span> 扩散与黏性由温度联系（涨落耗散定理）。<div class="sol">概念。</div><span class="tag">考查：爱因斯坦关系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.2-3】</span> 线性增长（随机游走）。<div class="sol">扩散特征。</div><span class="tag">考查：布朗公式</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.2-4】</span> 定量预言被实验证实。<div class="sol">概念。</div><span class="tag">考查：意义</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.2-5】</span> $\frac1{\sqrt N}$。<div class="sol">公式。</div><span class="tag">考查：涨落</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5.2-6】</span> 密度涨落大，光散射增强。<div class="sol">临界乳光。</div><span class="tag">考查：临界涨落</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.2-7】</span> $N\approx2.7\times10^{16}$，相对涨落 $2\times10^{-8}$。<div class="sol">估算。</div><span class="tag">考查：涨落估算</span><span class="tag">方法：估算</span></div>
+<div class="ans"><span class="aq">【5.2-8】</span> 测不同高度微粒数，反推 $k$ 与 $N_A$。<div class="sol">佩兰实验。</div><span class="tag">考查：佩兰实验</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.2-9】</span> 涨落与耗散同源。<div class="sol">概念。</div><span class="tag">考查：涨落耗散</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.2-10】</span> 布朗运动是随机游走的连续极限。<div class="sol">关系。</div><span class="tag">考查：随机游走</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.3-1】</span> 自相似几何对象；海岸线、雪花、闪电、肺。<div class="sol">概念加举例。</div><span class="tag">考查：分形</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.3-2】</span> $D=\frac{\ln N}{\ln(1/\varepsilon)}$。<div class="sol">公式。</div><span class="tag">考查：分形维数</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5.3-3】</span> $D\approx1.26$。<div class="sol">代入。</div><span class="tag">考查：科赫曲线</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5.3-4】</span> 2。<div class="sol">布朗轨迹。</div><span class="tag">考查：布朗轨迹</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【5.3-5】</span> 海岸线是分形，长度依赖尺子。<div class="sol">概念。</div><span class="tag">考查：海岸线</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.3-6】</span> $D=\frac{\ln8}{\ln3}\approx1.89$。<div class="sol">代入。</div><span class="tag">考查：地毯维数</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5.3-7】</span> 扩散限制聚集：粒子随机游走粘附生长。<div class="sol">DLA。</div><span class="tag">考查：分形生长</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.3-8】</span> 逾渗：随机占据达到阈值时连通性突变。<div class="sol">概念。</div><span class="tag">考查：逾渗</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.3-9】</span> 多孔介质、混沌吸引子、聚合物。<div class="sol">举例。</div><span class="tag">考查：应用</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【5.3-10】</span> 部分与整体相似。<div class="sol">定义。</div><span class="tag">考查：自相似</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-1】</span> 局域平衡假设：小体积元近似平衡态。<div class="sol">概念。</div><span class="tag">考查：局域平衡</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-2】</span> 熵流是与外界的交换，熵产生是内部不可逆产生。<div class="sol">概念。</div><span class="tag">考查：熵流与产生</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-3】</span> $L_{ij}=L_{ji}$：交叉效应对称。<div class="sol">昂萨格。</div><span class="tag">考查：倒易关系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-4】</span> $\dot S_i=\kappa\frac{(\nabla T)^2}{T^2}$。<div class="sol">推导。</div><span class="tag">考查：熵产生</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【5.4-5】</span> 近平衡定态熵产生最小。<div class="sol">概念。</div><span class="tag">考查：最小熵产生</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-6】</span> 流 $J$ 与力 $X$ 的线性关系。<div class="sol">概念。</div><span class="tag">考查：广义流力</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-7】</span> 线性区定态稳定，扰动衰减。<div class="sol">概念。</div><span class="tag">考查：线性区</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-8】</span> 非线性区可出现分支与耗散结构。<div class="sol">概念。</div><span class="tag">考查：线性非线性</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-9】</span> 近平衡、线性响应、局域平衡。<div class="sol">条件。</div><span class="tag">考查：适用条件</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.4-10】</span> 输运系数矩阵对称。<div class="sol">倒易关系。</div><span class="tag">考查：矩阵对称</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-1】</span> 远离平衡开放系统的有序结构；BZ 反应、贝纳尔对流、激光。<div class="sol">概念加举例。</div><span class="tag">考查：耗散结构</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-2】</span> 贝洛索夫发现，扎博京斯基推广，BZ 反应。<div class="sol">历史。</div><span class="tag">考查：BZ 反应</span><span class="tag">方法：记忆</span></div>
+<div class="ans"><span class="aq">【5.5-3】</span> 反应-扩散方程的不稳定性产生斑图。<div class="sol">概念。</div><span class="tag">考查：图灵斑图</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-4】</span> 温差超过临界值时浮力克服黏性。<div class="sol">概念。</div><span class="tag">考查：贝纳尔对流</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-5】</span> 开放、远离平衡、非线性、自组织。<div class="sol">特征。</div><span class="tag">考查：特征</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-6】</span> 远离平衡时涨落被放大成有序。<div class="sol">概念。</div><span class="tag">考查：有序之源</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-7】</span> 不能：平衡态扰动衰减。<div class="sol">概念。</div><span class="tag">考查：平衡态</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-8】</span> 耗散结构需能量流维持，平衡结构不需。<div class="sol">区别。</div><span class="tag">考查：区别</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-9】</span> 系统自发形成有序。<div class="sol">概念。</div><span class="tag">考查：自组织</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.5-10】</span> 生物形态发生、生态斑图。<div class="sol">应用。</div><span class="tag">考查：应用</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-1】</span> 生命靠摄入负熵维持有序。<div class="sol">薛定谔。</div><span class="tag">考查：负熵</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-2】</span> 不违反：生物熵减以环境更大熵增为代价。<div class="sol">开放系统。</div><span class="tag">考查：生命与第二定律</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-3】</span> 太阳能沿食物链流动并耗散。<div class="sol">概念。</div><span class="tag">考查：能量流</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-4】</span> 光合作用输入低熵光能，储存化学能。<div class="sol">概念。</div><span class="tag">考查：光合作用</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-5】</span> 宇宙熵极大一切温差消失；引力系统负热容否定之。<div class="sol">概念。</div><span class="tag">考查：热寂说</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-6】</span> 引力系统放热反而升温。<div class="sol">概念。</div><span class="tag">考查：负热容</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-7】</span> 开创分子生物学物理时代。<div class="sol">影响。</div><span class="tag">考查：薛定谔</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-8】</span> 摄入负熵等于排出熵加体内熵产生。<div class="sol">平衡。</div><span class="tag">考查：熵平衡</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-9】</span> 太阳能是低熵能源。<div class="sol">概念。</div><span class="tag">考查：太阳</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.6-10】</span> 生命可能起源于远离平衡的自组织。<div class="sol">概念。</div><span class="tag">考查：生命起源</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ansc1">第一章综合题答案（1-1 ~ 1-20）</h3>
+<div class="anssec">
+<div class="at">第一章 综合题</div>
+<div class="ans"><span class="aq">【1-1】</span>（中大真题）C。<div class="sol">$E=\frac i2\nu RT$ 只与温度有关。</div><span class="tag">考查：内能性质</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1-2】</span>（清华）$p=\left(\frac{m_1}{M_1}+\frac{m_2}{M_2}\right)\frac{RT}V$。<div class="sol">道尔顿分压。</div><span class="tag">考查：分压定律</span><span class="tag">方法：求和</span></div>
+<div class="ans"><span class="aq">【1-3】</span>（北大）$T$ 不变时 $\overline{v^2}$ 不变，$p=\frac13nm\overline{v^2}\propto n\propto\frac1V$，即 $pV=$ 常数。<div class="sol">微观解释。</div><span class="tag">考查：玻意耳定律</span><span class="tag">方法：微观推导</span></div>
+<div class="ans"><span class="aq">【1-4】</span>（复旦）$\Delta p=\frac{2\gamma}R+\rho gh=146+980=1126$ Pa。<div class="sol">附加压强加静压。</div><span class="tag">考查：附加压强</span><span class="tag">方法：叠加</span></div>
+<div class="ans"><span class="aq">【1-5】</span> 总压等于各组分分压之和：$p=\sum p_i$。各组分独立满足状态方程。<div class="sol">分压定律。</div><span class="tag">考查：分压定律</span><span class="tag">方法：概念加推导</span></div>
+<div class="ans"><span class="aq">【1-6】</span> $N=\frac{pV}{kT}=\frac{10^5\times240}{1.38\times10^{-23}\times300}\approx5.8\times10^{27}$ 个。<div class="sol">状态方程。</div><span class="tag">考查：分子数估算</span><span class="tag">方法：$pV=NkT$</span></div>
+<div class="ans"><span class="aq">【1-7】</span> $2.69\times10^{19}$ 个。<div class="sol">$n\times10^{-6}$。</div><span class="tag">考查：分子数</span><span class="tag">方法：换算</span></div>
+<div class="ans"><span class="aq">【1-8】</span> $n=\frac p{kT}=\frac{10^{-6}}{1.38\times10^{-23}\times300}\approx2.4\times10^{14}$ m⁻³，即 $2.4\times10^8$ 个/cm³。<div class="sol">$p=nkT$。</div><span class="tag">考查：真空度</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1-9】</span> 经验温标依赖物质；理想气体温标摆脱物质但依赖气体性质；热力学温标完全普适。<div class="sol">温标史。</div><span class="tag">考查：温标史</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1-10】</span> 逻辑上先于第一定律（温度概念是它的前提），命名在后。<div class="sol">历史。</div><span class="tag">考查：第零定律</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1-11】</span> 每秒碰撞数 $=\frac14n\bar v\approx2.9\times10^{27}$ m⁻²s⁻¹（$\bar v$ 取 470 m/s）。<div class="sol">碰壁数公式。</div><span class="tag">考查：碰撞数</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1-12】</span> $c=\frac{0.2\times4.18\times2.5}{0.1\times57.5}=0.36$ kJ/(kg·K)。<div class="sol">混合法反解。</div><span class="tag">考查：混合法</span><span class="tag">方法：能量守恒</span></div>
+<div class="ans"><span class="aq">【1-13】</span> 高原气压低沸点低（汽化曲线）。<div class="sol">p-T 图。</div><span class="tag">考查：沸点与压强</span><span class="tag">方法：三相图</span></div>
+<div class="ans"><span class="aq">【1-14】</span> 气液差别消失，密度涨落发散导致临界乳光。<div class="sol">临界点。</div><span class="tag">考查：临界点</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1-15】</span> 实际气体等温线在低温出现平台（相变），理想气体为双曲线。<div class="sol">p-V 图。</div><span class="tag">考查：实际气体</span><span class="tag">方法：定性</span></div>
+<div class="ans"><span class="aq">【1-16】</span> $T_c=\frac{8a}{27Rb}\approx647$ K。<div class="sol">临界公式。</div><span class="tag">考查：临界温度</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1-17】</span> 晶体长程有序（石英）、非晶体无（玻璃）、准晶有取向序无平移序（铝锰合金）。<div class="sol">举例。</div><span class="tag">考查：凝聚态分类</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【1-18】</span> 表面分子受力不对称，有向内的净引力。<div class="sol">微观起源。</div><span class="tag">考查：表面张力</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1-19】</span> 应用：毛细吸水、灯芯；危害：建筑返潮。<div class="sol">举例。</div><span class="tag">考查：毛细现象</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【1-20】</span> 气体分子间距大（自由空间大），液体分子已紧挨。<div class="sol">微观。</div><span class="tag">考查：压缩性</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ansc2">第二章综合题答案（2-1 ~ 2-20）</h3>
+<div class="anssec">
+<div class="at">第二章 综合题</div>
+<div class="ans"><span class="aq">【2-1】</span>（中大）$v_p=394$、$\bar v=447$、$\sqrt{\overline{v^2}}=483$ m/s。<div class="sol">三个速率。</div><span class="tag">考查：三个速率</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2-2】</span>（清华）$\int_0^\infty f(v)dv=4\pi A\int v^2e^{-\alpha v^2}dv=4\pi A\frac{\sqrt\pi}{4\alpha^{3/2}}=1$。∎<div class="sol">高斯积分。</div><span class="tag">考查：归一化</span><span class="tag">方法：高斯积分</span></div>
+<div class="ans"><span class="aq">【2-3】</span>（北大）见 2.1-7、2.1-8。<div class="sol">高斯积分。</div><span class="tag">考查：速率计算</span><span class="tag">方法：高斯积分</span></div>
+<div class="ans"><span class="aq">【2-4】</span>（复旦）$p=p_0e^{-Mgh/RT}\approx0.37p_0$。<div class="sol">气压公式。</div><span class="tag">考查：气压公式</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【2-5】</span>（中大）$13712$ J。<div class="sol">$\frac32\times2RT+\frac52RT$。</div><span class="tag">考查：混合内能</span><span class="tag">方法：求和</span></div>
+<div class="ans"><span class="aq">【2-6】</span> $\frac{dN}N=f(v_p)dv$。<div class="sol">分布函数定义。</div><span class="tag">考查：分布函数</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【2-7】</span> 三速率均 $\propto\sqrt T$，曲线右移变宽峰值降低。<div class="sol">定性加定量。</div><span class="tag">考查：温度影响</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2-8】</span> $\sqrt{\overline{v^2}}=1.9$ km/s 与逃逸速度 11.2 km/s 同量级（虽小，但分布高能尾可逃逸）。<div class="sol">比较。</div><span class="tag">考查：大气逃逸</span><span class="tag">方法：比较</span></div>
+<div class="ans"><span class="aq">【2-9】</span> $\bar\varepsilon_t=\int\frac12mv^2f(v)dv=\frac32kT$。∎<div class="sol">高斯积分。</div><span class="tag">考查：平均平动动能</span><span class="tag">方法：积分</span></div>
+<div class="ans"><span class="aq">【2-10】</span> $\frac1{\sqrt N}\approx2\times10^{-10}$。<div class="sol">涨落。</div><span class="tag">考查：涨落</span><span class="tag">方法：估算</span></div>
+<div class="ans"><span class="aq">【2-11】</span> 测微粒高度分布反推 $k$、$N_A$，证明原子存在。<div class="sol">佩兰实验。</div><span class="tag">考查：佩兰实验</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-12】</span> 麦克斯韦分布是玻耳兹曼分布无外场时的特例。<div class="sol">关系。</div><span class="tag">考查：分布关系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-13】</span> 仅对理想气体（无相互作用）严格成立。<div class="sol">适用范围。</div><span class="tag">考查：适用范围</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-14】</span> 各组分独立服从自己的麦克斯韦分布。<div class="sol">独立性。</div><span class="tag">考查：混合分布</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-15】</span> 固体 3 个振动自由度（3 动能+3 势能），$C_V=3R$（杜隆-珀蒂）。<div class="sol">能量均分。</div><span class="tag">考查：杜隆-珀蒂</span><span class="tag">方法：能量均分</span></div>
+<div class="ans"><span class="aq">【2-16】</span> 温度升高振动自由度逐渐解冻。<div class="sol">量子效应。</div><span class="tag">考查：热容温度关系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-17】</span> $\int_{500}^\infty f(v)dv$，数值很小（约百分之几）。<div class="sol">积分估算。</div><span class="tag">考查：分布积分</span><span class="tag">方法：估算</span></div>
+<div class="ans"><span class="aq">【2-18】</span> 大数定律使统计平均可预测。<div class="sol">概念。</div><span class="tag">考查：大数定律</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-19】</span> $\bar z=\frac{kT}{mg}$（指数分布平均）。<div class="sol">积分。</div><span class="tag">考查：平均高度</span><span class="tag">方法：积分</span></div>
+<div class="ans"><span class="aq">【2-20】</span> 布朗运动是分子碰撞的直接后果，定量预言被证实。<div class="sol">概念。</div><span class="tag">考查：布朗运动意义</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ansc3">第三章综合题答案（3-1 ~ 3-20）</h3>
+<div class="anssec">
+<div class="at">第三章 综合题</div>
+<div class="ans"><span class="aq">【3-1】</span>（中大真题）A。<div class="sol">$Q=\Delta U+W$。</div><span class="tag">考查：第一定律</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3-2】</span>（中大真题）相等；等容过程做功为零，$Q=\Delta U$。<div class="sol">等容。</div><span class="tag">考查：等容过程</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-3】</span>（清华）$Q_{吸}=\frac32R(T_2-T_1)+RT_2\ln\frac{T_2}{T_1}$，$Q_{放}=\frac52R(T_2-T_1)$，$\eta=1-\frac{Q_{放}}{Q_{吸}}$。<div class="sol">逐段。</div><span class="tag">考查：循环效率</span><span class="tag">方法：逐段加效率公式</span></div>
+<div class="ans"><span class="aq">【3-4】</span>（北大）见正文 3.3 推导。<div class="sol">第一定律加状态方程。</div><span class="tag">考查：绝热方程</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【3-5】</span>（复旦）$C_V=\frac52R$、$C_p=\frac72R$、$\gamma=1.4$；$T_2=T_1(\frac{V_1}{V_2})^{0.4}$。<div class="sol">公式。</div><span class="tag">考查：热容与绝热</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3-6】</span> $W=\frac{p_1V_1-p_2V_2}{n-1}$；$Q=\Delta U+W$。<div class="sol">多方过程。</div><span class="tag">考查：多方过程</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3-7】</span> 焦耳自由膨胀实验：$T$ 不变，$dU$ 只依赖 $dT$。∎<div class="sol">实验。</div><span class="tag">考查：内能性质</span><span class="tag">方法：实验</span></div>
+<div class="ans"><span class="aq">【3-8】</span> 两绝热两等容，$\eta=1-\frac{T_d-T_a}{T_c-T_b}=1-\frac1{r^{\gamma-1}}$。<div class="sol">推导。</div><span class="tag">考查：奥托循环</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【3-9】</span> 狄塞尔：定压燃烧（压燃），奥托：定容燃烧（点燃）。<div class="sol">区别。</div><span class="tag">考查：循环类型</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-10】</span> $\eta_{max}=1-\frac{273}{373}=0.268$，$W_{max}=268$ J。<div class="sol">卡诺效率。</div><span class="tag">考查：最大做功</span><span class="tag">方法：卡诺</span></div>
+<div class="ans"><span class="aq">【3-11】</span> $e=\frac{T_2}{T_1-T_2}$，夏季 $e\approx10$，每小时耗电 $=\frac{Q}{e}$。<div class="sol">制冷机。</div><span class="tag">考查：空调</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【3-12】</span> $v=\sqrt{\frac{\gamma p}\rho}=\sqrt{\frac{\gamma RT}M}$。<div class="sol">绝热声速。</div><span class="tag">考查：声速</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【3-13】</span> 吸气-压缩-做功-排气，p-V 图为奥托循环。<div class="sol">四冲程。</div><span class="tag">考查：内燃机</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-14】</span> 等压 &gt; 等温 &gt; 绝热（同起点同体积膨胀）。<div class="sol">面积比较。</div><span class="tag">考查：做功比较</span><span class="tag">方法：面积</span></div>
+<div class="ans"><span class="aq">【3-15】</span> $Q=W=0$，$\Delta U=0$，$T$ 不变。<div class="sol">自由膨胀。</div><span class="tag">考查：焦耳实验</span><span class="tag">方法：第一定律</span></div>
+<div class="ans"><span class="aq">【3-16】</span> 低温转动、振动逐级冻结，热容下降。<div class="sol">量子效应。</div><span class="tag">考查：热容</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-17】</span> 第二定律禁止（需向低温热源放热）。<div class="sol">概念。</div><span class="tag">考查：效率上限</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-18】</span> 节流前后焓不变（等焓过程），温度变化由焦耳-汤姆逊系数定。<div class="sol">节流。</div><span class="tag">考查：节流过程</span><span class="tag">方法：焓</span></div>
+<div class="ans"><span class="aq">【3-19】</span> 制冷机把室内热量连同耗功排到室外。<div class="sol">概念。</div><span class="tag">考查：冰箱</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-20】</span> $C_n=C_V\frac{\gamma-n}{1-n}$。<div class="sol">多方热容。</div><span class="tag">考查：多方热容</span><span class="tag">方法：推导</span></div>
+</div>
+
+<h3 class="subsec" id="ansc4">第四章综合题答案（4-1 ~ 4-20）</h3>
+<div class="anssec">
+<div class="at">第四章 综合题</div>
+<div class="ans"><span class="aq">【4-1】</span>（中大真题）AC。<div class="sol">B 缺"自发"，D 违反第二定律而非第一。</div><span class="tag">考查：定律辨析</span><span class="tag">方法：辨析</span></div>
+<div class="ans"><span class="aq">【4-2】</span>（中大真题）正确。<div class="sol">等价性。</div><span class="tag">考查：表述等价</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-3】</span>（清华）见正文 4.1 推导。<div class="sol">反证法。</div><span class="tag">考查：等价性证明</span><span class="tag">方法：反证</span></div>
+<div class="ans"><span class="aq">【4-4】</span>（北大）$R\ln2=5.76$ J/K。<div class="sol">可逆路径。</div><span class="tag">考查：自由膨胀熵变</span><span class="tag">方法：可逆路径</span></div>
+<div class="ans"><span class="aq">【4-5】</span>（复旦）$\oint dS=0$，$\eta=1-\frac{T_2}{T_1}$。<div class="sol">卡诺。</div><span class="tag">考查：卡诺循环</span><span class="tag">方法：熵计算</span></div>
+<div class="ans"><span class="aq">【4-6】</span> 等压 $\nu C_p\ln\frac{T_2}{T_1}$；等容 $\nu C_V\ln\frac{T_2}{T_1}$；等温 $\nu R\ln\frac{V_2}{V_1}$；绝热 0。<div class="sol">四过程。</div><span class="tag">考查：熵变</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4-7】</span> 冰全融（$Q_{水}=4.18\times100=418$ kJ &gt; 334 kJ），末温 $\frac{418-334}{2\times4.18}=10$℃；熵变计算得正值。<div class="sol">热平衡加熵变。</div><span class="tag">考查：混合熵变</span><span class="tag">方法：热平衡加积分</span></div>
+<div class="ans"><span class="aq">【4-8】</span> $\Delta S=Q(\frac1{T_2}-\frac1{T_1})&gt;0$。<div class="sol">热传导。</div><span class="tag">考查：传导熵变</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4-9】</span> 熵增原理是第二定律的定量形式，二者等价。∎<div class="sol">等价。</div><span class="tag">考查：等价性</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-10】</span> 信息擦除耗能 $kT\ln2$。<div class="sol">兰道尔。</div><span class="tag">考查：麦克斯韦妖</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-11】</span> $\Delta G&lt;0$ 自发。<div class="sol">判据。</div><span class="tag">考查：化学方向</span><span class="tag">方法：$G$ 判据</span></div>
+<div class="ans"><span class="aq">【4-12】</span> $\frac{dT}{dp}=\frac{T\Delta v}L&lt;0$。<div class="sol">克拉珀龙。</div><span class="tag">考查：熔点变化</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4-13】</span> 由 $dU=TdS-pdV$ 对 $V$ 求偏导，用麦克斯韦关系。<div class="sol">推导。</div><span class="tag">考查：麦克斯韦关系应用</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4-14】</span> 代入理想气体状态方程，右边为零，故 $U$ 只与 $T$ 有关。∎<div class="sol">应用。</div><span class="tag">考查：内能性质</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4-15】</span> 序参量在相变点连续为零，对称性突变。<div class="sol">概念。</div><span class="tag">考查：朗道理论</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-16】</span> 热容发散呈 λ 形，超流出现。<div class="sol">概念。</div><span class="tag">考查：λ 相变</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-17】</span> $\Delta S=\nu_1R\ln\frac V{V_1}+\nu_2R\ln\frac V{V_2}$。<div class="sol">混合熵。</div><span class="tag">考查：混合熵</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4-18】</span> 同种气体混合熵变应为零；全同性修正。∎<div class="sol">吉布斯佯谬。</div><span class="tag">考查：吉布斯佯谬</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-19】</span> 宇宙膨胀与引力负热容使热寂不成立。<div class="sol">概念。</div><span class="tag">考查：热寂说</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-20】</span> 不矛盾：生物是开放系统，总熵仍增。<div class="sol">概念。</div><span class="tag">考查：生命与第二定律</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ansc5">第五章综合题答案（5-1 ~ 5-20）</h3>
+<div class="anssec">
+<div class="at">第五章 综合题</div>
+<div class="ans"><span class="aq">【5-1】</span>（中大）与压强无关，$\propto\sqrt T$。<div class="sol">结论。</div><span class="tag">考查：黏性系数</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-2】</span>（清华）见正文 5.1 推导。<div class="sol">初级气体动理论。</div><span class="tag">考查：黏性系数</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【5-3】</span>（北大）$6.1\times10^{-8}$ m。<div class="sol">公式。</div><span class="tag">考查：自由程</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5-4】</span>（复旦）见正文 5.2 推导。<div class="sol">涨落耗散。</div><span class="tag">考查：爱因斯坦关系</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【5-5】</span> 温度线性分布。<div class="sol">稳态。</div><span class="tag">考查：串联导热</span><span class="tag">方法：热阻</span></div>
+<div class="ans"><span class="aq">【5-6】</span> $T(r)=T_1-\frac{Q}{2\pi\kappa L}\ln\frac r{r_1}$。<div class="sol">圆柱导热。</div><span class="tag">考查：圆筒导热</span><span class="tag">方法：积分</span></div>
+<div class="ans"><span class="aq">【5-7】</span> $\bar\lambda=\frac{kT}{\sqrt2\pi d^2p}\approx70$ m。<div class="sol">低压。</div><span class="tag">考查：自由程</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5-8】</span> 自扩散系数为同种分子示踪扩散。<div class="sol">区别。</div><span class="tag">考查：扩散系数</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-9】</span> 布朗位移平方 $\propto t$，匀速位移 $\propto t$。<div class="sol">区别。</div><span class="tag">考查：布朗运动</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-10】</span> $D=\frac{kT}{6\pi\eta r}\approx2.2\times10^{-13}$ m²/s。<div class="sol">代入。</div><span class="tag">考查：扩散系数</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5-11】</span> $L_n=(\frac43)^nL_0\to\infty$。<div class="sol">科赫曲线。</div><span class="tag">考查：分形长度</span><span class="tag">方法：迭代</span></div>
+<div class="ans"><span class="aq">【5-12】</span> 占据率越过阈值时最大团簇突然贯通。<div class="sol">逾渗。</div><span class="tag">考查：逾渗</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-13】</span> $\dot S_i=\kappa\frac{(\nabla T)^2}{T^2}$。<div class="sol">推导。</div><span class="tag">考查：熵产生</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【5-14】</span> 定态熵产生最小，扰动衰减。<div class="sol">概念。</div><span class="tag">考查：最小熵产生</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-15】</span> 溶液颜色周期性变化。<div class="sol">BZ 反应。</div><span class="tag">考查：化学振荡</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-16】</span> 浮力驱动，温差超阈值形成对流胞。<div class="sol">贝纳尔。</div><span class="tag">考查：对流</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-17】</span> 激光是远离平衡的相干结构。<div class="sol">概念。</div><span class="tag">考查：激光</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-18】</span> 摄入负熵流等于内部熵产生。<div class="sol">平衡。</div><span class="tag">考查：生命熵平衡</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-19】</span> 引力系统负热容与宇宙膨胀。<div class="sol">概念。</div><span class="tag">考查：热寂说</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-20】</span> 自组织：内部涨落自发形成；他组织：外部指令。<div class="sol">区别。</div><span class="tag">考查：自组织</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ex1">第一章 拓展专题：范德瓦尔斯方程与现代物态</h3>
+<div class="derive">
+<div class="dt">专题一：范德瓦尔斯方程的对比态形式</div>
+<p>引入约化变量 $p^*=\frac p{p_c},\ V^*=\frac{V_m}{V_{m,c}},\ T^*=\frac T{T_c}$，代入范德瓦尔斯方程并利用临界参数关系，得<b>对比态方程</b>：$(p^*+\frac3{V^{*2}})(3V^*-1)=8T^*$。<b>对比态方程不含任何物质参数</b>——所有气体在对比态下行为相同（对应态定律）。这是范德瓦尔斯方程最漂亮的预言之一：用三个可测的临界参数，统一了所有气体的状态方程。</p>
+</div>
+<div class="derive">
+<div class="dt">专题二：麦克斯韦等面积法则</div>
+<p>范德瓦尔斯等温线在 $T&lt;T_c$ 时出现 S 形曲线，与实验的"平台"（气液共存）不符。麦克斯韦 1875 年提出修正：实际相变压强 $p^*$ 由<b>等面积法则</b>确定——S 形曲线与水平线 $p=p^*$ 围成的上下两块面积相等。其依据是热力学：沿等温线从液态到气态的吉布斯函数变化为零（两相平衡），即 $\oint V\,dp=0$。∎ <span class="tip">——等面积法则是范德瓦尔斯方程与热力学第二定律结合的典范。</span></p>
+</div>
+<div class="derive">
+<div class="dt">专题三：气体液化的历史</div>
+<p>1823 年法拉第用加压冷却液化了氯气；但氧、氮、氢被称为"永久气体"，无法液化。1877 年凯泰与皮克泰独立液化了氧与氮（降到临界温度以下）；1898 年杜瓦液化氢（20 K）；1908 年昂内斯液化氦（4.2 K）——<b>临界点的发现指明：液化气体的前提是冷却到临界温度以下，单纯加压无效</b>。昂内斯随后在 1911 年发现超导，1913 年获诺贝尔奖。这一串历史事件的核心概念，正是本章的临界点。</p>
+</div>
+
+<h3 class="subsec" id="ex2">第二章 拓展专题：统计分布的深化</h3>
+<div class="derive">
+<div class="dt">专题一：泻流速率与同位素分离</div>
+<p>容器壁开小孔（孔径远小于自由程），分子以"分子束"形式泻出。泻流速率 $=\frac14n\bar v$（单位面积单位时间流出的分子数）。<b>由于 $\bar v\propto\frac1{\sqrt M}$，轻重同位素泻流速率不同</b>——这就是历史上气体扩散法分离铀同位素的原理（曼哈顿工程）。∎</p>
+</div>
+<div class="derive">
+<div class="dt">专题二：麦克斯韦分布的三种导出方式</div>
+<p>① 麦克斯韦 1860：分量独立假设加归一化（正文已述）；② 玻尔兹曼 1868：碰撞平衡的细致平衡条件；③ 现代：配分函数方法（正则系综）。三种方法殊途同归，其中玻尔兹曼的推导最严格——他证明了分布律在碰撞下不变（H 定理的前身）。∎</p>
+</div>
+<div class="derive">
+<div class="dt">专题三：能量均分定理的适用范围</div>
+<p>均分定理要求"能量是动量的平方项"且系统处于经典极限（$kT$ 远大于能级间距）。室温下平动与转动满足（能级密集），振动不满足（振动能级间距 $\hbar\omega\gg kT$）。<b>均分定理的失效（热容随温度变化）是量子力学的第一个实验证据</b>，也是"紫外灾难"（电磁场自由度无穷多导致能量发散）的根源——两者共同催生了量子论。∎</p>
+</div>
+
+<h3 class="subsec" id="ex3">第三章 拓展专题：热机的历史与理论</h3>
+<div class="derive">
+<div class="dt">专题一：从纽科门到瓦特——蒸汽机的发展</div>
+<p>1712 年纽科门制成第一台实用蒸汽机（大气压式，效率不足 1%）；1769 年瓦特加装分离式冷凝器，效率提升数倍，工业革命加速。瓦特的改进是经验性的——他凭工程直觉避免了汽缸的反复冷却。卡诺 1824 年提出理想循环时，工程师们才第一次有了效率的"理论天花板"。<b>卡诺循环的意义不在实用（不可实现），而在给出普适的效率上限</b>：$\eta\le1-\frac{T_2}{T_1}$。</p>
+</div>
+<div class="derive">
+<div class="dt">专题二：奥托循环与狄塞尔循环的详细推导</div>
+<p>奥托循环（汽油机）：绝热压缩 $1\to2$、等容吸热 $2\to3$、绝热膨胀 $3\to4$、等容放热 $4\to1$。$Q_1=C_V(T_3-T_2)$，$Q_2=C_V(T_4-T_1)$，$\eta=1-\frac{T_4-T_1}{T_3-T_2}$。用绝热关系 $\frac{T_2}{T_1}=\frac{T_3}{T_4}=r^{\gamma-1}$（$r$ 为压缩比）得 $\eta=1-\frac1{r^{\gamma-1}}$。狄塞尔循环（柴油机）：等压吸热替代等容吸热，效率公式含定压膨胀比。∎</p>
+</div>
+<div class="derive">
+<div class="dt">专题三：热泵与制冷机的节能原理</div>
+<p>制冷机把热量 $Q_2$ 从低温搬到高温，耗功 $W$；热泵是其反向应用——冬天把室外的热量"泵"入室内。热泵的供热系数 $\varepsilon=\frac{Q_1}W=\frac{T_1}{T_1-T_2}$ 大于 1（甚至可达 3-5）：<b>耗 1 度电可输送 3-5 度电的热量</b>，远优于直接电加热（效率 1）。这正是热泵取暖节能的原理。</p>
+</div>
+
+<h3 class="subsec" id="ex4">第四章 拓展专题：熵的深层含义</h3>
+<div class="derive">
+<div class="dt">专题一：熵的计算方法总结</div>
+<p>熵变计算的四类情形：① 理想气体（套熵变公式）；② 相变（$\Delta S=\frac{L}T$）；③ 温度变化的固体液体（$\Delta S=\int\frac{mc\,dT}T=mc\ln\frac{T_2}{T_1}$）；④ 不可逆过程（沿可逆路径算）。<b>通用心法：熵是状态量，只认初末态，不认路径</b>。</p>
+</div>
+<div class="derive">
+<div class="dt">专题二：熵与信息——从麦克斯韦妖到兰道尔原理</div>
+<p>麦克斯韦妖的悖论：妖测量分子快慢并开关阀门，似乎能违反第二定律。西拉德 1929 年指出：妖测量获取信息必然伴随熵增。兰道尔 1961 年证明：<b>擦除 1 bit 信息至少耗能 $kT\ln2$</b>。妖的"记忆"终须擦除（否则无法继续工作），擦除的熵增恰好补偿它创造的熵减。<b>信息是物理量</b>——这一洞见是信息论与热力学的交汇点，也是现代量子计算热力学的基础。</p>
+</div>
+<div class="derive">
+<div class="dt">专题三：熵增原理与宇宙</div>
+<p>克劳修斯把熵增原理推广到宇宙："宇宙的能量守恒，宇宙的熵趋于极大"——热寂说。但引力系统具有负热容（放热反而升温，如恒星坍缩），热平衡态并不存在；宇宙膨胀使引力系统持续远离平衡。<b>现代宇宙学的结论：热寂说不再成立，宇宙的演化由引力主导</b>，熵增原理在宇宙尺度上不导致"热寂"。</p>
+</div>
+
+<h3 class="subsec" id="ex5">第五章 拓展专题：从输运到耗散结构</h3>
+<div class="derive">
+<div class="dt">专题一：输运系数的量纲分析</div>
+<p>三个输运系数 $\eta,\kappa,D$ 均可由 $\bar v$ 与 $\bar\lambda$ 表出：$[\eta]=ML^{-1}T^{-1}$，$[\kappa]=MLT^{-3}\Theta^{-1}$，$[D]=L^2T^{-1}$。量纲分析可给出它们对温度、压强的依赖（正文结论），而无需完整计算——<b>这是量纲方法在非平衡问题中的典型应用</b>。</p>
+</div>
+<div class="derive">
+<div class="dt">专题二：布朗运动的随机游走模型</div>
+<p>微粒每步随机走一步长 $l$，$N$ 步后位移平方平均 $\overline{x^2}=Nl^2$。因 $N\propto t$，故 $\overline{x^2}\propto t$——与匀速运动（$x\propto t$）和匀加速（$x\propto t^2$）都不同。<b>随机游走是扩散的微观模型</b>，也是金融、生态等领域的普适模型。</p>
+</div>
+<div class="derive">
+<div class="dt">专题三：耗散结构与生命</div>
+<p>普里高津的核心观点：远离平衡的开放系统中，涨落被非线性放大，可自发形成有序结构（耗散结构）。生命正是最精致的耗散结构——生物体通过代谢持续耗散能量，维持远离平衡的有序。<b>"非平衡是有序之源"</b>这一论断，把热力学与生命科学连接起来，是二十世纪物理学最重要的跨学科洞见之一。</p>
+</div>
+
+<h3 class="subsec" id="ex6">热学例题精讲</h3>
+<div class="derive">
+<div class="dt">精讲一：混合气体的内能与热容</div>
+<p><b>题目：</b>容器内有 2 mol 氦气与 1 mol 氧气（刚性双原子），温度 300 K，求总内能与定容热容。</p>
+<p><b>完整过程：</b>内能具有可加性：$E=\frac32\cdot2RT+\frac52\cdot RT=\frac{11}2RT=\frac{11}2\times8.31\times300=13712$ J。定容热容 $C_V=\frac32\cdot2R+\frac52\cdot R=\frac{11}2R=45.7$ J/K。∎</p>
+<p><b>方法提炼：</b>混合气体的内能与热容是各组分的简单相加；自由度按分子类型分别计数。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲二：麦克斯韦分布的完整计算</div>
+<p><b>题目：</b>用麦克斯韦分布求 300 K 氦气的平均速率（$M=4\times10^{-3}$ kg/mol）。</p>
+<p><b>完整过程：</b>$\bar v=\sqrt{\frac{8RT}{\pi M}}=\sqrt{\frac{8\times8.31\times300}{3.14\times4\times10^{-3}}}=\sqrt{1.59\times10^6}=1260$ m/s。方均根速率 $\sqrt{\overline{v^2}}=\sqrt{\frac{3RT}M}=\sqrt{1.87\times10^6}=1367$ m/s，$v_p=\sqrt{\frac{2RT}M}=1116$ m/s。三速率比值 $1.41:1.60:1.73$ 验证。∎</p>
+<p><b>方法提炼：</b>先算 $\sqrt{\frac{RT}M}$ 再乘三个系数；注意 $M$ 用 kg/mol。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲三：绝热过程完整计算</div>
+<p><b>题目：</b>1 mol 双原子理想气体从 300 K、1 atm 绝热压缩到原来体积的一半，求末温、末压与外界做功。</p>
+<p><b>完整过程：</b>$\gamma=1.4$。末温 $T_2=T_1(\frac{V_1}{V_2})^{\gamma-1}=300\times2^{0.4}=396$ K。末压 $p_2=p_1(\frac{V_1}{V_2})^\gamma=1\times2^{1.4}=2.64$ atm。做功 $W=-\Delta U=-\frac52R(T_2-T_1)=-\frac52\times8.31\times96=-1994$ J（负号表示外界对气体做功）。∎</p>
+<p><b>方法提炼：</b>绝热问题用泊松方程求末态，用 $W=-C_V\Delta T$ 求功。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲四：循环效率的完整计算</div>
+<p><b>题目：</b>1 mol 单原子理想气体作循环：等容升温（$T_1\to T_2$）→ 等温膨胀（体积加倍）→ 等压压缩回初态。求效率。</p>
+<p><b>完整过程：</b>吸热段：等容 $Q_{V}=\frac32R(T_2-T_1)$，等温 $Q_T=RT_2\ln2$。放热段：等压压缩 $Q_p=\frac52R(T_2-T_1)$（放热，取正）。效率 $\eta=1-\frac{Q_p}{Q_V+Q_T}=1-\frac{\frac52(T_2-T_1)}{\frac32(T_2-T_1)+T_2\ln2}$。代入 $T_1=300,T_2=600$：$\eta=1-\frac{750}{450+416}=0.13$。∎</p>
+<p><b>方法提炼：</b>循环题四步：画图、逐段定吸放热、算总吸热总放热、代效率公式。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲五：熵变计算的完整示范</div>
+<p><b>题目：</b>1 kg 冰（0℃）投入 2 kg 水（20℃）的绝热容器，冰熔化潜热 334 kJ/kg，求末态与熵变。</p>
+<p><b>完整过程：</b>第一步，热平衡：冰熔化吸热 334 kJ，2 kg 水降温至 $T$：$2\times4.18(20-T)=334$，$T=20-40=-20$℃&lt;0 不成立——冰不能全熔。设熔化 $m$ kg：$m\times334=2\times4.18\times20$，$m=0.5$ kg。末态：0.5 kg 冰 + 1.5 kg 水，0℃。第二步，熵变：冰熔化 $\Delta S_1=\frac{0.5\times334000}{273}=612$ J/K；水降温 $\Delta S_2=2\times4180\ln\frac{273}{293}=-591$ J/K。总 $\Delta S=21$ J/K&gt;0，符合熵增原理。∎</p>
+<p><b>方法提炼：</b>先热平衡定末态（可能部分熔化），再分段算熵变；总熵必为正。</p>
+</div>
+
+<p style="text-align:center;color:var(--muted);margin-top:40px">—— 热学讲义完 ——</p>
+</main>
+</div>
+</body>
+</html>
