@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYSU 物理学院 · 大一期末冲刺讲义</title>
+<style>
+:root{
+  --bg:#0f1420; --card:#171e2e; --card2:#1d2639; --text:#e8ecf4; --muted:#9aa7bd;
+  --accent:#f59e0b; --blue:#3b82f6; --red:#ef4444; --green:#22c55e; --line:#2a3550;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.7}
+.wrap{max-width:1060px;margin:0 auto;padding:48px 24px 80px}
+.hero{text-align:center;padding:36px 24px 28px;background:linear-gradient(135deg,#1b2440 0%,#232b52 55%,#341f4d 100%);border-radius:20px;border:1px solid var(--line);margin-bottom:36px}
+.hero h1{font-size:2.2em;background:linear-gradient(90deg,#fbbf24,#f87171,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+.hero p{color:var(--muted);max-width:640px;margin:0 auto}
+.tag{display:inline-block;background:#2a3550;border:1px solid #3d4d73;color:#c7d2e8;border-radius:99px;padding:2px 12px;font-size:.8em;margin:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;text-decoration:none;color:var(--text);transition:transform .15s,border-color .15s,box-shadow .15s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.card .num{font-size:.8em;color:var(--muted);letter-spacing:2px}
+.card h2{font-size:1.35em;margin:6px 0 8px}
+.card p{color:var(--muted);font-size:.9em}
+.c-blue{border-top:3px solid var(--blue)} .c-orange{border-top:3px solid #f97316}
+.c-red{border-top:3px solid var(--red)} .c-green{border-top:3px solid var(--green)}
+.rules{margin-top:40px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.rules h3{color:#fbbf24;margin-bottom:12px}
+.rules li{margin:8px 0 8px 20px;color:#c7d2e8}
+.foot{margin-top:32px;color:var(--muted);font-size:.85em;text-align:center}
+@media (prefers-color-scheme: light){
+  :root{--bg:#f4f6fb;--card:#fff;--card2:#eef2fa;--text:#1a2333;--muted:#5b6b85;--line:#dde4f0}
+  .hero{background:linear-gradient(135deg,#dbe6ff,#e8dcff);border-color:#cfd9f0}
+  .tag{background:#e8eefb;border-color:#c8d6f2;color:#41506e}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1> 物理人的期末军火库</h1>
+    <p>中山大学物理学院 · 大一期末冲刺讲义 · 目标：每门 90+</p>
+    <p><span class="tag">每节都有配套练习</span><span class="tag">每章都有综合题</span><span class="tag">含中大历年真题</span><span class="tag">重视知识之间的联系</span></p>
+  </div>
+
+  <div class="grid">
+    <a class="card c-blue" href="gaoshu.html">
+      <div class="num">01 · MATH</div>
+      <h2>高等数学</h2>
+      <p>北大版 · 一元微积分 → 多元 → 级数 → 微分方程。物理人算世界的语言。</p>
+    </a>
+    <a class="card c-orange" href="lixue.html">
+      <div class="num">02 · PHYS</div>
+      <h2>力学</h2>
+      <p>新概念物理教程 · 质点 → 刚体 → 振动 → 波动 → 相对论。整个物理学的第一块基石。</p>
+    </a>
+    <a class="card c-red" href="rexue.html">
+      <div class="num">03 · PHYS</div>
+      <h2>热学</h2>
+      <p>新概念物理教程 · 温度 → 分子动理论 → 热力学定律 → 熵 → 相变。</p>
+    </a>
+    <a class="card c-green" href="xiandai.html">
+      <div class="num">04 · MATH</div>
+      <h2>线性代数</h2>
+      <p>丘维生《高等代数》· 行列式 → 矩阵 → 方程组 → 线性空间 → 特征值 → 二次型。</p>
+    </a>
+  </div>
+
+  <div class="rules">
+    <h3> 90+ 作战总则（先看这个，再进讲义）</h3>
+    <ul>
+      <li><b>真题是最高信噪比的资料。</b>中大期末题风格多年稳定：计算题为主，证明题少而经典。先刷真题，再刷模拟，最后补讲义。</li>
+      <li><b>每道题都要"过三关"：</b>① 独立做出来；② 对照答案找错误原因（算错/概念错/方法没想起来，各记一条）；③ 48 小时后重做一遍，还错就标红。</li>
+      <li><b>错题本比讲义重要。</b>90 分的差距不在"会多少"，而在"不该丢的分不丢"。</li>
+      <li><b>知识是网，不是珠子。</b>每份讲义里的「 连接」栏目会告诉你这个知识点和哪门课的哪一章是同一件事的不同打扮——看懂连接，记忆量直接减半。</li>
+      <li><b>每天 90 分钟高专注 &gt; 周末突击 8 小时。</b>睡前一小时复述今天学的东西（费曼法），记不住的地方就是明天的重点。</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    讲义内容依据：北大版《高等数学》、赵凯华《新概念物理教程·力学/热学》、丘维生《高等代数》第四版 ·
+    真题来源：中山大学公开流传期末试卷（physchtest.github.io、中大考试资料库等）· 仅供学习自用
+  </div>
+</div>
+</body>
+</html>
