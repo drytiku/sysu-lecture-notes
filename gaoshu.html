@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高等数学（北大版）· 日常学习讲义</title>
+<script>
+window.MathJax = {
+  tex: {inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$']]},
+  svg: {fontCache: 'global'}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root{
+  --bg:#0f1420; --card:#171e2e; --card2:#1d2639; --text:#e8ecf4; --muted:#9aa7bd;
+  --accent:#3b82f6; --accent2:#60a5fa; --line:#2a3550; --gold:#fbbf24; --red:#f87171; --green:#4ade80; --purple:#c4b5fd;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.75;font-size:16px}
+.layout{display:grid;grid-template-columns:260px 1fr;max-width:1300px;margin:0 auto}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:24px 16px;border-right:1px solid var(--line);background:var(--card);font-size:.88em}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:6px}
+nav.toc a:hover{color:var(--text);background:var(--card2)}
+nav.toc a.lv2{padding-left:22px;font-size:.92em}
+nav.toc .hd{color:var(--gold);font-weight:700;margin:12px 0 4px;font-size:1em}
+main{padding:28px 36px 100px;min-width:0}
+h1{font-size:1.9em;margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:24px}
+h2.sec{font-size:1.45em;margin:44px 0 14px;padding:10px 16px;background:linear-gradient(90deg,#1e3a5f,#17233c);border-left:4px solid var(--accent);border-radius:8px}
+h3.subsec{font-size:1.15em;margin:28px 0 10px;color:#bfdbfe}
+h4{color:#93c5fd;margin:16px 0 8px;font-size:1em}
+p{margin:8px 0}
+ul,ol{margin:8px 0 8px 24px}
+li{margin:4px 0}
+.hook{background:linear-gradient(135deg,#312e81aa,#1e1b4baa);border:1px solid #6366f1;border-radius:12px;padding:16px 18px;margin:16px 0}
+.hook b{color:#c7d2fe}
+.conn{background:#123028cc;border:1px solid #10b98155;border-radius:12px;padding:14px 16px;margin:14px 0;font-size:.95em}
+.conn b{color:#6ee7b7}
+.warn{background:#3f1d1dcc;border:1px solid #ef444455;border-radius:12px;padding:14px 16px;margin:14px 0;font-size:.95em}
+.warn b{color:#fca5a5}
+.idea{background:#1e2a4acc;border:1px solid #3b82f655;border-radius:12px;padding:14px 16px;margin:14px 0;font-size:.95em}
+.idea b{color:#93c5fd}
+.derive{background:#241d3dcc;border:1px solid #8b5cf655;border-radius:12px;padding:14px 16px;margin:14px 0;font-size:.95em}
+.derive b{color:#c4b5fd}
+.derive .dt{color:#c4b5fd;font-weight:700;margin-bottom:6px}
+.formula{background:var(--card2);border-radius:10px;padding:10px 16px;margin:12px 0;overflow-x:auto;font-size:1.02em}
+.ex{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0}
+.ex .title{color:var(--accent2);font-weight:700;margin-bottom:6px}
+.method{background:#1c2a24cc;border:1px solid #22c55e55;border-radius:12px;padding:14px 16px;margin:14px 0}
+.method .mt{color:#86efac;font-weight:700;margin-bottom:6px}
+.prac{background:#1a2440cc;border:1px dashed #3b82f6aa;border-radius:12px;padding:16px;margin:18px 0}
+.prac .title{color:#fbbf24;font-weight:700;margin-bottom:8px;font-size:1.05em}
+.anssec{background:#241a08cc;border:1px solid #f59e0b88;border-radius:14px;padding:16px;margin:14px 0}
+.anssec .at{color:#fcd34d;font-weight:700;margin-bottom:6px}
+.ans{background:#0d1426cc;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.ans .aq{color:#93c5fd;font-weight:600}
+.ans .tag{color:#86efac;font-size:.88em}
+.ans .sol{color:#c7d2e8;font-size:.95em;margin-top:4px}
+.ch-exam{background:linear-gradient(135deg,#3b1d1dcc,#2b1d3bcc);border:1px solid #ef444455;border-radius:14px;padding:20px;margin:20px 0}
+.ch-exam .title{color:#fca5a5;font-weight:700;font-size:1.05em;margin-bottom:8px}
+table{border-collapse:collapse;margin:12px 0;width:100%}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;font-size:.95em}
+th{background:var(--card2);color:#bfdbfe}
+.tag{display:inline-block;background:#2a3550;border:1px solid #3d4d73;color:#c7d2e8;border-radius:99px;padding:1px 10px;font-size:.78em;margin:2px}
+.top{background:linear-gradient(135deg,#172554,#1e1b4b);border:1px solid #3b82f688;border-radius:16px;padding:26px;margin-bottom:26px}
+.top h1{font-size:2em}
+.tip{color:#fde68a;font-size:.92em}
+.goback{display:inline-block;color:#93c5fd;text-decoration:none;font-size:.9em;margin-left:10px}
+.goback:hover{text-decoration:underline}
+@media (max-width:900px){.layout{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}}
+@media (prefers-color-scheme: light){
+  :root{--bg:#f4f6fb;--card:#fff;--card2:#eef2fa;--text:#1a2333;--muted:#5b6b85;--line:#dde4f0}
+  nav.toc{background:#fff}
+  h2.sec{background:linear-gradient(90deg,#dbeafe,#eef2ff);border-left-color:#3b82f6}
+  h3.subsec{color:#1d4ed8}h4{color:#1e40af}
+  .hook{background:#eef2ff;border-color:#6366f1}.hook b{color:#3730a3}
+  .conn{background:#ecfdf5;border-color:#10b98155}.conn b{color:#047857}
+  .warn{background:#fef2f2;border-color:#ef444455}.warn b{color:#b91c1c}
+  .idea{background:#eff6ff;border-color:#3b82f655}.idea b{color:#1d4ed8}
+  .derive{background:#f5f3ff;border-color:#8b5cf655}.derive b,.derive .dt{color:#6d28d9}
+  .formula{background:#fff;border:1px solid var(--line)}
+  .method{background:#f0fdf4;border-color:#22c55e55}.method .mt{color:#15803d}
+  .prac{background:#fffbeb;border-color:#f59e0b88}
+  .anssec{background:#fffbeb;border-color:#f59e0b88}
+  .ans{background:#f8fafc}
+  .ch-exam{background:#fef2f2;border-color:#ef444488}
+  .ex{background:#fff}
+  .top{background:linear-gradient(135deg,#dbeafe,#ede9fe);border-color:#3b82f688}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+  <a href="index.html" style="color:#fbbf24;font-weight:700">← 返回军火库首页</a>
+  <div class="hd"> 高等数学（北大版）</div>
+  <a href="#howto">使用说明</a>
+  <a href="#hook">0. 开场钩子</a>
+  <a href="#roadmap">全局路线图</a>
+  <div class="hd">上册 · 一元微积分</div>
+  <a href="#ch1">第1章 函数与极限</a>
+  <a class="lv2" href="#m1"> 第1章 解题方法</a>
+  <a class="lv2" href="#e1"> 第1章 习题</a>
+  <a href="#ch2">第2章 导数与微分</a>
+  <a class="lv2" href="#m2"> 第2章 解题方法</a>
+  <a class="lv2" href="#e2"> 第2章 习题</a>
+  <a href="#ch3">第3章 中值定理与导数应用</a>
+  <a class="lv2" href="#m3"> 第3章 解题方法</a>
+  <a class="lv2" href="#e3"> 第3章 习题</a>
+  <a href="#ch4">第4章 不定积分</a>
+  <a class="lv2" href="#m4"> 第4章 解题方法</a>
+  <a class="lv2" href="#e4"> 第4章 习题</a>
+  <a href="#ch5">第5章 定积分</a>
+  <a class="lv2" href="#m5"> 第5章 解题方法</a>
+  <a class="lv2" href="#e5"> 第5章 习题</a>
+  <a href="#ch6">第6章 定积分应用</a>
+  <a class="lv2" href="#m6"> 第6章 解题方法</a>
+  <a class="lv2" href="#e6"> 第6章 习题</a>
+  <div class="hd">下册 · 多元与级数</div>
+  <a href="#ch7">第7章 微分方程</a>
+  <a class="lv2" href="#m7"> 第7章 解题方法</a>
+  <a class="lv2" href="#e7"> 第7章 习题</a>
+  <a href="#ch8">第8章 多元函数微分学</a>
+  <a class="lv2" href="#m8"> 第8章 解题方法</a>
+  <a class="lv2" href="#e8"> 第8章 习题</a>
+  <a href="#ch9">第9章 重积分</a>
+  <a class="lv2" href="#m9"> 第9章 解题方法</a>
+  <a class="lv2" href="#e9"> 第9章 习题</a>
+  <a href="#ch10">第10章 曲线曲面积分</a>
+  <a class="lv2" href="#m10"> 第10章 解题方法</a>
+  <a class="lv2" href="#e10"> 第10章 习题</a>
+  <a href="#ch11">第11章 无穷级数</a>
+  <a class="lv2" href="#m11"> 第11章 解题方法</a>
+  <a class="lv2" href="#e11"> 第11章 习题</a>
+  <div class="hd"> 中大真题</div>
+  <a href="#real">中大历年真题试卷</a>
+  <div class="hd"> 答案</div>
+  <a href="#answers">全书答案与详解</a>
+  <a class="lv2" href="#ans1">第1章答案</a>
+  <a class="lv2" href="#ans2">第2章答案</a>
+  <a class="lv2" href="#ans3">第3章答案</a>
+  <a class="lv2" href="#ans4">第4章答案</a>
+  <a class="lv2" href="#ans5">第5章答案</a>
+  <a class="lv2" href="#ans6">第6章答案</a>
+  <a class="lv2" href="#ans7">第7章答案</a>
+  <a class="lv2" href="#ans8">第8章答案</a>
+  <a class="lv2" href="#ans9">第9章答案</a>
+  <a class="lv2" href="#ans10">第10章答案</a>
+  <a class="lv2" href="#ans11">第11章答案</a>
+  <a class="lv2" href="#ansreal">真题答案</a>
+</nav>
+<main>
+<div class="top">
+  <h1> 高等数学</h1>
+  <div class="sub">教材：北京大学版《高等数学》（李忠、周建莹）· 中山大学物理学院 · 日常学习版</div>
+  <p class="tip">本版为日常学习设计：每章含历史故事、原理推导、知识联系、解题方法（配例题）与大量习题。习题不标考点，答案统一在讲义最后（每题标注考点与方法），方便自测。</p>
+</div>
+
+<h2 class="sec" id="howto"> 先读这里：这份讲义怎么用</h2>
+<div class="idea">
+<p>本讲义按如下学习节奏编排，不一定适合所有人，但你可以先试试这套节奏：</p>
+<ol>
+<li><b>别从头啃到尾。</b>一章一章来。每章开头那段故事不是让你"了解数学史"用的，是让你在开始之前先对"这章到底在解决什么破事"有个画面。看完了故事，再看公式，很多东西会自己浮上来。</li>
+<li><b>推导自己动手抄一遍。</b>讲义里紫色的「推导」框，建议合上讲义独立推导。推不出来就看一眼开头，再试。推导会了，公式忘了也能现场救回来；推导不会，公式背得再熟考场上换个马甲就慌。</li>
+<li><b>习题先做，答案在最后。</b>这是故意设计的——答案不跟在题目后面，就是想让你在"不知道对不对"的情况下做完一整章，像考试一样。对答案的时候，每题下面标了它考什么、用什么方法，错题按这个归类。</li>
+<li><b>方法小节 = 你的武器清单。</b>每章末尾的「解题方法」都是把散落的知识点组装成流程。考前别刷题了，把每章的方法清单过一遍，看到题能说出"这题走方法三"，就稳了。</li>
+</ol>
+<p>一章的节奏：两天。第一天读 + 做一半题；第二天做完剩下的 + 对答案 + 把错题抄进错题本。全部过完之后，用最后的中大真题当模拟卷，掐表做。</p>
+</div>
+
+<h2 class="sec" id="hook">0. 开场：牛顿的一夜</h2>
+<div class="hook">
+<p><b>1696 年冬天，54 岁的牛顿收到一封挑战信。</b>信从瑞士寄来，写信人叫约翰·伯努利，全欧洲公认脑子最好使的人之一。信里只有一道题：一个小球靠重力从 A 点滑到 B 点，走哪条线最快？末尾还补了一刀——"给全世界的聪明人半年时间"。</p>
+<p>牛顿当时已经是造币厂厂长，白天上班数钱，晚上才有空。他看到信，气坏了。结果呢？<b>他当晚没睡，第二天一早把答案匿名寄了回去。</b>伯努利拆开一看笔迹，说了句后来传了几百年的话："从爪子认出了狮子。"（tanquam ex ungue leonem）</p>
+<p>这道题的答案是<b>摆线</b>——你在本讲义第 2 章会见到它（参数方程那一节）。它要用到变分法的雏形，而变分法的地基，就是微积分。</p>
+<p>我想说的是：牛顿能一夜解出那道题，不是因为他是牛顿，是因为他手里有一套<b>全世界还没人用熟的工具</b>。你手上这本讲义要给你的，就是这套工具：极限、导数、积分、级数、微分方程。而且我多给你一样牛顿没有的东西——<b>你学的每一步，我都会告诉你它在物理里干嘛用的</b>。你是物理学院的，微积分不是数学课，是你下学期的力学、热学提前两个月发货的兵器。</p>
+</div>
+
+<h2 class="sec" id="roadmap">全局路线图：六条线，其实是一张网</h2>
+<div class="idea">
+<p>很多人高数学不好，是因为把 11 章当成了 11 个独立的抽屉。不是的。整本书就六条线，反复编织：</p>
+<ul>
+<li><b>极限</b>——一切的地基。导数、定积分、级数、连续，扒掉外衣全是极限。</li>
+<li><b>变化率</b>——导数、微分、中值定理、泰勒。研究"局部怎么变"。</li>
+<li><b>累积</b>——不定积分、定积分、牛顿-莱布尼茨公式。研究"整体攒了多少"。这两条线被 N-L 公式焊在一起。</li>
+<li><b>高维推广</b>——偏导、重积分、线面积分。前面两条线的 3D 复刻。</li>
+<li><b>无穷逼近</b>——级数。把复杂的拆成无穷多个简单的。</li>
+<li><b>解方程</b>——微分方程。前五条线的合流：用微积分写物理规律，再解出来。</li>
+</ul>
+<p><b>给你提前剧透几个"物理彩蛋"</b>（学到那章的时候回来对号入座）：导数就是力学的速度加速度；定积分就是功；微分方程就是弹簧振子和热学的冷却定律；多元偏导就是热学的麦克斯韦关系；傅里叶级数就是傅里叶本人在研究热传导的时候发明的；线代的行列式特征值，就是高数多元极值判定的幕后老板。</p>
+</div>
+
+<h2 class="sec" id="ch1">第1章 函数与极限</h2>
+<div class="hook">
+<p><b>公元前 5 世纪，哲学家芝诺讲了个让人抓狂的悖论。</b>飞毛腿阿基里斯追一只乌龟：他每次追到乌龟刚才的位置，乌龟又往前爬了一小段；下次追到，乌龟又挪了一点。追上的过程要"无穷多步"，所以——永远追不上？</p>
+<p>这当然不是真的，但古希腊人愣是反驳不了。问题卡在哪？卡在他们不会算"无穷多项的和"。直到两千年后人们写出 $\frac12+\frac14+\frac18+\cdots=1$，悖论才死透：无穷多步加起来，可以是有限的距离。<b>极限，就是那个让"无穷"变成可以计算的东西的咒语。</b></p>
+<p>我讲这个故事是想提前告诉你：这一章表面在教你算 $\lim$，实际在教你一种新的说话方式——用"无穷"说话。导数、积分、级数，后面十章说的每一句话，都是这种语言。第一章不牢，后面全是哑巴数学。</p>
+</div>
+
+<h3 class="subsec" id="s1-1">1.1 函数：有向的盒子</h3>
+<div class="idea">
+<p><b>核心：</b>函数 = 对应关系 $f$：定义域 $D$ 里的每个 $x$，唯一对应一个 $f(x)$。三要素：定义域、对应法则、值域。</p>
+<p><b>必须会认的六类基本初等函数：</b>幂 $x^a$、指数 $a^x$、对数 $\log_a x$、三角（$\sin,\cos,\tan,\cot,\sec,\csc$）、反三角（$\arcsin,\arccos,\arctan,\operatorname{arccot}$）、常数。由它们经<b>有限次</b>四则运算和复合得到的是<b>初等函数</b>。</p>
+<p><b>本节的"考眼"：</b></p>
+<ul>
+<li>求定义域（分母≠0、根号内≥0、对数真数&gt;0、$\arcsin/\arccos$ 的自变量∈[-1,1]）</li>
+<li>复合函数分解：$f(g(x))$ 能一眼拆成 $f(u), u=g(x)$（后面链式法则全靠它）</li>
+<li>反函数：$y=f(x)\Leftrightarrow x=f^{-1}(y)$，图像关于 $y=x$ 对称</li>
+<li>奇偶性：$f(-x)=f(x)$ 偶；$f(-x)=-f(x)$ 奇。奇函数积分为零（第5章白送分！）</li>
+<li>有界性、单调性、周期性：$\sin x,\cos x$ 周期 $2\pi$，$\tan x$ 周期 $\pi$</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：反函数的图像为什么关于 $y=x$ 对称？</div>
+<p>设 $(a,b)$ 在 $y=f(x)$ 图像上，即 $b=f(a)$。由反函数定义 $a=f^{-1}(b)$，所以 $(b,a)$ 在 $y=f^{-1}(x)$ 图像上。而点 $(a,b)$ 与 $(b,a)$ 恰好关于直线 $y=x$ 对称（两点坐标互换即关于 $y=x$ 的镜像）。原函数图像上每一个点都对应反函数图像上的一个镜像点，故两图像关于 $y=x$ 对称。∎</p>
+</div>
+<div class="ex">
+<div class="title">例1.1 求 $f(x)=\dfrac{\sqrt{4-x^2}}{\ln(x+1)}$ 的定义域。</div>
+<p><b>解：</b>三条件联立：$4-x^2\ge0\Rightarrow -2\le x\le 2$；$x+1&gt;0\Rightarrow x&gt;-1$；$\ln(x+1)\neq0\Rightarrow x+1\neq1\Rightarrow x\neq0$。取交集：$\boxed{x\in(-1,0)\cup(0,2]}$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>「反函数」在热学里是克劳修斯不等式、在力学里是运动学反解（已知轨迹求力）；「奇偶性」第5章定积分里 $[-a,a]$ 上奇函数积分为 0，直接省掉一半计算；「复合分解」是第2章链式法则的底子——链式法则又是整个多元微分学（第8章）的底子。这就是"网"：1.1 的一个细节，后面十章都在用它。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>求 $y=\arcsin\dfrac{x-1}{2}+\dfrac{1}{\sqrt{x^2-x-2}}$ 的定义域。</li><li>设 $f(x)=\dfrac{x}{1+x}$，求 $f(f(x))$，并归纳 $n$ 次复合的规律。</li><li>判断 $y=\ln(x+\sqrt{1+x^2})$ 的奇偶性。</li><li>写出 $y=\sqrt{\ln\cos x}$ 的复合分解，并求定义域。</li></ol></div>
+
+<h3 class="subsec" id="s1-2">1.2 极限的概念：$\varepsilon$-语言是"打擂台"</h3>
+<div class="idea">
+<p><b>核心：</b>$\displaystyle\lim_{x\to x_0}f(x)=A$ 的意思是：<b>你任意指定一个误差 $\varepsilon&gt;0$，我都能找到一个 $\delta&gt;0$，使得只要 $0&lt;|x-x_0|&lt;\delta$，就有 $|f(x)-A|&lt;\varepsilon$</b>。</p>
+<p>把它翻译成打擂台：对方（$\varepsilon$）先出招，你（$\delta$）后出招，永远能接住。注意两点：</p>
+<ul>
+<li><b>极限与函数值无关</b>：$x\to x_0$ 时 $x\neq x_0$，$f(x_0)$ 是否存在、等于多少，都不影响极限。这是"可去间断点"存在的根源。</li>
+<li><b>左右极限</b>：$\lim_{x\to x_0^-}$ 与 $\lim_{x\to x_0^+}$。极限存在 ⟺ 左右极限存在且相等。</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：$\displaystyle\lim_{x\to2}(3x-1)=5$ 的完整证明</div>
+<p>任给 $\varepsilon&gt;0$，要 $|(3x-1)-5|=3|x-2|&lt;\varepsilon$，只需 $|x-2|&lt;\frac\varepsilon3$。取 $\delta=\frac\varepsilon3$，则当 $0&lt;|x-2|&lt;\delta$ 时必有 $|(3x-1)-5|&lt;\varepsilon$。由定义，$\lim_{x\to2}(3x-1)=5$。∎ <span class="tip">——体会"由 $\varepsilon$ 定 $\delta$"的顺序：$\delta$ 是 $\varepsilon$ 的函数。</span></p>
+</div>
+<div class="ex">
+<div class="title">例1.2 讨论 $f(x)=\dfrac{|x|}{x}$ 在 $x=0$ 处的极限。</div>
+<p><b>解：</b>$x\to0^-$ 时 $f(x)=-1$；$x\to0^+$ 时 $f(x)=1$。左右极限不相等，<b>极限不存在</b>。这是判断分段函数极限的标准动作：先看左右。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="5"><li>用 $\varepsilon$-$\delta$ 定义证明 $\displaystyle\lim_{x\to1}(2x+3)=5$。</li><li>设 $f(x)=\begin{cases}x^2+1,&x<1\\ 2x,&x\ge1\end{cases}$，求左右极限并判断极限是否存在。</li><li>已知 $\displaystyle\lim_{x\to0}f(x)$ 存在，且 $f(x)=x+2\lim_{t\to0}f(t)$，求 $f(x)$。</li></ol></div>
+
+<h3 class="subsec" id="s1-3">1.3 极限运算法则：有限步的规矩</h3>
+<div class="idea">
+<p><b>核心：</b>若 $\lim f=A,\ \lim g=B$（都存在且有限），则：</p>
+<ul>
+<li>$\lim(f\pm g)=A\pm B$，$\lim(cf)=cA$，$\lim(fg)=AB$</li>
+<li>$\lim\dfrac{f}{g}=\dfrac{A}{B}$（要求 $B\neq0$）</li>
+<li>夹逼准则：若 $g(x)\le f(x)\le h(x)$ 且 $\lim g=\lim h=A$，则 $\lim f=A$</li>
+<li>单调有界准则：单调有界数列必有极限（用于证明题）</li>
+</ul>
+<div class="warn"><b> 易错：</b>极限运算法则只对<b>有限项</b>成立。$\lim\left(\frac1n+\frac1n+\cdots+\frac1n\right)$（$n$ 个 $\frac1n$）若逐项取极限会得到 $0+0+\cdots=0$，但真实结果是 1——因为项数本身在变。遇到"和式的项数趋于无穷"必须用夹逼或定积分定义（第5章）。</div>
+</div>
+<div class="ex">
+<div class="title">例1.3 求 $\displaystyle\lim_{n\to\infty}\left(\frac{1}{n^2+1}+\frac{2}{n^2+2}+\cdots+\frac{n}{n^2+n}\right)$。</div>
+<p><b>解：</b>通项的和不能直接用法则（项数无穷）。夹逼：每一项介于 $\frac{k}{n^2+n}$ 与 $\frac{k}{n^2+1}$ 之间，求和：$\frac{\sum k}{n^2+n}\le S_n\le\frac{\sum k}{n^2+1}$，即 $\frac{n(n+1)/2}{n^2+n}\le S_n\le\frac{n(n+1)/2}{n^2+1}$。两端极限都是 $\frac12$，故 $\boxed{S_n\to\frac12}$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="8"><li>求 $\displaystyle\lim_{n\to\infty}\left(\frac{1}{\sqrt{n^2+1}}+\frac{1}{\sqrt{n^2+2}}+\cdots+\frac{1}{\sqrt{n^2+n}}\right)$。</li><li>求 $\displaystyle\lim_{x\to0}\frac{\sin 5x}{2x}$。</li><li>求 $\displaystyle\lim_{x\to\infty}\left(\frac{x+2}{x-1}\right)^x$。</li></ol></div>
+
+<h3 class="subsec" id="s1-4">1.4 两个重要极限与无穷小的较量</h3>
+<div class="idea">
+<p><b>核心：</b></p>
+<div class="formula">$$\lim_{x\to0}\frac{\sin x}{x}=1,\qquad \lim_{x\to\infty}\left(1+\frac1x\right)^x=e\quad\Longleftrightarrow\quad\lim_{t\to0}(1+t)^{1/t}=e$$</div>
+<p><b>无穷小比较：</b>设 $\alpha,\beta\to0$。若 $\lim\frac{\beta}{\alpha}=0$，称 $\beta$ 是 $\alpha$ 的<b>高阶无穷小</b>（$\beta=o(\alpha)$）；$=c\neq0$，<b>同阶</b>；$=1$，<b>等价</b>（$\alpha\sim\beta$）。</p>
+<p><b>等价无穷小代换（考场上最省时间的武器，必须背熟）：</b></p>
+<div class="formula">$$x\to0:\quad \sin x\sim x,\ \tan x\sim x,\ \arcsin x\sim x,\ \arctan x\sim x,\ \ln(1+x)\sim x,\ e^x-1\sim x,\ 1-\cos x\sim\frac{x^2}{2},\ (1+x)^a-1\sim ax$$</div>
+<div class="warn"><b> 易错：</b>等价无穷小<b>只能代换整个因式</b>，不能在加减法里随便代。例如 $\lim\frac{\tan x-\sin x}{x^3}$ 中若把 $\tan x,\sin x$ 都代成 $x$ 会得到错误的 0——正解是 $\tan x-\sin x=\tan x(1-\cos x)\sim x\cdot\frac{x^2}{2}$，答案为 $\frac12$。加减法的安全做法：提出一个因式再代，或用泰勒展开（见第3章）。</div>
+</div>
+<div class="derive">
+<div class="dt"> 推导：为什么 $\displaystyle\lim_{x\to0}\frac{\sin x}{x}=1$？</div>
+<p>作单位圆（半径 1），取圆心角 $x$（$0&lt;x&lt;\frac\pi2$）。由图：三角形面积 $&lt;$ 扇形面积 $&lt;$ 大三角形面积，即</p>
+<div class="formula">$$\frac12\sin x&lt;\frac12 x&lt;\frac12\tan x\quad\Longrightarrow\quad \cos x&lt;\frac{\sin x}{x}&lt;1$$</div>
+<p>两边令 $x\to0^+$：$\cos x\to1$，由夹逼准则 $\frac{\sin x}x\to1$。$x\to0^-$ 时 $\frac{\sin x}{x}=\frac{\sin(-t)}{-t}=\frac{\sin t}{t}\to1$（偶性）。故双侧极限均为 1。∎ <span class="tip">——这就是"几何夹逼"，是微积分里第一个真正用夹逼算出的极限，务必自己画图重推一遍。</span></p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：为什么 $\left(1+\frac1n\right)^n$ 的极限存在？</div>
+<p>二项式展开：$\left(1+\frac1n\right)^n=\sum_{k=0}^n C_n^k\frac1{n^k}=\sum_{k=0}^n\frac{n(n-1)\cdots(n-k+1)}{k!\,n^k}$。第 $k$ 项 $=\frac1{k!}\left(1-\frac1n\right)\left(1-\frac2n\right)\cdots\left(1-\frac{k-1}n\right)$。当 $n$ 增大时每一项都不减（括号越接近 1），且项数增多，故数列<b>单调递增</b>；又每项 $\le\frac1{k!}$，$S_n\le\sum_{k=0}^n\frac1{k!}&lt;1+1+\frac12+\frac14+\cdots=3$，<b>有上界</b>。由单调有界准则，极限存在，记为 $e$。∎（$e$ 是无理数，$e\approx2.71828\cdots$，它还是唯一满足 $\frac{d}{dx}e^x=e^x$ 的底数——第2章见。）</p>
+</div>
+<div class="ex">
+<div class="title">例1.4 求 $\displaystyle\lim_{x\to0}\frac{\ln\cos x}{x^2}$。</div>
+<p><b>解：</b>$\ln\cos x=\ln(1+\cos x-1)\sim\cos x-1\sim-\frac{x^2}{2}$，故极限 $=\boxed{-\frac12}$。这里用了"整体代换"：把 $\cos x-1$ 当作一个无穷小 $t$。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="11"><li>求 $\displaystyle\lim_{x\to0}\frac{\tan x-\sin x}{x^3}$。</li><li>求 $\displaystyle\lim_{x\to0}(1+2x)^{1/x}$。</li><li>求 $\displaystyle\lim_{x\to0}\frac{\sqrt{1+x}-1}{x}$。</li><li>求 $\displaystyle\lim_{x\to0}\frac{e^{3x}-1}{\sin 2x}$。</li><li>当 $x\to0$ 时，$x^2\sin\dfrac1x$ 是 $x$ 的几阶无穷小？</li></ol></div>
+
+<h3 class="subsec" id="s1-5">1.5 连续与间断：函数的"体检表"</h3>
+<div class="idea">
+<p><b>核心：</b>$f$ 在 $x_0$ 连续 ⟺ $\displaystyle\lim_{x\to x_0}f(x)=f(x_0)$ ⟺ 左连续且右连续。</p>
+<p><b>间断点分类（高频考点）：</b></p>
+<ul>
+<li><b>第一类</b>：左右极限都存在。<b>可去</b>（相等但不等于函数值或函数无定义）；<b>跳跃</b>（不相等）。</li>
+<li><b>第二类</b>：左右极限至少一个不存在。<b>无穷</b>（$\to\infty$，如 $x=0$ 处的 $\frac1x$）；<b>振荡</b>（如 $x=0$ 处的 $\sin\frac1x$）。</li>
+</ul>
+<p><b>闭区间连续函数的三大性质（证明题与"判断存在性"题的弹药库）：</b>有界性、最值定理、介值定理（含零点定理：$f(a)f(b)&lt;0$ 则 $(a,b)$ 内必有零点）。</p>
+</div>
+<div class="ex">
+<div class="title">例1.5 证明方程 $x^3-4x^2+1=0$ 在 $(0,1)$ 内至少有一个根。</div>
+<p><b>解：</b>令 $f(x)=x^3-4x^2+1$，连续。$f(0)=1&gt;0$，$f(1)=1-4+1=-2&lt;0$，由零点定理，$(0,1)$ 内至少有一根。∎ <span class="tip">——中大期末必考的"送分证明题"模板，看到"证明有根"就上零点定理。</span></p>
+</div>
+<div class="conn">
+<b> 连接：</b>连续 + 介值定理是"存在性证明"的总开关，后面第3章罗尔定理证明"导函数有零点"就是它俩的结合；零点定理思想在力学（平衡位置存在性）、热学（温度分布存在零点）反复出现。等价无穷小在级数判敛（第11章）里继续服役。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="16"><li>指出 $f(x)=\dfrac{x^2-1}{x-1}$ 与 $g(x)=\begin{cases}\sin\dfrac1x,&x\neq0\\0,&x=0\end{cases}$ 的间断点类型。</li><li>求 $a$ 使 $f(x)=\begin{cases}\dfrac{\sin ax}{x},&x\neq0\\ 2,&x=0\end{cases}$ 连续。</li><li>设 $f\in C[0,2]$，$f(0)=f(2)$，证明存在 $\xi\in[0,1]$ 使 $f(\xi)=f(\xi+1)$。</li></ol></div>
+
+<h3 class="subsec" id="m1"> 第1章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 求函数极限的七步流程</div>
+<p><b>适用：</b>一切极限计算题。<b>按顺序检查：</b></p>
+<ol>
+<li><b>直接代入：</b>能代先代，代入后若不是未定式，答案直接出来</li>
+<li><b>化简：</b>约分、有理化（$\sqrt a-\sqrt b$ 乘共轭）、通分、拆项</li>
+<li><b>识别未定式：</b>$\frac00,\ \frac\infty\infty,\ 0\cdot\infty,\ \infty-\infty,\ 1^\infty,\ 0^0,\ \infty^0$</li>
+<li><b>等价无穷小代换</b>（只代因式！）</li>
+<li><b>洛必达/泰勒</b>（第3章武器，此处只知可用）</li>
+<li><b>夹逼</b>（和式、含取整/振荡因子时）</li>
+<li><b>重要极限</b>（$1^\infty$ 型、含 $\sin x/x$ 型）</li>
+</ol>
+<p><b>例题演示：</b>求 $\displaystyle\lim_{x\to1}\frac{\sqrt{x+3}-2}{x-1}$。① 代入得 $\frac00$；② 有理化：$\frac{x+3-4}{(x-1)(\sqrt{x+3}+2)}=\frac1{\sqrt{x+3}+2}\to\boxed{\frac14}$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 夹逼准则的"放缩找两端"技巧</div>
+<p><b>适用：</b>和式项数趋于无穷、含振荡因子（$\sin$、$(-1)^n$）、含取整符号。</p>
+<p><b>步骤：</b>① 观察通项，找到"最大最小替换"得到两个新数列；② 两端求和/化简；③ 两端极限相等则夹出答案。</p>
+<p><b>例题演示：</b>求 $\displaystyle\lim_{n\to\infty}\frac{\sin n}{n}$。放缩：$-\frac1n\le\frac{\sin n}n\le\frac1n$，两端都 $\to0$，故极限 $\boxed{0}$（"有界×无穷小=0"的夹逼版）。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · $1^\infty$ 型极限的标准打法</div>
+<p><b>适用：</b>$\lim f(x)^{g(x)}$ 且 $f\to1,\ g\to\infty$。</p>
+<p><b>步骤：</b>① 写成 $\left[1+(f-1)\right]^{\frac1{f-1}\cdot(f-1)g}$；② 内层 $\to e$，答案 $=e^{\lim(f-1)g}$。</p>
+<p><b>例题演示：</b>求 $\displaystyle\lim_{x\to\infty}\left(1+\frac2x\right)^{3x}$。$(f-1)g=\frac2x\cdot3x=6$，答案 $\boxed{e^6}$。</p>
+</div>
+<div class="method">
+<div class="mt">方法四 · 零点定理证明"方程有根"</div>
+<p><b>适用：</b>证明 $f(x)=0$ 在某区间有根。</p>
+<p><b>步骤：</b>① 令 $F(x)=$ 方程的左侧；② 验证 $F$ 连续；③ 找两点使 $F$ 异号；④ 下结论"由零点定理，$(a,b)$ 内至少一根"。</p>
+<p><b>例题演示：</b>证 $\cos x=x$ 在 $(0,\frac\pi2)$ 有解：$F(x)=\cos x-x$ 连续，$F(0)=1&gt;0$，$F(\frac\pi2)=-\frac\pi2&lt;0$，由零点定理有解。∎</p>
+</div>
+
+<h2 class="sec" id="ch2">第2章 导数与微分</h2>
+<div class="hook">
+<p><b>1665 年，伦敦爆发鼠疫，剑桥停课，牛顿回老家隔离了两年。</b>就在这乡下避疫的两年里，他发明了"流数术"——就是我们今天说的导数。十年后，莱布尼茨独立搞出了同样的东西，还顺手发明了一套更顺手的记号：$dy/dx$。然后两边打起来了，都说对方抄自己，骂战持续了几十年，皇家学会亲自下场给牛顿站台。</p>
+<p>最后的历史裁决有点黑色幽默：<b>两人确实是各自独立发明的；而今天全世界用的记号，是"输家"莱布尼茨的。</b>你现在写下的每一个 $dy/dx$，都是那场三百年前骂战的遗产。</p>
+<p>这个故事对你有用的一点是：莱布尼茨赢在<b>记号</b>。$dy/dx$ 把"变化率"这件事写得像分数一样可以拆、可以约、可以移项——第 4 章的换元法、第 7 章解微分方程的分离变量，全靠这个记号"看起来像分数"才顺理成章。好的记号会替人思考。这一章学的是导数的概念和计算，但请记住它的本质：<b>导数回答"这一刻，变化有多快"</b>。力学里的速度和加速度，就是这句话套在位置函数上的结果。</p>
+</div>
+
+<h3 class="subsec" id="s2-1">2.1 导数的定义：瞬间的变化率</h3>
+<div class="idea">
+<p><b>核心：</b></p>
+<div class="formula">$$f'(x_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}$$</div>
+<p><b>几何意义：</b>曲线 $y=f(x)$ 在 $x_0$ 处切线斜率。切线方程：$y-f(x_0)=f'(x_0)(x-x_0)$；法线斜率 $-1/f'(x_0)$。</p>
+<p><b>关键事实：</b></p>
+<ul>
+<li><b>可导必连续，连续不一定可导</b>（例：$y=|x|$ 在 0 处连续但不可导——尖点）。</li>
+<li>分段函数在分界点：用定义求左右导数，相等才可导。</li>
+<li>奇偶性传承：偶函数导数是奇函数，奇函数导数是偶函数。</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：物理背景——从平均速度到瞬时速度</div>
+<p>质点沿直线运动，位置 $s(t)$。$[t_0,\ t_0+\Delta t]$ 内平均速度 $\bar v=\frac{s(t_0+\Delta t)-s(t_0)}{\Delta t}$。$\Delta t\to0$ 时的极限（若存在）就是 $t_0$ 时刻的瞬时速度 $v(t_0)=\lim_{\Delta t\to0}\frac{\Delta s}{\Delta t}=s'(t_0)$。<b>导数 $=\lim\frac{\text{改变量}}{\text{自变量改变量}}$，即"变化率"</b>——这就是为什么力学里 $v=\frac{dx}{dt},\ a=\frac{dv}{dt}$ 全是导数。</p>
+</div>
+<div class="ex">
+<div class="title">例2.1 用定义求 $f(x)=x^2$ 在 $x=1$ 的导数，并写出切线方程。</div>
+<p><b>解：</b>$f'(1)=\lim_{h\to0}\frac{(1+h)^2-1}{h}=\lim_{h\to0}(2+h)=2$。切线：$y-1=2(x-1)$，即 $y=2x-1$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>用定义求 $f(x)=\dfrac1x$ 在 $x=2$ 处的导数。</li><li>讨论 $f(x)=\begin{cases}x\sin\dfrac1x,&x\neq0\\0,&x=0\end{cases}$ 在 $x=0$ 的连续性与可导性。</li><li>求曲线 $y=\ln x$ 在 $(e,1)$ 处的切线方程。</li><li>设 $f'(x_0)$ 存在，求 $\displaystyle\lim_{h\to0}\frac{f(x_0+h)-f(x_0-h)}{h}$。</li></ol></div>
+
+<h3 class="subsec" id="s2-2">2.2 求导法则：连锁反应</h3>
+<div class="idea">
+<p><b>核心公式表（背到肌肉记忆）：</b></p>
+<div class="formula">$$(u\pm v)'=u'\pm v',\quad(uv)'=u'v+uv',\quad\left(\frac{u}{v}\right)'=\frac{u'v-uv'}{v^2}$$</div>
+<p><b>链式法则（全书最重要法则，没有之一）：</b>$\dfrac{d}{dx}f(g(x))=f'(g(x))\cdot g'(x)$。口诀："外导×内导"，从外到里一层层剥。</p>
+<p><b>反函数求导：</b>$\dfrac{dx}{dy}=\dfrac{1}{dy/dx}$，即 $[f^{-1}]'(y)=\dfrac{1}{f'(x)}$。</p>
+<p><b>基本导数表：</b></p>
+<div class="formula">$$(x^a)'=ax^{a-1},\ (e^x)'=e^x,\ (a^x)'=a^x\ln a,\ (\ln x)'=\frac1x,\ (\log_a x)'=\frac{1}{x\ln a}$$$$(\sin x)'=\cos x,\ (\cos x)'=-\sin x,\ (\tan x)'=\sec^2 x,\ (\cot x)'=-\csc^2 x$$$$(\sec x)'=\sec x\tan x,\ (\csc x)'=-\csc x\cot x$$$$(\arcsin x)'=\frac{1}{\sqrt{1-x^2}},\ (\arccos x)'=-\frac{1}{\sqrt{1-x^2}},\ (\arctan x)'=\frac{1}{1+x^2},\ (\operatorname{arccot} x)'=-\frac{1}{1+x^2}$$</div>
+</div>
+<div class="derive">
+<div class="dt"> 推导：乘积法则 $(uv)'=u'v+uv'$</div>
+<p>按定义：$\frac{u(x+h)v(x+h)-u(x)v(x)}h=\frac{u(x+h)v(x+h)-u(x)v(x+h)+u(x)v(x+h)-u(x)v(x)}h$（加一项减一项）$=v(x+h)\frac{u(x+h)-u(x)}h+u(x)\frac{v(x+h)-v(x)}h$。令 $h\to0$：$v(x+h)\to v(x)$（连续），得 $u'v+uv'$。∎ <span class="tip">——"加一项减一项"是分析学最常用的化妆术，后面证明中值定理、泰勒公式全是这招。</span></p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：链式法则的证明思路（不严格版）</div>
+<p>$y=f(g(x))$，令 $u=g(x)$。$\frac{\Delta y}{\Delta x}=\frac{\Delta y}{\Delta u}\cdot\frac{\Delta u}{\Delta x}$（$\Delta u\neq0$ 时）。令 $\Delta x\to0$：$\Delta u\to0$，$\frac{\Delta y}{\Delta u}\to f'(u)$，$\frac{\Delta u}{\Delta x}\to g'(x)$，故 $\frac{dy}{dx}=f'(u)g'(x)=f'(g(x))g'(x)$。∎（严格证明需处理 $\Delta u=0$ 的情形，用极限语言修补即可。）</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：为什么 $(e^x)'=e^x$？</div>
+<p>定义：$\frac{e^{x+h}-e^x}{h}=e^x\cdot\frac{e^h-1}{h}$。第1章已证 $\lim_{h\to0}\frac{e^h-1}{h}=\lim_{t\to0}\frac{t}{\ln(1+t)}=\lim\frac1{\ln(1+t)^{1/t}}=\frac1{\ln e}=1$。故 $(e^x)'=e^x$。<b>也就是说：$e$ 这个数正是为了让指数函数的导数等于它自己而诞生的</b>——这就是为什么 $e$ 在自然界（增长、衰减、振动）无处不在。</p>
+</div>
+<div class="ex">
+<div class="title">例2.2 求 $y=\ln\sin\sqrt{x}$ 的导数。</div>
+<p><b>解：</b>三层复合，从外到里：$y'=\dfrac{1}{\sin\sqrt x}\cdot\cos\sqrt x\cdot\dfrac{1}{2\sqrt x}=\dfrac{\cot\sqrt x}{2\sqrt x}$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>$(e^x)'=e^x$ 让 $e^{kx}$ 成为微分方程（第7章）的万能钥匙，进而成为力学振动、热学冷却、电路暂态的共同解形式；$(\sin x)'=\cos x$ 的周期性让振动与波动（力学第7、8章）循环往复。导数表就是物理世界的"变化率词典"。
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="5"><li>$y=e^{\arctan x}$，求 $y'$。</li><li>$y=x\ln x - x$，求 $y'$。</li><li>$y=\dfrac{\sin x}{x}$，求 $y'$。</li><li>$y=\sqrt{x^2+a^2}$，求 $y'$。</li><li>$y=\sin^2(\cos 3x)$，求 $y'$。</li></ol></div>
+
+<h3 class="subsec" id="s2-3">2.3 隐函数与参数方程求导</h3>
+<div class="idea">
+<p><b>隐函数求导：</b>方程 $F(x,y)=0$ 两边对 $x$ 求导，把 $y$ 看成 $x$ 的函数，遇到 $y$ 就用链式法则带出 $y'$，再解出 $y'$。</p>
+<p><b>对数求导法：</b>对付"幂指函数"$y=f(x)^{g(x)}$（或连乘连除式）：两边取对数再求导。$y'=y(\ln y)'$。</p>
+<p><b>参数方程：</b>$\begin{cases}x=\varphi(t)\\y=\psi(t)\end{cases}$，则</p>
+<div class="formula">$$\frac{dy}{dx}=\frac{\psi'(t)}{\varphi'(t)},\qquad\frac{d^2y}{dx^2}=\frac{d}{dt}\!\left(\frac{\psi'}{\varphi'}\right)\Big/\varphi'(t)=\frac{\psi''\varphi'-\psi'\varphi''}{\varphi'^3}$$</div>
+</div>
+<div class="ex">
+<div class="title">例2.3 求由 $e^y+xy-e=0$ 确定的隐函数在 $x=0$ 处的导数。</div>
+<p><b>解：</b>两边对 $x$ 求导：$e^y y'+y+xy'=0\Rightarrow y'=-\dfrac{y}{e^y+x}$。$x=0$ 时代入原方程：$e^y=e\Rightarrow y=1$。故 $y'(0)=-\dfrac{1}{e}$。</p>
+</div>
+<div class="ex">
+<div class="title">例2.4 设 $\begin{cases}x=t-\sin t\\y=1-\cos t\end{cases}$（摆线），求 $\dfrac{dy}{dx}$ 和 $\dfrac{d^2y}{dx^2}$。</div>
+<p><b>解：</b>$\frac{dy}{dx}=\frac{\sin t}{1-\cos t}=\cot\frac t2$。$\frac{d^2y}{dx^2}=\frac{d}{dt}\cot\frac t2/(1-\cos t)=\frac{-\frac12\csc^2(t/2)}{1-\cos t}=-\frac{1}{4\sin^4(t/2)}$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>摆线 $x=t-\sin t,\ y=1-\cos t$ 就是开头"最速降线"那道牛顿通宵题的答案。参数方程求导在力学里叫"运动学"：参数 $t$ 是时间，$\frac{dy}{dx}$ 对应的物理版是 $v=\frac{ds}{dt}$，速度方向就是轨迹切线方向。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="10"><li>由 $x^2+xy+y^2=4$ 确定 $y(x)$，求 $y'$ 和 $y''$。</li><li>用对数求导法求 $y=x^x\ (x>0)$ 的导数。</li><li>设 $\begin{cases}x=e^t\cos t\\y=e^t\sin t\end{cases}$，求 $\dfrac{dy}{dx}$ 及 $t=0$ 处的值。</li><li>求椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ 在点 $(x_0,y_0)$ 的切线斜率。</li></ol></div>
+
+<h3 class="subsec" id="s2-4">2.4 高阶导数</h3>
+<div class="idea">
+<p><b>核心：</b>$y^{(n)}=(y^{(n-1)})'$。必背公式：</p>
+<div class="formula">$$(e^{ax})^{(n)}=a^n e^{ax},\quad(\sin x)^{(n)}=\sin\!\left(x+\frac{n\pi}{2}\right),\quad(\cos x)^{(n)}=\cos\!\left(x+\frac{n\pi}{2}\right)$$$$(\ln x)^{(n)}=\frac{(-1)^{n-1}(n-1)!}{x^n},\quad\left(\frac1{x+a}\right)^{(n)}=\frac{(-1)^n n!}{(x+a)^{n+1}},\quad(x^m)^{(n)}=m(m-1)\cdots(m-n+1)x^{m-n}$$</div>
+<p><b>莱布尼茨公式（乘积的高阶导）：</b>$(uv)^{(n)}=\sum_{k=0}^{n}C_n^k u^{(n-k)}v^{(k)}$。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：$(\sin x)^{(n)}=\sin(x+\frac{n\pi}2)$ 为什么成立？</div>
+<p>$(\sin x)'=\cos x=\sin(x+\frac\pi2)$；再导 $=\cos(x+\frac\pi2)=\sin(x+\pi)$；归纳：每求一次导，相位前进 $\frac\pi2$。故 $(\sin x)^{(n)}=\sin(x+\frac{n\pi}2)$。∎ <span class="tip">——导数对正弦函数的作用是"相位平移"，这正是交流电、简谐振动里"速度领先位移 90°"的数学源头。</span></p>
+</div>
+<div class="ex">
+<div class="title">例2.5 求 $y=x^2e^{2x}$ 的 $y^{(20)}$。</div>
+<p><b>解：</b>莱布尼茨公式，$u=e^{2x}, v=x^2$，$v$ 的三阶以上导数为 0：$y^{(20)}=C_{20}^0 e^{2x}\cdot2^{20}x^2+C_{20}^1\cdot 2^{19}e^{2x}\cdot2x+C_{20}^2\cdot2^{18}e^{2x}\cdot2=2^{20}e^{2x}\left(x^2+\frac{20\cdot2x}{2}+\frac{190\cdot2}{4}\right)=2^{20}e^{2x}(x^2+20x+95)$。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="14"><li>求 $y=\ln(1+x)$ 的 $y^{(n)}$。</li><li>求 $y=\sin 2x$ 的 $y^{(10)}$。</li><li>求 $y=\dfrac{1}{x(x+1)}$ 的 $y^{(n)}$（提示：先裂项）。</li></ol></div>
+
+<h3 class="subsec" id="s2-5">2.5 微分：导数的"草稿纸"形态</h3>
+<div class="idea">
+<p><b>核心：</b>$dy=f'(x)\,dx$。微分 = 切线纵坐标的改变量（线性主部）。</p>
+<ul>
+<li><b>一阶微分形式不变性</b>：无论 $u$ 是自变量还是中间变量，$dy=f'(u)\,du$ 恒成立——这是第4章"凑微分法"的理论依据，务必理解。</li>
+<li>近似计算：$f(x_0+\Delta x)\approx f(x_0)+f'(x_0)\Delta x$。</li>
+</ul>
+</div>
+<div class="ex">
+<div class="title">例2.6 求 $y=\sin(2x+1)$ 的微分，并估算 $\sin 0.03$（用 $x_0=0$）。</div>
+<p><b>解：</b>$dy=2\cos(2x+1)dx$。近似：$\sin0.03\approx\sin0+\cos0\cdot0.03=0.03$（真值 0.02999…）。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>微分的"线性主部"思想就是物理里的"小量近似"（力学单摆小角度近似 $\sin\theta\approx\theta$）；一阶微分形式不变性让"凑微分"合法化，是第4章换元积分法的理论根基；热学里 $dU=TdS-pdV$ 的状态量全微分正是本章 $dz=f_xdx+f_ydy$ 的物理化身（第8章）。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="17"><li>求 $y=e^{-x}\sin x$ 的微分，并用微分估算 $\sqrt[3]{1.01}$。</li><li>求 $y=\ln\cos x$ 的微分 $dy$。</li></ol></div>
+
+<h3 class="subsec" id="m2"> 第2章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 复合函数求导"剥洋葱法"</div>
+<p><b>适用：</b>多层嵌套复合函数。</p>
+<p><b>步骤：</b>从最外层开始逐层写：外层导数（内层原样代入）× 内层导数 × 再内层导数……</p>
+<p><b>例题演示：</b>$y=\arctan(e^{\sin x})$：$y'=\dfrac{1}{1+(e^{\sin x})^2}\cdot e^{\sin x}\cdot\cos x$。三层三层剥，永不出错。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 对数求导法</div>
+<p><b>适用：</b>幂指函数 $f(x)^{g(x)}$、连乘连除开方型。</p>
+<p><b>步骤：</b>① 两边取 $\ln$；② 化简为和差；③ 两边求导；④ 乘回 $y$。</p>
+<p><b>例题演示：</b>$y=x^x$：$\ln y=x\ln x$，$\frac{y'}y=\ln x+1$，$y'=x^x(\ln x+1)$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 分段函数分界点求导</div>
+<p><b>适用：</b>分段函数在分界处的可导性。</p>
+<p><b>步骤：</b>① 用定义算左右导数 $f'_-(x_0),\ f'_+(x_0)$；② 相等则可导；③ 不相等但左右极限存在则不可导（尖点）。<b>注意：先查连续性</b>，不连续直接不可导。</p>
+<p><b>例题演示：</b>$f(x)=|x|$ 在 $x=0$：$f'_-(0)=-1\neq f'_+(0)=1$，不可导。</p>
+</div>
+<div class="method">
+<div class="mt">方法四 · 参数方程二阶导</div>
+<p><b>步骤：</b>$\frac{d^2y}{dx^2}=\frac{d}{dx}\left(\frac{dy}{dx}\right)=\frac{d(y'/x')}{dt}\div x'(t)$。<b>易错点：</b>不是 $\frac{y''}{x''}$！</p>
+<p><b>例题演示：</b>$x=t^2,\ y=t^3$：$\frac{dy}{dx}=\frac{3t^2}{2t}=\frac32t$；$\frac{d^2y}{dx^2}=\frac{3/2}{2t}=\frac3{4t}$。</p>
+</div>
+
+<h2 class="sec" id="ch3">第3章 微分中值定理与导数应用</h2>
+<div class="hook">
+<p><b>1691 年，法国人罗尔证明了一件听起来像废话的事：</b>一条光滑的曲线，如果两端一样高，中间至少有一处是平的。就这。</p>
+<p>但后来的两百年证明，<b>这句"废话"是整个微分学的承重墙</b>：拉格朗日中值定理是把它"扶正"的产物；柯西中值定理是它的参数化版本；泰勒公式是它套娃 $n$ 次的结果；洛必达法则——顺便说，这法则是贵族洛必达侯爵<b>花钱买的</b>。他雇了约翰·伯努利当私人家教，合同里写明伯努利的研究成果归他出版，于是伯努利发明的法则就姓了洛必达。有钱真的可以为所欲为。</p>
+<p>这一章是期末的"大轴戏"：证明题十有八九从中值定理出，计算题（洛必达、泰勒、单调极值）也全是这章的家底。学这章要抓住一条暗线——<b>构造辅助函数</b>。罗尔定理本身没劲，有劲的是"为了用上罗尔，你能造出什么函数"。这种"造"的手感，做十道题就有。</p>
+</div>
+
+<h3 class="subsec" id="s3-1">3.1 三大中值定理</h3>
+<div class="idea">
+<p><b>罗尔（Rolle）：</b>$f\in C[a,b]$，在 $(a,b)$ 可导，$f(a)=f(b)$ ⟹ 存在 $\xi\in(a,b)$ 使 $f'(\xi)=0$。</p>
+<p><b>拉格朗日（Lagrange）：</b>$f\in C[a,b]$，在 $(a,b)$ 可导 ⟹ 存在 $\xi\in(a,b)$ 使</p>
+<div class="formula">$$f'(\xi)=\frac{f(b)-f(a)}{b-a}$$</div>
+<p>几何意义：至少一条切线平行于割线。应用：①证明不等式 $|f(b)-f(a)|\le M|b-a|$；②零点个数与导数零点关系。</p>
+<p><b>柯西（Cauchy）：</b>再加 $g'(x)\neq0$，则 $\dfrac{f(b)-f(a)}{g(b)-g(a)}=\dfrac{f'(\xi)}{g'(\xi)}$。（洛必达的证明工具）</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：从罗尔到拉格朗日——"扶正"的几何艺术</div>
+<p>罗尔要求两端等高，一般函数不满足。怎么办？<b>把曲线"扶正"</b>：作辅助函数 $F(x)=f(x)-\frac{f(b)-f(a)}{b-a}(x-a)$（减去割线的纵坐标），则 $F(a)=F(b)=f(a)$，两端等高！由罗尔，存在 $\xi$ 使 $F'(\xi)=0$，即 $f'(\xi)-\frac{f(b)-f(a)}{b-a}=0$。∎ <span class="tip">——"构造辅助函数让条件满足罗尔"是全章证明题的核心思想，务必体会这个"扶正"操作。</span></p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：从拉格朗日到柯西——参数化视角</div>
+<p>把曲线用参数表示：$\begin{cases}x=g(t)\\y=f(t)\end{cases},\ t\in[a,b]$。割线斜率 $\frac{f(b)-f(a)}{g(b)-g(a)}$。由拉格朗日（对参数曲线的整体斜率），存在 $\xi$ 使切线斜率等于割线斜率，即 $\frac{f'(\xi)}{g'(\xi)}=\frac{f(b)-f(a)}{g(b)-g(a)}$。∎（严格证明：构造 $F(x)=f(x)-\frac{f(b)-f(a)}{g(b)-g(a)}[g(x)-g(a)]$ 用罗尔。）</p>
+</div>
+<p><b>构造辅助函数的三大套路（证明题核心技能）：</b></p>
+<ul>
+<li>证"存在 $\xi$ 使 $f'(\xi)=k$"：令 $F(x)=f(x)-kx$，用罗尔。</li>
+<li>证"存在 $\xi$ 使 $f'(\xi)+p(\xi)f(\xi)=0$"：乘积分因子 $e^{\int p\,dx}$，构造 $F=f\,e^{\int p\,dx}$。</li>
+<li>证"存在 $\xi$ 使 $f''(\xi)=0$"：用两次罗尔（先找 $f$ 相等的三点，再找 $f'$ 相等的两点）。</li>
+</ul>
+<div class="ex">
+<div class="title">例3.1 证明方程 $x^3+x-1=0$ 在 $(0,1)$ 内恰有一个根。</div>
+<p><b>解：</b>存在性：零点定理。唯一性：反设两实根 $x_1&lt;x_2$，则 $f(x_1)=f(x_2)=0$，由罗尔存在 $\xi$ 使 $f'(\xi)=0$，但 $f'(x)=3x^2+1&gt;0$ 恒成立，矛盾。∎ <span class="tip">——"存在性+唯一性"标准双证模板，中大必考。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.2 设 $f\in C[0,1]$，在 $(0,1)$ 可导，$f(0)=0$，$f(1)=1$。证明存在 $\xi\in(0,1)$ 使 $f'(\xi)=2\xi$。</div>
+<p><b>解：</b>构造 $F(x)=f(x)-x^2$。$F(0)=0$，$F(1)=1-1=0$，罗尔 ⟹ $F'(\xi)=f'(\xi)-2\xi=0$。∎</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>验证 $f(x)=x^3-3x$ 在 $[0,\sqrt3]$ 上满足罗尔定理条件并求 $\xi$。</li><li>证明：$\arcsin x+\arccos x=\dfrac\pi2$（$x\in[-1,1]$）。</li><li>设 $f$ 在 $[a,b]$ 可导，$|f'|\le M$，证明 $|f(b)-f(a)|\le M(b-a)$。</li><li>证明 $x>0$ 时 $\dfrac{x}{1+x}<\ln(1+x)<x$。</li><li>设 $f$ 在 $[0,1]$ 连续可导，$f(0)=f(1)=0$，证明存在 $\xi\in(0,1)$ 使 $f'(\xi)+f(\xi)=0$。</li></ol></div>
+
+<h3 class="subsec" id="s3-2">3.2 洛必达法则</h3>
+<div class="idea">
+<p><b>核心：</b>$\frac00$ 或 $\frac\infty\infty$ 型：$\lim\dfrac{f}{g}=\lim\dfrac{f'}{g'}$（若后者存在）。</p>
+<p><b>其他类型化为 $\frac00$ 或 $\frac\infty\infty$：</b></p>
+<ul>
+<li>$0\cdot\infty$：$fg=\dfrac{f}{1/g}$（把简单的因子放分母）</li>
+<li>$\infty-\infty$：通分、有理化、提出主部</li>
+<li>$0^0,\ \infty^0,\ 1^\infty$：取对数 $\ln y=g\ln f$，先求 $\lim\ln y$，再用 $y=e^{\ln y}$ 还原</li>
+</ul>
+<div class="warn"><b> 三大使用纪律：</b>① 必须确认是 $\frac00$ 或 $\frac\infty\infty$（不是则先变形）；② 用完一次还不行就继续用，但要检查每次是否满足条件；③ 若 $\lim\frac{f'}{g'}$ 振荡不存在，不能断定原极限不存在，应换等价无穷小、泰勒等方法。另外洛必达与等价无穷小可混合使用，先代换简化再洛。</div>
+</div>
+<div class="derive">
+<div class="dt"> 推导：洛必达法则的证明（$\frac00$ 型）</div>
+<p>设 $\lim f=\lim g=0$，且补充定义 $f(a)=g(a)=0$（不影响极限）。由柯西中值定理，对任意 $x&gt;a$ 存在 $\xi\in(a,x)$：$\frac{f(x)}{g(x)}=\frac{f(x)-f(a)}{g(x)-g(a)}=\frac{f'(\xi)}{g'(\xi)}$。令 $x\to a^+$，则 $\xi\to a^+$，若 $\lim\frac{f'}{g'}=L$ 则 $\lim\frac{f}{g}=L$。∎ <span class="tip">——看，洛必达只是柯西中值定理换了个马甲。三大中值定理是一家人。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.3 求 $\displaystyle\lim_{x\to0}\frac{e^x-e^{-x}-2x}{x-\sin x}$。</div>
+<p><b>解：</b>$\frac00$ 型。洛两次：第一次得 $\frac{e^x+e^{-x}-2}{1-\cos x}$，仍 $\frac00$；第二次得 $\frac{e^x-e^{-x}}{\sin x}$；第三次：$\frac{e^x+e^{-x}}{\cos x}\to\frac{2}{1}=2$。答 $\boxed{2}$。也可配泰勒：$e^x+e^{-x}-2=x^2+\cdots$，$1-\cos x\sim x^2/2$，更快得 2。</p>
+</div>
+<div class="ex">
+<div class="title">例3.4 求 $\displaystyle\lim_{x\to0^+}x^x$。</div>
+<p><b>解：</b>$0^0$ 型。$\ln y=x\ln x=\frac{\ln x}{1/x}$，洛必达：$\frac{1/x}{-1/x^2}=-x\to0$。故 $\lim y=e^0=1$。$\boxed{1}$</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="6"><li>求 $\displaystyle\lim_{x\to0}\frac{\tan x-x}{x^3}$。</li><li>求 $\displaystyle\lim_{x\to+\infty}\frac{\ln x}{x}$。</li><li>求 $\displaystyle\lim_{x\to0}\left(\frac1{\sin x}-\frac1x\right)$。</li><li>求 $\displaystyle\lim_{x\to0}\frac{x-\sin x}{x^2\sin x}$。</li></ol></div>
+
+<h3 class="subsec" id="s3-3">3.3 泰勒公式：多项式版的"间谍"</h3>
+<div class="idea">
+<p><b>核心：</b>$f$ 在 $x_0$ 处 $n$ 阶可导，则</p>
+<div class="formula">$$f(x)=f(x_0)+f'(x_0)(x-x_0)+\frac{f''(x_0)}{2!}(x-x_0)^2+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+R_n(x)$$</div>
+<p>佩亚诺余项：$R_n=o((x-x_0)^n)$；拉格朗日余项：$R_n=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$。</p>
+<p><b>麦克劳林展开（$x_0=0$，背熟五个）：</b></p>
+<div class="formula">$$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots+o(x^n)$$$$\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots+(-1)^k\frac{x^{2k+1}}{(2k+1)!}+o(x^{2k+2})$$$$\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\cdots+o(x^{2k+1})$$$$\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots+(-1)^{n-1}\frac{x^n}{n}+o(x^n)$$$$(1+x)^a=1+ax+\frac{a(a-1)}{2!}x^2+\cdots+\frac{a(a-1)\cdots(a-n+1)}{n!}x^n+o(x^n)$$</div>
+<p><b>两大用途：</b>① 求极限（比洛必达更快更稳，尤其加减混合时）；② 近似计算与误差估计（拉格朗日余项）。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：泰勒公式怎么来的？——"套娃罗尔"</div>
+<p>思想：找一个 $n$ 次多项式 $P_n(x)$，使它在 $x_0$ 处与 $f$ 的 0 到 $n$ 阶导数全部相等。逐项确定：$P_n(x)=f(x_0)+f'(x_0)(x-x_0)+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n$ 恰好满足（求导代入验证即可）。再证余项：令 $R_n(x)=f(x)-P_n(x)$，则 $R_n$ 及其前 $n$ 阶导数在 $x_0$ 全为 0。<b>连续使用 $n$ 次柯西中值定理</b>：$\frac{R_n(x)}{(x-x_0)^{n+1}}$ 依次降阶，最后得 $R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$。∎ <span class="tip">——又是中值定理！本章所有大招同源。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.5 用泰勒求 $\displaystyle\lim_{x\to0}\frac{e^{x^2}-\cos x}{x^2}$。</div>
+<p><b>解：</b>$e^{x^2}=1+x^2+o(x^2)$，$\cos x=1-\frac{x^2}{2}+o(x^2)$。差 $=\frac32x^2+o(x^2)$，极限 $=\boxed{\frac32}$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>泰勒公式是"局部多项式近似"，它的 $n\to\infty$ 版本就是第11章的幂级数；它在物理里的应用铺天盖地：相对论动能 $E_k=(\gamma-1)mc^2$ 低速展开回到 $\frac12mv^2$（力学第9章）、单摆小角度近似 $\sin\theta\approx\theta$、热学里 $\ln(1+x)\approx x$ 的展开。力学讲义和热学讲义里每一次"近似"，背后都是本章的泰勒。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="10"><li>写出 $f(x)=e^{-x}$ 的三阶麦克劳林展开（含余项）。</li><li>用泰勒求 $\displaystyle\lim_{x\to0}\frac{\cos x-1+\frac{x^2}{2}}{x^4}$。</li><li>用泰勒求 $\displaystyle\lim_{x\to0}\frac{\sin x-x}{x^3}$。</li></ol></div>
+
+<h3 class="subsec" id="s3-4">3.4 单调性与极值</h3>
+<div class="idea">
+<p><b>单调性判别：</b>$f'(x)&gt;0$（$&lt;0$）⟹ 增（减）。注意：个别点导数为 0 不影响单调性（如 $y=x^3$）。</p>
+<p><b>极值：</b></p>
+<ul>
+<li>必要条件：可导极值点必为驻点（$f'=0$）——反过来不对。</li>
+<li>第一充分条件：$f'$ 在 $x_0$ 两侧变号（正→负为极大；负→正为极小）。</li>
+<li>第二充分条件：$f'(x_0)=0$ 且 $f''(x_0)&gt;0$ 极小；$&lt;0$ 极大；$=0$ 失效（用第一充分条件或高阶导）。</li>
+</ul>
+<p><b>求最值的流程（应用题的万能套路）：</b>① 建立目标函数（从题目条件消元）；② 求驻点；③ 比较驻点与端点；④ 实际问题由"必存在最值+唯一驻点"直接断定。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：为什么 $f'(x)&gt;0$ 就单调递增？</div>
+<p>任取 $x_1&lt;x_2$，由拉格朗日中值定理：$f(x_2)-f(x_1)=f'(\xi)(x_2-x_1)$，$\xi\in(x_1,x_2)$。若 $f'&gt;0$，则 $f(x_2)&gt;f(x_1)$，故单调递增。∎ <span class="tip">——单调性、极值、最值的全部判别，都是拉格朗日中值定理的直接推论。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.6 求 $f(x)=2x^3-9x^2+12x$ 在 $[0,3]$ 上的最大值与最小值。</div>
+<p><b>解：</b>$f'=6x^2-18x+12=6(x-1)(x-2)$。驻点 $x=1,2$。$f(1)=5$，$f(2)=4$，$f(0)=0$，$f(3)=9$。最大 $\boxed{9}$（在 $x=3$），最小 $\boxed{0}$（在 $x=0$）。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="13"><li>求 $f(x)=x^3-3x^2-9x+5$ 的单调区间与极值。</li><li>求 $f(x)=x+\dfrac1x\ (x>0)$ 的最小值。</li><li>用一块边长为 $a$ 的正方形铁皮，四角各剪去一个小正方形做成无盖盒，何时容积最大？</li><li>求 $f(x)=\sin x+\cos x$ 在 $[0,\pi/2]$ 上的最值。</li></ol></div>
+
+<h3 class="subsec" id="s3-5">3.5 凹凸性与拐点、渐近线</h3>
+<div class="idea">
+<p><b>凹凸性：</b>$f''&gt;0$ 凹（向上弯）；$f''&lt;0$ 凸。</p>
+<p><b>拐点：</b>凹凸性改变的点。必要条件 $f''=0$ 或 $f''$ 不存在；充分条件 $f''$ 变号。</p>
+<p><b>渐近线：</b></p>
+<ul>
+<li>水平：$\lim_{x\to\pm\infty}f=b$ ⟹ $y=b$</li>
+<li>垂直：$\lim_{x\to c}f=\infty$ ⟹ $x=c$（找分母零点）</li>
+<li>斜：$k=\lim\frac{f(x)}x\neq0$，$b=\lim[f(x)-kx]$ ⟹ $y=kx+b$</li>
+</ul>
+</div>
+<div class="ex">
+<div class="title">例3.7 求 $y=\dfrac{x^3}{x^2-1}$ 的渐近线。</div>
+<p><b>解：</b>垂直：$x=\pm1$。斜：$k=\lim\frac{y}{x}=\lim\frac{x^2}{x^2-1}=1$；$b=\lim(y-x)=\lim\frac{x}{x^2-1}=0$。故 $y=x$ 是斜渐近线，另有垂直渐近线 $x=\pm1$，无水平。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>凹凸性+拐点在力学里对应"加速度的导数"（急动度 jerk），在热学里对应相变曲线的拐点（范德瓦尔斯等温线的拐点即临界点！热学讲义第6章见）。渐近线在物理里描述极限行为：如 $v\to$ 极限速度（收尾速度）。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="17"><li>求 $f(x)=x^3-6x^2+9x+1$ 的凹凸区间与拐点。</li><li>求 $y=\dfrac{2x}{1+x^2}$ 的渐近线。</li><li>求 $y=x\ln x$ 的极值点、凹凸性。</li><li>证明 $x>0$ 时 $e^x>1+x+\dfrac{x^2}{2}$。</li></ol></div>
+
+<h3 class="subsec" id="m3"> 第3章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 中值定理证明题的"辅助函数构造三套路"</div>
+<p><b>套路1（常数化）：</b>要证 $f'(\xi)=k$，构造 $F(x)=f(x)-kx$，目标：找两点使 $F$ 等值，用罗尔。</p>
+<p><b>套路2（积分因子）：</b>要证 $f'(\xi)+p(\xi)f(\xi)=0$ 型，构造 $F(x)=f(x)e^{\int p(x)dx}$，则 $F'=(f'+pf)e^{\int p}$。</p>
+<p><b>套路3（两次罗尔）：</b>要证 $f''(\xi)=0$ 或 $f''(\xi)=c$，先找 $f$ 三个等值点（或 $f'$ 两个等值点）。</p>
+<p><b>例题演示：</b>证 $f'(x)=f(x)$ 有零点 ⟺ 构造 $F(x)=e^{-x}f(x)$，$F'=e^{-x}(f'-f)$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 洛必达"变形五件套"</div>
+<p>① $0\cdot\infty\to\frac{0}{1/\infty}$；② $\infty-\infty\to$ 通分/有理化；③ $1^\infty,\ 0^0,\ \infty^0\to$ 取对数；④ 洛前先等价代换化简；⑤ 洛不下去（振荡）换泰勒。</p>
+<p><b>例题演示：</b>$\lim_{x\to0}\left(\frac1{\sin x}-\frac1x\right)$：通分 $\frac{x-\sin x}{x\sin x}$，洛两次得 0。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 泰勒展开求极限的"展开到哪一阶"</div>
+<p><b>原则：</b>分子分母展开到<b>首次不抵消</b>的阶。通常分母是 $x^k$ 就展到 $x^k$。</p>
+<p><b>例题演示：</b>$\lim_{x\to0}\frac{\cos x-1+\frac{x^2}2}{x^4}$：$\cos x=1-\frac{x^2}2+\frac{x^4}{24}+o(x^4)$，分子 $=\frac{x^4}{24}$，极限 $\frac1{24}$。（洛必达要做 4 次，泰勒一步到位。）</p>
+</div>
+<div class="method">
+<div class="mt">方法四 · 最值应用题"建模四步"</div>
+<p>① 设变量、列目标函数（利用约束消元成单变量）；② 求导找驻点；③ 用单调性/二阶导判定；④ "实际问题最值必存在 + 唯一驻点"直接下结论。</p>
+<p><b>例题演示：</b>正方形铁皮剪四角做盒：设剪去边长 $x$，$V=x(a-2x)^2$，$V'=0\Rightarrow x=\frac a6$，唯一驻点，$V_{\max}=\frac{2a^3}{27}$。</p>
+</div>
+
+<h2 class="sec" id="ch4">第4章 不定积分</h2>
+<div class="hook">
+<p><b>为什么这章叫"不定"？因为答案后面那个 $+C$ 没人替你定。</b>求导是一台确定性的机器，但它的逆运算会丢信息：$x^2$ 和 $x^2+7$ 求导结果一样，谁也分不出来。所以不定积分的答案是一族函数，那个 $C$ 不是装饰，是<b>被求导抹掉的信息的墓碑</b>。</p>
+<p>物理学的故事全藏在这个 $C$ 里。$v=\int a\,dt+C$，那个 $C$ 就是你的初速度——抛一颗小石子还是发射一枚火箭，公式一模一样，区别全在 $C$。所以别在考试里丢 $C$：那不只是扣一分的事，是丢掉了整个初始条件。</p>
+<p>这一章本质是<b>求导的逆向功夫</b>：给你一个导数的"犯罪现场"，反推原函数。练的是两件事——凑微分的眼力，分部的选法。练熟了，第 5 章定积分不过是"先求出原函数，再代两个数"。</p>
+</div>
+
+<h3 class="subsec" id="s4-1">4.1 概念与基本公式</h3>
+<div class="idea">
+<p><b>核心：</b>$F'(x)=f(x)$ 则 $F$ 是 $f$ 的原函数，$\displaystyle\int f(x)dx=F(x)+C$。</p>
+<p><b>性质：</b>$\int[f\pm g]=\int f\pm\int g$；$\int kf=k\int f$。</p>
+<p><b>基本积分表（求导表倒着背）：</b></p>
+<div class="formula">$$\int x^a dx=\frac{x^{a+1}}{a+1}+C\ (a\neq-1),\quad \int\frac{dx}{x}=\ln|x|+C,\quad \int e^xdx=e^x+C,\quad\int a^xdx=\frac{a^x}{\ln a}+C$$$$\int\sin x\,dx=-\cos x+C,\quad\int\cos x\,dx=\sin x+C,\quad\int\sec^2x\,dx=\tan x+C,\quad\int\csc^2x\,dx=-\cot x+C$$$$\int\frac{dx}{1+x^2}=\arctan x+C,\quad\int\frac{dx}{\sqrt{1-x^2}}=\arcsin x+C,\quad\int\tan x\,dx=-\ln|\cos x|+C$$$$\int\sec x\,dx=\ln|\sec x+\tan x|+C,\quad\int\frac{dx}{x^2-a^2}=\frac1{2a}\ln\left|\frac{x-a}{x+a}\right|+C,\quad\int\frac{dx}{\sqrt{x^2\pm a^2}}=\ln|x+\sqrt{x^2\pm a^2}|+C$$</div>
+</div>
+<div class="derive">
+<div class="dt"> 推导：为什么 $\int\frac{dx}{x}=\ln|x|+C$ 要带绝对值？</div>
+<p>$x&gt;0$ 时 $(\ln x)'=\frac1x$；$x&lt;0$ 时 $(\ln(-x))'=\frac1{-x}\cdot(-1)=\frac1x$。两种情况合写为 $(\ln|x|)'=\frac1x$。∎ <span class="tip">——丢绝对值是计算题最经典的扣分点。</span></p>
+</div>
+<div class="ex">
+<div class="title">例4.1 求 $\displaystyle\int\left(3x^2-\frac2x+e^x\right)dx$。</div>
+<p><b>解：</b>逐项积分：$x^3-2\ln|x|+e^x+C$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>$\displaystyle\int\left(2\sin x+\frac3{\sqrt{1-x^2}}\right)dx$。</li><li>$\displaystyle\int\frac{x^4}{1+x^2}dx$。</li><li>$\displaystyle\int\tan^2x\,dx$。</li><li>$\displaystyle\int\frac{dx}{\sin^2x\cos^2x}$。</li></ol></div>
+
+<h3 class="subsec" id="s4-2">4.2 换元积分法</h3>
+<div class="idea">
+<p><b>第一换元（凑微分，最重要）：</b>$\int f(g(x))g'(x)dx=\int f(u)\,du\Big|_{u=g(x)}$。口诀："凑一个因子进 $d$ 里"。</p>
+<div class="formula">$$x\,dx=\frac12 d(x^2),\quad \frac{dx}x=d\ln x,\quad e^xdx=d e^x,\quad \cos x\,dx=d\sin x,\quad\frac{dx}{\sqrt x}=2d\sqrt x,\quad\frac{dx}{1+x^2}=d\arctan x$$</div>
+<p><b>第二换元：</b>令 $x=\varphi(t)$。三大三角换元：</p>
+<ul>
+<li>$\sqrt{a^2-x^2}$：$x=a\sin t$</li>
+<li>$\sqrt{a^2+x^2}$：$x=a\tan t$</li>
+<li>$\sqrt{x^2-a^2}$：$x=a\sec t$</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：换元公式为什么成立？</div>
+<p>设 $F'(u)=f(u)$，则 $\frac{d}{dx}F(g(x))=F'(g(x))g'(x)=f(g(x))g'(x)$。故 $F(g(x))$ 是 $f(g(x))g'(x)$ 的原函数，即 $\int f(g(x))g'(x)dx=F(g(x))+C=\int f(u)du\Big|_{u=g(x)}$。∎ <span class="tip">——换元法的合法性完全来自链式法则（第2章）。求导和积分是同一枚硬币的两面。</span></p>
+</div>
+<div class="ex">
+<div class="title">例4.2 求 $\displaystyle\int x\sqrt{1-x^2}\,dx$。</div>
+<p><b>解：</b>凑微分：$x\,dx=-\frac12 d(1-x^2)$。$=-\frac12\int\sqrt u\,du=-\frac13 u^{3/2}+C=-\frac13(1-x^2)^{3/2}+C$。</p>
+</div>
+<div class="ex">
+<div class="title">例4.3 求 $\displaystyle\int\frac{dx}{\sqrt{4-x^2}}$。</div>
+<p><b>解：</b>凑：$=\frac12\int\frac{dx}{\sqrt{1-(x/2)^2}}=\int\frac{d(x/2)}{\sqrt{1-(x/2)^2}}=\arcsin\frac x2+C$。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="5"><li>$\displaystyle\int\sin x\cos^3x\,dx$。</li><li>$\displaystyle\int\frac{\ln x}{x}dx$。</li><li>$\displaystyle\int\frac{e^x}{1+e^{2x}}dx$。</li><li>$\displaystyle\int\frac{dx}{x^2+2x+5}$。</li><li>$\displaystyle\int\sqrt{a^2-x^2}\,dx\ (a>0)$。</li></ol><ol start="20"><li>$\displaystyle\int\frac{e^{2x}}{e^x+1}dx$。</li></ol></div>
+
+<h3 class="subsec" id="s4-3">4.3 分部积分法</h3>
+<div class="idea">
+<p><b>核心：</b>$\displaystyle\int u\,dv=uv-\int v\,du$。</p>
+<p><b>选 $u$ 的顺序（口诀 LIATE，越靠前越当 $u$）：</b>对数 L → 反三角 I → 代数（幂）A → 三角 T → 指数 E。</p>
+<ul>
+<li>幂×指数/三角：幂当 $u$（降幂）</li>
+<li>幂×对数/反三角：对数/反三角当 $u$（消掉超越函数）</li>
+<li>指数×三角：谁当 $u$ 都行，但要<b>连用两次分部并移项</b>（"循环积分"）</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：分部积分公式 = 乘积法则倒着写</div>
+<p>由 $(uv)'=u'v+uv'$ 移项：$uv'=(uv)'-u'v$。两边积分：$\int uv'dx=uv-\int u'v\,dx$，即 $\int u\,dv=uv-\int v\,du$。∎ <span class="tip">——不定积分两大方法（换元、分部）分别是链式法则和乘积法则的逆运算。积分法就是求导法的镜像。</span></p>
+</div>
+<div class="ex">
+<div class="title">例4.4 求 $\displaystyle\int x e^x dx$ 和 $\displaystyle\int e^x\sin x\,dx$。</div>
+<p><b>解：</b>① $\int x\,de^x=xe^x-\int e^xdx=xe^x-e^x+C$。</p>
+<p>② $I=\int e^x\sin x\,dx$。取 $u=\sin x,\ dv=e^xdx$：$I=e^x\sin x-\int e^x\cos x\,dx$；再分部：$=e^x\sin x-e^x\cos x-\int e^x\sin x\,dx=e^x(\sin x-\cos x)-I$。移项：$2I=e^x(\sin x-\cos x)$，$I=\frac{e^x}2(\sin x-\cos x)+C$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="10"><li>$\displaystyle\int x\cos x\,dx$。</li><li>$\displaystyle\int x\ln x\,dx$。</li><li>$\displaystyle\int x^2e^xdx$。</li><li>$\displaystyle\int \arctan x\,dx$。</li><li>$\displaystyle\int e^{2x}\cos x\,dx$。</li></ol><ol start="19"><li>$\displaystyle\int x^3e^{-x^2}dx$。</li></ol></div>
+
+<h3 class="subsec" id="s4-4">4.4 有理函数积分</h3>
+<div class="idea">
+<p><b>核心流程：</b>① 假分式先做多项式除法化为"多项式+真分式"；② 真分式<b>部分分式分解</b>：</p>
+<div class="formula">$$\frac{1}{(x-a)(x-b)}=\frac{A}{x-a}+\frac{B}{x-b},\qquad\frac{1}{(x-a)^2(x-b)}=\frac{A}{x-a}+\frac{B}{(x-a)^2}+\frac{C}{x-b}$$</div>
+<p>③ 每项分别积分（对数、幂、$\arctan$）。<b>待定系数法</b>：通分后比较系数，或代入特殊值（覆盖法：令 $x=a$ 直接得 $A$）。</p>
+</div>
+<div class="ex">
+<div class="title">例4.5 求 $\displaystyle\int\frac{dx}{x^2-3x+2}$。</div>
+<p><b>解：</b>$\frac1{(x-1)(x-2)}=\frac{A}{x-1}+\frac{B}{x-2}$。覆盖法：$A=\frac1{1-2}=-1$，$B=\frac1{2-1}=1$。积分：$-\ln|x-1|+\ln|x-2|+C=\ln\left|\frac{x-2}{x-1}\right|+C$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>换元积分法在物理里是"变量替换"（力学里把 $dt$ 换成 $dx/v$）；分部积分的循环套路在力学阻尼振动、热学麦克斯韦分布求平均值的计算里天天用；有理函数部分分式是第7章微分方程里拉普拉斯变换（大二）的预科，也是第11章级数求和的基础。
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="15"><li>$\displaystyle\int\frac{x+1}{x^2-5x+6}dx$。</li><li>$\displaystyle\int\frac{dx}{x(x+1)^2}$。</li><li>$\displaystyle\int\frac{x^2+1}{x^2-1}dx$。</li><li>$\displaystyle\int\frac{dx}{x^2(x-1)}$。</li></ol></div>
+
+<h3 class="subsec" id="m4"> 第4章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 凑微分"顺藤摸瓜"</div>
+<p><b>适用：</b>被积函数是复合函数乘以内层导数的影子。</p>
+<p><b>步骤：</b>① 找复合结构 $f(g(x))$；② 看 $g'(x)$ 是否（差常数倍地）出现在被积式里；③ 把 $g'(x)dx$ 凑成 $dg(x)$；④ 换元积分。</p>
+<p><b>例题演示：</b>$\int\sin x\cos^3x\,dx=-\int\cos^3x\,d\cos x=-\frac14\cos^4x+C$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 分部积分选 $u$ 的 LIATE 原则</div>
+<p><b>步骤：</b>对数/反三角优先当 $u$（为了消掉它们）；幂×指数/三角时幂当 $u$（为了降幂）；指数×三角连用两次分部后<b>移项解方程</b>。</p>
+<p><b>例题演示：</b>$\int\arctan x\,dx=x\arctan x-\int\frac{x}{1+x^2}dx=x\arctan x-\frac12\ln(1+x^2)+C$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 三角换元的选型</div>
+<p><b>步骤：</b>含 $\sqrt{a^2-x^2}$ 令 $x=a\sin t$；含 $\sqrt{a^2+x^2}$ 令 $x=a\tan t$；含 $\sqrt{x^2-a^2}$ 令 $x=a\sec t$。换元后记得<b>换回原变量</b>（画直角三角形最方便）。</p>
+<p><b>例题演示：</b>$\int\sqrt{a^2-x^2}dx$：$x=a\sin t$ 得 $\frac{a^2}2\arcsin\frac xa+\frac x2\sqrt{a^2-x^2}+C$。</p>
+</div>
+<div class="method">
+<div class="mt">方法四 · 有理函数"除法+分解"</div>
+<p><b>步骤：</b>假分式先除；真分式分解为 $\frac A{x-a}$、$\frac B{(x-a)^k}$、$\frac{Cx+D}{x^2+px+q}$ 三类；系数用覆盖法/比较系数法；逐项积分（第三类配方成 $\arctan$ 和 $\ln$）。</p>
+<p><b>例题演示：</b>$\int\frac{x+1}{x^2-5x+6}dx=\int\left(\frac4{x-3}-\frac3{x-2}\right)dx=4\ln|x-3|-3\ln|x-2|+C$。</p>
+</div>
+
+<h2 class="sec" id="ch5">第5章 定积分</h2>
+<div class="hook">
+<p><b>公元前 3 世纪，阿基米德为了算抛物线弓形的面积，把它切成了 48 块，纯手工求和。</b>这是"穷竭法"，微分几何的远祖。问题是：48 块够吗？每多切一倍，计算量翻番。阿基米德把这事做到了人类手工的极限，然后……两千年没人再往前推进一步。</p>
+<p>直到牛顿和莱布尼茨掏出那对"翅膀"：一个说"整体等于无穷多无穷小之和"（定积分的定义），一个说"求面积和求导是互逆运算"（牛顿-莱布尼茨公式）。从此阿基米德切 48 块干的活，变成"找个原函数，代入两个数"，十秒钟。</p>
+<p>定积分的哲学值得你带一辈子：<b>整体 = 无穷多无穷小之和。</b>力学里功是力的积分，热学里热量是热容的积分，电磁学里电场是电荷的积分。你在这章练的不是算数，是"化整为零、积零为整"的思维方式。物理系的人学定积分，是在预习整个大学物理。</p>
+</div>
+
+<h3 class="subsec" id="s5-1">5.1 定义与性质</h3>
+<div class="idea">
+<p><b>定义：</b>$\displaystyle\int_a^b f(x)dx=\lim_{\lambda\to0}\sum_{i=1}^n f(\xi_i)\Delta x_i$（分割、取点、求和、取极限）。</p>
+<p><b>可积的充分条件：</b>$f$ 在 $[a,b]$ 连续；或只有有限个第一类间断点。</p>
+<p><b>性质（高频考）：</b></p>
+<ul>
+<li>$\int_a^b f=-\int_b^a f$；$\int_a^a f=0$</li>
+<li><b>线性性</b>；<b>区间可加性</b>：$\int_a^b=\int_a^c+\int_c^b$</li>
+<li><b>保号性</b>：$f\ge0$ 则 $\int\ge0$；$f\le g$ 则 $\int f\le\int g$</li>
+<li><b>估值</b>：$m(b-a)\le\int_a^b f\le M(b-a)$</li>
+<li><b>奇偶性（白送分神器）</b>：$f$ 偶 ⟹ $\int_{-a}^a=2\int_0^a$；$f$ 奇 ⟹ $\int_{-a}^a=0$</li>
+<li><b>周期函数</b>：周期 $T$ ⟹ $\int_a^{a+T}=\int_0^T$</li>
+<li><b>积分中值定理</b>：连续 ⟹ 存在 $\xi$ 使 $\int_a^b f=f(\xi)(b-a)$（均值 $f(\xi)$）</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：奇函数在对称区间积分为零</div>
+<p>$\int_{-a}^a f(x)dx=\int_{-a}^0f+\int_0^af$。第一项换元 $t=-x$：$\int_{-a}^0f(x)dx=\int_a^0f(-t)(-dt)=\int_0^a f(-t)dt=-\int_0^a f(t)dt$（$f$ 奇，$f(-t)=-f(t)$）。两项相消为零。∎ <span class="tip">——几何直觉：奇函数图像关于原点对称，$x$ 轴上下面积等大异号。</span></p>
+</div>
+<div class="ex">
+<div class="title">例5.1 求 $\displaystyle\int_{-\pi}^{\pi}x^{2026}\sin x\,dx$。</div>
+<p><b>解：</b>被积函数偶×奇=奇。$\boxed{0}$。3 秒出答案——这就是为什么奇偶性要先看。</p>
+</div>
+<div class="ex">
+<div class="title">例5.2 把 $\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^n\sqrt{1+\frac kn}$ 写成定积分。</div>
+<p><b>解：</b>这是 $f(x)=\sqrt{1+x}$ 在 $[0,1]$ 的积分和：$\displaystyle\int_0^1\sqrt{1+x}\,dx=\frac23(2\sqrt2-1)$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>$\displaystyle\int_{-2}^{2}\frac{x^3\sin x}{1+x^2}dx$。</li><li>比较大小：$\displaystyle\int_0^1 x\,dx$ 与 $\displaystyle\int_0^1 x^2dx$。</li><li>估计 $\displaystyle\int_0^1 e^{x^2}dx$ 的范围。</li><li>把 $\displaystyle\lim_{n\to\infty}\frac1n\sum_{k=1}^n\sin\frac{k\pi}{2n}$ 化为定积分并求值。</li></ol></div>
+
+<h3 class="subsec" id="s5-2">5.2 微积分基本定理（全书的"心脏"）</h3>
+<div class="idea">
+<p><b>牛顿-莱布尼茨公式：</b>$\displaystyle\int_a^b f(x)dx=F(b)-F(a)$，其中 $F'=f$。</p>
+<p><b>变上限积分函数（中大期末必考！）：</b></p>
+<div class="formula">$$\Phi(x)=\int_a^x f(t)\,dt\ \Longrightarrow\ \Phi'(x)=f(x)$$$$\frac{d}{dx}\int_{\varphi(x)}^{\psi(x)}f(t)\,dt=f(\psi(x))\psi'(x)-f(\varphi(x))\varphi'(x)$$</div>
+<p>关键：$\Phi$ 是 $f$ 的一个原函数，且 $\Phi(a)=0$。变上限积分 + 洛必达 = 必考组合。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：变上限积分的导数为什么等于 $f(x)$？（微积分基本定理的核心）</div>
+<p>$\frac{\Phi(x+h)-\Phi(x)}h=\frac1h\int_x^{x+h}f(t)dt$。由积分中值定理，存在 $\xi\in[x,x+h]$ 使 $=\frac1h f(\xi)\cdot h=f(\xi)$。令 $h\to0$，$\xi\to x$，由连续性 $f(\xi)\to f(x)$。故 $\Phi'(x)=f(x)$。∎ <span class="tip">——这个证明同时说明了两件事：①"求导"和"积分"互为逆运算；② 每个连续函数都有原函数。这就是"微积分基本定理"名字的由来。</span></p>
+</div>
+<div class="ex">
+<div class="title">例5.3 求 $\displaystyle\lim_{x\to0}\frac{\int_0^{x^2}\cos t^2\,dt}{x^2}$。</div>
+<p><b>解：</b>$\frac00$ 型，洛必达：$\frac{2x\cos x^4}{2x}=\cos x^4\to1$。$\boxed{1}$ <span class="tip">——2017 中大真题同款！</span></p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="5"><li>求 $\dfrac{d}{dx}\displaystyle\int_{x}^{x^2}e^{t^2}dt$。</li><li>求 $\displaystyle\lim_{x\to0}\frac{\int_0^x\sin t^2\,dt}{x^3}$。</li><li>设 $F(x)=\displaystyle\int_0^x t f(t^2)dt$，求 $F'(x)$。</li><li>求 $f(x)=\displaystyle\int_0^x (t-1)(t-2)e^{-t^2}dt$ 的驻点并判断极值。</li></ol><ol start="18"><li>求 $\displaystyle\lim_{x\to0}\frac{\int_0^x\arctan t\,dt}{x^2}$。</li></ol></div>
+
+<h3 class="subsec" id="s5-3">5.3 定积分的换元与分部</h3>
+<div class="idea">
+<p><b>换元法：</b>$\displaystyle\int_a^b f(x)dx=\int_\alpha^\beta f(\varphi(t))\varphi'(t)dt$，<b>三换：换被积、换微元、换上下限</b>，且不必回代。</p>
+<p><b>分部法：</b>$\displaystyle\int_a^b u\,dv=\left[uv\right]_a^b-\int_a^b v\,du$。</p>
+<p><b>两个高频结论：</b></p>
+<div class="formula">$$\int_0^{\pi/2}\sin^n x\,dx=\int_0^{\pi/2}\cos^n x\,dx=\begin{cases}\dfrac{(n-1)!!}{n!!}\cdot\dfrac\pi2,&n\ \text{偶}\\[8pt]\dfrac{(n-1)!!}{n!!},&n\ \text{奇}\end{cases}$$$$\int_0^\pi x f(\sin x)dx=\frac\pi2\int_0^\pi f(\sin x)dx\ \text{（区间再现）}$$</div>
+</div>
+<div class="derive">
+<div class="dt"> 推导：华里士（Wallis）公式的递推</div>
+<p>记 $I_n=\int_0^{\pi/2}\sin^nx\,dx$。分部：$I_n=-\int_0^{\pi/2}\sin^{n-1}x\,d\cos x=\left[-\sin^{n-1}x\cos x\right]_0^{\pi/2}+(n-1)\int_0^{\pi/2}\sin^{n-2}x\cos^2x\,dx=(n-1)(I_{n-2}-I_n)$。移项：$I_n=\frac{n-1}{n}I_{n-2}$。结合 $I_0=\frac\pi2,\ I_1=1$ 递推得公式。∎ <span class="tip">——热学里算 $\int_0^\infty v^n e^{-\alpha v^2}dv$ 的 $\Gamma$ 函数技巧与此同源。</span></p>
+</div>
+<div class="ex">
+<div class="title">例5.4 求 $\displaystyle\int_0^{\pi/2}\sin^4x\,dx$。</div>
+<p><b>解：</b>用公式：$\frac{3!!}{4!!}\cdot\frac\pi2=\frac{3\cdot1}{4\cdot2}\cdot\frac\pi2=\boxed{\frac{3\pi}{16}}$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="9"><li>$\displaystyle\int_0^1 x\sqrt{1-x^2}\,dx$。</li><li>$\displaystyle\int_1^e \ln x\,dx$。</li><li>$\displaystyle\int_0^{\pi/2}\cos^5x\,dx$。</li><li>$\displaystyle\int_0^\pi x\sin^3x\,dx$。</li><li>$\displaystyle\int_{-1}^1 x^2\sqrt{1-x^2}\,dx$。</li></ol><ol start="19"><li>求 $I_n=\displaystyle\int_0^1 x^n e^xdx$ 的递推式，并求 $I_2$。</li></ol></div>
+
+<h3 class="subsec" id="s5-4">5.4 反常积分</h3>
+<div class="idea">
+<p><b>两类反常积分：</b>① 无穷区间：$\int_a^{+\infty}f=\lim_{b\to\infty}\int_a^b f$；② 无界函数（瑕积分）：如 $\int_0^1\frac{dx}{\sqrt x}=\lim_{\varepsilon\to0^+}\int_\varepsilon^1\frac{dx}{\sqrt x}$。</p>
+<p><b>判敛的标尺（$p$ 积分）：</b></p>
+<div class="formula">$$\int_1^{+\infty}\frac{dx}{x^p}:\ p&gt;1\ \text{收敛};\ p\le1\ \text{发散}\qquad\qquad\int_0^1\frac{dx}{x^p}:\ p&lt;1\ \text{收敛};\ p\ge1\ \text{发散}$$</div>
+<p><b>比较判别法：</b>$0\le f\le g$，$g$ 收敛 ⟹ $f$ 收敛；$f$ 发散 ⟹ $g$ 发散。极限形式：$\lim\frac fg=c\in(0,\infty)$ 则同敛散。</p>
+<p><b>必记结果：</b>$\displaystyle\int_0^{+\infty}e^{-x^2}dx=\frac{\sqrt\pi}{2}$（高斯积分，热学、统计物理的命根子），$\Gamma$ 函数 $\Gamma(s)=\int_0^\infty x^{s-1}e^{-x}dx$，$\Gamma(n+1)=n!$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>高斯积分 $\int_0^\infty e^{-x^2}dx$ 就是热学讲义里麦克斯韦速率分布归一化的那个积分；$\Gamma$ 函数在热学求平均速率 $\bar v=\int vf(v)dv$ 时直接出结果。高数这节是热学的"弹药库"。
+</div>
+<div class="ex">
+<div class="title">例5.5 判别 $\displaystyle\int_1^{+\infty}\frac{\sin x}{x^2}dx$ 的敛散性。</div>
+<p><b>解：</b>$\left|\frac{\sin x}{x^2}\right|\le\frac1{x^2}$，而 $\int_1^\infty\frac{dx}{x^2}$ 收敛，故原积分<b>绝对收敛</b>。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="14"><li>计算 $\displaystyle\int_0^{+\infty}e^{-2x}dx$。</li><li>计算 $\displaystyle\int_0^1\frac{dx}{\sqrt{1-x}}$。</li><li>判别 $\displaystyle\int_1^{+\infty}\frac{dx}{\sqrt{x^3+1}}$ 的敛散性。</li><li>计算 $\displaystyle\int_{-\infty}^{+\infty}\frac{dx}{1+x^2}$。</li></ol><ol start="20"><li>判断 $\displaystyle\int_0^{+\infty}\frac{x}{1+x^3}dx$ 的敛散性。</li></ol></div>
+
+<h3 class="subsec" id="m5"> 第5章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 定积分计算"五查"</div>
+<p>计算前先查五件事：① 奇偶性（对称区间）；② 周期性；③ 区间可加（分段/绝对值）；④ 华里士公式（$0$ 到 $\frac\pi2$ 的 $\sin^n$）；⑤ 换元三换（被积、微元、限）。</p>
+<p><b>例题演示：</b>$\int_{-2}^2\frac{x^3\sin x}{1+x^2}dx$：奇函数，直接 0。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 区间再现公式</div>
+<p><b>适用：</b>被积函数含 $f(\sin x)$ 且积分区间 $[0,\pi]$；或含 $\frac{f(x)}{f(x)+f(a+b-x)}$ 型。</p>
+<p><b>步骤：</b>令 $t=a+b-x$（"倒过来"），两式相加除以 2。</p>
+<p><b>例题演示：</b>$\int_0^\pi\frac{x\sin x}{1+\cos^2x}dx=\frac\pi2\int_0^\pi\frac{\sin x}{1+\cos^2x}dx=\frac\pi2\left[-\arctan(\cos x)\right]_0^\pi=\frac{\pi^2}4$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 变上限积分函数四步处理</div>
+<p>① 上下限都是函数时：$\frac{d}{dx}\int_{\varphi}^{\psi}f=f(\psi)\psi'-f(\varphi)\varphi'$；② 被积函数含 $x$ 时先换元把 $x$ 移出去；③ 结合洛必达求极限；④ 结合单调性研究极值。</p>
+<p><b>例题演示：</b>$\frac d{dx}\int_x^{x^2}e^{t^2}dt=2xe^{x^4}-e^{x^2}$。</p>
+</div>
+<div class="method">
+<div class="mt">方法四 · 反常积分判敛"比 $p$ 积分"</div>
+<p>① 先找可能的"坏点"（无穷远、瑕点）；② 在坏点附近与 $\frac1{x^p}$ 比较（用等价无穷小/等价无穷大找 $p$）；③ 按 $p$ 积分标准判。</p>
+<p><b>例题演示：</b>$\int_1^\infty\frac{dx}{\sqrt{x^3+1}}$：$x\to\infty$ 时 $\sim x^{-3/2}$，$p=\frac32&gt;1$ 收敛。</p>
+</div>
+
+<h2 class="sec" id="ch6">第6章 定积分的应用</h2>
+<div class="hook">
+<p><b>阿基米德死后，他的墓碑上没刻名字，只刻了一个球和一个外切圆柱。</b>他生前最得意的事，是算出"球的体积恰好是外切圆柱的 $\frac23$"——为这个结果，他发明了穷竭法。</p>
+<p>而你在本章学完微元法之后，这道让阿基米德名垂青史的题，大概要花你 30 秒。<b>这就是微积分最"降维打击"的地方：它把"巧思"变成了"流程"。</b></p>
+<p>本章没有新定理，只有一种思维——<b>微元法</b>：把整体切成无穷薄的片，每片用一个 $d$ 量近似，再积分起来。面积、体积、弧长、功、质心、转动惯量、水压力，全是这一个打法。你马上会发现，力学讲义里的转动惯量表（$I=\int r^2dm$）和本章是同一件事，学会一次，两门课都会了。中大卷子里的应用题基本都从这章出，属于"会流程就送分"的地段。</p>
+</div>
+
+<h3 class="subsec" id="s6-1">6.1 面积、体积、弧长</h3>
+<div class="idea">
+<p><b>微元法四步：</b>① 选取积分变量（谁横着切就 $d$ 谁）；② 写出典型微元 $dA/dV/ds$；③ 确定上下限；④ 积分。</p>
+<p><b>公式：</b></p>
+<div class="formula">$$A=\int_a^b\left[f(x)-g(x)\right]dx\qquad V_x=\int_a^b\pi f^2(x)\,dx\ \text{（绕x轴）}\qquad V_y=\int_a^b2\pi x f(x)\,dx\ \text{（绕y轴，柱壳法）}$$$$s=\int_a^b\sqrt{1+y'^2}\,dx\qquad s=\int_\alpha^\beta\sqrt{\varphi'^2+\psi'^2}\,dt\ \text{（参数式）}$$</div>
+<p><b>极坐标面积：</b>$A=\dfrac12\int_\alpha^\beta r^2(\theta)\,d\theta$；极坐标弧长 $s=\int\sqrt{r^2+r'^2}\,d\theta$。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：旋转体体积公式与阿基米德的 $\frac23$</div>
+<p>绕 $x$ 轴旋转：取 $[x,x+dx]$ 的薄片，它是半径 $f(x)$、厚 $dx$ 的圆盘，体积微元 $dV=\pi f^2(x)dx$，积分得 $V=\pi\int_a^b f^2dx$。用它推球体积：球是半圆 $y=\sqrt{R^2-x^2}$ 旋转，$V=\pi\int_{-R}^R(R^2-x^2)dx=\pi\left[2R^3-\frac{2R^3}3\right]=\frac43\pi R^3$。外切圆柱体积 $=\pi R^2\cdot2R=2\pi R^3$，故球：柱 $=\frac23$。∎ <span class="tip">——你刚刚用 30 秒走完了阿基米德最得意的成果，这就是微积分的威力。</span></p>
+</div>
+<div class="ex">
+<div class="title">例6.1 求 $y=x^2$ 与 $y=x$ 围成的面积。</div>
+<p><b>解：</b>交点 $x=0,1$。$A=\int_0^1(x-x^2)dx=\left[\frac{x^2}2-\frac{x^3}3\right]_0^1=\boxed{\frac16}$。</p>
+</div>
+<div class="ex">
+<div class="title">例6.2 求 $y=\sin x\ (0\le x\le\pi)$ 绕 $x$ 轴旋转所得体积。</div>
+<p><b>解：</b>$V=\pi\int_0^\pi\sin^2x\,dx=\pi\cdot2\cdot\frac\pi4=\boxed{\frac{\pi^2}{2}}$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>求 $y=x^2$ 与 $y^2=x$ 所围面积。</li><li>求椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ 的面积。</li><li>求圆 $x^2+(y-b)^2=a^2\ (b>a)$ 绕 $x$ 轴旋转的体积。</li><li>求曲线 $y=\dfrac{x^3}6+\dfrac1{2x}$ 从 $x=1$ 到 $x=3$ 的弧长。</li><li>求心形线 $r=a(1+\cos\theta)$ 的面积。</li></ol><ol start="10"><li>求 $y=e^x\ (0\le x\le1)$ 绕 $x$ 轴旋转的体积。</li><li>求 $r=2\cos\theta$ 所围面积。</li></ol><ol start="14"><li>求 $y=\ln x$ 从 $x=1$ 到 $x=\sqrt3$ 的弧长。</li></ol></div>
+
+<h3 class="subsec" id="s6-2">6.2 物理应用：功、质心、转动惯量</h3>
+<div class="idea">
+<p><b>功：</b>$W=\int_a^b F(x)dx$。典型：① 变力拉弹簧：$F=kx$，$W=\int_0^X kx\,dx=\frac12kX^2$；② 抽水/提升液体的功：把液层切薄片，$dW=$（薄片重）×（提升高度）。</p>
+<p><b>静矩与质心（重心）：</b></p>
+<div class="formula">$$\bar x=\frac{\int_a^b xf(x)dx}{\int_a^b f(x)dx},\qquad \bar y=\frac{\frac12\int_a^b f^2(x)dx}{\int_a^b f(x)dx}$$</div>
+<p><b>转动惯量（力学讲义第6章的预演）：</b>线密度 $\rho$ 的细杆：$I=\int r^2\,dm$。匀质细杆（长 $L$，质心为轴）：$I=\frac1{12}mL^2$；端点垂直轴：$\frac13 mL^2$；细圆环（绕中心轴）：$mR^2$；圆盘（绕中心轴）：$\frac12mR^2$。</p>
+<p><b>水压力：</b>深度 $h$ 处压强 $p=\rho gh$，$dF=\rho gh\cdot dA$。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：变力做功 $W=\int F\,dx$ 的微元逻辑</div>
+<p>把路径 $[a,b]$ 切成小段 $[x,x+dx]$，这小段内力近似不变 $F(x)$，微元功 $dW=F(x)dx$（"力×位移"）。总功是各微元之和，令 $dx\to0$ 得 $W=\int_a^b F(x)dx$。∎ <span class="tip">——与力学讲义里"变力做功"完全一致：$W=\int\vec F\cdot d\vec r$。物理应用题的步骤永远是：切微元→写 $d$ 量→定限→积分。</span></p>
+</div>
+<div class="ex">
+<div class="title">例6.3 半径 $R$ 的半球形水池装满水，将水全部抽出需做多少功？（水密度 $\rho$，重力加速度 $g$）</div>
+<p><b>解：</b>取深度 $y$ 处厚 $dy$ 的薄层（坐标：池顶 $y=0$，池底 $y=R$）。薄层半径 $r=\sqrt{R^2-y^2}$，体积 $\pi r^2dy$，质量 $\rho\pi r^2dy$，提升高度 $y$。$W=\int_0^R\rho g\pi(R^2-y^2)y\,dy=\rho g\pi\left[\frac{R^2y^2}2-\frac{y^4}4\right]_0^R=\boxed{\frac{\rho g\pi R^4}{4}}$。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="6"><li>弹簧伸长 $x$ 所需力 $F=kx$。将弹簧从原长拉长 $L$，做功多少？</li><li>求曲线 $y=\sin x\ (0\le x\le\pi)$ 与 $x$ 轴围成图形的质心。</li><li>求长为 $L$ 的均匀细杆绕其一端垂直轴的转动惯量（线密度 $\lambda$）。</li><li>底为 8m、高为 3m 的等腰三角形水闸，顶点朝下竖直放入水中，求一侧所受总水压力。</li></ol><ol start="12"><li>两电子相距 $r$ 时斥力 $F=\dfrac{k}{r^2}$。把一电子从 $r=a$ 推到 $r=b>a$，求做功。</li><li>求半径为 $R$ 的半圆盘（均匀）质心位置。</li></ol><ol start="15"><li>半径为 $R$ 的圆柱形水桶高 $H$ 装满水，把水全部抽到桶口上方 $h$ 处需做多少功？</li></ol></div>
+
+<h3 class="subsec" id="m6"> 第6章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 微元法四步（本章唯一核心方法）</div>
+<p><b>步骤：</b>① 选积分变量并画图（谁被"切"就 $d$ 谁）；② 在典型位置写出微元 $dA,\ dV,\ ds,\ dW$ 的表达式；③ 定积分限；④ 计算。</p>
+<p><b>例题演示：</b>求椭圆面积：切竖直条，微元 $dA=y\,dx=b\sqrt{1-\frac{x^2}{a^2}}dx$，$A=4\int_0^a b\sqrt{1-\frac{x^2}{a^2}}dx=\pi ab$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 绕 $y$ 轴旋转选"柱壳法"还是"垫圈法"？</div>
+<p><b>选法：</b>函数能解出 $x(y)$ 用垫圈（$V=\pi\int x^2dy$）；解不出就用柱壳（$V=2\pi\int x\,f(x)dx$）。柱壳法对 $y=f(x)$ 直接可用，最常用。</p>
+<p><b>例题演示：</b>$y=\sin x,\ x\in[0,\pi]$ 绕 $y$ 轴：$V=2\pi\int_0^\pi x\sin x\,dx=2\pi\left[-x\cos x+\sin x\right]_0^\pi=2\pi^2$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 物理应用题"切片"清单</div>
+<p>抽水/提升：$dW=\rho g\cdot$（薄层体积）$\times$（提升高度）；水压力：$dF=\rho gh\cdot$（窄条面积）；质心：$\bar x=\frac{\int x\,dm}{\int dm}$；转动惯量：$dI=r^2dm$。</p>
+<p><b>例题演示：</b>长为 $L$ 均匀细杆绕一端垂直轴的转动惯量：$I=\int_0^L x^2\lambda dx=\frac{\lambda L^3}3=\frac13mL^2$。</p>
+</div>
+
+<h2 class="sec" id="ch7">第7章 微分方程</h2>
+<div class="hook">
+<p><b>牛顿写《原理》之前，先给自己出了三道"应用题"：苹果落地、行星绕日、潮汐涨落。</b>三个看起来毫无关系的现象，被他写成了同一种语言——微分方程。为了解这些方程，他发明了微积分（有历史学家开玩笑说，顺序其实反了：他是先有了解方程的需要，才有了微积分）。</p>
+<p><b>微分方程，就是"用变化率说话的自然规律"。</b>弹簧振子 $\ddot x+\omega^2x=0$、热学的冷却定律 $\frac{dT}{dt}=-k(T-T_0)$、人口增长、电路暂态，全是这章的方程。你在物理课上看到的每一条"定律"，扒开都是微分方程。</p>
+<p>所以这一章对物理系学生的意义，怎么强调都不为过：<b>你期末物理卷上的简谐振动题，和本章的解方程是同一道题</b>。顺便预告一个爽点——后面会看到，$y''+y=\cos x$ 的解里冒出一个 $\frac x2\sin x$，那个不停变大的 $x$ 因子，就是物理里说的"共振"。</p>
+</div>
+
+<h3 class="subsec" id="s7-1">7.1 一阶微分方程</h3>
+<div class="idea">
+<p><b>四种标准型（见到就按流程走）：</b></p>
+<ul>
+<li><b>可分离变量：</b>$\dfrac{dy}{dx}=f(x)g(y)$ ⟹ $\displaystyle\int\frac{dy}{g(y)}=\int f(x)dx$</li>
+<li><b>齐次型：</b>$\dfrac{dy}{dx}=\varphi\left(\dfrac yx\right)$ ⟹ 令 $u=\dfrac yx$，化为可分离</li>
+<li><b>一阶线性：</b>$y'+P(x)y=Q(x)$ ⟹ 通解公式</li>
+<div class="formula">$$y=e^{-\int P\,dx}\left[\int Q\,e^{\int P\,dx}dx+C\right]$$</div>
+<li><b>伯努利：</b>$y'+P(x)y=Q(x)y^n$ ⟹ 令 $z=y^{1-n}$ 化为线性</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：一阶线性方程通解公式（常数变易法）</div>
+<p>先解齐次 $y'+Py=0$：分离变量 $\frac{dy}y=-P\,dx$，得 $y=Ce^{-\int P\,dx}$。然后"常数变易"：设 $y=C(x)e^{-\int P\,dx}$ 是非齐次的解，代入原方程：$C'(x)e^{-\int Pdx}-C(x)P e^{-\int Pdx}+P\cdot C(x)e^{-\int Pdx}=Q$，中间两项相消，得 $C'(x)=Q e^{\int Pdx}$，故 $C(x)=\int Q e^{\int Pdx}dx+C$。∎ <span class="tip">——"先齐次、再变易"，这个思想在二阶方程里同样适用，是全章最值钱的一个推导。</span></p>
+</div>
+<div class="ex">
+<div class="title">例7.1（中大真题同款）求 $\dfrac{dy}{dx}=e^{x+y}$ 满足 $y(0)=0$ 的解。</div>
+<p><b>解：</b>分离：$e^{-y}dy=e^xdx$，积分 $-e^{-y}=e^x+C$。代入 $(0,0)$：$-1=1+C\Rightarrow C=-2$。故 $e^{-y}=2-e^x$，即 $\boxed{e^x+e^{-y}=2}$。<span class="tip">——中大2009级二期期末真题第一题。</span></p>
+</div>
+<div class="ex">
+<div class="title">例7.2 解 $y'+\dfrac{y}{x}=x^2$。</div>
+<p><b>解：</b>一阶线性，$P=\frac1x$，$e^{\int Pdx}=x$。$y=\frac1x\left[\int x^2\cdot x\,dx+C\right]=\frac1x\left[\frac{x^4}4+C\right]=\frac{x^3}4+\frac Cx$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>解 $xy'-y\ln y=0$。</li><li>解 $y'=\dfrac{y}{x}+\tan\dfrac yx$。</li><li>解 $y'+2xy=4x$。</li><li>解 $y'-xy=x y^2$。</li></ol><ol start="14"><li>解 $y'+y\tan x=\cos x$，$y(0)=1$。</li><li>解 $\dfrac{dy}{dx}=\dfrac yx-xy^2$。</li></ol><ol start="17"><li>物体温度变化率正比于与环境的温差。室温 20℃，物体 100℃ 放入，3 分钟后降到 85℃，问多久降到 60℃？（$\ln2\approx0.7,\ \ln13\approx2.59$）</li></ol></div>
+
+<h3 class="subsec" id="s7-2">7.2 可降阶的高阶方程</h3>
+<div class="idea">
+<p><b>三种可降阶类型：</b></p>
+<ul>
+<li><b>$y^{(n)}=f(x)$</b>：直接积分 $n$ 次。</li>
+<li><b>$y''=f(x,y')$（不显含 $y$）：</b>令 $p=y'$，化为 $p'=f(x,p)$。</li>
+<li><b>$y''=f(y,y')$（不显含 $x$）：</b>令 $p=y'$，$y''=p\dfrac{dp}{dy}$，化为 $p\dfrac{dp}{dy}=f(y,p)$。</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：$y''=p\dfrac{dp}{dy}$ 怎么来的？</div>
+<p>$y''=\frac{d}{dx}(y')=\frac{dp}{dx}$。把 $p$ 看作 $y$ 的函数（$p=p(y)$），由链式法则：$\frac{dp}{dx}=\frac{dp}{dy}\cdot\frac{dy}{dx}=p\frac{dp}{dy}$。∎ <span class="tip">——力学里"已知力随位置变化求速度"（$m\ddot x=F(x)$）就是用的这个降阶技巧：$v\frac{dv}{dx}=\frac{F(x)}m$。</span></p>
+</div>
+<div class="ex">
+<div class="title">例7.3（中大真题同款）解 $yy''-(y')^2=0$，$y(0)=y'(0)=1$。</div>
+<p><b>解：</b>不显含 $x$。令 $p=y'$，$y''=p\frac{dp}{dy}$：$yp\frac{dp}{dy}-p^2=0$。$p=0$ 不满足初值；故 $y\frac{dp}{dy}=p$，$\frac{dp}p=\frac{dy}y$，$p=C_1y$。由初值 $p(0)=C_1y(0)$ 得 $C_1=1$。$y'=y$，$y=C_2e^x$，由 $y(0)=1$ 得 $\boxed{y=e^x}$。<span class="tip">——中大2019级期末真题第8题。</span></p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="5"><li>解 $y''=6x$ 满足 $y(0)=y'(0)=0$。</li><li>解 $y''=x+y'$。</li><li>解 $y''+(y')^2=1$。</li><li>解 $(1+x^2)y''=2xy'$，$y(0)=0$，$y'(0)=3$。</li></ol></div>
+
+<h3 class="subsec" id="s7-3">7.3 二阶常系数线性微分方程</h3>
+<div class="idea">
+<p><b>结构：</b>$y''+py'+qy=f(x)$。通解 = 齐次通解 + 非齐次特解。</p>
+<p><b>齐次 $y''+py'+qy=0$：</b>特征方程 $\lambda^2+p\lambda+q=0$：</p>
+<ul>
+<li>两不等实根 $\lambda_1\neq\lambda_2$：$y=C_1e^{\lambda_1x}+C_2e^{\lambda_2x}$</li>
+<li>重根 $\lambda$：$y=(C_1+C_2x)e^{\lambda x}$</li>
+<li>共轭复根 $\alpha\pm i\beta$：$y=e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$</li>
+</ul>
+<p><b>非齐次特解（待定系数法）：</b></p>
+<ul>
+<li>$f(x)=P_m(x)e^{\lambda x}$：设 $y^*=x^kQ_m(x)e^{\lambda x}$，$k=$ $\lambda$ 是特征根的重数（0/1/2）。</li>
+<li>$f(x)=e^{\lambda x}[P_m(x)\cos\omega x+Q_n(x)\sin\omega x]$：设 $y^*=x^k e^{\lambda x}[R_l\cos\omega x+S_l\sin\omega x]$，$l=\max(m,n)$，$k=$ $\lambda+i\omega$ 是特征根的重数。</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：为什么设 $y=e^{\lambda x}$ 就能解齐次方程？</div>
+<p>把 $y=e^{\lambda x}$ 代入 $y''+py'+qy=0$：$(\lambda^2+p\lambda+q)e^{\lambda x}=0$。因 $e^{\lambda x}\neq0$，得特征方程 $\lambda^2+p\lambda+q=0$。<b>线性常系数方程的解空间是二维的</b>（由初始条件 $y(0),y'(0)$ 唯一确定），两个线性无关解的线性组合就是通解：两实根给 $e^{\lambda_1x},e^{\lambda_2x}$；重根时第二个解是 $xe^{\lambda x}$（可用降阶法求出）；复根 $\alpha\pm i\beta$ 时由欧拉公式 $e^{(\alpha\pm i\beta)x}=e^{\alpha x}(\cos\beta x\pm i\sin\beta x)$ 取实虚部得 $\cos,\sin$ 解。∎ <span class="tip">——注意重根时那个多出来的 $x$，以及复根与欧拉公式的联系：解微分方程时指数函数是所有"幂"里最特殊的一个。</span></p>
+</div>
+<div class="ex">
+<div class="title">例7.4 解 $y''-3y'+2y=e^x$。</div>
+<p><b>解：</b>齐次：$\lambda^2-3\lambda+2=0$，$\lambda=1,2$，$y_c=C_1e^x+C_2e^{2x}$。非齐次：$f=e^x$，$\lambda=1$ 是单根，设 $y^*=axe^x$。代入：$y^{*\prime}=a(x+1)e^x$，$y^{*\prime\prime}=a(x+2)e^x$，$a(x+2)-3a(x+1)+2ax=1\Rightarrow -a=1\Rightarrow a=-1$。通解 $\boxed{y=C_1e^x+C_2e^{2x}-xe^x}$。<span class="tip">——与中大真题"$f''-3f'+2f=e^{-x}$"同款套路。</span></p>
+</div>
+<div class="ex">
+<div class="title">例7.5 解 $y''+4y=\sin2x$。</div>
+<p><b>解：</b>齐次：$\lambda=\pm2i$，$y_c=C_1\cos2x+C_2\sin2x$。$f$ 对应 $\lambda=2i$ 是单根，设 $y^*=x(a\cos2x+b\sin2x)$。代入得 $a=-\frac14,\ b=0$。通解 $\boxed{y=C_1\cos2x+C_2\sin2x-\frac{x}{4}\cos2x}$。<span class="tip">——共振！力学讲义里"共振时振幅线性增长"就是这项 $\frac{x}{4}\cos2x$。</span></p>
+</div>
+<div class="conn">
+<b> 连接：</b>$\ddot x+\omega^2x=0$ 的通解 $x=A\cos(\omega t+\varphi)$ 就是力学讲义的简谐振动！$\ddot x+2\beta\dot x+\omega_0^2x=0$ 的三种情况（欠阻尼 $\beta&lt;\omega_0$ 振荡、临界、过阻尼）对应特征根判别式——力学和这节是同一道题的两个马甲。热学冷却定律 $\frac{dT}{dt}=-k(T-T_0)$ 是一阶线性方程。整章微分方程就是"物理规律的高数版"。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="9"><li>解 $y''-4y'+4y=0$。</li><li>解 $y''+2y'+5y=0$。</li><li>解 $y''+y=x^2$。</li><li>解 $y''-2y'+y=2e^x$。</li><li>解 $y''+y=\cos x$ 的通解。</li></ol><ol start="16"><li>解 $y''-2y'+2y=e^x\cos x+x$。</li></ol><ol start="18"><li>解 $y''+4y'+4y=3e^{-2x}$。</li><li>解 $\begin{cases}y''-y'-2y=0\\y(0)=1,\ y'(0)=2\end{cases}$。</li><li>解 $y''+y=\sec x$（提示：用常数变易法求特解）。</li></ol></div>
+
+<h3 class="subsec" id="m7"> 第7章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 一阶方程"看形下菜"四步</div>
+<p>① 先变形看是否可分离（把 $x$ 归 $x$、$y$ 归 $y$）；② 看是否齐次型（$\frac yx$ 的整体函数）；③ 看是否线性（$y'$ 和 $y$ 都是一次的）；④ 都不是，试伯努利（$y^n$ 乘在非齐次项上）。</p>
+<p><b>例题演示：</b>$y'-xy=xy^2$：伯努利 $n=2$，$z=y^{-1}$ 得 $z'+xz=-x$，线性公式解。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 二阶常系数非齐次的"待定系数三步"</div>
+<p>① 解特征方程写齐次通解；② 按 $f(x)$ 的类型设特解（含 $x^k$ 因子，$k$ 由"$\lambda$ 是不是特征根"决定）；③ 代入比较系数定参。</p>
+<p><b>例题演示：</b>$y''+y=x^2$：$\lambda=\pm i$ 不是 0，设 $y^*=ax^2+bx+c$，代入得 $a=1,b=0,c=-2$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 微分方程应用题"翻译三步"</div>
+<p>① 把文字翻译成"变化率=关系式"（如"速率正比于温差"⟹ $\frac{dT}{dt}=-k(T-T_0)$）；② 解方程（含初值定常数）；③ 用题设数据定参数。</p>
+<p><b>例题演示：</b>冷却定律（中大2023-24真题）：$T=20+80e^{-kt}$，用 $t=3$ 时 $T=85$ 定 $k$，再解 $T=60$ 的时刻。</p>
+</div>
+
+<h2 class="sec" id="ch8">第8章 多元函数微分学</h2>
+<div class="hook">
+<p><b>热学教材里有一组公式叫"麦克斯韦关系式"，长得像天书：</b>$\left(\frac{\partial T}{\partial V}\right)_S=-\left(\frac{\partial p}{\partial S}\right)_V$ 之类的四个式子。但如果你学过本章一个不起眼的定理——"混合偏导连续则求导次序可交换"（$f_{xy}=f_{yx}$）——会发现那四个式子不过是把同一个状态函数的混合偏导换了个次序写了两遍。</p>
+<p><b>这就是这一章的全部秘密：多变量的世界怎么求导。</b>偏导数（按住别的变量、只动一个）、全微分（切平面代替曲面）、链式法则（画树状图）、隐函数（不用解出 $y$ 也能求导）、极值（黑塞矩阵判定）。</p>
+<p>对物理系的人，这章是热学的数学预备课：状态函数 $U(S,V)$ 的全微分 $dU=TdS-pdV$，是本章第 1 节的原题；拉格朗日乘子法，是力学里"约束力"的数学脸。学完这章再翻开热学讲义，你会觉得麦克斯韦关系式不过如此。</p>
+</div>
+
+<h3 class="subsec" id="s8-1">8.1 偏导数与全微分</h3>
+<div class="idea">
+<p><b>偏导数：</b>$f_x(x_0,y_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}$——固定其他变量，对一个变量求导。</p>
+<p><b>全微分：</b>$dz=f_xdx+f_ydy$。可微 ⟹ 可偏导、连续；反过来不对。</p>
+<p><b>高阶偏导：</b>$f_{xy}=\frac{\partial^2 f}{\partial y\partial x}$。<b>混合偏导连续则次序无关：</b>$f_{xy}=f_{yx}$。<span class="tip">——热学麦克斯韦关系的全部数学基础。</span></p>
+<p><b>全微分近似计算：</b>$\Delta z\approx f_x\Delta x+f_y\Delta y$。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：全微分为什么是 $dz=f_xdx+f_ydy$？</div>
+<p>可微的定义：$\Delta z=f_x\Delta x+f_y\Delta y+o(\rho)$（$\rho=\sqrt{(\Delta x)^2+(\Delta y)^2}$）。几何意义：曲面在 $(x_0,y_0)$ 的<b>切平面</b>的纵坐标增量 = $f_x(x-x_0)+f_y(y-y_0)$。切平面方程：$z-z_0=f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$。<b>全微分 = 切平面代替曲面</b>，与一元"微分 = 切线代替曲线"完全平行。∎ <span class="tip">——热学里 $dU=TdS-pdV$ 的物理意义正是"内能曲面 $U(S,V)$ 的切平面"。</span></p>
+</div>
+<div class="ex">
+<div class="title">例8.1 设 $z=x^3y^2+e^{xy}$，求 $z_x,\ z_y,\ dz$。</div>
+<p><b>解：</b>$z_x=3x^2y^2+ye^{xy}$；$z_y=2x^3y+xe^{xy}$；$dz=(3x^2y^2+ye^{xy})dx+(2x^3y+xe^{xy})dy$。</p>
+</div>
+<div class="ex">
+<div class="title">例8.2 验证 $u=x^3-3xy^2$ 满足拉普拉斯方程 $u_{xx}+u_{yy}=0$。</div>
+<p><b>解：</b>$u_x=3x^2-3y^2$，$u_{xx}=6x$；$u_y=-6xy$，$u_{yy}=-6x$。相加为 0。∎ <span class="tip">——注意 $x^3-3xy^2=\operatorname{Re}(x+iy)^3$，拉普拉斯方程的解就是复解析函数的实部，这是复变函数论（大二）的伏笔。</span></p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>$z=\ln(x^2+y^2)$，求 $z_x,z_y$，并验证 $z_{xx}+z_{yy}=0$（$x^2+y^2\neq0$）。</li><li>$z=\arctan\dfrac yx$，求 $dz$。</li><li>$u=x^{yz}$，求 $u_x,u_y,u_z$。</li><li>用全微分近似计算：$f=\sqrt{x^2+y^2}$ 在 $(1,2)$ 附近估计 $\sqrt{1.02^2+1.98^2}$。</li></ol></div>
+
+<h3 class="subsec" id="s8-2">8.2 复合函数求导（链式法则）</h3>
+<div class="idea">
+<p><b>核心公式：</b>$z=f(u,v)$，$u=u(x,y)$，$v=v(x,y)$：</p>
+<div class="formula">$$\frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}\frac{\partial u}{\partial x}+\frac{\partial z}{\partial v}\frac{\partial v}{\partial x}\qquad\text{（树状图：每条路径相乘，各路径相加）}$$</div>
+<p>口诀：<b>画树状图</b>——从 $z$ 出发，经过中间变量到自变量，有多少条路径就加多少项。全微分形式不变性依然成立。</p>
+</div>
+<div class="ex">
+<div class="title">例8.3 $z=e^u\sin v$，$u=xy$，$v=x+y$，求 $\dfrac{\partial z}{\partial x}$。</div>
+<p><b>解：</b>$\frac{\partial z}{\partial x}=\frac{\partial z}{\partial u}\cdot y+\frac{\partial z}{\partial v}\cdot1=ye^u\sin v+e^u\cos v=e^{xy}[y\sin(x+y)+\cos(x+y)]$。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="5"><li>$z=u^2v$，$u=x+y$，$v=xy$，求 $z_x,z_y$。</li><li>$z=f(x^2+y^2)$（$f$ 可导），证明 $y\,z_x-x\,z_y=0$。</li><li>$u=f(x+y+z,\ xyz)$，求 $u_x$。</li><li>$z=f(x,\frac xy)$（$f$ 有二阶连续偏导），求 $z_{xx},z_{xy}$。</li></ol></div>
+
+<h3 class="subsec" id="s8-3">8.3 隐函数求导</h3>
+<div class="idea">
+<p><b>一个方程 $F(x,y)=0$：</b>$\dfrac{dy}{dx}=-\dfrac{F_x}{F_y}$。</p>
+<p><b>一个方程 $F(x,y,z)=0$：</b>$\dfrac{\partial z}{\partial x}=-\dfrac{F_x}{F_z}$，$\dfrac{\partial z}{\partial y}=-\dfrac{F_y}{F_z}$。</p>
+<p><b>方程组（雅可比行列式法）：</b>$\begin{cases}F(x,y,u,v)=0\\G(x,y,u,v)=0\end{cases}$，求 $\frac{\partial u}{\partial x}$：用克拉默法则解 $\begin{cases}F_uu_x+F_vv_x=-F_x\\G_uu_x+G_vv_x=-G_x\end{cases}$。分母是雅可比式 $J=\frac{\partial(F,G)}{\partial(u,v)}$。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：隐函数求导公式 $y'=-\frac{F_x}{F_y}$</div>
+<p>$F(x,y)=0$ 确定 $y=y(x)$，两边对 $x$ 求导（链式法则）：$F_x\cdot1+F_y\cdot y'=0$。解出 $y'=-\frac{F_x}{F_y}$（$F_y\neq0$）。∎ <span class="tip">——无需解出显式 $y$，直接公式。这也是"隐函数存在定理"$F_y\neq0$ 条件的由来。</span></p>
+</div>
+<div class="ex">
+<div class="title">例8.4 $x^2+y^2+z^2=4z$ 确定 $z(x,y)$，求 $z_x,z_y$ 和全微分 $dz$。</div>
+<p><b>解：</b>令 $F=x^2+y^2+z^2-4z$。$F_x=2x$，$F_y=2y$，$F_z=2z-4$。$z_x=-\frac{2x}{2z-4}=\frac{x}{2-z}$，$z_y=\frac{y}{2-z}$，$dz=\frac{x\,dx+y\,dy}{2-z}$。<span class="tip">——中大2023-24真题第16题同款。</span></p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="9"><li>$e^z=xyz$ 确定 $z(x,y)$，求 $z_x$。</li><li>$x+2y+z-2\sqrt{xyz}=0$ 确定 $z(x,y)$，求 $z_x,z_y$。</li><li>$\begin{cases}xu-yv=0\\yu+xv=1\end{cases}$，求 $\dfrac{\partial u}{\partial x}$。</li><li>由 $F(x+y+z,x^2+y^2+z^2)=0$ 确定 $z(x,y)$，求 $z_x$。</li></ol></div>
+
+<h3 class="subsec" id="s8-4">8.4 多元函数的极值</h3>
+<div class="idea">
+<p><b>无条件极值：</b>① 驻点：$f_x=f_y=0$；② 判别式 $AC-B^2$（$A=f_{xx},\ B=f_{xy},\ C=f_{yy}$）：</p>
+<ul>
+<li>$AC-B^2&gt;0$：$A&gt;0$ 极小，$A&lt;0$ 极大</li>
+<li>$AC-B^2&lt;0$：不是极值（鞍点）</li>
+<li>$AC-B^2=0$：失效，另法判别</li>
+</ul>
+<p><b>条件极值（拉格朗日乘数法）：</b>求 $f(x,y)$ 在 $\varphi(x,y)=0$ 下的极值 ⟹ 构造 $L=f+\lambda\varphi$，解 $L_x=L_y=L_\lambda=0$。多个约束就多个乘数。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：拉格朗日乘数法的几何原理</div>
+<p>约束曲线 $\varphi(x,y)=0$ 上走，求 $f$ 的极值。在极值点，$f$ 沿约束曲线的方向导数必为零，即 $\nabla f$ 垂直于约束曲线的切线；而 $\nabla\varphi$ 也垂直于约束曲线。故 $\nabla f\parallel\nabla\varphi$，即存在 $\lambda$ 使 $\nabla f+\lambda\nabla\varphi=0$。这就是 $L=f+\lambda\varphi$ 的三个方程 $L_x=L_y=L_\lambda=0$。∎ <span class="tip">——$\lambda$ 有物理意义：力学里它就是约束力（绳张力、轨道支持力）的大小！</span></p>
+</div>
+<div class="ex">
+<div class="title">例8.5 求 $f(x,y)=x^3+y^3-3xy$ 的极值。</div>
+<p><b>解：</b>$\begin{cases}f_x=3x^2-3y=0\\f_y=3y^2-3x=0\end{cases}\Rightarrow$ 驻点 $(0,0),(1,1)$。$f_{xx}=6x,\ f_{xy}=-3,\ f_{yy}=6y$。$(0,0)$：$AC-B^2=-9&lt;0$，非极值（鞍点）。$(1,1)$：$AC-B^2=36-9=27&gt;0$，$A=6&gt;0$，极小 $f(1,1)=-1$。</p>
+</div>
+<div class="ex">
+<div class="title">例8.6（中大真题同款）求椭圆 $x^2+2y^2=1$ 上到直线 $x+y=1$ 距离最短的点。</div>
+<p><b>解：</b>距离 $d=\frac{|x+y-1|}{\sqrt2}$，极小化 $f=\frac{(x+y-1)^2}{2}$。$L=\frac{(x+y-1)^2}2+\lambda(x^2+2y^2-1)$。$L_x=(x+y-1)+2\lambda x=0$，$L_y=(x+y-1)+4\lambda y=0$，联立得 $x=2y$。代入椭圆：$6y^2=1$，$y=\pm\frac1{\sqrt6}$，$x=\pm\frac2{\sqrt6}$。检验：$x=2y$ 且 $x+y-1&lt;0$ 时取正号，最短距离点 $\boxed{\left(\frac{2}{\sqrt6},\frac{1}{\sqrt6}\right)}$，$d_{\min}=\frac{1}{\sqrt2}\left(1-\frac{3}{\sqrt6}\right)$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>拉格朗日乘子法在力学里就是"约束力"（杆的张力、轨道的支持力就是 $\lambda$！），在热学里是最大熵原理（最可几分布 = 约束下熵最大）。多元极值判别 $AC-B^2&gt;0$ 就是线代讲义里"黑塞矩阵正定"的 2 阶特例。中大真题考过"椭圆上到直线距离最短的点"（模拟卷1第1题）——经典题型。
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="13"><li>求 $f(x,y)=x^2+xy+y^2-3x-6y$ 的极值。</li><li>求 $f(x,y)=xy$ 在 $x+y=1$ 下的极值。</li><li>求 $f(x,y)=x^2+y^2$ 在 $x^2+y^2+xy=1$ 下的最值。</li><li>体积为 $V$ 的长方体，表面积何时最小？</li><li>求 $z=x^2+y^2$ 在约束 $x^2+2y^2=1$ 下的最大值与最小值。</li><li>证明 $z=x^n\varphi\left(\frac yx\right)$ 满足 $x z_x+y z_y=nz$。</li></ol></div>
+
+<h3 class="subsec" id="m8"> 第8章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 链式法则"树状图法"</div>
+<p><b>步骤：</b>① 画依赖树（$z$ 在上，中间变量居中，自变量在下）；② 每条从 $z$ 到目标自变量的路径"沿途求导相乘"；③ 所有路径相加。</p>
+<p><b>例题演示：</b>$z=f(u,v),\ u=x+y,\ v=xy$：$z_x=f_u'\cdot1+f_v'\cdot y$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 隐函数求导"公式法"</div>
+<p><b>步骤：</b>① 移项成 $F=0$；② 求 $F_x,F_y(F_z)$；③ $y'=-\frac{F_x}{F_y}$。方程组则写雅可比式，用克拉默法则。</p>
+<p><b>例题演示：</b>$e^z=xyz$：$F=e^z-xyz$，$z_x=-\frac{-yz}{e^z-xy}=\frac{yz}{e^z-xy}$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 极值判别"三步走"</div>
+<p>① 解 $f_x=f_y=0$ 得驻点；② 算 $A=f_{xx},B=f_{xy},C=f_{yy}$；③ $AC-B^2$ 判别（&gt;0 看 $A$ 符号；&lt;0 鞍点；=0 失效）。<b>区域闭边界上的最值：</b>边界上还要单独算（参数化边界或拉格朗日）。</p>
+<p><b>例题演示：</b>$f=x^2+xy+y^2-3x-6y$：驻点 $(0,3)$，$A=2,B=1,C=2$，$AC-B^2=3&gt;0$ 极小 $-9$。</p>
+</div>
+
+<h2 class="sec" id="ch9">第9章 重积分</h2>
+<div class="hook">
+<p><b>还是阿基米德的墓碑：球，和外切圆柱。</b>第 6 章我们用一元积分 30 秒算出了球的体积。但那是作弊——我们假设了"旋转对称"。如果遇到一个不规则的立体呢？</p>
+<p>重积分回答的就是这个问题：<b>把"切片"升级到二维、三维。</b>二重积分是"先沿一个方向切片，再沿另一个方向叠起来"；三重积分是"先切片成面，再叠成体"。你会在推导里看到，重积分不过是把一元定积分的思想原封不动地干了两遍、三遍。</p>
+<p>这章在物理里的戏份重到离谱：力学算转动惯量 $I=\int r^2dm$（三重积分）、质心 $\bar r=\frac1M\int\vec r\,dm$；热学算分子平均速率（二重积分）；电磁学算带电体的场（重积分加线面积分）。中大卷子二重积分必考，套路只有四步：<b>画图 → 定限 → 选坐标 → 计算</b>。其中"画图"是官方评分标准里明码标价的步骤分。</p>
+</div>
+
+<h3 class="subsec" id="s9-1">9.1 二重积分</h3>
+<div class="idea">
+<p><b>定义：</b>$\displaystyle\iint_D f(x,y)d\sigma=\lim\sum f(\xi_i,\eta_i)\Delta\sigma_i$。几何意义：曲顶柱体体积（$f\ge0$）。</p>
+<p><b>性质：</b>线性、区域可加、保号、估值 $mS\le\iint\le MS$、<b>中值定理</b>。</p>
+<p><b>计算（化累次积分）：</b></p>
+<ul>
+<li>$X$ 型 $D=\{(x,y):a\le x\le b,\ \varphi_1(x)\le y\le\varphi_2(x)\}$：先 $y$ 后 $x$</li>
+<li>$Y$ 型：先 $x$ 后 $y$</li>
+<li>交换积分次序：<b>先画图</b>（这是中大真题最爱考的步骤分，不画图直接写答案最多给 5 分——真题评分标准原话！）</li>
+</ul>
+</div>
+<div class="derive">
+<div class="dt"> 推导：二重积分为什么能化累次积分？——"切片"思想</div>
+<p>把曲顶柱体沿 $y$ 方向切成一片片"薄墙"：固定 $x$，这片墙的面积是 $\int_{\varphi_1(x)}^{\varphi_2(x)}f(x,y)dy$（对 $y$ 的一元定积分），厚度 $dx$，体积微元 $=\left[\int_{\varphi_1}^{\varphi_2}f\,dy\right]dx$。再把所有墙从 $x=a$ 累到 $x=b$：$V=\int_a^b\left[\int_{\varphi_1(x)}^{\varphi_2(x)}f(x,y)dy\right]dx$。∎ <span class="tip">——"先切再叠"：切片是一个方向的一元积分，叠片是另一个方向的一元积分。三重积分同理可推（先一后二/先二后一）。</span></p>
+</div>
+<div class="ex">
+<div class="title">例9.1 计算 $\displaystyle\iint_D xy\,d\sigma$，$D$：$y=x,\ y=1,\ x=0$ 围成。</div>
+<p><b>解：</b>画图：三角形。$X$ 型：$0\le x\le1,\ x\le y\le1$。$\int_0^1\left[\frac{xy^2}2\right]_x^1dx=\frac12\int_0^1(x-x^3)dx=\frac12\left(\frac12-\frac14\right)=\boxed{\frac18}$。</p>
+</div>
+<div class="ex">
+<div class="title">例9.2 交换次序：$\displaystyle\int_0^1 dy\int_y^{\sqrt y}f(x,y)dx$。</div>
+<p><b>解：</b>画图：$y\le x\le\sqrt y\Leftrightarrow x^2\le y\le x$。交点 $(0,0),(1,1)$。交换后：$\displaystyle\int_0^1dx\int_{x^2}^{x}f(x,y)dy$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>$\displaystyle\iint_D(x+2y)d\sigma$，$D$：$y=x,\ y=x^2$ 围成。</li><li>交换次序：$\displaystyle\int_0^1dx\int_0^{x^2}f(x,y)dy$。</li><li>$\displaystyle\iint_D y\,d\sigma$，$D$：$x^2+y^2\le1,\ y\ge0$ 上半圆。</li><li>估计 $\displaystyle\iint_D e^{x^2+y^2}d\sigma$ 的范围，$D$：单位圆。</li></ol><ol start="16"><li>设 $f\in C(D)$，$D$ 连通，$\iint_D f\,d\sigma=0$，证明 $D$ 内存在点使 $f=0$。</li></ol></div>
+
+<h3 class="subsec" id="s9-2">9.2 极坐标下的二重积分</h3>
+<div class="idea">
+<p><b>换元：</b>$x=r\cos\theta,\ y=r\sin\theta$，$d\sigma=rdrd\theta$。</p>
+<p><b>何时用极坐标：</b>被积函数含 $x^2+y^2$，或区域是圆/圆环/扇形。</p>
+<p><b>高频结论：</b>$\displaystyle\int_0^{2\pi}\int_0^R e^{-r^2}r\,dr\,d\theta=\pi(1-e^{-R^2})$；面积 $S=\iint d\sigma=\iint rdrd\theta$。</p>
+<p><b>一般换元：</b>$\iint_D f=\iint_{D'}f(x(u,v),y(u,v))\left|\frac{\partial(x,y)}{\partial(u,v)}\right|dudv$。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：极坐标下 $d\sigma=rdrd\theta$（那个 $r$ 从哪来？）</div>
+<p>直角坐标到极坐标的雅可比行列式：$\frac{\partial(x,y)}{\partial(r,\theta)}=\begin{vmatrix}\cos\theta&-r\sin\theta\\\sin\theta&r\cos\theta\end{vmatrix}=r$。故 $dxdy=rdrd\theta$。<b>几何解释：</b>小扇形微元近似矩形，边长 $dr$ 和 $r\,d\theta$，面积 $r\,dr\,d\theta$。∎ <span class="tip">——忘乘 $r$ 是二重积分第一大错因，务必记住"极坐标面积元是 $r\,drd\theta$"。</span></p>
+</div>
+<div class="ex">
+<div class="title">例9.3（中大真题同款）$\displaystyle\iint_D r\,d\sigma$，$D$：心形线 $r=a(1+\cos\theta)$ 与圆 $r=a$ 围成的不含原点区域。</div>
+<p><b>解：</b>区域在 $\theta\in[-\pi/2,\pi/2]$ 内，$a\le r\le a(1+\cos\theta)$。$\iint r\,d\sigma=\int_{-\pi/2}^{\pi/2}\int_a^{a(1+\cos\theta)}r\cdot r\,dr\,d\theta=\frac{a^3}3\int_{-\pi/2}^{\pi/2}[(1+\cos\theta)^3-1]d\theta=\frac{a^3}{3}\left(\frac{22}{3}-\pi\right)$（展开后逐项积分，$\int\cos^n$ 用华里士）。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="5"><li>$\displaystyle\iint_D\sqrt{x^2+y^2}\,d\sigma$，$D$：$x^2+y^2\le a^2$。</li><li>$\displaystyle\iint_D e^{-(x^2+y^2)}d\sigma$，$D$：全平面。</li><li>求 $r=\sin\theta$ 与 $r=\cos\theta$ 所围公共部分面积。</li><li>$\displaystyle\iint_D(x^2+y^2)d\sigma$，$D$：$x^2+y^2\le2x$。</li></ol><ol start="13"><li>求 $r=1+\cos\theta$ 与 $r=1$ 围成的图形面积。</li><li>$\displaystyle\int_0^1dx\int_x^1 e^{y^2}dy$（提示：交换次序）。</li></ol></div>
+
+<h3 class="subsec" id="s9-3">9.3 三重积分</h3>
+<div class="idea">
+<p><b>两种计算法：</b></p>
+<ul>
+<li><b>投影法（先一后二）：</b>$\displaystyle\iiint_\Omega f\,dV=\iint_{D_{xy}}\left[\int_{z_1(x,y)}^{z_2(x,y)}f\,dz\right]dxdy$</li>
+<li><b>截面法（先二后一）：</b>$\displaystyle\iiint_\Omega f\,dV=\int_{c_1}^{c_2}\left[\iint_{D_z}f\,dxdy\right]dz$（截面为规则图形、被积只含 $z$ 时好用）</li>
+</ul>
+<p><b>柱坐标：</b>$x=r\cos\theta,\ y=r\sin\theta,\ z=z$，$dV=rdrd\theta dz$（旋转体首选）。</p>
+<p><b>球坐标：</b>$x=\rho\sin\varphi\cos\theta,\ y=\rho\sin\varphi\sin\theta,\ z=\rho\cos\varphi$，$dV=\rho^2\sin\varphi\,d\rho d\varphi d\theta$。</p>
+<p><b>常用体积公式：</b>球 $\frac43\pi R^3$、圆柱、圆锥 $\frac13\pi R^2h$。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：球坐标体积元 $dV=\rho^2\sin\varphi\,d\rho d\varphi d\theta$</div>
+<p>球坐标的雅可比：$\frac{\partial(x,y,z)}{\partial(\rho,\varphi,\theta)}=\rho^2\sin\varphi$（三阶行列式，建议自己算一遍）。几何解释：$\rho$ 方向边长 $d\rho$，经线方向 $\rho\,d\varphi$，纬线方向 $\rho\sin\varphi\,d\theta$，三边相乘。∎ <span class="tip">——"$\rho^2\sin\varphi$" 和极坐标的 "$r$" 一样是必背的微元系数。</span></p>
+</div>
+<div class="ex">
+<div class="title">例9.4 $\displaystyle\iiint_\Omega z^2dV$，$\Omega$：$x^2+y^2+z^2\le R^2$（中大模拟卷5真题）。</div>
+<p><b>解：</b>球坐标：$\int_0^{2\pi}\int_0^\pi\int_0^R \rho^2\cos^2\varphi\cdot\rho^2\sin\varphi\,d\rho d\varphi d\theta=2\pi\cdot\frac{R^5}5\cdot\frac23=\boxed{\frac{4\pi R^5}{15}}$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>重积分在力学里是刚体转动惯量 $I=\int r^2dm$（三重积分！）、质心 $\bar r=\frac1M\int\vec r\,dm$；在热学里是麦克斯韦分布的平均值计算；雅可比行列式在线代讲义里就是行列式的"体积解释"（$|\det|$=面积/体积缩放比）。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="9"><li>$\displaystyle\iiint_\Omega z\,dV$，$\Omega$：$z=\sqrt{x^2+y^2}$ 与 $z=1$ 围成。</li><li>求球体 $x^2+y^2+z^2\le R^2$ 的体积（球坐标）。</li><li>$\displaystyle\iiint_\Omega(x^2+y^2)dV$，$\Omega$：$x^2+y^2\le1,\ 0\le z\le2$ 圆柱。</li><li>$\displaystyle\iiint_\Omega z\,dV$，$\Omega$：$x^2+y^2+z^2\le1,\ z\ge0$。</li></ol><ol start="15"><li>求 $x^2+y^2+z^2\le R^2$ 与 $z\ge\sqrt{x^2+y^2}$ 公共部分体积。</li></ol><ol start="17"><li>$\displaystyle\iiint_\Omega x^2dV$，$\Omega$：$x^2+y^2+z^2\le R^2$。</li><li>用二重积分求球面 $x^2+y^2+z^2=R^2$ 的表面积（上半球面积 ×2）。</li></ol></div>
+
+<h3 class="subsec" id="m9"> 第9章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 二重积分"画图定限四步"</div>
+<p>① 画出积分区域（<b>中大评分标准：不画图直接写答案最多给一半分</b>）；② 判断 $X$ 型/$Y$ 型，选先积谁；③ 定四条积分限；④ 计算。定限口诀："先积的变量限是函数，后积的变量限是常数"。</p>
+<p><b>例题演示：</b>$\iint_D(x+2y)d\sigma$，$D:y=x$ 与 $y=x^2$ 围成：$0\le x\le1,\ x^2\le y\le x$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 极坐标的适用判断</div>
+<p><b>两个信号：</b>① 被积函数含 $x^2+y^2$；② 区域是圆、环、扇形、心形线。转换口诀：<b>换被积（$x^2+y^2=r^2$）、换区域（边界写 $r(\theta)$）、乘 $r$</b>。</p>
+<p><b>例题演示：</b>$\iint_D e^{-(x^2+y^2)}d\sigma$ 全平面：$\int_0^{2\pi}\int_0^\infty e^{-r^2}r\,dr\,d\theta=\pi$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 三重积分选坐标"三问"</div>
+<p>① 区域是旋转体/柱形？→ 柱坐标；② 区域是球/球的一部分？→ 球坐标；③ 截面好算（如 $z=$ 常数的截面是圆）且被积只含 $z$？→ 截面法。</p>
+<p><b>例题演示：</b>$\iiint_\Omega z\,dV$，$\Omega:z=\sqrt{x^2+y^2}$ 与 $z=1$ 围成：柱坐标 $\int_0^{2\pi}\int_0^1\int_r^1 z\,r\,dz\,dr\,d\theta=\frac\pi4$。</p>
+</div>
+
+<h2 class="sec" id="ch10">第10章 曲线积分与曲面积分</h2>
+<div class="hook">
+<p><b>先说两个冷知识：格林公式的发明人格林，本职是面包师。</b>他白天揉面，晚上自学数学，1833 年发表了这篇后来以他命名的论文，一辈子没上过大学。而"高斯公式"其实应该叫"奥斯特罗格拉茨基公式"——这位俄国人比高斯早发表了好几年，但高斯声望太大，名字没抢过来。</p>
+<p>这章的真正主角是三个公式：<b>格林、高斯、斯托克斯</b>。它们仨说的是同一件事的三个版本——<b>"内部的积分 = 边界上的积分"</b>。格林说平面的边界是曲线；高斯说立体的边界是曲面；斯托克斯说曲面的边界是曲线。一个是二重积分换线积分，一个是三重积分换面积分，一个是面积分换线积分。</p>
+<p>为什么物理系要特别重视这章？因为<b>电磁学的半壁江山就是这三个公式</b>：高斯定理（电通量等于内部电荷）就是高斯公式，安培环路定理和法拉第定律就是斯托克斯公式。中大真题连年考斯托克斯，而且给三种解法——这章学明白了，大二电磁学直接领先半个身位。另一条暗线是"路径无关 ⟺ 保守场 ⟺ 势能存在"，这正是力学讲义里机械能守恒的数学脸。</p>
+</div>
+
+<h3 class="subsec" id="s10-1">10.1 两类曲线积分</h3>
+<div class="idea">
+<p><b>第一类（对弧长）：</b>$\displaystyle\int_L f(x,y)ds=\int_\alpha^\beta f(x(t),y(t))\sqrt{x'^2+y'^2}\,dt$。与方向无关。</p>
+<p><b>第二类（对坐标）：</b>$\displaystyle\int_L Pdx+Qdy=\int_\alpha^\beta\left[Px'(t)+Qy'(t)\right]dt$。与方向有关，反向变号。</p>
+<p><b>曲线积分的应用：</b>弧长、质量、质心；变力做功 $W=\int_L\vec F\cdot d\vec r=\int Pdx+Qdy$。</p>
+<p><b>平面曲线 $y=f(x)$ 的特例：</b>$ds=\sqrt{1+y'^2}dx$；空间曲线同理加 $z'$。</p>
+</div>
+<div class="ex">
+<div class="title">例10.1 求 $\displaystyle\int_L y\,ds$，$L$：摆线 $x=t-\sin t,\ y=1-\cos t,\ t\in[0,2\pi]$。</div>
+<p><b>解：</b>$ds=\sqrt{(1-\cos t)^2+\sin^2t}\,dt=\sqrt{2-2\cos t}\,dt=2\sin\frac t2\,dt$（$t\in[0,2\pi]$）。$\int_0^{2\pi}(1-\cos t)\cdot2\sin\frac t2\,dt=2\int_0^{2\pi}2\sin^2\frac t2\cdot\sin\frac t2\,dt$，令 $u=\cos\frac t2$ 积分，得 $\frac{32}{3}$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>$\displaystyle\int_L\sqrt{x^2+y^2}\,ds$，$L$：圆周 $x^2+y^2=a^2$。</li><li>$\displaystyle\int_L(x+y)dx+(x-y)dy$，$L$：$y=x^2$ 从 $(0,0)$ 到 $(1,1)$。</li><li>$\displaystyle\int_L 2xy\,dx+x^2dy$，$L$：从 $(0,0)$ 沿 $y=x$ 到 $(1,1)$，再沿 $y=1$ 到 $(2,1)$。</li><li>力 $\vec F=(y,-x)$ 沿单位圆上半弧从 $(1,0)$ 到 $(-1,0)$ 做功。</li></ol><ol start="17"><li>求圆柱面 $x^2+y^2=R^2$ 被平面 $z=0$ 与 $z=h$ 截下的侧面积。</li></ol></div>
+
+<h3 class="subsec" id="s10-2">10.2 格林公式与积分与路径无关</h3>
+<div class="idea">
+<p><b>格林公式：</b>$L$ 为 $D$ 的正向边界（沿边走，区域在左侧），则</p>
+<div class="formula">$$\oint_L Pdx+Qdy=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dxdy$$</div>
+<p><b>四大等价条件（单连通域，$P,Q$ 一阶偏导连续）：</b>$\oint_L Pdx+Qdy=0$ ⟺ 积分与路径无关 ⟺ 存在 $u$ 使 $du=Pdx+Qdy$（$u$ 是势函数）⟺ $P_y=Q_x$。</p>
+<p><b>求势函数三步：</b>① 验证 $P_y=Q_x$；② $u=\int P\,dx+\varphi(y)$；③ 对 $y$ 求导与 $Q$ 比较定 $\varphi$。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：格林公式（先证 $X$ 型区域，再拼接）</div>
+<p>设 $D=\{(x,y):a\le x\le b,\ \varphi_1(x)\le y\le\varphi_2(x)\}$。算 $\iint_D\left(-\frac{\partial P}{\partial y}\right)dxdy=-\int_a^b\left[P(x,\varphi_2)-P(x,\varphi_1)\right]dx=\int_a^b P(x,\varphi_1)dx-\int_a^b P(x,\varphi_2)dx=\oint_L Pdx$（沿边界分段：下弧从左到右 + 上弧从右到左，正向）。同理对 $Q$ 用 $Y$ 型区域证 $\iint\frac{\partial Q}{\partial x}=\oint Qdy$。一般区域切成有限个 $X$ 型/$Y$ 型小块相加，内部边线互相抵消。∎ <span class="tip">——格林公式本质是"二维的牛顿-莱布尼茨公式"：区域内的信息由边界上的值决定。</span></p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：路径无关 ⟺ $P_y=Q_x$ 的证明</div>
+<p>（⟸）若 $P_y=Q_x$，由格林公式，任何闭曲线 $\oint_L Pdx+Qdy=\iint(Q_x-P_y)d\sigma=0$，故积分与路径无关。（⟹）若积分与路径无关，则对任意小矩形区域 $\oint=0$，由格林公式 $\iint(Q_x-P_y)d\sigma=0$ 对一切小区域成立，取极限得 $Q_x-P_y=0$。∎</p>
+</div>
+<div class="ex">
+<div class="title">例10.2 验证 $(x^2+2xy-y^2)dx+(x^2-2xy-y^2)dy$ 是某函数全微分，并求该函数。</div>
+<p><b>解：</b>$P_y=2x-2y$，$Q_x=2x-2y$，相等 。$u=\int(x^2+2xy-y^2)dx=\frac{x^3}3+x^2y-xy^2+\varphi(y)$。$u_y=x^2-2xy+\varphi'(y)=Q=x^2-2xy-y^2\Rightarrow\varphi'(y)=-y^2\Rightarrow\varphi=-\frac{y^3}3+C$。故 $u=\frac{x^3}3+x^2y-xy^2-\frac{y^3}3+C$。</p>
+</div>
+<div class="ex">
+<div class="title">例10.3 用格林公式求 $\displaystyle\oint_L(x+y)dx-(x-y)dy$，$L$：单位圆正向。</div>
+<p><b>解：</b>$P=x+y,\ Q=-x+y$。$Q_x-P_y=-1-1=-2$。$=\iint_D(-2)d\sigma=-2\pi$。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>这就是力学讲义"保守力/势能"的数学原型：$P_y=Q_x$ = 力场的旋度为零 = 保守场；$u$ 就是势能（差负号）。电磁学里的静电场 $\oint\vec E\cdot d\vec l=0$ 就是格林公式的物理版。
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="5"><li>用格林公式计算 $\displaystyle\oint_L x^2y\,dx+xy^2dy$，$L$：$|x|+|y|=1$ 正向。</li><li>判断 $(e^x\sin y-2y)dx+(e^x\cos y-2x)dy$ 是否全微分，并求势函数。</li><li>求 $\displaystyle\int_{(0,0)}^{(1,1)}(2xy\,dx+x^2dy)$ 沿任意路径的值。</li><li>求 $\displaystyle\oint_L\frac{-y\,dx+x\,dy}{x^2+y^2}$，$L$：不过原点的闭曲线（原点在外/在内分别讨论）。</li></ol><ol start="13"><li>用曲线积分求椭圆 $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ 面积（公式 $S=\dfrac12\oint x\,dy-y\,dx$）。</li><li>验证 $(2x\cos y-y^2\sin x)dx+(2y\cos x-x^2\sin y)dy$ 是全微分并求原函数。</li></ol><ol start="18"><li>设 $u(x,y)$ 有连续二阶偏导且 $u_{xx}+u_{yy}=0$，证明 $\oint_{\partial D}\frac{\partial u}{\partial n}ds=0$。</li></ol></div>
+
+<h3 class="subsec" id="s10-3">10.3 曲面积分与高斯、斯托克斯公式</h3>
+<div class="idea">
+<p><b>第一类（对面积）：</b>$\displaystyle\iint_\Sigma f\,dS=\iint_D f(x,y,z(x,y))\sqrt{1+z_x^2+z_y^2}\,dxdy$。</p>
+<p><b>第二类（对坐标）：</b>$\displaystyle\iint_\Sigma Pdydz+Qdzdx+Rdxdy=\pm\iint_D[P(-z_x)+Q(-z_y)+R]dxdy$（上侧取 +，下侧取 −）。</p>
+<p><b>高斯公式（散度定理）：</b>$\Sigma$ 闭曲面外侧：</p>
+<div class="formula">$$\oiint_\Sigma Pdydz+Qdzdx+Rdxdy=\iiint_\Omega\left(P_x+Q_y+R_z\right)dV$$</div>
+<p><b>斯托克斯公式（旋度定理）：</b>$\Gamma$ 为有向曲面 $\Sigma$ 边界：</p>
+<div class="formula">$$\oint_\Gamma Pdx+Qdy+Rdz=\iint_\Sigma\begin{vmatrix}dydz&dzdx&dxdy\\ \partial_x&\partial_y&\partial_z\\ P&Q&R\end{vmatrix}$$</div>
+<div class="conn"><b> 连接：</b>高斯公式 = 电磁学高斯定理的数学版（电通量 = 内部电荷）；斯托克斯 = 安培环路定理、法拉第定律的数学版。中大真题连考三年斯托克斯。物理系学生：这章的公式不是数学，是电磁学的草稿。</div>
+</div>
+<div class="ex">
+<div class="title">例10.4（中大真题同款）求 $\displaystyle\iint_S x^3dydz+y^3dzdx+z^3dxdy$，$S$ 为球面 $x^2+y^2+z^2=a^2$ 外侧。</div>
+<p><b>解：</b>高斯公式：$=\iiint_\Omega 3(x^2+y^2+z^2)dV=3\int_0^{2\pi}\int_0^\pi\int_0^a\rho^2\cdot\rho^2\sin\varphi\,d\rho d\varphi d\theta=3\cdot2\pi\cdot2\cdot\frac{a^5}5=\boxed{\frac{12\pi a^5}{5}}$。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="9"><li>$\displaystyle\iint_\Sigma z\,dS$，$\Sigma$：$z=\sqrt{x^2+y^2}$ 被 $z=1$ 截下部分。</li><li>高斯公式：$\displaystyle\oiint_\Sigma xdydz+ydzdx+zdxdy$，$\Sigma$：单位球外侧。</li><li>斯托克斯：$\displaystyle\oint_\Gamma y\,dx+z\,dy+x\,dz$，$\Gamma$：$x^2+y^2+z^2=a^2,\ x+y+z=0$（从 $x$ 轴正向看逆时针）。</li><li>$\displaystyle\iint_\Sigma(x^2+y^2)dS$，$\Sigma$：锥面 $z=\sqrt{x^2+y^2}$ 与 $z=1$ 围成立体表面。</li></ol><ol start="15"><li>$\displaystyle\oiint_\Sigma x^2dydz+y^2dzdx+z^2dxdy$，$\Sigma$：$x^2+y^2+z^2=R^2$ 外侧。</li><li>$\displaystyle\oint_\Gamma y^2dx+xydy+xzdz$，$\Gamma$：柱面 $x^2+y^2=2y$ 与平面 $y=z$ 的交线，从 $z$ 轴正向看顺时针。</li></ol></div>
+
+<h3 class="subsec" id="m10"> 第10章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 曲线积分"先看类，再参数化"</div>
+<p>第一类（$ds$）：与方向无关，$ds=\sqrt{x'^2+y'^2}dt$；第二类（$dx,dy$）：与方向有关，注意起点终点对应参数上下限。<b>空间曲线同理加 $z'$。</b></p>
+<p><b>例题演示：</b>$\int_L\sqrt{x^2+y^2}ds$，$L:x^2+y^2=a^2$：参数化 $x=a\cos t,y=a\sin t$，$ds=a\,dt$，积分 $=2\pi a^2$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 闭曲线积分"三步决策"</div>
+<p>① 闭曲线且 $P_y=Q_x$？→ 0（或路径无关）；② 闭曲线但 $\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}$ 简单？→ 格林公式；③ 都不行 → 直接参数化。<b>有奇点（如原点）时挖洞：</b>内圈反向补一条小圆，小圆直接参数化算。</p>
+<p><b>例题演示：</b>$\oint_L\frac{-ydx+xdy}{x^2+y^2}$ 绕原点：挖洞后 $=2\pi$（与半径无关）。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 曲面积分"投影法"与"高斯/斯托克斯"的切换</div>
+<p>闭曲面 → 高斯公式（补面注意方向）；非闭曲面 → 投影法（$\sqrt{1+z_x^2+z_y^2}$ 或 $-z_x,-z_y,1$）；空间闭曲线 → 斯托克斯（选好投影面）。</p>
+<p><b>例题演示：</b>$\oiint_\Sigma xdydz+ydzdx+zdxdy$ 单位球外侧 $=\iiint3\,dV=4\pi$。</p>
+</div>
+
+<h2 class="sec" id="ch11">第11章 无穷级数</h2>
+<div class="hook">
+<p><b>1735 年，28 岁的欧拉算出 $1+\frac14+\frac19+\frac1{16}+\cdots=\frac{\pi^2}{6}$，整个欧洲数学界炸了。</b>这个"巴塞尔问题"悬赏已久：雅各布·伯努利公开挑战，至死未解；莱布尼茨、沃利斯都试过，全栽了。一个看起来和圆八竿子打不着的分数之和，蹦出来个 $\pi^2$。欧拉后来开玩笑说，他找到这个答案只用了"一种大胆的、此前没人用过的方法"（他先把 $\sin x$ 拆成无穷乘积，再展开——这方法严格性后来才补齐，但答案是对的）。</p>
+<p><b>级数的哲学一句话：把复杂的拆成无穷多个简单的。</b>泰勒级数把函数拆成多项式；傅里叶级数把函数拆成正弦波。拆完以后，很多不可能的计算（比如 $e^{0.3}$、$\sin 1°$）就变成了小学加法。</p>
+<p>特别提醒物理系的你：<b>傅里叶级数是傅里叶在研究热传导的时候发明的</b>——热学讲义第三章的热传导方程，力学讲义的弦振动、驻波，全是它。这一章在中大期末的固定戏份是：判敛、收敛域、幂级数求和，傅里叶展开。判敛是送分题，务必拿满。</p>
+</div>
+
+<h3 class="subsec" id="s11-1">11.1 常数项级数的判敛</h3>
+<div class="idea">
+<p><b>正项级数 $\sum u_n\ (u_n\ge0)$ 判敛武器（按出场顺序）：</b></p>
+<ul>
+<li><b>必要条件：</b>$\lim u_n\neq0\Rightarrow$ 发散（先查这个，最省事）</li>
+<li><b>比较判别法：</b>与 $p$ 级数 $\sum\frac1{n^p}$（$p&gt;1$ 收，$p\le1$ 散）、几何级数 $\sum q^n$（$|q|&lt;1$ 收）比较</li>
+<li><b>比值判别法：</b>$\lim\frac{u_{n+1}}{u_n}=\rho$：$\rho&lt;1$ 收，$\rho&gt;1$ 散，$\rho=1$ 失效</li>
+<li><b>根值判别法：</b>$\lim\sqrt[n]{u_n}=\rho$ 同上（含 $n$ 次幂时用）</li>
+<li><b>积分判别法：</b>$f$ 递减，$\sum f(n)$ 与 $\int_1^\infty f(x)dx$ 同敛散（$\sum\frac1{n\ln n}$ 发散等）</li>
+</ul>
+<p><b>交错级数（莱布尼茨）：</b>$u_n$ 递减趋于 0 ⟹ $\sum(-1)^{n-1}u_n$ 收敛。</p>
+<p><b>绝对收敛 ⟹ 收敛。</b>条件收敛：收敛但不绝对收敛（如 $\sum\frac{(-1)^n}{n}$）。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：$p$ 级数为什么 $p&gt;1$ 收敛、$p\le1$ 发散？（积分判别法的证明）</div>
+<p>$f(x)=\frac1{x^p}$ 递减。由图：$\int_1^{n+1}f\,dx\le\sum_{k=1}^n f(k)\le f(1)+\int_1^n f\,dx$（矩形面积夹在积分之间）。而 $\int_1^\infty\frac{dx}{x^p}$ 在 $p&gt;1$ 时收敛（$=\frac1{p-1}$）、$p\le1$ 时发散，故 $\sum\frac1{n^p}$ 与积分同敛散。∎ <span class="tip">——"级数和积分是一对孪生兄弟"，这个思想在热学里（玻色/费米分布的求和化积分）还会再见。</span></p>
+</div>
+<div class="ex">
+<div class="title">例11.1 判别 $\displaystyle\sum_{n=1}^\infty\frac{(-1)^n n}{3^n}$ 与 $\displaystyle\sum\frac{\sin n}{n^2}$ 的敛散性。</div>
+<p><b>解：</b>① $\left|\frac{(-1)^nn}{3^n}\right|=\frac n{3^n}$，比值 $\frac{n+1}{3n}\to\frac13&lt;1$，绝对收敛。② $\left|\frac{\sin n}{n^2}\right|\le\frac1{n^2}$，收敛，故绝对收敛。</p>
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="1"><li>$\displaystyle\sum\frac1{n^2+1}$。</li><li>$\displaystyle\sum\frac{2^n}{n!}$。</li><li>$\displaystyle\sum(-1)^n\frac1{\sqrt n}$。</li><li>$\displaystyle\sum\frac1{n\ln n}$。</li><li>$\displaystyle\sum\frac{n^n}{(n!)^2}$。</li></ol><ol start="18"><li>判断 $\displaystyle\sum_{n=2}^\infty\frac{1}{n\ln^2n}$ 的敛散性。</li></ol><ol start="20"><li>证明 $\displaystyle\sum\frac{\cos n\varphi}{n}$ 条件收敛（$\varphi\neq2k\pi$）。</li></ol></div>
+
+<h3 class="subsec" id="s11-2">11.2 幂级数</h3>
+<div class="idea">
+<p><b>收敛半径：</b>$\displaystyle\sum a_nx^n$，$\lim\left|\frac{a_{n+1}}{a_n}\right|=\rho$ ⟹ $R=1/\rho$（$\rho=0\Rightarrow R=\infty$；$\rho=\infty\Rightarrow R=0$）。</p>
+<p><b>收敛域 = 收敛区间 + 检查端点。</b>端点用常数项级数判敛。</p>
+<p><b>性质（收敛域内）：</b>逐项求导、逐项积分、和函数连续。</p>
+<p><b>必背展开（$|x|&lt;1$ 域）：</b></p>
+<div class="formula">$$\frac1{1-x}=\sum_{n=0}^\infty x^n,\quad\ln(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n},\quad\arctan x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n+1}$$</div>
+<p><b>幂级数求和套路：</b>凑成已知展开 / 先积分再求导 / 先求导再积分。</p>
+</div>
+<div class="ex">
+<div class="title">例11.2 求 $\displaystyle\sum_{n=1}^\infty\frac{x^{2n-1}}{2n-1}$ 的和函数及收敛域。</div>
+<p><b>解：</b>$S'(x)=\sum x^{2n-2}=\frac1{1-x^2}$（$|x|&lt;1$）。$S(x)=\int_0^x\frac{dt}{1-t^2}=\frac12\ln\frac{1+x}{1-x}$。端点 $x=\pm1$ 发散，收敛域 $(-1,1)$。</p>
+</div>
+<div class="ex">
+<div class="title">例11.3（中大真题同款）求 $\displaystyle\sum_{n=1}^\infty\frac{2n-1}{2^n}x^{2n-2}$ 的收敛半径。</div>
+<p><b>解：</b>比值：$\frac{a_{n+1}}{a_n}=\frac{(2n+1)/2^{n+1}}{(2n-1)/2^n}\to\frac12$，$R=\sqrt2$（注意是 $x^2$ 的幂级数，开方）。</p>
+</div>
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="6"><li>求 $\displaystyle\sum_{n=0}^\infty\frac{x^n}{3^n}$ 的收敛域与和函数。</li><li>求 $\displaystyle\sum_{n=1}^\infty\frac{x^n}{n}$ 的和函数。</li><li>求 $\displaystyle\sum_{n=1}^\infty n x^{n-1}$ 的和函数。</li><li>求 $\displaystyle\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!}$ 的和函数。</li><li>讨论 $\displaystyle\sum_{n=1}^\infty\frac{x^n}{n}$ 的收敛域。</li><li>求 $\displaystyle\sum_{n=1}^\infty\frac n{2^n}$ 的值。</li></ol><ol start="19"><li>求 $\displaystyle\sum_{n=1}^\infty\frac{x^n}{n(n+1)}$ 的和函数。</li></ol></div>
+
+<h3 class="subsec" id="s11-3">11.3 傅里叶级数</h3>
+<div class="idea">
+<p><b>以 $2\pi$ 为周期：</b></p>
+<div class="formula">$$f(x)=\frac{a_0}2+\sum_{n=1}^\infty(a_n\cos nx+b_n\sin nx),\qquad a_n=\frac1\pi\int_{-\pi}^\pi f(x)\cos nx\,dx,\quad b_n=\frac1\pi\int_{-\pi}^\pi f(x)\sin nx\,dx$$</div>
+<p><b>周期 $2l$：</b>把 $nx$ 换成 $\frac{n\pi x}{l}$，积分区间 $[-l,l]$，前面系数 $\frac1l$。</p>
+<p><b>收敛定理（狄利克雷）：</b>连续点收敛到 $f(x)$；<b>间断点收敛到 $\frac{f(x^-)+f(x^+)}2$</b>（跃度一半）。</p>
+<p><b>正弦/余弦级数：</b>奇函数只有正弦项；偶函数只有余弦项；可做奇延拓/偶延拓（半幅展开）。</p>
+</div>
+<div class="derive">
+<div class="dt"> 推导：傅里叶系数公式怎么来的？——三角函数系的正交性</div>
+<p>关键事实：$\int_{-\pi}^\pi\cos nx\cos mx\,dx=0\ (n\neq m)$，$\int_{-\pi}^\pi\sin nx\sin mx\,dx=0\ (n\neq m)$，$\int\sin nx\cos mx\,dx=0$，以及 $\int_{-\pi}^\pi\cos^2nx\,dx=\int\sin^2nx\,dx=\pi$。假设 $f=\frac{a_0}2+\sum(a_n\cos nx+b_n\sin nx)$，两边乘 $\cos mx$ 再逐项积分：右边只剩 $\cos mx$ 那一项 $=a_m\pi$，其余全为 0（正交性！），故 $a_m=\frac1\pi\int_{-\pi}^\pi f\cos mx\,dx$。∎ <span class="tip">——"用正交性把每个系数单独'筛'出来"，这招在量子力学里叫"投影算符"，在线代讲义里叫"正交基展开"。三处同一思想。</span></p>
+</div>
+<div class="ex">
+<div class="title">例11.4 将 $f(x)=x\ (-\pi&lt;x&lt;\pi)$ 展开为傅里叶级数，并求 $\displaystyle\sum_{n=1}^\infty\frac{(-1)^{n-1}}{2n-1}$ 的值。</div>
+<p><b>解：</b>奇函数，$a_n=0$。$b_n=\frac1\pi\int_{-\pi}^\pi x\sin nx\,dx=\frac2\pi\int_0^\pi x\sin nx\,dx=\frac{2(-1)^{n+1}}{n}$。故 $x\sim 2\sum_{n=1}^\infty\frac{(-1)^{n+1}}n\sin nx$。取 $x=\frac\pi2$：$\frac\pi2=2\sum\frac{(-1)^{n+1}}n\sin\frac{n\pi}2$，即 $\frac\pi4=1-\frac13+\frac15-\cdots$（莱布尼茨级数）。</p>
+</div>
+<div class="conn">
+<b> 连接：</b>傅里叶研究热传导方程发明的傅里叶级数——热学讲义的"热传导方程分离变量解"和力学讲义的"弦振动/驻波"全是它。傅里叶级数 = 把声音拆成纯音 = 量子力学里把波函数拆成本征态。这是你大一能摸到的最重要数学工具之一。
+</div>
+
+
+
+<div class="prac"><div class="title"> 本节练习</div><ol start="12"><li>将 $f(x)=\begin{cases}0,&-\pi\le x<0\\ x,&0\le x<\pi\end{cases}$ 展开为傅里叶级数，并求间断点处的和。</li><li>将 $f(x)=x^2\ (-\pi,\pi)$ 展开，并求 $\displaystyle\sum_{n=1}^\infty\frac1{n^2}$。</li><li>将 $f(x)=x$ 在 $(0,l)$ 上展开为正弦级数。</li><li>周期 $2l$ 的方波 $f=\begin{cases}1,&0<x<l\\-1,&-l<x<0\end{cases}$ 的傅里叶级数。</li><li>写出 $f(x)=|x|$ 在 $[-\pi,\pi]$ 的傅里叶展开，并求 $\displaystyle\sum_{n=1}^\infty\frac1{(2n-1)^4}$。</li><li>求 $\displaystyle\lim_{n\to\infty}\left(1+\frac1{2^2}+\frac1{3^2}+\cdots+\frac1{n^2}\right)$。</li></ol></div>
+
+<h3 class="subsec" id="m11"> 第11章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一 · 判敛"快速决策树"</div>
+<p>① 通项不趋于 0？→ 发散（最快）；② 正项级数：先与 $p$ 级数/几何级数比较，不行用比值/根值，再不行积分判别；③ 交错级数：莱布尼茨；④ 一般级数：先看是否绝对收敛（取绝对值当正项判）。</p>
+<p><b>例题演示：</b>$\sum\frac{2^n}{n!}$：比值 $\frac2{n+1}\to0&lt;1$ 收敛。</p>
+</div>
+<div class="method">
+<div class="mt">方法二 · 幂级数收敛域"三段式"</div>
+<p>① 比值/根值求 $R$；② 写出收敛区间；③ <b>端点代入</b>，用常数项级数判敛决定开闭。</p>
+<p><b>例题演示：</b>$\sum\frac{x^n}n$：$R=1$；$x=1$ 调和发散；$x=-1$ 交错收敛；收敛域 $[-1,1)$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三 · 幂级数求和"先积后导 / 先导后积"</div>
+<p>通项分母含 $n$（或 $2n-1$）→ 先求导消分母，求和后再积分；通项分子含 $n$ → 先积分消分子，求和后再求导。目标：凑成 $\frac1{1-x}$ 的级数。</p>
+<p><b>例题演示：</b>$\sum_{n=1}^\infty\frac{x^n}n$：$S'=\sum x^{n-1}=\frac1{1-x}$，$S=-\ln(1-x)$。</p>
+</div>
+<div class="method">
+<div class="mt">方法四 · 傅里叶展开"三问"</div>
+<p>① 周期多少？（定积分区间）② 奇偶性？（只算 $b_n$ 或只算 $a_n$）③ 有没有间断点？（间断点收敛到跃度一半）。</p>
+<p><b>例题演示：</b>方波 $\begin{cases}1,&0&lt;x&lt;\pi\\-1,&-\pi&lt;x&lt;0\end{cases}$：奇函数，$b_n=\frac2\pi\int_0^\pi\sin nx\,dx=\frac{2(1-\cos n\pi)}{n\pi}$，只有奇数项。</p>
+</div>
+
+<h2 class="sec" id="real"> 中大历年真题试卷（模考用，答案见讲义最后）</h2>
+<div class="ch-exam">
+<div class="title">真题一：2019级《高等数学(一)》第二学期期末 A 卷（来源：中大物院流传版，12 题，100 分，120 分钟）</div>
+<ol>
+<li>（8 分）交换二次积分次序：$\displaystyle\int_0^1dy\int_0^{y}f(x,y)dx+\int_1^2dy\int_0^{2-y}f(x,y)dx$。</li>
+<li>（6 分）求曲面 $z=x^2+y^2$ 被平面 $z=2$ 所截部分的面积。</li>
+<li>（6 分）求 $\displaystyle\iint_D r\,d\sigma$，$D$：心形线 $r=a(1+\cos\theta)$ 与圆 $r=a$ 围成的不含原点区域。</li>
+<li>（10 分）$\Gamma$ 为柱面 $x^2+y^2=2y$ 与平面 $y=z$ 的交线，从 $z$ 轴正向看顺时针，计算 $I=\displaystyle\oint_\Gamma y^2dx+xydy+xzdz$。</li>
+<li>（15 分）已知 $\displaystyle\int_L[2f(x)-e^x]\cos y\,dx+[f'(x)-3f(x)+10x]\sin y\,dy$ 与路径无关，$f$ 二阶连续可导，求 $f(x)$。</li>
+<li>（8 分）计算 $\displaystyle\iint_S xyz\,dxdy$，$S$ 为球面 $x^2+y^2+z^2=1$ 在第八卦限部分（$x&gt;0,y&lt;0,z&lt;0$），取外侧。</li>
+<li>（8 分）求 $\dfrac{dy}{dx}=\dfrac yx-xy^2$ 的通解。</li>
+<li>（8 分）解 $yy''-(y')^2=0$ 满足 $y(0)=y'(0)=1$ 的特解。</li>
+<li>（8 分）求幂级数 $\displaystyle\sum_{n=1}^\infty\frac{2n-1}{2^n}x^{2n-2}$ 的收敛半径、收敛区间与收敛域。</li>
+<li>（10 分）判敛：① $\displaystyle\sum\frac{n^{\ln n}}{(\ln n)^n}$；② $\displaystyle\sum\frac1{n(\ln n)(\ln\ln n)^{0.9}}$。</li>
+<li>（8 分）证明 $\displaystyle\sum n^2|x|e^{-n|x|}$ 在 $(-\infty,\infty)$ 上一致收敛。</li>
+<li>（5 分）证明 $\displaystyle\sum_{n=1}^\infty\frac{\cos n\varphi}{n}$ 不是绝对收敛。</li>
+</ol>
+</div>
+<div class="ch-exam">
+<div class="title">真题二：2017级《高等数学(二)》第一学期期末 A 卷（珠海校区，节选）</div>
+<ol>
+<li>（10 分）计算极限：（1）$\displaystyle\lim_{x\to+\infty}\frac{(e^x+5)^2(e^{2x}-7)^5}{(e^{3x}+9)^4}$；（2）$\displaystyle\lim_{x\to0^+}\frac{\int_0^{x^2}\cos t^2\,dt}{x}$。</li>
+<li>（10 分）设 $f(x)=e^x\sin x$，$x\in[0,2\pi]$。求单调区间、拐点、最大最小值。</li>
+</ol>
+</div>
+<div class="ch-exam">
+<div class="title">真题三：2009级第二学期期末（节选）</div>
+<ol>
+<li>求 $\dfrac{dy}{dx}=e^{x+y}$ 满足 $y(0)=0$ 的解。</li>
+<li>计算 $\displaystyle\iint_D y^2\,dxdy$，$D$：$x^2+y^2\le x$。</li>
+<li>设 $F(x)=\displaystyle\int_1^x\frac{\sin(xt^2)}t\,dt$（$x\neq0$），求 $F'(x)$。</li>
+</ol>
+</div>
+<div class="ch-exam">
+<div class="title">真题四：2023-2024学年《高等数学(下)》期末 A 卷（节选）</div>
+<ol>
+<li>（选择）设 $L$ 是从 $A(1,0)$ 到 $B(-1,2)$ 的直线段，则 $\displaystyle\int_L(x+y)ds=$______。</li>
+<li>（选择）下列级数发散的是：A. $\sum\frac1{2^n}$；B. $\sum\frac{(-1)^{n-1}}n$；C. $\sum\frac1{n(n+1)}$；D. $\sum\frac1{3\sqrt{n(n+1)}}$。</li>
+<li>（选择）$y''-2y'+5y=0$ 的通解形式。</li>
+<li>（选择）$D:(x-2)^2+(y-1)^2\le1$，比较 $I_1=\iint_D(x+2y)d\sigma$ 与 $I_2=\iint_D(x+3y)d\sigma$。</li>
+<li>（填空）$\Sigma$：$z=4-x^2-y^2$ 上侧，$\displaystyle\iint_\Sigma yz\,dydz+xz\,dzdx+x\,dxdy=$______。</li>
+<li>（填空）$\Omega$：$x^2+y^2\le4,\ 0\le z\le4$，$\displaystyle\iiint_\Omega(x^2+y^2)dV=$______。</li>
+<li>（计算）用三重积分求 $z=\sqrt{5-x^2-y^2}$ 与 $x^2+y^2=4z$ 所围立体体积。</li>
+<li>（计算）$x+2y+z-2\sqrt{xyz}=0$ 确定 $z(x,y)$，求 $z_x,z_y$。</li>
+<li>（应用）开水泡咖啡：初温 100℃，3 分钟后 85℃，室温 20℃，几分钟后降到 60℃？（$\ln2\approx0.7,\ \ln13\approx2.59$）</li>
+</ol>
+</div>
+
+<h2 class="sec" id="answers"> 全书答案与详解</h2>
+<div class="tip" style="margin-bottom:16px">
+<p><b>使用建议：</b>先独立完成全部题目再对答案。每题的【考查知识点】和【所用方法】帮你定位弱点——同一种方法错两题以上，回到正文方法小节重读重练。答案章节按「第N章」组织，与习题编号一一对应。</p>
+</div>
+
+<h3 class="subsec" id="ans1">第1章答案</h3>
+<div class="anssec">
+<div class="at">第1章 · 函数与极限</div>
+<div class="warn"><b>‍ 师兄批注：</b>第 1 章是最容易被轻视的一章——"极限谁不会算？"。经验是：期末失分最多的从来不是第 10 章，而是第 1 章的等价无穷小代换用错地方（加减法乱代）。这道坎你现在就得迈过去：每次用等价代换前问自己一句"这是在乘除的位置吗？"不是就换泰勒。这个习惯值 10 分。</div>
+<div class="ans"><span class="aq">【1-1】</span> $\boxed{(2,3]}$。<div class="sol">$\arcsin$ 要求 $\left|\frac{x-1}{2}\right|\le1\Rightarrow -1\le x\le3$；根号要求 $x^2-x-2&gt;0\Rightarrow x&lt;-1$ 或 $x&gt;2$；$x=-1$ 时分母为 0 舍去。交集：$(2,3]$。</div><span class="tag">考查：定义域三条件</span><span class="tag">方法：联立取交集</span></div>
+<div class="ans"><span class="aq">【1-2】</span> $f(f(x))=\dfrac{x}{1+2x}$；$n$ 次复合为 $\dfrac{x}{1+nx}$。<div class="sol">$f(f(x))=\frac{x/(1+x)}{1+x/(1+x)}=\frac{x}{1+2x}$。归纳：若 $f^{\circ n}(x)=\frac{x}{1+nx}$，则 $f^{\circ(n+1)}(x)=\frac{x/(1+nx)}{1+x/(1+nx)}=\frac{x}{1+(n+1)x}$。</div><span class="tag">考查：复合函数</span><span class="tag">方法：直接代入+归纳</span></div>
+<div class="ans"><span class="aq">【1-3】</span> 奇函数。<div class="sol">$f(-x)=\ln(-x+\sqrt{1+x^2})=\ln\frac{1}{x+\sqrt{1+x^2}}=-\ln(x+\sqrt{1+x^2})=-f(x)$（用了 $(-x+\sqrt{1+x^2})(x+\sqrt{1+x^2})=1$）。</div><span class="tag">考查：奇偶性判定</span><span class="tag">方法：验证 $f(-x)$ 与 $f(x)$ 关系</span></div>
+<div class="ans"><span class="aq">【1-4】</span> 分解：$y=\sqrt u,\ u=\ln v,\ v=\cos x$；定义域 $\{x\mid x=2k\pi,\ k\in\mathbb Z\}$。<div class="sol">$\ln\cos x\ge0\Rightarrow\cos x\ge1$，又 $\cos x\le1$，故 $\cos x=1$，$x=2k\pi$。</div><span class="tag">考查：复合分解+定义域</span><span class="tag">方法：逐层定界</span></div>
+<div class="ans"><span class="aq">【1-5】</span> 证明略，取 $\delta=\frac\varepsilon2$。<div class="sol">$|(2x+3)-5|=2|x-1|&lt;\varepsilon\Rightarrow|x-1|&lt;\frac\varepsilon2$，取 $\delta=\frac\varepsilon2$。</div><span class="tag">考查：$\varepsilon$-$\delta$ 定义</span><span class="tag">方法：由 $\varepsilon$ 倒推 $\delta$</span></div>
+<div class="ans"><span class="aq">【1-6】</span> 左极限 2，右极限 2，极限存在且等于 2。<div class="sol">$x\to1^-$：$x^2+1\to2$；$x\to1^+$：$2x\to2$。相等，极限为 2（且 $f(1)=2$，连续）。</div><span class="tag">考查：左右极限</span><span class="tag">方法：分段点分别取极限</span></div>
+<div class="ans"><span class="aq">【1-7】</span> $f(x)=x$。<div class="sol">设 $\lim_{t\to0}f(t)=A$，则 $f(x)=x+2A$，两边取 $x\to0$ 极限：$A=2A\Rightarrow A=0$，故 $f(x)=x$。</div><span class="tag">考查：极限的唯一性</span><span class="tag">方法：设极限为 $A$ 解方程</span></div>
+<div class="ans"><span class="aq">【1-8】</span> $\boxed{1}$。<div class="sol">夹逼：$\frac{n}{\sqrt{n^2+n}}\le S\le\frac{n}{\sqrt{n^2+1}}$，两端极限均 1。</div><span class="tag">考查：夹逼准则</span><span class="tag">方法：放缩两端</span></div>
+<div class="ans"><span class="aq">【1-9】</span> $\boxed{\frac52}$。<div class="sol">$\frac{\sin5x}{2x}=\frac52\cdot\frac{\sin5x}{5x}\to\frac52$。</div><span class="tag">考查：重要极限一</span><span class="tag">方法：凑 $\frac{\sin u}{u}$ 结构</span></div>
+<div class="ans"><span class="aq">【1-10】</span> $\boxed{e^3}$。<div class="sol">$\left(\frac{x+2}{x-1}\right)^x=\left(1+\frac3{x-1}\right)^x$，指数上凑 $\frac{x-1}{3}$：$=\left[\left(1+\frac3{x-1}\right)^{\frac{x-1}{3}}\right]^{\frac{3x}{x-1}}\to e^3$。</div><span class="tag">考查：重要极限二</span><span class="tag">方法：$1^\infty$ 型配凑</span></div>
+<div class="ans"><span class="aq">【1-11】</span> $\boxed{\frac12}$。<div class="sol">$\tan x-\sin x=\tan x(1-\cos x)\sim x\cdot\frac{x^2}2$，除 $x^3$ 得 $\frac12$。</div><span class="tag">考查：等价无穷小（加减忌直代）</span><span class="tag">方法：提出公因式后代换</span></div>
+<div class="ans"><span class="aq">【1-12】</span> $\boxed{e^2}$。<div class="sol">$(1+2x)^{1/x}=\left[(1+2x)^{1/(2x)}\right]^2\to e^2$。</div><span class="tag">考查：重要极限二变式</span><span class="tag">方法：配指数</span></div>
+<div class="ans"><span class="aq">【1-13】</span> $\boxed{\frac12}$。<div class="sol">$(1+x)^{1/2}-1\sim\frac x2$，除 $x$ 得 $\frac12$。</div><span class="tag">考查：等价无穷小</span><span class="tag">方法：$(1+x)^a-1\sim ax$</span></div>
+<div class="ans"><span class="aq">【1-14】</span> $\boxed{\frac32}$。<div class="sol">$e^{3x}-1\sim3x$，$\sin2x\sim2x$，比值 $\frac32$。</div><span class="tag">考查：等价无穷小</span><span class="tag">方法：分子分母同代</span></div>
+<div class="ans"><span class="aq">【1-15】</span> 是 $x$ 的高阶无穷小（但不等价于 $x^2$）。<div class="sol">$\frac{x^2\sin(1/x)}{x}=x\sin\frac1x\to0$（有界×无穷小），故 $o(x)$。注意 $\frac{x^2\sin(1/x)}{x^2}=\sin\frac1x$ 无极限，所以不是 $x^2$ 的同阶无穷小——振荡破坏等价。</div><span class="tag">考查：无穷小阶数</span><span class="tag">方法：比值极限</span></div>
+<div class="ans"><span class="aq">【1-16】</span> $f$：$x=1$ 可去间断点；$g$：$x=0$ 第二类振荡间断点。<div class="sol">$f$ 在 $x=1$ 左右极限均为 2（约分 $x+1$），但无定义；$g$ 在 $x=0$ 处 $\sin\frac1x$ 无极限。</div><span class="tag">考查：间断点分类</span><span class="tag">方法：看左右极限</span></div>
+<div class="ans"><span class="aq">【1-17】</span> $a=2$。<div class="sol">$\lim_{x\to0}\frac{\sin ax}{x}=a$，连续要求 $a=f(0)=2$。</div><span class="tag">考查：连续的条件</span><span class="tag">方法：极限=函数值</span></div>
+<div class="ans"><span class="aq">【1-18】</span> 证明：令 $F(x)=f(x)-f(x+1)$，$x\in[0,1]$，连续。<div class="sol">$F(0)=f(0)-f(1)$，$F(1)=f(1)-f(2)=f(1)-f(0)=-F(0)$。若 $F(0)=0$ 取 $\xi=0$；否则 $F(0),F(1)$ 异号，由零点定理存在 $\xi\in(0,1)$ 使 $F(\xi)=0$，即 $f(\xi)=f(\xi+1)$。∎</div><span class="tag">考查：零点定理</span><span class="tag">方法：构造辅助函数</span></div>
+</div>
+
+<h3 class="subsec" id="ans2">第2章答案</h3>
+<div class="anssec">
+<div class="at">第2章 · 导数与微分</div>
+<div class="ans"><span class="aq">【2-1】</span> $f'(2)=-\dfrac14$。<div class="sol">$\lim_{h\to0}\frac{1/(2+h)-1/2}{h}=\lim\frac{-h}{2(2+h)h}=-\frac14$。</div><span class="tag">考查：导数定义</span><span class="tag">方法：定义法（商式通分）</span></div>
+<div class="ans"><span class="aq">【2-2】</span> 连续但不可导。<div class="sol">$|f(x)|\le|x|\to0=f(0)$，连续。$\lim_{h\to0}\frac{h\sin(1/h)}{h}=\lim\sin\frac1h$ 不存在，不可导。经典反例。</div><span class="tag">考查：连续与可导的关系</span><span class="tag">方法：定义法求导判断</span></div>
+<div class="ans"><span class="aq">【2-3】</span> $y=\dfrac{x}{e}$。<div class="sol">$y'=\frac1x$，$x=e$ 处斜率 $\frac1e$。切线 $y-1=\frac1e(x-e)$。</div><span class="tag">考查：导数几何意义</span><span class="tag">方法：点斜式</span></div>
+<div class="ans"><span class="aq">【2-4】</span> $2f'(x_0)$。<div class="sol">拆成 $\frac{f(x_0+h)-f(x_0)}h+\frac{f(x_0)-f(x_0-h)}h\to f'(x_0)+f'(x_0)$。</div><span class="tag">考查：导数定义变式</span><span class="tag">方法：加项减项</span></div>
+<div class="ans"><span class="aq">【2-5】</span> $e^{\arctan x}\cdot\dfrac1{1+x^2}$。<div class="sol">链式法则：外导 $e^u$，内导 $\frac1{1+x^2}$。</div><span class="tag">考查：链式法则</span><span class="tag">方法：剥洋葱</span></div>
+<div class="ans"><span class="aq">【2-6】</span> $\ln x$。<div class="sol">$(x\ln x-x)'=\ln x+1-1=\ln x$。</div><span class="tag">考查：乘积法则</span><span class="tag">方法：逐项求导</span></div>
+<div class="ans"><span class="aq">【2-7】</span> $\dfrac{x\cos x-\sin x}{x^2}$。<div class="sol">商法则。</div><span class="tag">考查：商的求导</span><span class="tag">方法：商法则</span></div>
+<div class="ans"><span class="aq">【2-8】</span> $\dfrac{x}{\sqrt{x^2+a^2}}$。<div class="sol">链式：$\frac12(x^2+a^2)^{-1/2}\cdot2x$。</div><span class="tag">考查：链式法则</span><span class="tag">方法：外导×内导</span></div>
+<div class="ans"><span class="aq">【2-9】</span> $-3\sin(2\cos3x)\sin3x$。<div class="sol">三层：$2\sin(\cos3x)\cos(\cos3x)(-\sin3x)\cdot3$，用倍角合并为 $-3\sin(2\cos3x)\sin3x$。</div><span class="tag">考查：多层复合</span><span class="tag">方法：逐层剥+倍角化简</span></div>
+<div class="ans"><span class="aq">【2-10】</span> $y'=-\dfrac{2x+y}{x+2y}$；$y''=-\dfrac{12}{(x+2y)^3}$。<div class="sol">一次：$2x+y+xy'+2yy'=0$。二次：$2+y'+y'+xy''+2y'^2+2yy''=0$，代入 $y'$ 化简。</div><span class="tag">考查：隐函数求导</span><span class="tag">方法：两边求导+代入</span></div>
+<div class="ans"><span class="aq">【2-11】</span> $x^x(\ln x+1)$。<div class="sol">$\ln y=x\ln x$，$\frac{y'}y=\ln x+1$。</div><span class="tag">考查：对数求导法</span><span class="tag">方法：取对数</span></div>
+<div class="ans"><span class="aq">【2-12】</span> $\dfrac{\sin t+\cos t}{\cos t-\sin t}$；$t=0$ 时 $=1$。<div class="sol">$\frac{dy}{dx}=\frac{e^t(\sin t+\cos t)}{e^t(\cos t-\sin t)}$。</div><span class="tag">考查：参数方程求导</span><span class="tag">方法：$\frac{dy}{dx}=\frac{y'}{x'}$</span></div>
+<div class="ans"><span class="aq">【2-13】</span> $-\dfrac{b^2x_0}{a^2y_0}$。<div class="sol">隐函数求导：$\frac{2x}{a^2}+\frac{2yy'}{b^2}=0$。</div><span class="tag">考查：隐函数求导（几何）</span><span class="tag">方法：两边求导解 $y'$</span></div>
+<div class="ans"><span class="aq">【2-14】</span> $\dfrac{(-1)^{n-1}(n-1)!}{(1+x)^n}$。<div class="sol">$y'=\frac1{1+x}$，逐次求导找规律。</div><span class="tag">考查：高阶导数</span><span class="tag">方法：归纳规律</span></div>
+<div class="ans"><span class="aq">【2-15】</span> $-1024\sin2x$。<div class="sol">$2^{10}\sin(2x+\frac{10\pi}2)=-1024\sin2x$。</div><span class="tag">考查：高阶导数公式</span><span class="tag">方法：相位平移公式</span></div>
+<div class="ans"><span class="aq">【2-16】</span> $(-1)^n n!\left[\dfrac1{x^{n+1}}-\dfrac1{(x+1)^{n+1}}\right]$。<div class="sol">裂项 $\frac1x-\frac1{x+1}$，分别求 $n$ 阶导。</div><span class="tag">考查：高阶导数</span><span class="tag">方法：先裂项再求导</span></div>
+<div class="ans"><span class="aq">【2-17】</span> $dy=e^{-x}(\cos x-\sin x)dx$；$\sqrt[3]{1.01}\approx1.0033$。<div class="sol">微分：乘积法则。近似：$f=x^{1/3}$，$f(1)=1$，$f'(1)=\frac13$，$\approx1+\frac13\cdot0.01$。</div><span class="tag">考查：微分+近似计算</span><span class="tag">方法：$f(x_0+\Delta x)\approx f(x_0)+f'(x_0)\Delta x$</span></div>
+<div class="ans"><span class="aq">【2-18】</span> $-\tan x\,dx$。<div class="sol">$y'=\frac{-\sin x}{\cos x}=-\tan x$。</div><span class="tag">考查：微分</span><span class="tag">方法：先求导再乘 $dx$</span></div>
+</div>
+
+<h3 class="subsec" id="ans3">第3章答案</h3>
+<div class="anssec">
+<div class="at">第3章 · 中值定理与导数应用</div>
+<div class="warn"><b>‍ 师兄批注：</b>中值定理的证明题，中大喜欢出一个"反套路"的：条件不是 $f(a)=f(b)$，而是藏在 $f(0)=f(2)$ 这种边角里，要你自己发现"这两点值相等"然后造函数。所以做证明题别急着写，先拿笔把题目给的数值都标在草稿图上，等值关系自己会浮出来。另外"存在 $\xi$"三个字出现时，脑子里按顺序过：零点定理？罗尔？拉格朗日？——按这个顺序猜，命中率很高。</div>
+<div class="ans"><span class="aq">【3-1】</span> $\xi=1$。<div class="sol">$f(0)=0=f(\sqrt3)$，$f'=3x^2-3=0\Rightarrow x=\pm1$，取 $\xi=1\in(0,\sqrt3)$。</div><span class="tag">考查：罗尔定理</span><span class="tag">方法：验证条件+解 $f'=0$</span></div>
+<div class="ans"><span class="aq">【3-2】</span> 证：$F'(x)=0$ 恒成立，故 $F$ 为常数。<div class="sol">$F'(x)=\frac1{\sqrt{1-x^2}}-\frac1{\sqrt{1-x^2}}=0$，$F(0)=\frac\pi2$。</div><span class="tag">考查：导数判常数</span><span class="tag">方法：导数为零函数为常数</span></div>
+<div class="ans"><span class="aq">【3-3】</span> 用拉格朗日：$f(b)-f(a)=f'(\xi)(b-a)$，取绝对值。<div class="sol">$|f(b)-f(a)|=|f'(\xi)||b-a|\le M|b-a|$。∎</div><span class="tag">考查：拉格朗日中值定理</span><span class="tag">方法：中值定理+估计</span></div>
+<div class="ans"><span class="aq">【3-4】</span> 对 $f(t)=\ln(1+t)$ 在 $[0,x]$ 用拉格朗日。<div class="sol">$\ln(1+x)=\frac{x}{1+\xi}$，$0&lt;\xi&lt;x$，$\frac1{1+x}&lt;\frac1{1+\xi}&lt;1$，乘 $x$ 得证。</div><span class="tag">考查：中值定理证不等式</span><span class="tag">方法：构造 $f(t)$ 用拉格朗日</span></div>
+<div class="ans"><span class="aq">【3-5】</span> 构造 $F(x)=e^xf(x)$，罗尔。<div class="sol">$F(0)=F(1)=0$，$F'(\xi)=e^\xi[f'(\xi)+f(\xi)]=0$。∎</div><span class="tag">考查：辅助函数构造（积分因子型）</span><span class="tag">方法：乘 $e^{\int pdx}$</span></div>
+<div class="ans"><span class="aq">【3-6】</span> $\dfrac13$。<div class="sol">洛两次：$\frac{\sec^2x-1}{3x^2}=\frac{\tan^2x}{3x^2}\to\frac13$。</div><span class="tag">考查：洛必达</span><span class="tag">方法：连续洛必达</span></div>
+<div class="ans"><span class="aq">【3-7】</span> $0$。<div class="sol">$\frac{1/x}{1}=\frac1x\to0$。</div><span class="tag">考查：洛必达（$\infty/\infty$）</span><span class="tag">方法：$\frac{\infty}{\infty}$ 型</span></div>
+<div class="ans"><span class="aq">【3-8】</span> $0$。<div class="sol">通分 $\frac{x-\sin x}{x\sin x}$，洛：$\frac{1-\cos x}{\sin x+x\cos x}$，再洛得 0。</div><span class="tag">考查：$\infty-\infty$ 型</span><span class="tag">方法：通分后洛必达</span></div>
+<div class="ans"><span class="aq">【3-9】</span> $\dfrac16$。<div class="sol">分母 $\sim x^3$，洛一次：$\frac{1-\cos x}{3x^2}\to\frac16$。</div><span class="tag">考查：等价代换+洛必达</span><span class="tag">方法：先代换简化</span></div>
+<div class="ans"><span class="aq">【3-10】</span> $1-x+\dfrac{x^2}{2}-\dfrac{x^3}{6}+o(x^3)$。<div class="sol">$e^{-x}$ 用 $e^u$ 展开代 $u=-x$。</div><span class="tag">考查：麦克劳林展开</span><span class="tag">方法：代入已知展开</span></div>
+<div class="ans"><span class="aq">【3-11】</span> $\dfrac1{24}$。<div class="sol">$\cos x=1-\frac{x^2}2+\frac{x^4}{24}+o(x^4)$，分子 $=\frac{x^4}{24}+o(x^4)$。</div><span class="tag">考查：泰勒求极限</span><span class="tag">方法：展开到首次不抵消阶</span></div>
+<div class="ans"><span class="aq">【3-12】</span> $-\dfrac16$。<div class="sol">$\sin x=x-\frac{x^3}6+o(x^3)$。</div><span class="tag">考查：泰勒求极限</span><span class="tag">方法：展开</span></div>
+<div class="ans"><span class="aq">【3-13】</span> 增 $(-\infty,-1)\cup(3,\infty)$，减 $(-1,3)$；极大 $f(-1)=10$，极小 $f(3)=-22$。<div class="sol">$f'=3(x-3)(x+1)$，符号表。</div><span class="tag">考查：单调区间与极值</span><span class="tag">方法：导函数符号表</span></div>
+<div class="ans"><span class="aq">【3-14】</span> 最小值 2（$x=1$）。<div class="sol">$f'=1-\frac1{x^2}=0\Rightarrow x=1$，$f''=\frac2{x^3}&gt;0$。</div><span class="tag">考查：最值</span><span class="tag">方法：驻点+二阶导</span></div>
+<div class="ans"><span class="aq">【3-15】</span> $x=\dfrac a6$ 时容积最大，$V_{\max}=\dfrac{2a^3}{27}$。<div class="sol">$V=x(a-2x)^2$，$V'=(a-2x)(a-6x)=0$，$x=\frac a6$（$x=\frac a2$ 舍）。</div><span class="tag">考查：最值应用题</span><span class="tag">方法：建模四步</span></div>
+<div class="ans"><span class="aq">【3-16】</span> 最大 $\sqrt2$，最小 1。<div class="sol">驻点 $x=\frac\pi4$（$\cos x=\sin x$），比端点。</div><span class="tag">考查：闭区间最值</span><span class="tag">方法：驻点+端点比较</span></div>
+<div class="ans"><span class="aq">【3-17】</span> $x&lt;2$ 凸，$x&gt;2$ 凹；拐点 $(2,3)$。<div class="sol">$f''=6x-12$。</div><span class="tag">考查：凹凸与拐点</span><span class="tag">方法：$f''$ 变号</span></div>
+<div class="ans"><span class="aq">【3-18】</span> 水平渐近线 $y=0$，无垂直。<div class="sol">$\lim_{x\to\pm\infty}\frac{2x}{1+x^2}=0$；分母恒正。</div><span class="tag">考查：渐近线</span><span class="tag">方法：三类极限</span></div>
+<div class="ans"><span class="aq">【3-19】</span> 极小值点 $x=e^{-1}$，极小 $-\dfrac1e$；恒凹。<div class="sol">$y'=\ln x+1$，$y''=\frac1x&gt;0$。</div><span class="tag">考查：极值+凹凸</span><span class="tag">方法：一阶二阶导联合</span></div>
+<div class="ans"><span class="aq">【3-20】</span> 证：$g(x)=e^x-1-x-\frac{x^2}2$，$g'&gt;0$，$g(0)=0$。<div class="sol">$g'=e^x-1-x$，$g''=e^x-1&gt;0\ (x&gt;0)$，故 $g'&gt;0$，$g&gt;0$。∎（或泰勒余项）</div><span class="tag">考查：用单调性证不等式</span><span class="tag">方法：作差函数+求导</span></div>
+</div>
+
+<h3 class="subsec" id="ans4">第4章答案</h3>
+<div class="anssec">
+<div class="at">第4章 · 不定积分</div>
+<div class="ans"><span class="aq">【4-1】</span> $-2\cos x+3\arcsin x+C$。<div class="sol">逐项用基本积分表。</div><span class="tag">考查：基本积分表</span><span class="tag">方法：逐项积分</span></div>
+<div class="ans"><span class="aq">【4-2】</span> $\dfrac{x^3}3-x+\arctan x+C$。<div class="sol">$\frac{x^4}{1+x^2}=x^2-1+\frac1{1+x^2}$（长除法）。</div><span class="tag">考查：多项式除法</span><span class="tag">方法：假分式化整+真分式</span></div>
+<div class="ans"><span class="aq">【4-3】</span> $\tan x-x+C$。<div class="sol">$\tan^2x=\sec^2x-1$。</div><span class="tag">考查：三角恒等式</span><span class="tag">方法：恒等变形</span></div>
+<div class="ans"><span class="aq">【4-4】</span> $\tan x-\cot x+C$。<div class="sol">$\frac1{\sin^2\cos^2}=\frac{\sin^2+\cos^2}{\sin^2\cos^2}=\sec^2+\csc^2$。</div><span class="tag">考查：三角积分</span><span class="tag">方法：拆项</span></div>
+<div class="ans"><span class="aq">【4-5】</span> $-\dfrac14\cos^4x+C$。<div class="sol">凑微分 $-\int\cos^3x\,d\cos x$。</div><span class="tag">考查：凑微分</span><span class="tag">方法：$\sin x\,dx=-d\cos x$</span></div>
+<div class="ans"><span class="aq">【4-6】</span> $\dfrac12\ln^2x+C$。<div class="sol">$\int\ln x\,d\ln x$。</div><span class="tag">考查：凑微分</span><span class="tag">方法：$\frac{dx}x=d\ln x$</span></div>
+<div class="ans"><span class="aq">【4-7】</span> $\arctan e^x+C$。<div class="sol">$\int\frac{d(e^x)}{1+(e^x)^2}$。</div><span class="tag">考查：凑微分</span><span class="tag">方法：$e^xdx=de^x$</span></div>
+<div class="ans"><span class="aq">【4-8】</span> $\dfrac12\arctan\dfrac{x+1}{2}+C$。<div class="sol">配方 $(x+1)^2+4$。</div><span class="tag">考查：配方+$\arctan$ 型</span><span class="tag">方法：配方</span></div>
+<div class="ans"><span class="aq">【4-9】</span> $\dfrac{a^2}2\arcsin\dfrac xa+\dfrac x2\sqrt{a^2-x^2}+C$。<div class="sol">$x=a\sin t$，$\int a^2\cos^2t\,dt=\frac{a^2}2t+\frac{a^2}4\sin2t$，回代。</div><span class="tag">考查：三角换元</span><span class="tag">方法：$x=a\sin t$+回代</span></div>
+<div class="ans"><span class="aq">【4-10】</span> $x\sin x+\cos x+C$。<div class="sol">分部：$u=x,\ dv=\cos xdx$。</div><span class="tag">考查：分部积分</span><span class="tag">方法：LIATE（幂当 $u$）</span></div>
+<div class="ans"><span class="aq">【4-11】</span> $\dfrac{x^2}2\ln x-\dfrac{x^2}4+C$。<div class="sol">分部：$u=\ln x,\ dv=xdx$。</div><span class="tag">考查：分部积分</span><span class="tag">方法：LIATE（对数当 $u$）</span></div>
+<div class="ans"><span class="aq">【4-12】</span> $e^x(x^2-2x+2)+C$。<div class="sol">两次分部降幂。</div><span class="tag">考查：分部积分</span><span class="tag">方法：连续分部降幂</span></div>
+<div class="ans"><span class="aq">【4-13】</span> $x\arctan x-\dfrac12\ln(1+x^2)+C$。<div class="sol">分部：$u=\arctan x,\ dv=dx$。</div><span class="tag">考查：分部积分</span><span class="tag">方法：反三角当 $u$</span></div>
+<div class="ans"><span class="aq">【4-14】</span> $\dfrac{e^{2x}}5(2\cos x+\sin x)+C$。<div class="sol">两次分部后移项解方程（循环积分）。</div><span class="tag">考查：循环积分</span><span class="tag">方法：两次分部+移项</span></div>
+<div class="ans"><span class="aq">【4-15】</span> $4\ln|x-3|-3\ln|x-2|+C$。<div class="sol">分解 $\frac4{x-3}-\frac3{x-2}$（覆盖法）。</div><span class="tag">考查：部分分式</span><span class="tag">方法：覆盖法定系数</span></div>
+<div class="ans"><span class="aq">【4-16】</span> $\ln|x|-\ln|x+1|+\dfrac1{x+1}+C$。<div class="sol">$\frac1x-\frac1{x+1}-\frac1{(x+1)^2}$。</div><span class="tag">考查：部分分式（重根）</span><span class="tag">方法：待定系数</span></div>
+<div class="ans"><span class="aq">【4-17】</span> $x+\ln\left|\dfrac{x-1}{x+1}\right|+C$。<div class="sol">$1+\frac2{x^2-1}=1+\frac1{x-1}-\frac1{x+1}$。</div><span class="tag">考查：除法+分解</span><span class="tag">方法：先除再拆</span></div>
+<div class="ans"><span class="aq">【4-18】</span> $-\ln|x|+\dfrac1x+\ln|x-1|+C$。<div class="sol">$\frac1{x^2(x-1)}=\frac Ax+\frac B{x^2}+\frac C{x-1}$，$A=-1,B=-1,C=1$。</div><span class="tag">考查：部分分式</span><span class="tag">方法：待定系数法</span></div>
+<div class="ans"><span class="aq">【4-19】</span> $\dfrac12(x^2+1)e^{-x^2}+C$。<div class="sol">令 $t=x^2$：$\frac12\int te^{-t}dt=\frac12(t+1)e^{-t}$（分部）。</div><span class="tag">考查：换元+分部</span><span class="tag">方法：凑 $x^3dx$ 为 $d(x^2)$</span></div>
+<div class="ans"><span class="aq">【4-20】</span> $e^x-\ln(e^x+1)+C$。<div class="sol">$t=e^x$：$\int\frac{t}{t+1}dt=\int\left(1-\frac1{t+1}\right)dt$。</div><span class="tag">考查：换元+拆项</span><span class="tag">方法：$t=e^x$ 换元</span></div>
+</div>
+
+<h3 class="subsec" id="ans5">第5章答案</h3>
+<div class="anssec">
+<div class="at">第5章 · 定积分</div>
+<div class="warn"><b>‍ 师兄批注：</b>算定积分之前花 10 秒做三件事，能救你很多次：① 看对称区间+奇偶性（直接归零或减半）；② 看是不是 $0$ 到 $\frac\pi2$ 的 $\sin^n$（华里士秒杀）；③ 看被积函数有没有"换个马甲更好算"（$\frac1{1+e^x}$ 之类配合区间再现）。中大卷子的大题常在这三个细节里藏步骤分——阅卷老师看到你直接写出 $\int_{-\pi}^\pi x^{2026}\sin x\,dx=0$，会心一笑给你全分。</div>
+<div class="ans"><span class="aq">【5-1】</span> $0$。<div class="sol">奇函数（奇×奇×偶=奇）在对称区间积分为零。</div><span class="tag">考查：奇偶性</span><span class="tag">方法：对称区间先看奇偶</span></div>
+<div class="ans"><span class="aq">【5-2】</span> $\displaystyle\int_0^1 x\,dx$ 大。<div class="sol">$[0,1]$ 上 $x\ge x^2$，保号性。$\frac12&gt;\frac13$。</div><span class="tag">考查：保号性</span><span class="tag">方法：比较被积函数</span></div>
+<div class="ans"><span class="aq">【5-3】</span> $1\le I\le e$。<div class="sol">$1\le e^{x^2}\le e$，估值公式。</div><span class="tag">考查：估值</span><span class="tag">方法：$m(b-a)\le I\le M(b-a)$</span></div>
+<div class="ans"><span class="aq">【5-4】</span> $\dfrac2\pi$。<div class="sol">$=\int_0^1\sin\frac{\pi x}2dx=\frac2\pi$。</div><span class="tag">考查：定积分定义</span><span class="tag">方法：识别黎曼和</span></div>
+<div class="ans"><span class="aq">【5-5】</span> $2xe^{x^4}-e^{x^2}$。<div class="sol">变上限公式：$f(\psi)\psi'-f(\varphi)\varphi'$。</div><span class="tag">考查：变上限积分求导</span><span class="tag">方法：上下限都是函数</span></div>
+<div class="ans"><span class="aq">【5-6】</span> $\dfrac13$。<div class="sol">洛必达：$\frac{\sin x^2}{3x^2}\to\frac13$。</div><span class="tag">考查：变上限+洛必达</span><span class="tag">方法：先洛后等价</span></div>
+<div class="ans"><span class="aq">【5-7】</span> $xf(x^2)$。<div class="sol">被积是 $t$ 的函数，$x$ 是常数：$F'(x)=xf(x^2)$。</div><span class="tag">考查：变上限求导</span><span class="tag">方法：直接代上限</span></div>
+<div class="ans"><span class="aq">【5-8】</span> 驻点 $x=1,2$；$x=1$ 极大，$x=2$ 极小。<div class="sol">$f'=(x-1)(x-2)e^{-x^2}$，符号：$(-\infty,1)$ 正、$(1,2)$ 负、$(2,\infty)$ 正。</div><span class="tag">考查：变上限+极值</span><span class="tag">方法：求导+符号表</span></div>
+<div class="ans"><span class="aq">【5-9】</span> $\dfrac13$。<div class="sol">换元 $u=1-x^2$：$-\frac12\int_1^0\sqrt u\,du=\frac13$。</div><span class="tag">考查：定积分换元</span><span class="tag">方法：三换</span></div>
+<div class="ans"><span class="aq">【5-10】</span> $1$。<div class="sol">分部：$[x\ln x]_1^e-\int_1^e1\,dx=e-(e-1)=1$。</div><span class="tag">考查：定积分分部</span><span class="tag">方法：分部+代入限</span></div>
+<div class="ans"><span class="aq">【5-11】</span> $\dfrac8{15}$。<div class="sol">华里士：$\frac{4!!}{5!!}=\frac{4\cdot2}{5\cdot3\cdot1}=\frac8{15}$。</div><span class="tag">考查：华里士公式</span><span class="tag">方法：直接套公式</span></div>
+<div class="ans"><span class="aq">【5-12】</span> $\dfrac{2\pi}{3}$。<div class="sol">区间再现：$\frac\pi2\int_0^\pi\sin^3x\,dx=\pi\int_0^{\pi/2}\sin^3x\,dx=\pi\cdot\frac23$。</div><span class="tag">考查：区间再现</span><span class="tag">方法：$x\to\pi-x$ 变换</span></div>
+<div class="ans"><span class="aq">【5-13】</span> $\dfrac\pi8$。<div class="sol">偶函数：$2\int_0^1x^2\sqrt{1-x^2}dx$，$x=\sin t$：$2\int_0^{\pi/2}\sin^2t\cos^2t\,dt=\frac\pi8$。</div><span class="tag">考查：偶函数+三角换元</span><span class="tag">方法：先奇偶再换元</span></div>
+<div class="ans"><span class="aq">【5-14】</span> $\dfrac12$。<div class="sol">$\lim_{b\to\infty}[-\frac12e^{-2x}]_0^b=\frac12$。</div><span class="tag">考查：无穷区间反常积分</span><span class="tag">方法：取极限</span></div>
+<div class="ans"><span class="aq">【5-15】</span> $2$。<div class="sol">$\lim_{\varepsilon\to0^+}[-2\sqrt{1-x}]_0^{1-\varepsilon}=2$。</div><span class="tag">考查：瑕积分</span><span class="tag">方法：取极限</span></div>
+<div class="ans"><span class="aq">【5-16】</span> 收敛。<div class="sol">$x\to\infty$ 时 $\sim x^{-3/2}$，$p&gt;1$ 收敛。</div><span class="tag">考查：比较判别法</span><span class="tag">方法：等价无穷大找 $p$</span></div>
+<div class="ans"><span class="aq">【5-17】</span> $\pi$。<div class="sol">$[\arctan x]_{-\infty}^{+\infty}=\pi$。</div><span class="tag">考查：反常积分计算</span><span class="tag">方法：原函数+双侧极限</span></div>
+<div class="ans"><span class="aq">【5-18】</span> $\dfrac12$。<div class="sol">洛必达：$\frac{\arctan x}{2x}\to\frac12$。</div><span class="tag">考查：变上限+洛必达</span><span class="tag">方法：先洛后等价</span></div>
+<div class="ans"><span class="aq">【5-19】</span> $I_n=e-nI_{n-1}$；$I_2=e-2$。<div class="sol">分部：$[x^ne^x]_0^1-nI_{n-1}$。$I_0=e-1$，$I_1=1$。</div><span class="tag">考查：分部+递推</span><span class="tag">方法：建立递推式</span></div>
+<div class="ans"><span class="aq">【5-20】</span> 收敛。<div class="sol">$x\to0$ 时 $f\sim x$（可积）；$x\to\infty$ 时 $f\sim\frac1{x^2}$ 收敛。</div><span class="tag">考查：反常积分判敛</span><span class="tag">方法：分段考察坏点</span></div>
+</div>
+
+<h3 class="subsec" id="ans6">第6章答案</h3>
+<div class="anssec">
+<div class="at">第6章 · 定积分应用</div>
+<div class="ans"><span class="aq">【6-1】</span> $\dfrac13$。<div class="sol">交点 $(0,0),(1,1)$：$\int_0^1(\sqrt x-x^2)dx=\frac23-\frac13$。</div><span class="tag">考查：平面面积</span><span class="tag">方法：上减下</span></div>
+<div class="ans"><span class="aq">【6-2】</span> $\pi ab$。<div class="sol">对称性 4 倍第一象限：$4\int_0^a b\sqrt{1-\frac{x^2}{a^2}}dx=4b\cdot\frac{\pi a}4$。</div><span class="tag">考查：面积</span><span class="tag">方法：对称性+换元</span></div>
+<div class="ans"><span class="aq">【6-3】</span> $2\pi^2a^2b$（古鲁金定理）。<div class="sol">柱壳法：$\int_{b-a}^{b+a}2\pi y\cdot2\sqrt{a^2-(y-b)^2}dy$，令 $u=y-b$：$4\pi b\cdot\frac{\pi a^2}2$。</div><span class="tag">考查：旋转体体积</span><span class="tag">方法：柱壳法</span></div>
+<div class="ans"><span class="aq">【6-4】</span> $\dfrac{14}3$。<div class="sol">$y'=\frac{x^2}2-\frac1{2x^2}$，$\sqrt{1+y'^2}=\frac{x^2}2+\frac1{2x^2}$（完全平方），积分 $\left[\frac{x^3}6-\frac1{2x}\right]_1^3=\frac{14}3$。</div><span class="tag">考查：弧长</span><span class="tag">方法：$ds=\sqrt{1+y'^2}dx$</span></div>
+<div class="ans"><span class="aq">【6-5】</span> $\dfrac{3\pi a^2}2$。<div class="sol">极坐标面积：$\frac12\int_0^{2\pi}a^2(1+\cos\theta)^2d\theta$。</div><span class="tag">考查：极坐标面积</span><span class="tag">方法：$\frac12\int r^2d\theta$</span></div>
+<div class="ans"><span class="aq">【6-6】</span> $\dfrac12kL^2$。<div class="sol">$W=\int_0^L kx\,dx$。</div><span class="tag">考查：变力做功</span><span class="tag">方法：$W=\int Fdx$</span></div>
+<div class="ans"><span class="aq">【6-7】</span> $\bar x=\dfrac\pi2,\ \bar y=\dfrac\pi8$。<div class="sol">$A=2$；对称性 $\bar x=\frac\pi2$；$\bar y=\frac{\frac12\int_0^\pi\sin^2x\,dx}2=\frac{\pi/4}2$。</div><span class="tag">考查：质心</span><span class="tag">方法：质心公式+对称性</span></div>
+<div class="ans"><span class="aq">【6-8】</span> $\dfrac13mL^2$。<div class="sol">$I=\int_0^L x^2\lambda dx=\frac{\lambda L^3}3$。</div><span class="tag">考查：转动惯量</span><span class="tag">方法：$I=\int r^2dm$</span></div>
+<div class="ans"><span class="aq">【6-9】</span> $12\rho g$。<div class="sol">深度 $y$ 处宽 $w(y)=8(1-\frac y3)$，$F=\int_0^3\rho gy\cdot8(1-\frac y3)dy=8\rho g(\frac92-3)$。</div><span class="tag">考查：水压力</span><span class="tag">方法：窄条微元</span></div>
+<div class="ans"><span class="aq">【6-10】</span> $\dfrac\pi2(e^2-1)$。<div class="sol">$V=\pi\int_0^1e^{2x}dx$。</div><span class="tag">考查：旋转体体积</span><span class="tag">方法：圆盘法</span></div>
+<div class="ans"><span class="aq">【6-11】</span> $\pi$。<div class="sol">$r=2\cos\theta$ 是半径 1 的圆（圆心 $(1,0)$）。</div><span class="tag">考查：极坐标面积</span><span class="tag">方法：识别图形</span></div>
+<div class="ans"><span class="aq">【6-12】</span> $k\left(\dfrac1a-\dfrac1b\right)$。<div class="sol">$W=\int_a^b\frac k{r^2}dr$。这是电势能差的负值（电磁学预告）。</div><span class="tag">考查：平方反比力做功</span><span class="tag">方法：变力功积分</span></div>
+<div class="ans"><span class="aq">【6-13】</span> $(0,\dfrac{4R}{3\pi})$。<div class="sol">对称性 $\bar x=0$；极坐标：$\bar y=\frac{\int_0^\pi\int_0^R r^2\sin\theta drd\theta}{\pi R^2/2}=\frac{2R^3/3}{\pi R^2/2}$。</div><span class="tag">考查：质心</span><span class="tag">方法：极坐标+对称性</span></div>
+<div class="ans"><span class="aq">【6-14】</span> $\dfrac12\ln3+\dfrac14\ln\dfrac{2+\sqrt3}{2-\sqrt3}$ 的另一种写法：$\ln\dfrac{\sqrt3+2}{2}$。<div class="sol">$y'=\frac1x$，$ds=\frac{\sqrt{1+x^2}}xdx$，令 $x=\tan t$：$\int\sec t\frac{\sec^2t}{\tan t}dt$，或用 $\sqrt{1+x^2}=u$ 换元。结果 $s=\frac{\sqrt{1+x^2}-1}{\cdots}$ 直接验证：$\int_1^{\sqrt3}\frac{\sqrt{1+x^2}}{x}dx=\ln(2+\sqrt3)-\frac12\ln3$。</div><span class="tag">考查：弧长</span><span class="tag">方法：$ds$ 公式+三角换元</span></div>
+<div class="ans"><span class="aq">【6-15】</span> $\rho g\pi R^2 H\left(h+\dfrac H2\right)$。<div class="sol">深度 $y$ 薄层提升 $h+H-y$：$W=\int_0^H\rho g\pi R^2(h+H-y)dy=\rho g\pi R^2[(h+H)H-\frac{H^2}2]$。</div><span class="tag">考查：抽水做功</span><span class="tag">方法：薄层微元</span></div>
+</div>
+
+<h3 class="subsec" id="ans7">第7章答案</h3>
+<div class="anssec">
+<div class="at">第7章 · 微分方程</div>
+<div class="warn"><b>‍ 师兄批注：</b>判断一阶方程类型这件事，练到"30 秒定类型"就够了，别在犹豫上耗时间。记忆口诀：<b>先看能不能分家（可分离），再看是不是同族（齐次 $y/x$），三看是不是平头（线性：$y',y$ 都一次），四看是不是假平头（伯努利：多个 $y^n$）</b>。二阶常系数就三板斧：特征方程 → 齐次通解 → 待定系数。待定系数设解时那个 $x^k$ 因子（$k$ = 特征根重数）是唯一的坑，抄错就全错。</div>
+<div class="ans"><span class="aq">【7-1】</span> $y=e^{Cx}$。<div class="sol">分离：$\frac{dy}{y\ln y}=\frac{dx}x$，$\ln|\ln y|=\ln|x|+C_1$。</div><span class="tag">考查：可分离变量</span><span class="tag">方法：分离+积分</span></div>
+<div class="ans"><span class="aq">【7-2】</span> $\sin\dfrac yx=Cx$。<div class="sol">齐次型，$u=\frac yx$：$u+xu'=u+\tan u$，$\cot u\,du=\frac{dx}x$。</div><span class="tag">考查：齐次型</span><span class="tag">方法：令 $u=y/x$</span></div>
+<div class="ans"><span class="aq">【7-3】</span> $y=2+Ce^{-x^2}$。<div class="sol">一阶线性：$y=e^{-x^2}[\int4xe^{x^2}dx+C]$。</div><span class="tag">考查：一阶线性</span><span class="tag">方法：通解公式</span></div>
+<div class="ans"><span class="aq">【7-4】</span> $y=\dfrac1{Ce^{-x^2/2}-1}$。<div class="sol">伯努利 $n=2$：$z=y^{-1}$，$z'+xz=-x$，线性公式。</div><span class="tag">考查：伯努利方程</span><span class="tag">方法：令 $z=y^{1-n}$</span></div>
+<div class="ans"><span class="aq">【7-5】</span> $y=x^3$。<div class="sol">积分两次：$y'=3x^2$（$y'(0)=0$），$y=x^3$（$y(0)=0$）。</div><span class="tag">考查：直接积分降阶</span><span class="tag">方法：逐次积分</span></div>
+<div class="ans"><span class="aq">【7-6】</span> $y=Ce^x-\dfrac{x^2}2-x+C_2$。<div class="sol">令 $p=y'$：$p'-p=x$，一阶线性。</div><span class="tag">考查：不显含 $y$ 型</span><span class="tag">方法：令 $p=y'$</span></div>
+<div class="ans"><span class="aq">【7-7】</span> $y=\ln\cosh(x+C_1)+C_2$。<div class="sol">$p'=1-p^2$，分离：$\frac12\ln\frac{1+p}{1-p}=x+C$，$p=\tanh(x+C_1)$，再积分。</div><span class="tag">考查：不显含 $x$ 型</span><span class="tag">方法：$p=y'$ 化一阶</span></div>
+<div class="ans"><span class="aq">【7-8】</span> $y=3x+x^3$。<div class="sol">$\frac{y''}{y'}=\frac{2x}{1+x^2}$，$\ln y'=\ln(1+x^2)+C$，$y'=3(1+x^2)$，积分。</div><span class="tag">考查：降阶+初值</span><span class="tag">方法：分离变量降阶</span></div>
+<div class="ans"><span class="aq">【7-9】</span> $y=(C_1+C_2x)e^{2x}$。<div class="sol">特征方程 $(\lambda-2)^2=0$，重根。</div><span class="tag">考查：二阶齐次（重根）</span><span class="tag">方法：特征方程</span></div>
+<div class="ans"><span class="aq">【7-10】</span> $y=e^{-x}(C_1\cos2x+C_2\sin2x)$。<div class="sol">$\lambda=-1\pm2i$，复根。</div><span class="tag">考查：二阶齐次（复根）</span><span class="tag">方法：特征方程+欧拉</span></div>
+<div class="ans"><span class="aq">【7-11】</span> $y=C_1\cos x+C_2\sin x+x^2-2$。<div class="sol">$\lambda=\pm i$；设 $y^*=ax^2+bx+c$，代入得 $a=1,b=0,c=-2$。</div><span class="tag">考查：非齐次（多项式）</span><span class="tag">方法：待定系数</span></div>
+<div class="ans"><span class="aq">【7-12】</span> $y=(C_1+C_2x)e^x+x^2e^x$。<div class="sol">$\lambda=1$ 重根，设 $y^*=ax^2e^x$，$a=1$。</div><span class="tag">考查：非齐次（重根 $x^k$）</span><span class="tag">方法：待定系数+重数因子</span></div>
+<div class="ans"><span class="aq">【7-13】</span> $y=C_1\cos x+C_2\sin x+\dfrac x2\sin x$。<div class="sol">$\lambda=i$ 是单根，设 $y^*=x(a\cos x+b\sin x)$，$a=0,b=\frac12$。共振型。</div><span class="tag">考查：非齐次（共振）</span><span class="tag">方法：待定系数+$x^k$ 因子</span></div>
+<div class="ans"><span class="aq">【7-14】</span> $y=(x+1)\cos x$。<div class="sol">积分因子 $e^{\int\tan xdx}=\sec x$，$y=\cos x[\int\cos x\sec xdx+C]=\cos x(x+C)$，$y(0)=1\Rightarrow C=1$。</div><span class="tag">考查：一阶线性+初值</span><span class="tag">方法：公式+定常数</span></div>
+<div class="ans"><span class="aq">【7-15】</span> $y=\dfrac{3x}{x^3+3C}$（另有奇异解 $y=0$）。<div class="sol">伯努利 $n=2$：$z=y^{-1}$，$z'+\frac zx=x$。</div><span class="tag">考查：伯努利（中大真题同款）</span><span class="tag">方法：令 $z=y^{-1}$</span></div>
+<div class="ans"><span class="aq">【7-16】</span> $y=e^x(C_1\cos x+C_2\sin x)+\dfrac x2e^x\sin x+\dfrac{x+1}2$。<div class="sol">齐次 $\lambda=1\pm i$；$e^x\cos x$ 中 $1+i$ 是特征根，设 $xe^x(a\cos x+b\sin x)$ 得 $a=0,b=\frac12$；$x$ 设 $ax+b$ 得 $\frac12,\frac12$。叠加。</div><span class="tag">考查：非齐次叠加</span><span class="tag">方法：分而治之+叠加原理</span></div>
+<div class="ans"><span class="aq">【7-17】</span> 约 10 分钟。<div class="sol">$\frac{dT}{dt}=-k(T-20)$，$T=20+80e^{-kt}$。$85=20+80e^{-3k}\Rightarrow e^{-3k}=\frac{13}{16}$。$60=20+80e^{-kt}\Rightarrow e^{-kt}=\frac12$。$\frac t3=\frac{\ln2}{\ln(16/13)}=\frac{0.7}{2.8-2.59}=3.33$，$t\approx10$。</div><span class="tag">考查：冷却定律应用（中大真题同款）</span><span class="tag">方法：翻译+解+定参</span></div>
+<div class="ans"><span class="aq">【7-18】</span> $y=(C_1+C_2x)e^{-2x}+\dfrac32x^2e^{-2x}$。<div class="sol">$\lambda=-2$ 二重根，$f=3e^{-2x}$ 中 $-2$ 是二重根，设 $ax^2e^{-2x}$，$a=\frac32$。</div><span class="tag">考查：非齐次（二重根）</span><span class="tag">方法：待定系数+$x^2$ 因子</span></div>
+<div class="ans"><span class="aq">【7-19】</span> $y=e^{2x}$。<div class="sol">$\lambda=2,-1$，$y=C_1e^{2x}+C_2e^{-x}$。初值：$C_1+C_2=1$，$2C_1-C_2=2$，$C_1=1,C_2=0$。</div><span class="tag">考查：齐次+初值</span><span class="tag">方法：特征方程+定常数</span></div>
+<div class="ans"><span class="aq">【7-20】</span> $y=C_1\cos x+C_2\sin x+x\sin x+\cos x\ln|\cos x|$。<div class="sol">齐次 $\cos,\sin$。常数变易：设 $y=u_1\cos x+u_2\sin x$，解 $\begin{cases}u_1'\cos x+u_2'\sin x=0\\-u_1'\sin x+u_2'\cos x=\sec x\end{cases}$，得 $u_1'=-\tan x,\ u_2'=1$，积分。∎</div><span class="tag">考查：常数变易法</span><span class="tag">方法：变易法求特解</span></div>
+</div>
+
+<h3 class="subsec" id="ans8">第8章答案</h3>
+<div class="anssec">
+<div class="at">第8章 · 多元函数微分学</div>
+<div class="ans"><span class="aq">【8-1】</span> $z_x=\dfrac{2x}{x^2+y^2},\ z_y=\dfrac{2y}{x^2+y^2}$；和为 0。<div class="sol">$z_{xx}=\frac{2(y^2-x^2)}{(x^2+y^2)^2}$，$z_{yy}=\frac{2(x^2-y^2)}{(x^2+y^2)^2}$，相加为零。这题不是白算的：$\ln(x^2+y^2)$ 是二维拉普拉斯方程的基本解，电磁学里点电荷的对数势，热学里点热源的稳态温度场，都是它。</div><span class="tag">考查：偏导+拉普拉斯方程</span><span class="tag">方法：逐次求导</span></div>
+<div class="ans"><span class="aq">【8-2】</span> $dz=\dfrac{-y\,dx+x\,dy}{x^2+y^2}$。<div class="sol">$z_x=\frac{-y}{x^2+y^2}$（$y$ 当常数），$z_y=\frac{x}{x^2+y^2}$。这个微分形式在极坐标下就是 $d\theta$，物理里到处是它。</div><span class="tag">考查：全微分</span><span class="tag">方法：分别求偏导</span></div>
+<div class="ans"><span class="aq">【8-3】</span> $u_x=yz\,x^{yz-1}$；$u_y=z x^{yz}\ln x$；$u_z=y x^{yz}\ln x$。<div class="sol">对 $x$ 是幂函数，对 $y,z$ 是指数函数——同一个式子，对不同变量身份不同。</div><span class="tag">考查：偏导</span><span class="tag">方法：认清变量身份</span></div>
+<div class="ans"><span class="aq">【8-4】</span> $\approx2.227$。<div class="sol">$f(1,2)=\sqrt5\approx2.236$，$f_x(1,2)=\frac1{\sqrt5}$，$f_y(1,2)=\frac2{\sqrt5}$。$\Delta f\approx\frac{0.02}{\sqrt5}+\frac{2(-0.02)}{\sqrt5}=-\frac{0.02}{\sqrt5}\approx-0.0089$。</div><span class="tag">考查：全微分近似</span><span class="tag">方法：$\Delta z\approx f_x\Delta x+f_y\Delta y$</span></div>
+<div class="ans"><span class="aq">【8-5】</span> $z_x=2xy(x+y)+(x+y)^2y$；$z_y=2xy(x+y)+(x+y)^2x$。<div class="sol">树状图：$z=u^2v$，$u=x+y$，$v=xy$。$z_x=2uv\cdot1+u^2\cdot y$。</div><span class="tag">考查：链式法则</span><span class="tag">方法：树状图</span></div>
+<div class="ans"><span class="aq">【8-6】</span> 令 $t=x^2+y^2$，$z_x=2xf'(t)$，$z_y=2yf'(t)$，相减为零。<div class="sol">这类题的通法：中间变量设成 $t$，偏导全都化成 $f'(t)\times$（$t$ 对变量的偏导）。</div><span class="tag">考查：链式法则</span><span class="tag">方法：设中间变量</span></div>
+<div class="ans"><span class="aq">【8-7】</span> $u_x=f_1'+f_2'\cdot yz$。<div class="sol">$f_1'$ 表示对第一元求导。记号约定在考卷上要写清楚，别让阅卷老师猜。</div><span class="tag">考查：抽象函数链式</span><span class="tag">方法：编号记号</span></div>
+<div class="ans"><span class="aq">【8-8】</span> $z_{xx}=f_{11}''+\frac2y f_{12}''+\frac1{y^2}f_{22}''$；$z_{xy}=-\frac1{y^2}f_2'-\frac{x}{y^3}f_{22}''$。<div class="sol">$z_x=f_1'+\frac1y f_2'$。对 $x$ 再导：每一项都还是 $f_1',f_2'$ 的复合，继续用链式。$z_{xy}$：对 $y$ 求导时 $\frac1y$ 要导（$-\frac1{y^2}f_2'$ 这项就是它）。</div><span class="tag">考查：二阶混合偏导</span><span class="tag">方法：逐次链式</span></div>
+<div class="ans"><span class="aq">【8-9】</span> $z_x=\dfrac{yz}{e^z-xy}$。<div class="sol">$F=e^z-xyz$，$F_x=-yz$，$F_z=e^z-xy$，$z_x=-\frac{F_x}{F_z}$。</div><span class="tag">考查：隐函数公式</span><span class="tag">方法：$-\frac{F_x}{F_z}$</span></div>
+<div class="ans"><span class="aq">【8-10】</span> $z_x=-\dfrac{1-\frac{yz}{\sqrt{xyz}}}{1-\frac{xy}{\sqrt{xyz}}}$，$z_y$ 对称。<div class="sol">$F=x+2y+z-2\sqrt{xyz}$，$F_x=1-\frac{yz}{\sqrt{xyz}}$，$F_z=1-\frac{xy}{\sqrt{xyz}}$。中大 2023-24 真题第 12 题，算的时候 $\sqrt{xyz}$ 的偏导别漏链式。</div><span class="tag">考查：隐函数（中大真题）</span><span class="tag">方法：公式法</span></div>
+<div class="ans"><span class="aq">【8-11】</span> $u_x=-\dfrac{xu+yv}{x^2+y^2}$。<div class="sol">两边对 $x$ 求导：$\begin{cases}u+xu_x-yv_x=0\\yu_x+v+xv_x=0\end{cases}$，两式分别乘 $x,y$ 相加消 $v_x$。</div><span class="tag">考查：方程组隐函数</span><span class="tag">方法：对 $x$ 求导+解线性组</span></div>
+<div class="ans"><span class="aq">【8-12】</span> $z_x=-\dfrac{F_1'+2xF_2'}{F_1'+2zF_2'}$。<div class="sol">$F(x+y+z,\ x^2+y^2+z^2)=0$ 对 $x$ 求导：$F_1'(1+z_x)+F_2'(2x+2zz_x)=0$，解出 $z_x$。</div><span class="tag">考查：抽象隐函数</span><span class="tag">方法：链式+解出</span></div>
+<div class="ans"><span class="aq">【8-13】</span> 极小值 $-9$（驻点 $(0,3)$）。<div class="sol">$f_x=2x+y-3,\ f_y=x+2y-6$，驻点 $(0,3)$。$A=f_{xx}=2,\ B=1,\ C=2$，$AC-B^2=3&gt;0$，$A&gt;0$ 极小。</div><span class="tag">考查：无条件极值</span><span class="tag">方法：驻点+$AC-B^2$ 判别</span></div>
+<div class="ans"><span class="aq">【8-14】</span> 极大 $\dfrac14$（$x=y=\dfrac12$）。<div class="sol">$L=xy+\lambda(x+y-1)$，$y+\lambda=0,\ x+\lambda=0\Rightarrow x=y=\frac12$。</div><span class="tag">考查：条件极值</span><span class="tag">方法：拉格朗日乘子</span></div>
+<div class="ans"><span class="aq">【8-15】</span> 最大 2，最小 $\dfrac23$。<div class="sol">约束 $x^2+y^2+xy=1$ 下，$f=x^2+y^2$。由对称性猜测 $y=\pm x$：$y=x$ 时 $f=\frac23$，$y=-x$ 时 $f=2$。严格解法：拉格朗日得 $(2x+\lambda(2x+y),\ 2y+\lambda(2y+x))$，非零解要求行列式为零，解得 $y^2=x^2$。</div><span class="tag">考查：条件最值</span><span class="tag">方法：拉格朗日+对称性</span></div>
+<div class="ans"><span class="aq">【8-16】</span> 正方体（$x=y=z=\sqrt[3]V$）。<div class="sol">$S=2(xy+yz+zx)$，$xyz=V$ 定。拉格朗日解得三边相等。经典结论：体积固定表面积最小的是正方体，表面积固定体积最大也是正方体。</div><span class="tag">考查：条件极值应用</span><span class="tag">方法：建模+拉格朗日</span></div>
+<div class="ans"><span class="aq">【8-17】</span> 最大 1，最小 $\dfrac12$。<div class="sol">$L=x^2+y^2+\lambda(x^2+2y^2-1)$。若 $x\neq0$：$\lambda=-1$，$y=0$，$x=\pm1$，$z=1$。若 $y\neq0$：$\lambda=-\frac12$，$x=0$，$y=\pm\frac1{\sqrt2}$，$z=\frac12$。</div><span class="tag">考查：条件最值</span><span class="tag">方法：分情况解驻点组</span></div>
+<div class="ans"><span class="aq">【8-18】</span> 两边直接算：$xz_x+yz_y=nx^n\varphi$。<div class="sol">$z_x=nx^{n-1}\varphi+x^n\varphi'\cdot\frac{-y}{x^2}$，$z_y=x^n\varphi'\cdot\frac1x$。相加得 $nz$。∎ 这是欧拉齐次函数定理的特例，物理里"广延量"（能量、熵）都满足这种关系。</div><span class="tag">考查：偏导恒等式</span><span class="tag">方法：直接计算</span></div>
+</div>
+
+<h3 class="subsec" id="ans9">第9章答案</h3>
+<div class="anssec">
+<div class="at">第9章 · 重积分</div>
+<div class="warn"><b>‍ 师兄批注：</b>二重积分是中大期末最稳定的送分大题，但每年都有人死在"定限"上。一种常用办法：画完图后，用笔沿着 $x$ 轴方向划一道，看先碰到哪条线（下限）后离开哪条线（上限）——上限一定大于下限，算出来如果是反的，八成是线选错了。极坐标别忘了乘 $r$，这个错误犯一次，终身免疫。</div>
+<div class="ans"><span class="aq">【9-1】</span> $\dfrac{13}{60}$。<div class="sol">$0\le x\le1,\ x^2\le y\le x$。$\int_0^1[(x^2-x^4)+(x^2-x^4)\cdot\frac22]dx$——细算：$\int_0^1[x(x-x^2)+(x^2-x^4)]dx=\int_0^1(2x^2-x^3-x^4)dx=\frac23-\frac14-\frac15$。</div><span class="tag">考查：二重积分计算</span><span class="tag">方法：画图定限</span></div>
+<div class="ans"><span class="aq">【9-2】</span> $\displaystyle\int_0^1dy\int_{\sqrt y}^1f(x,y)dx$。<div class="sol">区域：$0\le x\le1,\ 0\le y\le x^2$，画出来是抛物线 $y=x^2$ 下方。交换后 $x$ 从 $\sqrt y$ 到 1。</div><span class="tag">考查：交换次序</span><span class="tag">方法：画图</span></div>
+<div class="ans"><span class="aq">【9-3】</span> $\dfrac23$。<div class="sol">极坐标：$\int_0^\pi\int_0^1 r\sin\theta\cdot r\,dr\,d\theta=\frac13\cdot2$。</div><span class="tag">考查：极坐标二重积分</span><span class="tag">方法：换坐标+乘 $r$</span></div>
+<div class="ans"><span class="aq">【9-4】</span> $\pi\le I\le e\pi$。<div class="sol">单位圆上 $1\le e^{x^2+y^2}\le e$，面积 $\pi$。</div><span class="tag">考查：估值</span><span class="tag">方法：$mS\le I\le MS$</span></div>
+<div class="ans"><span class="aq">【9-5】</span> $\dfrac{2\pi a^3}3$。<div class="sol">$\int_0^{2\pi}\int_0^a r\cdot r\,dr\,d\theta$。被积 $\sqrt{x^2+y^2}=r$，区域是圆盘——极坐标标准款。</div><span class="tag">考查：极坐标二重积分</span><span class="tag">方法：$r\cdot rdrd\theta$</span></div>
+<div class="ans"><span class="aq">【9-6】</span> $\pi$。<div class="sol">$\int_0^{2\pi}\int_0^\infty e^{-r^2}r\,dr\,d\theta=2\pi\cdot\frac12=\pi$。注意这个 $\pi$ 的来历——它就是高斯积分平方的一半，热学麦克斯韦分布归一化全靠它。</div><span class="tag">考查：反常二重积分</span><span class="tag">方法：极坐标</span></div>
+<div class="ans"><span class="aq">【9-7】</span> $\dfrac{\pi}8-\dfrac14$。<div class="sol">两圆交于原点和 $(\frac12,\frac12)$（极角 $\frac\pi4$）。面积 $=\int_0^{\pi/4}\frac12\sin^2\theta\,d\theta+\int_{\pi/4}^{\pi/2}\frac12\cos^2\theta\,d\theta$。</div><span class="tag">考查：极坐标面积</span><span class="tag">方法：分两段积分</span></div>
+<div class="ans"><span class="aq">【9-8】</span> $\dfrac{3\pi}2$。<div class="sol">$x^2+y^2\le2x$ 即 $(x-1)^2+y^2\le1$，极坐标 $r\le2\cos\theta$，$\theta\in[-\frac\pi2,\frac\pi2]$。$\int_{-\pi/2}^{\pi/2}\int_0^{2\cos\theta}r^3\,dr\,d\theta=4\int_{-\pi/2}^{\pi/2}\cos^4\theta\,d\theta=4\cdot\frac{3\pi}8$。</div><span class="tag">考查：极坐标二重积分</span><span class="tag">方法：识别圆+华里士</span></div>
+<div class="ans"><span class="aq">【9-9】</span> $\dfrac\pi4$。<div class="sol">柱坐标，锥面 $z=r$，顶 $z=1$：$\int_0^{2\pi}\int_0^1\int_r^1 z\cdot r\,dz\,dr\,d\theta=2\pi\int_0^1\frac r2(1-r^2)dr$。</div><span class="tag">考查：三重积分柱坐标</span><span class="tag">方法：先 $z$ 后极坐标</span></div>
+<div class="ans"><span class="aq">【9-10】</span> $\dfrac{4\pi R^3}3$。<div class="sol">$\int_0^{2\pi}\int_0^\pi\int_0^R\rho^2\sin\varphi\,d\rho d\varphi d\theta=2\pi\cdot2\cdot\frac{R^3}3$。</div><span class="tag">考查：球坐标</span><span class="tag">方法：体积元 $\rho^2\sin\varphi$</span></div>
+<div class="ans"><span class="aq">【9-11】</span> $\pi$。<div class="sol">柱坐标：$\int_0^{2\pi}\int_0^1\int_0^2 r^2\cdot r\,dz\,dr\,d\theta=2\cdot2\pi\cdot\frac14$。</div><span class="tag">考查：三重积分柱坐标</span><span class="tag">方法：分离变量</span></div>
+<div class="ans"><span class="aq">【9-12】</span> $\dfrac\pi4$。<div class="sol">上半球，球坐标 $0\le\varphi\le\frac\pi2$：$\int_0^{2\pi}\int_0^{\pi/2}\int_0^1\rho\cos\varphi\cdot\rho^2\sin\varphi\,d\rho d\varphi d\theta=2\pi\cdot\frac14\cdot\frac12$。</div><span class="tag">考查：球坐标</span><span class="tag">方法：限定 $\varphi$ 范围</span></div>
+<div class="ans"><span class="aq">【9-13】</span> $2+\dfrac\pi4$。<div class="sol">对称：$S=2\cdot\frac12\int_0^{\pi/2}[(1+\cos\theta)^2-1]d\theta=\int_0^{\pi/2}(2\cos\theta+\cos^2\theta)d\theta=2+\frac\pi4$。</div><span class="tag">考查：极坐标面积</span><span class="tag">方法：对称性+区间减</span></div>
+<div class="ans"><span class="aq">【9-14】</span> $\dfrac{e-1}2$。<div class="sol">$e^{y^2}$ 对 $y$ 没有初等原函数，硬算 $x$ 方向必死。交换次序：$\int_0^1dy\int_0^y e^{y^2}dx=\int_0^1ye^{y^2}dy=\frac{e-1}2$。<b>交换次序不只是技巧，有时候是唯一出路。</b></div><span class="tag">考查：交换次序的必要性</span><span class="tag">方法：换序后凑微分</span></div>
+<div class="ans"><span class="aq">【9-15】</span> $\dfrac{2\pi R^3}3\left(1-\dfrac{\sqrt2}2\right)$。<div class="sol">球 $\rho\le R$ 与锥 $z\ge\sqrt{x^2+y^2}$（即 $\varphi\le\frac\pi4$）的交：$V=\int_0^{2\pi}\int_0^{\pi/4}\int_0^R\rho^2\sin\varphi\,d\rho d\varphi d\theta$。</div><span class="tag">考查：球坐标体积</span><span class="tag">方法：$\varphi$ 角限定锥面</span></div>
+<div class="ans"><span class="aq">【9-16】</span> 反证：若 $f$ 恒正（恒负），保号性得积分非零，矛盾。<div class="sol">更精细：若 $f$ 变号，由连续性和连通性，存在零点（介值定理）。若 $f$ 不变号且不恒零，保号性 ⟹ 积分 $\neq0$。∎</div><span class="tag">考查：二重积分保号性</span><span class="tag">方法：反证法</span></div>
+<div class="ans"><span class="aq">【9-17】</span> $\dfrac{4\pi R^5}{15}$。<div class="sol">对称性：$\iiint x^2dV=\frac13\iiint(x^2+y^2+z^2)dV=\frac13\int_0^{2\pi}\int_0^\pi\int_0^R\rho^2\cdot\rho^2\sin\varphi\,d\rho d\varphi d\theta=\frac13\cdot4\pi\cdot\frac{R^5}5$。</div><span class="tag">考查：三重积分+对称性</span><span class="tag">方法：轮换对称</span></div>
+<div class="ans"><span class="aq">【9-18】</span> $4\pi R^2$。<div class="sol">上半球 $z=\sqrt{R^2-x^2-y^2}$，$dS=\frac Rz\,dxdy$（因 $\sqrt{1+z_x^2+z_y^2}=\frac Rz$），投影 $D:x^2+y^2\le R^2$。$\iint_D\frac{R}{\sqrt{R^2-x^2-y^2}}dxdy$ 极坐标 $=\int_0^{2\pi}\int_0^R\frac{Rr}{\sqrt{R^2-r^2}}drd\theta=2\pi R^2$，乘 2 得 $4\pi R^2$。</div><span class="tag">考查：曲面积分求面积</span><span class="tag">方法：投影+极坐标</span></div>
+</div>
+
+<h3 class="subsec" id="ans10">第10章答案</h3>
+<div class="anssec">
+<div class="at">第10章 · 曲线积分与曲面积分</div>
+<div class="ans"><span class="aq">【10-1】</span> $2\pi a^2$。<div class="sol">参数化 $x=a\cos t,\ y=a\sin t$，$ds=a\,dt$。$\int_0^{2\pi}a\cdot a\,dt$。被积函数在圆周上是常数 $a$，直接提出。</div><span class="tag">考查：第一类曲线积分</span><span class="tag">方法：参数化</span></div>
+<div class="ans"><span class="aq">【10-2】</span> $\dfrac13$。<div class="sol">$x=t,\ y=t^2$：$\int_0^1[(t+t^2)+(t-t^2)\cdot2t]dt=\int_0^1(t+t^2+2t^2-2t^3)dt$。</div><span class="tag">考查：第二类曲线积分</span><span class="tag">方法：参数化代入</span></div>
+<div class="ans"><span class="aq">【10-3】</span> $4$。<div class="sol">第一段 $y=x$：$\int_0^1(2x^2+x^2)dx=1$；第二段 $y=1$：$\int_1^2 2x\,dx=3$。更快的办法：$2xy\,dx+x^2dy=d(x^2y)$ 是全微分，直接 $x^2y\Big|_{(0,0)}^{(2,1)}=4$——先查是不是全微分，能省一半时间。</div><span class="tag">考查：第二类曲线积分</span><span class="tag">方法：分段+全微分检验</span></div>
+<div class="ans"><span class="aq">【10-4】</span> $-\pi$。<div class="sol">$W=\int y\,dx-x\,dy$，参数 $x=\cos t,\ y=\sin t$，$t:0\to\pi$：$\int_0^\pi(-\sin^2t-\cos^2t)dt=-\pi$。负功：力与运动方向相反。</div><span class="tag">考查：变力做功</span><span class="tag">方法：参数化</span></div>
+<div class="ans"><span class="aq">【10-5】</span> $0$。<div class="sol">格林：$\iint_D(y^2-x^2)dxdy$，菱形 $|x|+|y|\le1$ 关于两轴对称，被积 $y^2-x^2$ 是"鞍形"奇函数结构，积分为零。</div><span class="tag">考查：格林公式</span><span class="tag">方法：格林+对称性</span></div>
+<div class="ans"><span class="aq">【10-6】</span> 是全微分，$u=e^x\sin y-2xy+C$。<div class="sol">检验 $P_y=e^x\cos y-2$，$Q_x=e^x\cos y-2$，相等 。$u=\int(e^x\sin y-2y)dx=e^x\sin y-2xy+\varphi(y)$，$u_y=e^x\cos y-2x+\varphi'=Q=e^x\cos y-2x\Rightarrow\varphi'=0$。</div><span class="tag">考查：全微分求势函数</span><span class="tag">方法：三步行</span></div>
+<div class="ans"><span class="aq">【10-7】</span> $1$。<div class="sol">$d(x^2y)=2xy\,dx+x^2dy$，全微分，$=x^2y\Big|_{(0,0)}^{(1,1)}=1$。</div><span class="tag">考查：路径无关</span><span class="tag">方法：凑全微分</span></div>
+<div class="ans"><span class="aq">【10-8】</span> 原点在外：$0$；原点在内：$2\pi$。<div class="sol">原点在外：格林公式，$Q_x-P_y=0$，积分 0。原点在内：不能直接用格林（$P,Q$ 在原点无定义），挖半径 $\varepsilon$ 的小圆，原积分 = 小圆上正向积分 $=\int_0^{2\pi}\frac{\varepsilon^2}{\varepsilon^2}d\theta=2\pi$。<b>这个 $2\pi$ 就是"绕数"，电磁学里安培环路定理的 $2\pi$ 也是它。</b></div><span class="tag">考查：格林公式挖洞</span><span class="tag">方法：挖洞+参数化</span></div>
+<div class="ans"><span class="aq">【10-9】</span> $\dfrac{2\sqrt2\pi}3$。<div class="sol">$z=\sqrt{x^2+y^2}$，$dS=\sqrt{1+z_x^2+z_y^2}\,dxdy=\sqrt2\,dxdy$。$\iint_D\sqrt{x^2+y^2}\cdot\sqrt2\,d\sigma=\sqrt2\int_0^{2\pi}\int_0^1r^2drd\theta$。</div><span class="tag">考查：第一类曲面积分</span><span class="tag">方法：投影法</span></div>
+<div class="ans"><span class="aq">【10-10】</span> $4\pi$。<div class="sol">高斯：$\iiint_\Omega3\,dV=3\cdot\frac{4\pi}3=4\pi$。球面积公式 $4\pi R^2$ 的"体积版孪生"。</div><span class="tag">考查：高斯公式</span><span class="tag">方法：散度定理</span></div>
+<div class="ans"><span class="aq">【10-11】</span> $-\sqrt3\pi a^2$。<div class="sol">斯托克斯：旋度 $(-1,-1,-1)$，平面 $x+y+z=0$ 法向 $n=\frac1{\sqrt3}(1,1,1)$（方向按题意取），积分为 $(-1,-1,-1)\cdot n\times$（面积）$=-\sqrt3\cdot\pi a^2$。</div><span class="tag">考查：斯托克斯公式</span><span class="tag">方法：旋度点乘法向</span></div>
+<div class="ans"><span class="aq">【10-12】</span> $\dfrac{(\sqrt2+1)\pi}2$。<div class="sol">分两块：锥面 $\sqrt2\iint_D(x^2+y^2)d\sigma=\frac{\sqrt2\pi}2$；顶盖 $z=1$：$\iint_D(x^2+y^2)dxdy=\frac\pi2$。注意顶盖 $dS=dxdy$（$z_x=z_y=0$）。</div><span class="tag">考查：曲面积分分块</span><span class="tag">方法：分面投影</span></div>
+<div class="ans"><span class="aq">【10-13】</span> $\pi ab$。<div class="sol">参数 $x=a\cos t,\ y=b\sin t$：$S=\frac12\int_0^{2\pi}(ab\cos^2t+ab\sin^2t)dt=\pi ab$。</div><span class="tag">考查：曲线积分求面积</span><span class="tag">方法：$S=\frac12\oint xdy-ydx$</span></div>
+<div class="ans"><span class="aq">【10-14】</span> $u=x^2\cos y+y^2\cos x+C$。<div class="sol">$P_y=-2y\sin x$，$Q_x=-2y\sin x$ 。$u=\int(2x\cos y-y^2\sin x)dx=x^2\cos y+y^2\cos x+\varphi(y)$，$\varphi'=0$。</div><span class="tag">考查：求原函数</span><span class="tag">方法：三步行</span></div>
+<div class="ans"><span class="aq">【10-15】</span> $0$。<div class="sol">高斯：$\iiint_\Omega2(x+y+z)dV=0$（球对称，$x,y,z$ 的积分各自为零）。别傻算三重积分，先看对称性。</div><span class="tag">考查：高斯+对称性</span><span class="tag">方法：散度+球对称</span></div>
+<div class="ans"><span class="aq">【10-16】</span> $2\pi$。<div class="sol">参数化 $x=\cos t,\ y=1+\sin t,\ z=1+\sin t$，$t:2\pi\to0$（顺时针）。代入积分，奇函数项（$\sin t,\ \sin^3t$）积分为零，剩 $\int 2\cos^2t\,dt$ 方向修正后得 $2\pi$。斯托克斯法：旋度 $(z,0,y)$ 相关项，平面 $y=z$ 下侧，投影 $D:x^2+(y-1)^2\le1$，积分 $\iint_D2y\,dxdy=2\pi$。</div><span class="tag">考查：斯托克斯（中大真题同款）</span><span class="tag">方法：参数化或斯托克斯</span></div>
+<div class="ans"><span class="aq">【10-17】</span> $2\pi Rh$。<div class="sol">$z=0$ 到 $z=h$ 的圆柱侧面：参数 $x=R\cos\theta,\ y=R\sin\theta,\ z=z$，$dS=R\,d\theta dz$，$S=\int_0^h\int_0^{2\pi}R\,d\theta dz=2\pi Rh$。</div><span class="tag">考查：曲面面积</span><span class="tag">方法：参数化</span></div>
+<div class="ans"><span class="aq">【10-18】</span> 用格林公式：$\oint\frac{\partial u}{\partial n}ds=\iint_D(u_{xx}+u_{yy})dxdy=0$。<div class="sol">外法向方向导数 $\frac{\partial u}{\partial n}=\nabla u\cdot\vec n$。把 $\frac{\partial u}{\partial n}ds$ 写成第二类曲线积分 $u_xdy-u_ydx$（法向与切向旋转 $90°$），用格林公式得 $\iint(u_{xx}+u_{yy})=0$。∎ 这就是"调和函数边值积分恒为零"，物理里对应稳态热流进出平衡。</div><span class="tag">考查：格林公式证明</span><span class="tag">方法：方向导数转化+格林</span></div>
+</div>
+
+<h3 class="subsec" id="ans11">第11章答案</h3>
+<div class="anssec">
+<div class="at">第11章 · 无穷级数</div>
+<div class="warn"><b>‍ 师兄批注：</b>级数判敛是"送分题"，但送的是熟练工的分。比值判别法算完 $\rho=1$ 别愣着——马上换比较判别或积分判别，很多题故意把 $\rho$ 设计成 1 卡你。幂级数求收敛域，端点检查永远别省：中大真题每年都有人因为漏端点丢掉整个收敛域的分。傅里叶展开算完系数，代一个特殊点（$x=0$ 或间断点）验算一下，能抓住一半的计算错误。</div>
+<div class="ans"><span class="aq">【11-1】</span> 收敛。<div class="sol">$\frac1{n^2+1}\sim\frac1{n^2}$，$p=2&gt;1$。</div><span class="tag">考查：比较判别法</span><span class="tag">方法：与 $p$ 级数比</span></div>
+<div class="ans"><span class="aq">【11-2】</span> 收敛。<div class="sol">比值：$\frac{2}{n+1}\to0&lt;1$。阶乘碾压指数。</div><span class="tag">考查：比值判别法</span><span class="tag">方法：比值极限</span></div>
+<div class="ans"><span class="aq">【11-3】</span> 条件收敛。<div class="sol">交错级数：$\frac1{\sqrt n}$ 递减趋于 0，莱布尼茨 ⟹ 收敛。取绝对值是 $p=\frac12$ 级数，发散。</div><span class="tag">考查：交错级数</span><span class="tag">方法：莱布尼茨+绝对收敛检验</span></div>
+<div class="ans"><span class="aq">【11-4】</span> 发散。<div class="sol">积分判别：$\int_2^\infty\frac{dx}{x\ln x}=\ln\ln x\Big|_2^\infty\to\infty$。<b>别被 $\frac1n$ 迷惑——多了个 $\ln n$ 就慢了一拍，但积分判别法说它还是发散的。</b></div><span class="tag">考查：积分判别法</span><span class="tag">方法：与反常积分比较</span></div>
+<div class="ans"><span class="aq">【11-5】</span> 收敛。<div class="sol">比值：$\frac{u_{n+1}}{u_n}=\frac1{n+1}\left(1+\frac1n\right)^n\to\frac en\cdot$？细算：$\frac{(n+1)^{n+1}}{((n+1)!)^2}\cdot\frac{(n!)^2}{n^n}=\frac{(n+1)^n(n+1)}{(n+1)^2n^n}=\frac1{n+1}\left(1+\frac1n\right)^n\to0&lt;1$。</div><span class="tag">考查：比值判别法</span><span class="tag">方法：化简比值</span></div>
+<div class="ans"><span class="aq">【11-6】</span> $S=\dfrac3{3-x}$，收敛域 $(-3,3)$。<div class="sol">等比级数：$\sum\left(\frac x3\right)^n=\frac1{1-x/3}$。端点 $x=\pm3$ 发散。</div><span class="tag">考查：等比级数求和</span><span class="tag">方法：识别公比</span></div>
+<div class="ans"><span class="aq">【11-7】</span> $S=-\ln(1-x)$，$|x|&lt;1$。<div class="sol">$S'=\sum x^{n-1}=\frac1{1-x}$，$S=-\ln(1-x)$（$S(0)=0$ 定常数）。</div><span class="tag">考查：先导后积求和</span><span class="tag">方法：求导消分母</span></div>
+<div class="ans"><span class="aq">【11-8】</span> $\dfrac1{(1-x)^2}$，$|x|&lt;1$。<div class="sol">$\sum nx^{n-1}=\left(\frac1{1-x}\right)'$。</div><span class="tag">考查：幂级数求和</span><span class="tag">方法：导数法</span></div>
+<div class="ans"><span class="aq">【11-9】</span> $\cos x$。<div class="sol">余弦的偶次幂展开：$\cos x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!}$。认识展开式等于白送分。</div><span class="tag">考查：识别已知展开</span><span class="tag">方法：对照麦克劳林表</span></div>
+<div class="ans"><span class="aq">【11-10】</span> $[-1,1)$。<div class="sol">$R=1$。$x=1$：调和级数发散；$x=-1$：交错 $\sum\frac{(-1)^n}n$ 收敛。端点检查一个都不能少。</div><span class="tag">考查：收敛域</span><span class="tag">方法：半径+端点</span></div>
+<div class="ans"><span class="aq">【11-11】</span> $2$。<div class="sol">$S(x)=\sum nx^{n-1}=\frac1{(1-x)^2}$，$\sum\frac n{2^n}=\frac12S\left(\frac12\right)=\frac12\cdot4=2$。</div><span class="tag">考查：级数求值</span><span class="tag">方法：和函数代入</span></div>
+<div class="ans"><span class="aq">【11-12】</span> 间断点 $x=0$ 处级数和为 $\dfrac12$。<div class="sol">$a_0=\frac\pi2$，$a_n=\frac{(-1)^n-1}{\pi n^2}$，$b_n=\frac{(-1)^{n+1}}n$。$x=0$ 是间断点，收敛到 $\frac{f(0^-)+f(0^+)}2=\frac12$（不是 $f(0)=0$！）。<b>间断点收敛到"跃度一半"是傅里叶级数的标志性考点。</b></div><span class="tag">考查：傅里叶展开+收敛定理</span><span class="tag">方法：系数公式+狄利克雷</span></div>
+<div class="ans"><span class="aq">【11-13】</span> $\dfrac{\pi^2}6$。<div class="sol">$x^2=\frac{\pi^2}3+4\sum\frac{(-1)^n}{n^2}\cos nx$（偶函数，$b_n=0$）。取 $x=\pi$：$\pi^2=\frac{\pi^2}3+4\sum\frac1{n^2}$，解得巴塞尔问题的答案。</div><span class="tag">考查：傅里叶展开+特殊值</span><span class="tag">方法：展开后代端点</span></div>
+<div class="ans"><span class="aq">【11-14】</span> $x=\dfrac{2l}\pi\sum_{n=1}^\infty\dfrac{(-1)^{n+1}}n\sin\dfrac{n\pi x}l$。<div class="sol">在 $(0,l)$ 上作奇延拓，只有正弦项：$b_n=\frac2l\int_0^l x\sin\frac{n\pi x}l dx$。</div><span class="tag">考查：正弦级数</span><span class="tag">方法：奇延拓</span></div>
+<div class="ans"><span class="aq">【11-15】</span> $f=\dfrac4\pi\sum_{n\text{奇}}\dfrac1n\sin\dfrac{n\pi x}l$。<div class="sol">奇函数，$b_n=\frac2l\int_0^l\sin\frac{n\pi x}ldx=\frac{2}{n\pi}(1-\cos n\pi)$，偶数项为零。</div><span class="tag">考查：方波展开</span><span class="tag">方法：奇函数简化</span></div>
+<div class="ans"><span class="aq">【11-16】</span> $\dfrac{\pi^4}{96}$。<div class="sol">$|x|=\frac\pi2-\frac4\pi\sum_{n\text{奇}}\frac{\cos nx}{n^2}$。用帕塞瓦尔等式：$\frac1\pi\int_{-\pi}^\pi x^2dx=\frac{a_0^2}2+\sum(a_n^2+b_n^2)$，$\frac{2\pi^2}3=\frac{\pi^2}2+\frac{16}{\pi^2}\sum_{n\text{奇}}\frac1{n^4}$。</div><span class="tag">考查：帕塞瓦尔等式</span><span class="tag">方法：能量守恒</span></div>
+<div class="ans"><span class="aq">【11-17】</span> $\dfrac{\pi^2}6$。<div class="sol">由 11-13 的结果。</div><span class="tag">考查：级数求极限</span><span class="tag">方法：引用已知和</span></div>
+<div class="ans"><span class="aq">【11-18】</span> 收敛。<div class="sol">积分判别：$\int_2^\infty\frac{dx}{x\ln^2x}=-\frac1{\ln x}\Big|_2^\infty=\frac1{\ln2}$ 收敛。与 11-4 对比：$\ln$ 的幂次从 1 升到 2，命运翻转。</div><span class="tag">考查：积分判别法</span><span class="tag">方法：积分计算</span></div>
+<div class="ans"><span class="aq">【11-19】</span> $S=(1-\frac1x)\ln(1-x)+1$（$|x|&lt;1$），$S(1)=1$。<div class="sol">$\frac1{n(n+1)}=\frac1n-\frac1{n+1}$。$S'=\sum\frac{x^{n-1}}n\cdot x$? 直接：$xS(x)=\sum\frac{x^{n+1}}{n(n+1)}$，$xS(x)=\sum\frac{x^{n+1}}{n}-\sum\frac{x^{n+1}}{n+1}$，分别求导求和。答案：$S(x)=1+\frac{1-x}{x}\ln(1-x)$。</div><span class="tag">考查：裂项+求和函数</span><span class="tag">方法：裂项后分别求和</span></div>
+<div class="ans"><span class="aq">【11-20】</span> 狄利克雷判别法：$\cos n\varphi$ 部分和有界，$\frac1n$ 单调趋于 0。<div class="sol">$\left|\sum_{k=1}^n\cos k\varphi\right|=\left|\frac{\sin\frac{n\varphi}2\cos\frac{(n+1)\varphi}2}{\sin\frac\varphi2}\right|\le\frac1{|\sin\frac\varphi2|}$ 有界（$\varphi\neq2k\pi$）。狄利克雷 ⟹ 收敛。但 $\left|\frac{\cos n\varphi}n\right|\ge\frac{\cos^2n\varphi}n=\frac{1+\cos2n\varphi}{2n}$，$\sum\frac1{2n}$ 发散，故不绝对收敛。∎</div><span class="tag">考查：条件收敛证明</span><span class="tag">方法：狄利克雷+放缩</span></div>
+</div>
+
+<h3 class="subsec" id="ansreal">中大真题答案</h3>
+<div class="anssec">
+<div class="at">真题一 · 2019级高数(一)第二学期期末A卷</div>
+<div class="ans"><span class="aq">【真1-1】</span> $\displaystyle\int_0^1dx\int_x^{2-x}f(x,y)dy$。<div class="sol">区域由 $y=x$、$y=2-x$、$x=0$ 围成（等腰三角形，顶点 $(0,0),(1,1),(0,2)$）。原评分标准：画图 3 分，交换上下限 5 分。<b>不画图最多 5 分</b>——把图当步骤分来挣。</div><span class="tag">考查：交换积分次序</span><span class="tag">方法：画图定限</span></div>
+<div class="ans"><span class="aq">【真1-2】</span> $\dfrac{13\pi}{3}$。<div class="sol">投影 $D:x^2+y^2\le2$。$dS=\sqrt{1+4x^2+4y^2}dxdy$，极坐标 $\int_0^{2\pi}\int_0^{\sqrt2}\sqrt{1+4r^2}\,r\,drd\theta=\frac{13\pi}3$。</div><span class="tag">考查：曲面面积</span><span class="tag">方法：投影+极坐标</span></div>
+<div class="ans"><span class="aq">【真1-3】</span> $\dfrac{a^3}{3}\left(\dfrac{22}3-\pi\right)$。<div class="sol">$\theta\in[-\frac\pi2,\frac\pi2]$，$a\le r\le a(1+\cos\theta)$。$\iint r\cdot r\,drd\theta=\frac{a^3}3\int_{-\pi/2}^{\pi/2}[(1+\cos\theta)^3-1]d\theta$。给分点：区域 2 分、微元 1 分、计算 3 分（$\int\cos^n$ 用递推）。</div><span class="tag">考查：极坐标二重积分</span><span class="tag">方法：定限+递推积分</span></div>
+<div class="ans"><span class="aq">【真1-4】</span> $2\pi$。<div class="sol">见 10-16 详解（参数化法或斯托克斯法）。真题给了三种解法，考的就是方法选择。</div><span class="tag">考查：斯托克斯</span><span class="tag">方法：参数化/斯托克斯/格林</span></div>
+<div class="ans"><span class="aq">【真1-5】</span> $f(x)=C_1e^x+C_2e^{2x}-xe^x+\cos x-3\sin x$（按卷面数据）。<div class="sol">路径无关 ⟹ $P_y=Q_x$，整理得二阶方程 $f''-3f'+2f=$ 右边项。特征根 $1,2$；$e^x$ 对应的 $-xe^x$（1 是单根乘 $x$）；三角项设 $a\cos x+b\sin x$。整题 = 第7章 + 第10章联考。</div><span class="tag">考查：路径无关+二阶方程</span><span class="tag">方法：$P_y=Q_x$+待定系数</span></div>
+<div class="ans"><span class="aq">【真1-6】</span> $-\dfrac1{15}$。<div class="sol">$z=-\sqrt{1-x^2-y^2}$，$\cos\gamma&lt;0$。投影 $D:r\le1,\ \theta\in[\frac{3\pi}2,2\pi]$。$I=-\iint_Dxy(-\sqrt{1-x^2-y^2})dxdy$，极坐标积分，注意 $\int_{3\pi/2}^{2\pi}\sin\theta\cos\theta\,d\theta=-\frac12$。</div><span class="tag">考查：第二类曲面积分</span><span class="tag">方法：投影+定侧</span></div>
+<div class="ans"><span class="aq">【真1-7】</span> $y=\dfrac{3x}{x^3+3C}$（$y=0$ 是奇异解）。<div class="sol">伯努利 $n=2$：$z=y^{-1}$，$z'+\frac zx=x$，通解公式。</div><span class="tag">考查：伯努利方程</span><span class="tag">方法：$z=y^{1-n}$</span></div>
+<div class="ans"><span class="aq">【真1-8】</span> $y=e^x$。<div class="sol">见例 7.3：$p=y'$，$yp\frac{dp}{dy}-p^2=0$，$p=C_1y$，初值定 $C_1=1$，$y=e^x$。</div><span class="tag">考查：可降阶方程</span><span class="tag">方法：$p=y'$ 降阶</span></div>
+<div class="ans"><span class="aq">【真1-9】</span> $R=\sqrt2$，区间 $(-\sqrt2,\sqrt2)$，收敛域同区间。<div class="sol">比值 $\frac{a_{n+1}}{a_n}\to\frac12$，$R=\sqrt2$（$x^2$ 幂级数开方）。端点 $x=\pm\sqrt2$：通项 $=\frac{2n-1}2\to\infty$，发散。</div><span class="tag">考查：幂级数收敛域</span><span class="tag">方法：比值+端点</span></div>
+<div class="ans"><span class="aq">【真1-10】</span> ①收敛；②发散。<div class="sol">① $n^{\ln n}=e^{(\ln n)^2}$，当 $n&gt;e^{e^4}$ 时 $n\ln\ln n&gt;2(\ln n)^2$，通项 $\le\frac1{n^2}$，比较收敛。② 积分判别：$\int\frac{dx}{x\ln x(\ln\ln x)^{0.9}}=10(\ln\ln x)^{0.1}\to\infty$ 发散。</div><span class="tag">考查：判敛综合</span><span class="tag">方法：比较+积分判别</span></div>
+<div class="ans"><span class="aq">【真1-11】</span> 用 $M$-判别法：$u^2e^{-u}\le\frac4{e^2}$。<div class="sol">$|x|n^2e^{-n|x|}=\frac1{|x|}(n|x|)^2e^{-n|x|}\le\frac4{e^2|x|}$，对 $|x|\ge1$ 有界；$|x|&lt;1$ 区间上 $n^2|x|e^{-n|x|}\le n^2e^{-n|x|}$，最大值 $\frac4{e^2|x|^2}$ 型处理。总之优级数 $\sum\frac C{n^2}$ 收敛 ⟹ 一致收敛。</div><span class="tag">考查：一致收敛</span><span class="tag">方法：强级数判别法</span></div>
+<div class="ans"><span class="aq">【真1-12】</span> 分 $\varphi=2k\pi$ 与 $\varphi\neq2k\pi$ 讨论。<div class="sol">$\varphi=2k\pi$：调和级数发散。$\varphi\neq2k\pi$：$|\cos n\varphi|/n\ge\cos^2n\varphi/n=(1+\cos2n\varphi)/2n$，$\sum\frac{\cos2n\varphi}n$ 收敛（狄利克雷）、$\sum\frac1{2n}$ 发散 ⟹ 不绝对收敛。∎</div><span class="tag">考查：绝对收敛否定</span><span class="tag">方法：分类+放缩</span></div>
+</div>
+<div class="anssec">
+<div class="at">真题二 · 2017级高数(二)第一学期A卷</div>
+<div class="ans"><span class="aq">【真2-1】</span> （1）$1$；（2）$0$。<div class="sol">（1）抓大头：分子 $\sim e^{12x}$，分母 $\sim e^{12x}$。（2）洛必达：$\lim\frac{2x\cos x^4}{1}=0$。</div><span class="tag">考查：极限计算</span><span class="tag">方法：抓大头/洛必达</span></div>
+<div class="ans"><span class="aq">【真2-2】</span> 增 $[0,\frac{3\pi}4]\cup[\frac{7\pi}4,2\pi]$，减 $(\frac{3\pi}4,\frac{7\pi}4)$；拐点 $x=\frac\pi2,\frac{3\pi}2$；最大 $\frac{\sqrt2}2e^{3\pi/4}$，最小 $-\frac{\sqrt2}2e^{7\pi/4}$。<div class="sol">$f'=e^x(\sin x+\cos x)$，$f''=2e^x\cos x$。$f(0)=f(2\pi)=0$ 是端点。一阶导零点 $\frac{3\pi}4,\frac{7\pi}4$。</div><span class="tag">考查：单调极值拐点</span><span class="tag">方法：一阶二阶导联合</span></div>
+</div>
+<div class="anssec">
+<div class="at">真题三 · 2009级第二学期期末</div>
+<div class="ans"><span class="aq">【真3-1】</span> $e^x+e^{-y}=2$。<div class="sol">分离变量：$-e^{-y}=e^x+C$，$(0,0)$ 代入 $C=-2$。</div><span class="tag">考查：可分离变量</span><span class="tag">方法：分离+初值</span></div>
+<div class="ans"><span class="aq">【真3-2】</span> $\dfrac{\pi}{64}$。<div class="sol">圆 $(x-\frac12)^2+y^2\le\frac14$，极坐标 $r\le\cos\theta$，$\theta\in[-\frac\pi2,\frac\pi2]$。$\int_{-\pi/2}^{\pi/2}\int_0^{\cos\theta}r^3\sin^2\theta\,drd\theta=\frac14\cdot2\int_0^{\pi/2}\sin^2\theta\cos^4\theta\,d\theta=\frac12\cdot\frac{1!!3!!}{6!!}\cdot\frac\pi2=\frac12\cdot\frac3{48}\cdot\frac\pi2=\frac\pi{64}$。</div><span class="tag">考查：极坐标二重积分</span><span class="tag">方法：华里士公式</span></div>
+<div class="ans"><span class="aq">【真3-3】</span> $F'(x)=\dfrac{2\sin x^3-\sin x}{x}$。<div class="sol">含参积分求导：$F'=\frac{\sin x^3}{x}+\int_1^x\frac{2xt\cos(xt^2)}t\,dt=\frac{\sin x^3}{x}+\frac1x[\sin(xt^2)]_1^x=\frac{\sin x^3}{x}+\frac{\sin x^3-\sin x}{x}$。</div><span class="tag">考查：含参积分求导</span><span class="tag">方法：莱布尼茨积分法则</span></div>
+</div>
+<div class="anssec">
+<div class="at">真题四 · 2023-2024高数(下)期末A卷</div>
+<div class="ans"><span class="aq">【真4-1】</span> $2\sqrt2$。<div class="sol">直线 $y=-x+1$（$x:1\to-1$），$ds=\sqrt2dx$，$\int_1^{-1}(x-x+1)\sqrt2dx=-2\sqrt2$，取弧长积分与方向无关，正值 $2\sqrt2$。</div><span class="tag">考查：第一类曲线积分</span><span class="tag">方法：参数化</span></div>
+<div class="ans"><span class="aq">【真4-2】</span> D。<div class="sol">D：$u_n\sim\frac1{3n}$，与调和级数同阶发散。A 等比收敛，B 交错收敛，C 裂项收敛。</div><span class="tag">考查：级数判敛</span><span class="tag">方法：识别类型</span></div>
+<div class="ans"><span class="aq">【真4-3】</span> $e^x(C_1\cos2x+C_2\sin2x)$。<div class="sol">$\lambda^2-2\lambda+5=0$，$\lambda=1\pm2i$。</div><span class="tag">考查：二阶齐次（复根）</span><span class="tag">方法：特征方程</span></div>
+<div class="ans"><span class="aq">【真4-4】</span> $I_2&gt;I_1$。<div class="sol">$I_2-I_1=\iint_D y\,d\sigma&gt;0$（$D$ 在 $y\ge0$ 半平面且不恒零）。</div><span class="tag">考查：保号性比较</span><span class="tag">方法：作差</span></div>
+<div class="ans"><span class="aq">【真4-5】</span> 按高斯公式：$=\iiint_\Omega(y+z+1)dV$，对称性得 $8\pi$（以卷面数据为准）。<div class="sol">补底面 $z=0$ 成闭曲面，高斯公式，$y,z$ 项对称为零。</div><span class="tag">考查：高斯公式</span><span class="tag">方法：补面+对称</span></div>
+<div class="ans"><span class="aq">【真4-6】</span> $32\pi$。<div class="sol">柱坐标：$\int_0^{2\pi}\int_0^2r^3dr\cdot\int_0^4dz=2\pi\cdot4\cdot4$。</div><span class="tag">考查：三重积分</span><span class="tag">方法：柱坐标分离</span></div>
+<div class="ans"><span class="aq">【真4-7】</span> 联立得 $r^2=4$，柱坐标 $V=\int_0^{2\pi}\int_0^2[\sqrt{5-r^2}-\frac{r^2}4]r\,dr\,d\theta$。<div class="sol">两曲面交点：$\frac{r^2}4=\sqrt{5-r^2}\Rightarrow r^2=4$。积分 $=2\pi\left[\frac13(5^{3/2}-1)-1\right]$。</div><span class="tag">考查：三重积分求体积</span><span class="tag">方法：柱坐标+联立求交</span></div>
+<div class="ans"><span class="aq">【真4-8】</span> $z_x=-\dfrac{F_x}{F_z}$，$F_x=1-\frac{yz}{\sqrt{xyz}}$，$F_z=1-\frac{xy}{\sqrt{xyz}}$。<div class="sol">见 8-10。</div><span class="tag">考查：隐函数求导</span><span class="tag">方法：公式法</span></div>
+<div class="ans"><span class="aq">【真4-9】</span> 约 10 分钟。<div class="sol">见 7-17：$t=3\frac{\ln2}{\ln(16/13)}\approx10$ 分钟。</div><span class="tag">考查：冷却定律</span><span class="tag">方法：建模+解+定参</span></div>
+</div>
+
+<p style="text-align:center;color:var(--muted);margin-top:40px">—— 高等数学讲义完 ——</p>
+</main>
+</div>
+</body>
+</html>
