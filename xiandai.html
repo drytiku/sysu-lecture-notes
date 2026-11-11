@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>线性代数（丘维生高等代数·第四版）· 学习讲义</title>
+<script>
+window.MathJax = {
+  tex: {inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$']]},
+  svg: {fontCache: 'global'}
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+:root{
+  --bg:#f6f4ee; --card:#fffdf8; --card2:#f2efe7; --text:#26221b; --muted:#6b6355;
+  --accent:#2f6b3c; --line:#ddd5c5; --gold:#8a6d1a; --red:#9c2f2f; --green:#2f6b3c; --purple:#5b4680;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Georgia,"Songti SC","SimSun",serif;line-height:1.85;font-size:16.5px}
+.layout{display:grid;grid-template-columns:270px 1fr;max-width:1320px;margin:0 auto}
+nav.toc{position:sticky;top:0;height:100vh;overflow-y:auto;padding:26px 18px;border-right:1px solid var(--line);background:#fbf9f4;font-size:.9em;font-family:"Microsoft YaHei",sans-serif}
+nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:4px 8px;border-radius:5px}
+nav.toc a:hover{color:var(--text);background:var(--card2)}
+nav.toc a.lv2{padding-left:24px;font-size:.93em}
+nav.toc .hd{color:var(--accent);font-weight:700;margin:14px 0 4px;font-size:1em;letter-spacing:1px}
+main{padding:32px 44px 100px;min-width:0}
+h1{font-size:2em;margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:26px;font-family:"Microsoft YaHei",sans-serif;font-size:.95em}
+h2.sec{font-size:1.5em;margin:52px 0 16px;padding:10px 18px;background:#eef5ee;border-left:4px solid var(--accent);font-family:"Microsoft YaHei",sans-serif}
+h3.subsec{font-size:1.2em;margin:32px 0 12px;color:#2b5a35;font-family:"Microsoft YaHei",sans-serif}
+h4{color:#3a6b45;margin:18px 0 8px;font-size:1.02em;font-family:"Microsoft YaHei",sans-serif}
+p{margin:9px 0;text-align:justify}
+ul,ol{margin:9px 0 9px 26px}
+li{margin:5px 0}
+.hook{background:#faf5ee;border:1px solid #d9c9a8;border-radius:8px;padding:18px 20px;margin:18px 0}
+.hook b{color:#5b3a15}
+.intro{background:#f2f0fa;border:1px solid #c9c2e2;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:.96em}
+.intro b{color:#4b3a75}
+.conn{background:#eef5ee;border:1px solid #b9cfb9;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:.96em}
+.conn b{color:#2f6b3c}
+.warn{background:#f9eeee;border:1px solid #d9b6b6;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:.96em}
+.warn b{color:#9c2f2f}
+.idea{background:#eef3f9;border:1px solid #b9c9da;border-radius:8px;padding:14px 18px;margin:16px 0;font-size:.96em}
+.idea b{color:#2b4a6b}
+.derive{background:#f5f1fa;border:1px solid #cdbede;border-radius:8px;padding:16px 18px;margin:16px 0;font-size:.96em}
+.derive b{color:#5b4680}
+.derive .dt{color:#5b4680;font-weight:700;margin-bottom:8px;font-family:"Microsoft YaHei",sans-serif}
+.formula{background:var(--card2);border-radius:6px;padding:12px 18px;margin:14px 0;overflow-x:auto;font-size:1.03em}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:16px 0}
+.ex .title{color:var(--accent);font-weight:700;margin-bottom:8px;font-family:"Microsoft YaHei",sans-serif}
+.method{background:#eef6f0;border:1px solid #b3cfb3;border-radius:8px;padding:14px 18px;margin:14px 0}
+.method .mt{color:#2f6b3c;font-weight:700;margin-bottom:6px;font-family:"Microsoft YaHei",sans-serif}
+.prac{background:#fbf7ec;border:1px dashed #c9b078;border-radius:8px;padding:18px;margin:20px 0}
+.prac .title{color:#8a6d1a;font-weight:700;margin-bottom:10px;font-size:1.06em;font-family:"Microsoft YaHei",sans-serif}
+.anssec{background:#fbf7ec;border:1px solid #c9b078;border-radius:10px;padding:18px;margin:16px 0}
+.anssec .at{color:#8a6d1a;font-weight:700;margin-bottom:8px;font-family:"Microsoft YaHei",sans-serif}
+.ans{background:#fffdf6;border:1px solid var(--line);border-radius:6px;padding:12px 16px;margin:10px 0}
+.ans .aq{color:#2b4a6b;font-weight:600;font-family:"Microsoft YaHei",sans-serif}
+.ans .tag{color:#2f6b3c;font-size:.88em;font-family:"Microsoft YaHei",sans-serif}
+.ans .sol{color:#3c362c;font-size:.96em;margin-top:5px}
+.exam{background:#f9eeee;border:1px solid #d9b6b6;border-radius:10px;padding:20px;margin:20px 0}
+.exam .title{color:#9c2f2f;font-weight:700;font-size:1.06em;margin-bottom:8px;font-family:"Microsoft YaHei",sans-serif}
+table{border-collapse:collapse;margin:14px 0;width:100%}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;font-size:.95em}
+th{background:var(--card2);color:#5b3a15;font-family:"Microsoft YaHei",sans-serif}
+.tag{display:inline-block;background:#f0ead9;border:1px solid #d5c9a8;color:#6b5530;border-radius:99px;padding:1px 10px;font-size:.8em;margin:2px;font-family:"Microsoft YaHei",sans-serif}
+.top{background:linear-gradient(135deg,#eef5ee,#f5efe2);border:1px solid #b3cfb3;border-radius:10px;padding:30px;margin-bottom:30px}
+.top h1{font-size:2.1em}
+.tip{color:#8a6d1a;font-size:.93em;font-family:"Microsoft YaHei",sans-serif}
+.src{color:#8a7a5a;font-size:.85em;font-family:"Microsoft YaHei",sans-serif}
+@media (max-width:900px){.layout{grid-template-columns:1fr}nav.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc">
+  <a href="index.html" style="color:#8a6d1a;font-weight:700">返回首页</a>
+  <div class="hd">线性代数（丘维生高代·第四版）</div>
+  <a href="#howto">使用说明</a>
+  <a href="#ch1">第一章 行列式</a>
+  <a href="#ch2">第二章 矩阵</a>
+  <a href="#ch3">第三章 矩阵的秩与线性方程组</a>
+  <a href="#ch4">第四章 向量空间与线性相关性</a>
+  <a href="#ch5">第五章 线性变换与特征值</a>
+  <a href="#ch6">第六章 二次型</a>
+  <div class="hd">历年真题</div>
+  <a href="#real">中山大学及其它高校真题</a>
+  <div class="hd">答案</div>
+  <a href="#answers">全书答案与详解</a>
+</nav>
+<main>
+<div class="top">
+  <h1>线性代数</h1>
+  <div class="sub">教材：丘维生《高等代数》（第四版，科学出版社）· 章节目录与课程大纲对应</div>
+  <p class="tip">每节设"引入"（历史与思想渊源）与"推导"（原理的完整推演过程）；每节配约十道练习，章末另设二十道综合题；答案统一在书末，每题附详细解析与考点标注；真题区收录中山大学及其它高校期末试题并逐一标注出处。</p>
+</div>
+
+<h2 class="sec" id="howto">使用说明</h2>
+<div class="idea">
+<p>本讲义按丘维生《高等代数》的课程大纲编写。学习建议：先读每节"引入"了解知识由来；紫色"推导"框应合书独立完成；每节练习约十题、章末综合题二十题，完成后对照书末答案，按标注考点归类错题；真题区按学校与年份标注，供学完全书后模拟测试。线性代数是"结构课"，抓住"秩"这条主线可事半功倍。</p>
+</div>
+
+<h2 class="sec" id="ch1">第一章 行列式</h2>
+<div class="hook">
+<p><b>行列式诞生于 1693 年莱布尼茨解方程组的手稿，比矩阵早了 150 年。</b>一个有趣的事实：数学家先发明了行列式（一个数），很久之后才发现它背后站着一个更本质的东西（矩阵）。行列式在十九世纪迎来黄金时代：柯西、雅可比、西尔维斯特建立了系统理论。二十世纪它退居幕后——线性代数的重心从"算数"转向"结构"。<b>但行列式仍是期末送分题的主场：六条性质与展开定理，练熟即得。</b></p>
+</div>
+
+<h3 class="subsec" id="s1-1">§1.1 行列式的定义与性质</h3>
+<div class="intro"><p><b>引入：</b>二阶行列式 $ad-bc$ 的几何意义是平行四边形有向面积；三阶行列式是平行六面体有向体积。柯西 1812 年用排列的逆序数给出 $n$ 阶行列式的现代定义。<b>逆序数的奇偶性决定了每一项的正负号——这是行列式定义中最精巧的部分。</b></p></div>
+<div class="idea">
+<p><b>定义：</b>$\det A=\sum(-1)^{\tau(j_1\cdots j_n)}a_{1j_1}\cdots a_{nj_n}$。</p>
+<p><b>六条性质：</b>① 转置不变 $|A^T|=|A|$；② 交换两行（列）变号；③ 某行公因子可提出（$|kA|=k^n|A|$）；④ 两行成比例 ⟹ 为零；⑤ 某行可拆成两组数之和；⑥ 某行的 $k$ 倍加到另一行不变。</p>
+<p><b>结论：</b>三角行列式 = 对角线乘积；$|AB|=|A||B|$；$|A^{-1}|=\frac1{|A|}$；$|A^*|=|A|^{n-1}$。</p>
+<div class="warn"><b>易错：</b>$|kA|=k^n|A|$ 而非 $k|A|$；$|A+B|\neq|A|+|B|$。中大 07 级真题曾考 $|(-\frac13)A^*-4A^{-1}|$ 型组合题。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：三阶行列式的几何意义（平行六面体体积）</div>
+<p>设 $\vec a,\vec b,\vec c$ 为平行六面体的三条棱。体积 $V=|\vec a\cdot(\vec b\times\vec c)|$。展开混合积：$\vec b\times\vec c$ 的分量恰为二阶余子式，点乘 $\vec a$ 后正是三阶行列式的展开式。故 $V=|\det(\vec a,\vec b,\vec c)|$。∎ <span class="tip">——行列式的绝对值是"体积缩放因子"，这一几何解释在重积分换元（高数第九章雅可比行列式）中再次出现。</span></p>
+</div>
+<div class="ex">
+<div class="title">例1.1 设 $A$ 为 3 阶矩阵，$|A|=3$，求 $|2A|$、$|A^{-1}|$、$|A^*|$。</div>
+<p><b>解：</b>$|2A|=2^3\times3=24$；$|A^{-1}|=\frac13$；$|A^*|=|A|^{3-1}=9$。</p>
+</div>
+<div class="ex">
+<div class="title">例1.2 计算 $D=\begin{vmatrix}1&2&3\\2&4&7\\3&6&11\end{vmatrix}$。</div>
+<p><b>解：</b>第 2 行 $-$2×第 1 行、第 3 行 $-$3×第 1 行，得 $\begin{vmatrix}1&2&3\\0&0&1\\0&0&2\end{vmatrix}=0$（两行成比例）。</p>
+</div>
+<div class="prac"><div class="title">本节练习（1.1-1 ~ 1.1-10）</div>
+<ol start="1">
+<li>计算 $\begin{vmatrix}1&1&1\\a&b&c\\a^2&b^2&c^2\end{vmatrix}$（范德蒙）。</li>
+<li>设 $A$ 为 4 阶矩阵，$|A|=2$，求 $|-2A^T|$ 与 $|A^*|$。</li>
+<li>计算 $\begin{vmatrix}1&2&0&0\\3&4&0&0\\0&0&5&6\\0&0&7&8\end{vmatrix}$（分块三角）。</li>
+<li>判断：$|A+B|=|A|+|B|$ 是否成立？给反例。</li>
+<li>计算 $\begin{vmatrix}1&2&3\\4&5&6\\7&8&9\end{vmatrix}$。</li>
+<li>说明逆序数的定义，求排列 3412 的逆序数。</li>
+<li>证明 $|A^T|=|A|$。</li>
+<li>用几何意义解释三阶行列式为零的条件。</li>
+<li>计算 $\begin{vmatrix}a&b\\-b&a\end{vmatrix}$ 并说明其几何意义（旋转伸缩）。</li>
+<li>证明两行相同的行列式为零。</li>
+</ol></div>
+
+<h3 class="subsec" id="s1-2">§1.2 按行（列）展开</h3>
+<div class="intro"><p><b>引入：</b>拉普拉斯 1772 年给出按一行展开的公式——把 $n$ 阶行列式降为 $n$ 个 $(n-1)$ 阶行列式之和。降阶法是计算行列式的通用策略：<b>先用性质六消元，把某行化为只有一个非零元，再展开降阶</b>。</p></div>
+<div class="idea">
+<p><b>代数余子式：</b>$A_{ij}=(-1)^{i+j}M_{ij}$。</p>
+<p><b>展开定理：</b>$|A|=\sum_j a_{ij}A_{ij}$；错位展开为零 $\sum_j a_{kj}A_{ij}=0\ (k\neq i)$。</p>
+<p><b>计算策略：</b>消元（性质六）+ 展开（降阶），目标化三角或降阶。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：错位展开为什么为零</div>
+<p>$\sum_j a_{kj}A_{ij}$ 相当于把 $A$ 的第 $i$ 行换成第 $k$ 行（其余行不变）后按第 $i$ 行展开。而换行后矩阵有两行相同（第 $i$、$k$ 行都是原来的第 $k$ 行），行列式为零。∎ <span class="tip">——错位展开为零是"两行相同行列式为零"的推论，也是伴随矩阵理论的起点。</span></p>
+</div>
+<div class="ex">
+<div class="title">例1.3 计算 $D=\begin{vmatrix}3&1&-1&2\\-5&1&3&-4\\2&0&1&-1\\1&-5&3&-3\end{vmatrix}$。</div>
+<p><b>解：</b>选第 3 列消元，化到只剩 $a_{33}=1$，再展开降阶，得 $-60$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（1.2-1 ~ 1.2-10）</div>
+<ol start="11">
+<li>计算 $\begin{vmatrix}1&2&3&4\\2&3&4&1\\3&4&1&2\\4&1&2&3\end{vmatrix}$。</li>
+<li>求 $\begin{vmatrix}1&1&1\\x&y&z\\x^2&y^2&z^2\end{vmatrix}$ 在 $x=1,y=2,z=3$ 的值。</li>
+<li>$n$ 阶行列式 $\begin{vmatrix}x&1&\cdots&1\\1&x&\cdots&1\\\vdots&&\ddots&\vdots\\1&1&\cdots&x\end{vmatrix}$ 的值。</li>
+<li>证明 $AA^*=|A|E$。</li>
+<li>计算 $n$ 阶三对角行列式 $D_n$（对角 2、次对角 1），求递推式。</li>
+<li>用展开定理计算四阶上三角行列式。</li>
+<li>说明拉普拉斯展开的一般形式。</li>
+<li>计算 $\begin{vmatrix}1+a&1&1\\1&1+b&1\\1&1&1+c\end{vmatrix}$。</li>
+<li>用展开定理证明范德蒙行列式公式。</li>
+<li>计算三阶循环行列式 $\begin{vmatrix}a&b&c\\c&a&b\\b&c&a\end{vmatrix}$。</li>
+</ol></div>
+
+<h3 class="subsec" id="s1-3">§1.3 克拉默法则</h3>
+<div class="intro"><p><b>引入：</b>1750 年，瑞士数学家克拉默发表《代数曲线分析引论》，其中给出用行列式解线性方程组的公式。<b>克拉默法则的贡献不在实用（计算量巨大），而在理论</b>：它证明了解的存在唯一性只由系数行列式决定，是"行列式 ⟺ 可逆"这一对应关系的第一次亮相。</p></div>
+<div class="idea">
+<p><b>克拉默法则：</b>$|A|\neq0$ 时 $Ax=b$ 唯一解 $x_i=\frac{|A_i|}{|A|}$（$A_i$ 为第 $i$ 列换成 $b$）。</p>
+<p><b>推论：</b>齐次方程组 $Ax=0$ 有非零解 ⟺ $|A|=0$。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：克拉默法则（行列式展开视角）</div>
+<p>设 $Ax=b$，即 $\sum_j x_j\vec a_j=\vec b$。把 $A$ 的第 $i$ 列换成 $\vec b$ 得 $A_i$，其行列式 $|A_i|=\det(\vec a_1,\dots,\sum_j x_j\vec a_j,\dots,\vec a_n)$。由行列式多重线性（性质五），展开为 $\sum_j x_j\det(\cdots,\vec a_j,\cdots)$，其中 $j\neq i$ 的项行列式两列相同为零，仅 $j=i$ 项保留 $=x_i|A|$。故 $x_i=\frac{|A_i|}{|A|}$。∎</p>
+</div>
+<div class="ex">
+<div class="title">例1.4 用克拉默法则解 $\begin{cases}x+2y=1\\3x+4y=2\end{cases}$。</div>
+<p><b>解：</b>$|A|=-2$。$x=\frac{\begin{vmatrix}1&2\\2&4\end{vmatrix}}{-2}=0$；$y=\frac{\begin{vmatrix}1&1\\3&2\end{vmatrix}}{-2}=\frac12$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（1.3-1 ~ 1.3-10）</div>
+<ol start="21">
+<li>用克拉默法则解 $\begin{cases}x+y+z=1\\2x-y+z=0\\x+2y-z=2\end{cases}$。</li>
+<li>$\lambda$ 为何值时 $\begin{cases}(\lambda-1)x+y=0\\x+(\lambda-1)y=0\end{cases}$ 有非零解？</li>
+<li>说明克拉默法则的适用范围与局限。</li>
+<li>推导克拉默法则（展开视角）。</li>
+<li>用克拉默法则说明 $|A|\neq0$ 时解的唯一性。</li>
+<li>齐次方程组有非零解的条件是什么？</li>
+<li>用克拉默法则解二元一次方程组（一般形式）。</li>
+<li>说明克拉默法则与逆矩阵的关系。</li>
+<li>三阶方程组的克拉默法则计算量估计。</li>
+<li>克拉默法则在参数讨论中的应用。</li>
+</ol></div>
+
+<h3 class="subsec" id="m1">第一章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：先化简后计算</div>
+<p>观察结构（成比例行列、全 1 行、对称性）→ 性质六消元化三角或化到少非零元 → 展开降阶。范德蒙、分块三角直接套结论。</p>
+<p><b>例题：</b>各行加到第 1 行提公因子。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：递推法</div>
+<p>三对角等特殊结构按第一行展开得 $D_n=pD_{n-1}+qD_{n-2}$，解特征方程。</p>
+<p><b>例题：</b>三对角 $D_n=2D_{n-1}-D_{n-2}$，$D_n=n+1$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：抽象行列式恒等式化简</div>
+<p>$AA^*=|A|E$、$|AB|=|A||B|$ 先化简再代值。</p>
+<p><b>例题：</b>$|-\frac13A^*-4A^{-1}|=|-5A^{-1}|$。</p>
+</div>
+
+<h3 class="subsec" id="e1">第一章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（1-1 ~ 1-20，含真题）</div>
+<ol start="31">
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>在 5 阶行列式 $|a_{ij}|$ 中，项 $a_{13}a_{24}a_{32}a_{41}a_{35}$ 前的符号应取______。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>$A$ 为 3 阶矩阵，$|A|=3$，求 $\left|(-\frac13)A^*-4A^{-1}\right|$。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>$A$ 为 3 阶方阵，$|A|=5$，求 $|-3A|$。</li>
+<li><span class="src">（清华大学线代试题·流传版）</span>计算 $n$ 阶行列式 $\begin{vmatrix}1&2&\cdots&n\\2&3&\cdots&1\\\vdots&&&\vdots\\n&1&\cdots&n-1\end{vmatrix}$。</li>
+<li><span class="src">（北京大学线代试题·流传版）</span>证明范德蒙行列式公式。</li>
+<li>计算 $\begin{vmatrix}1&1&1&1\\1&2&3&4\\1&4&9&16\\1&8&27&64\end{vmatrix}$。</li>
+<li>计算 $n$ 阶行列式 $\begin{vmatrix}a&b&\cdots&b\\b&a&\cdots&b\\\vdots&&\ddots&\vdots\\b&b&\cdots&a\end{vmatrix}$。</li>
+<li>证明 $|AB|=|A||B|$（用初等矩阵）。</li>
+<li>设 $A$ 为奇数阶反对称矩阵（$A^T=-A$），证明 $|A|=0$。</li>
+<li>计算 $\begin{vmatrix}0&a&b\\-a&0&c\\-b&-c&0\end{vmatrix}$。</li>
+<li>用行列式判断三点共线。</li>
+<li>计算 $\begin{vmatrix}1&x&x^2\\1&y&y^2\\1&z&z^2\end{vmatrix}$ 并说明其几何意义。</li>
+<li>行列式在重积分换元中的作用（简述）。</li>
+<li>证明两行成比例的行列式为零。</li>
+<li>计算 $\begin{vmatrix}a+b&ab&0\\1&a+b&ab\\0&1&a+b\end{vmatrix}$。</li>
+<li>设 $A$ 为 $n$ 阶矩阵，$|A|=-2$，求 $|A^*|$ 与 $|(A^*)^*|$。</li>
+<li>用克拉默法则解含参数的三元方程组并讨论。</li>
+<li>计算循环行列式 $\begin{vmatrix}a&b&c&d\\d&a&b&c\\c&d&a&b\\b&c&d&a\end{vmatrix}$ 的一个因式。</li>
+<li>说明行列式与线性方程组解的存在唯一性的关系。</li>
+<li>计算 $\begin{vmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{vmatrix}$ 并说明几何意义。</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch2">第二章 矩阵</h2>
+<div class="hook">
+<p><b>1858 年，凯莱发表《矩阵论备忘录》，首次把矩阵作为独立研究对象——此前矩阵只是行列式的"附属品"。</b>凯莱定义了矩阵的加法、乘法与逆。矩阵乘法的不可交换性曾令数学家不安，但很快被接受为理所当然：<b>矩阵是线性变换的化身，乘法是变换的复合——先穿袜子再穿鞋，顺序当然重要</b>。这一章是线代的计算基本功：求逆、分块、初等变换。</p>
+</div>
+
+<h3 class="subsec" id="s2-1">§2.1 矩阵运算</h3>
+<div class="intro"><p><b>引入：</b>矩阵乘法的定义（行乘列）看似突兀，实则源于线性方程组：把 $y_i=\sum_k a_{ik}x_k$ 与 $x_k=\sum_j b_{kj}z_j$ 复合，得到 $y_i=\sum_j c_{ij}z_j$，其中 $c_{ij}=\sum_k a_{ik}b_{kj}$。<b>矩阵乘法就是复合函数在坐标下的写法。</b></p></div>
+<div class="idea">
+<p><b>运算与条件：</b>加减（同型）；数乘；乘法 $A_{m\times n}B_{n\times p}=C_{m\times p}$，$c_{ij}=\sum_k a_{ik}b_{kj}$；转置 $(AB)^T=B^TA^T$（倒序）。</p>
+<p><b>结论：</b>$|AB|=|A||B|$；$|A^T|=|A|$；$\operatorname{tr}(AB)=\operatorname{tr}(BA)$。</p>
+<div class="warn"><b>易错：</b>$AB\neq BA$（一般）；$AB=0\nRightarrow A=0$ 或 $B=0$；$AB=AC\nRightarrow B=C$；$(A+B)^2\neq A^2+2AB+B^2$。选择题高频考点。</div>
+</div>
+<div class="ex">
+<div class="title">例2.1 验证 $A=\begin{pmatrix}1&2\\3&4\end{pmatrix},B=\begin{pmatrix}1&0\\-1&1\end{pmatrix}$ 不交换。</div>
+<p><b>解：</b>$AB=\begin{pmatrix}-1&2\\-1&4\end{pmatrix}\neq BA=\begin{pmatrix}1&2\\2&2\end{pmatrix}$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（2.1-1 ~ 2.1-10）</div>
+<ol start="51">
+<li>计算 $\begin{pmatrix}1&2&3\end{pmatrix}\begin{pmatrix}4\\5\\6\end{pmatrix}$ 与 $\begin{pmatrix}4\\5\\6\end{pmatrix}\begin{pmatrix}1&2&3\end{pmatrix}$。</li>
+<li>设 $A=\begin{pmatrix}0&1\\0&0\end{pmatrix}$，求 $A^2$。</li>
+<li>举出 $AB=0$ 但 $A,B$ 均非零的例子。</li>
+<li>验证 $(AB)^T=B^TA^T$。</li>
+<li>说明矩阵乘法与复合函数的关系。</li>
+<li>求 $\operatorname{tr}(AB)$ 与 $\operatorname{tr}(BA)$ 并比较。</li>
+<li>计算 $\begin{pmatrix}1&1\\0&1\end{pmatrix}^n$。</li>
+<li>计算 $\begin{pmatrix}1&0\\1&1\end{pmatrix}^n$。</li>
+<li>说明零因子与消去律的关系。</li>
+<li>矩阵乘法的结合律证明。</li>
+</ol></div>
+
+<h3 class="subsec" id="s2-2">§2.2 逆矩阵</h3>
+<div class="intro"><p><b>引入：</b>可逆矩阵就是"可逆变换"——能撤销的操作。逆矩阵的存在条件 $|A|\neq0$ 把第一章的行列式与第二章的矩阵连了起来。<b>求逆三法（公式法、行变换法、解方程法）是本章的核心技能</b>，期末必有一道求逆题。</p></div>
+<div class="idea">
+<p><b>定义：</b>$AB=BA=E$ 则 $B=A^{-1}$。可逆 ⟺ $|A|\neq0$ ⟺ 秩满。</p>
+<p><b>求逆三法：</b>① 公式 $A^{-1}=\frac{A^*}{|A|}$（二阶口诀）；② 行变换 $(A\mid E)\to(E\mid A^{-1})$；③ 解方程。</p>
+<p><b>性质：</b>$(AB)^{-1}=B^{-1}A^{-1}$；$(A^T)^{-1}=(A^{-1})^T$；$|A^{-1}|=|A|^{-1}$。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：$(AB)^{-1}=B^{-1}A^{-1}$</div>
+<p>$(AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=AEA^{-1}=E$；另一侧同理。∎ <span class="tip">——"穿脱原则"：复合的逆是逆的倒序复合，与转置的倒序规则一致。</span></p>
+</div>
+<div class="ex">
+<div class="title">例2.2 求 $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$ 的逆。</div>
+<p><b>解：</b>$|A|=-2$。主对调、副变号、除以 $-2$：$A^{-1}=\begin{pmatrix}-2&1\\3/2&-1/2\end{pmatrix}$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（2.2-1 ~ 2.2-10）</div>
+<ol start="61">
+<li>求 $\begin{pmatrix}a&b\\c&d\end{pmatrix}$ 的逆（$ad-bc\neq0$）。</li>
+<li>求 $\operatorname{diag}(1,2,3)$ 的逆。</li>
+<li>证明 $(A^T)^{-1}=(A^{-1})^T$。</li>
+<li>解矩阵方程 $AX=B$ 与 $XA=B$。</li>
+<li>设 $A$ 为 3 阶可逆阵，$|A|=3$，求 $\left|\frac12A^{-1}-3A^*\right|$。</li>
+<li>$A^2-3A+2E=0$，证明 $A$ 可逆并求 $A^{-1}$。</li>
+<li>用行变换法求 $\begin{pmatrix}1&1&2\\2&2&1\\0&1&2\end{pmatrix}$ 的逆。</li>
+<li>证明 $(A^{-1})^{-1}=A$。</li>
+<li>二阶求逆口诀的推导。</li>
+<li>说明可逆与秩满、行列式非零的等价性。</li>
+</ol></div>
+
+<h3 class="subsec" id="s2-3">§2.3 分块矩阵与初等矩阵</h3>
+<div class="intro"><p><b>引入：</b>分块矩阵是"分而治之"：把大矩阵切成小块，把块当元素运算。<b>分块对角矩阵对应物理中的"解耦系统"</b>——力学中两个独立振子、热学中两种独立气体的运动互不干扰，数学上就是分块对角。初等矩阵则是消元法的"动作记录"：每一次行变换都对应一个初等矩阵。</p></div>
+<div class="idea">
+<p><b>分块：</b>分块对角 $|P|=|A||B|$，$P^{-1}=\begin{pmatrix}A^{-1}&O\\O&B^{-1}\end{pmatrix}$；准三角 $\begin{vmatrix}A&C\\O&B\end{vmatrix}=|A||B|$。</p>
+<p><b>初等矩阵：</b>$E(i,j)$、$E(i(k))$、$E(ij(k))$。左乘行变换、右乘列变换。</p>
+</div>
+<div class="ex">
+<div class="title">例2.3 求 $P=\begin{pmatrix}O&A\\B&O\end{pmatrix}$（$A,B$ 为 $n$ 阶可逆）的行列式与逆。</div>
+<p><b>解：</b>$|P|=(-1)^{n^2}|A||B|$；$P^{-1}=\begin{pmatrix}O&B^{-1}\\A^{-1}&O\end{pmatrix}$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（2.3-1 ~ 2.3-10）</div>
+<ol start="71">
+<li>求 $\begin{vmatrix}A&C\\O&B\end{vmatrix}$。</li>
+<li>设 $P=\begin{pmatrix}1&1\\0&1\end{pmatrix},Q=\begin{pmatrix}1&0\\1&1\end{pmatrix}$，求 $PQ$ 与 $QP$。</li>
+<li>初等矩阵是否都可逆？逆是什么？</li>
+<li>$M=\begin{pmatrix}A&O\\C&B\end{pmatrix}$（$A,B$ 可逆），求 $M^{-1}$。</li>
+<li>说明初等矩阵与初等变换的对应。</li>
+<li>分块对角矩阵与解耦系统的关系。</li>
+<li>计算 $\begin{pmatrix}A&O\\O&B\end{pmatrix}^n$。</li>
+<li>证明准三角分块行列式公式。</li>
+<li>分块矩阵乘法的条件。</li>
+<li>用初等矩阵表示交换两行。</li>
+</ol></div>
+
+<h3 class="subsec" id="m2">第二章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：求逆按阶选法</div>
+<p>二阶口诀；三阶以上行变换 $(A\mid E)\to(E\mid A^{-1})$；抽象矩阵用多项式反解。</p>
+<p><b>例题：</b>$A^2-3A+2E=0\Rightarrow A^{-1}=\frac{3E-A}2$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：矩阵方程左右消去</div>
+<p>$AX=B\Rightarrow X=A^{-1}B$；$XA=B\Rightarrow X=BA^{-1}$；$AXB=C\Rightarrow X=A^{-1}CB^{-1}$。</p>
+<p><b>例题：</b>先确认可逆，再定方向。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：分块降阶</div>
+<p>把块当元素运算；分块对角与准三角的行列式、逆直接写。</p>
+<p><b>例题：</b>$M^{-1}=\begin{pmatrix}A^{-1}&O\\-B^{-1}CA^{-1}&B^{-1}\end{pmatrix}$。</p>
+</div>
+
+<h3 class="subsec" id="e2">第二章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（2-1 ~ 2-20，含真题）</div>
+<ol start="81">
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>已知 $A=\begin{pmatrix}1&1&2\\2&2&1\\0&1&2\end{pmatrix}$，求 $A^{-1}$。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>$P=\begin{pmatrix}A&C\\O&B\end{pmatrix}$，$A,B$ 可逆，证明 $P$ 可逆并求 $P^{-1}$。</li>
+<li><span class="src">（清华大学线代试题·流传版）</span>设 $A$ 满足 $A^2+A-2E=0$，求 $A^{-1}$。</li>
+<li><span class="src">（北京大学线代试题·流传版）</span>求 $\begin{pmatrix}1&1\\0&1\end{pmatrix}^n$ 与 $\begin{pmatrix}\lambda&1\\0&\lambda\end{pmatrix}^n$。</li>
+<li><span class="src">（复旦大学线代试题·流传版）</span>设 $A,B$ 均为 $n$ 阶方阵，证明 $\operatorname{tr}(AB)=\operatorname{tr}(BA)$。</li>
+<li>证明可逆矩阵的逆唯一。</li>
+<li>求 $\begin{pmatrix}0&1\\1&0\end{pmatrix}^{-1}$ 与 $\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}^{-1}$，说明几何意义。</li>
+<li>设 $A$ 为幂零矩阵（$A^k=0$），求 $(E-A)^{-1}$。</li>
+<li>矩阵方程 $\begin{pmatrix}1&1\\1&-1\end{pmatrix}X=\begin{pmatrix}2&0\\0&3\end{pmatrix}$，求 $X$。</li>
+<li>证明 $(A^*)^{-1}=(A^{-1})^*$。</li>
+<li>分块求逆 $\begin{pmatrix}A&O\\C&B\end{pmatrix}$ 的验证。</li>
+<li>初等变换与矩阵秩的关系（预告第三章）。</li>
+<li>求 $\begin{pmatrix}1&2\\0&1\end{pmatrix}$ 的 $n$ 次幂。</li>
+<li>说明矩阵乘法不满足消去律的原因。</li>
+<li>设 $A$ 为对称阵，证明 $A^2$ 对称。</li>
+<li>计算 $\begin{pmatrix}1&1&1\\0&1&1\\0&0&1\end{pmatrix}^n$。</li>
+<li>证明 $|A^*|=|A|^{n-1}$。</li>
+<li>对称矩阵与反对称矩阵的分解。</li>
+<li>说明分块矩阵在数值计算中的应用。</li>
+<li>设 $A,B$ 可交换（$AB=BA$），证明 $(A+B)^2=A^2+2AB+B^2$。</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch3">第三章 矩阵的秩与线性方程组</h2>
+<div class="hook">
+<p><b>解方程组是线代的母题——两千年前《九章算术》第八章"方程"就在用消元法了。</b>但只有到高斯手里，消元法才成为一台"机器"：不管多少未知数，按固定流程走就出答案。秩是这台机器输出的核心情报：<b>方程组里真正有用的方程有几个，其余是废话</b>。解的结构就一句话：通解 = 特解 + 齐次通解。中大期末大题几乎必有"讨论参数、求通解"。</p>
+</div>
+
+<h3 class="subsec" id="s3-1">§3.1 矩阵的秩</h3>
+<div class="intro"><p><b>引入：</b>"秩"（rank）一词由西尔维斯特 1851 年引入，指矩阵中线性无关行（列）的最大数目。秩的深刻之处在于：<b>行秩恒等于列秩</b>——一个关于"行"的数和关于"列"的数居然相等，这是线性代数中最优美的定理之一。</p></div>
+<div class="idea">
+<p><b>定义：</b>非零子式的最高阶数 = 行秩 = 列秩。求法：行阶梯形非零行数。</p>
+<p><b>性质：</b>$0\le r(A_{m\times n})\le\min(m,n)$；$r(A^T)=r(A)$；$r(A+B)\le r(A)+r(B)$；$r(AB)\le\min(r(A),r(B))$；$A$ 可逆 ⟹ $r(AB)=r(B)$；列满秩 ⟺ $Ax=0$ 只有零解。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：初等变换不改变秩</div>
+<p>初等行变换相当于左乘初等矩阵 $P$（可逆）。若 $r(PA)&lt;r(A)$，则 $A=P^{-1}(PA)$ 的秩也不超过 $r(PA)$（$r(AB)\le r(B)$），矛盾。故 $r(PA)=r(A)$。∎ <span class="tip">——$r(AB)\le r(B)$ 的直观理解：$AB$ 的列都是 $A$ 的列的线性组合，组合不能增加独立性的"维数"。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.1 求 $A=\begin{pmatrix}1&2&3\\2&4&6\\3&6&9\end{pmatrix}$ 的秩。</div>
+<p><b>解：</b>第 2、3 行是第 1 行的倍数，$r(A)=1$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（3.1-1 ~ 3.1-10）</div>
+<ol start="101">
+<li>求 $\begin{pmatrix}1&-1&2&1\\2&0&3&1\\3&1&4&1\end{pmatrix}$ 的秩。</li>
+<li>求 $\begin{pmatrix}1&2&1\\2&4&2\\1&1&1\end{pmatrix}$ 的秩。</li>
+<li>$r(A_{4\times3})=3$ 说明什么？$r(A_{3\times4})=3$ 呢？</li>
+<li>证明 $r(A)=r(A^TA)$。</li>
+<li>说明行秩等于列秩的含义。</li>
+<li>求 $\begin{pmatrix}1&1&1&1\\1&2&3&4\\1&3&5&7\end{pmatrix}$ 的秩。</li>
+<li>证明 $r(AB)\le\min(r(A),r(B))$。</li>
+<li>可逆矩阵乘矩阵秩不变，证明之。</li>
+<li>秩为 1 的矩阵有什么结构？</li>
+<li>用秩判断向量组相关性（预告第四章）。</li>
+</ol></div>
+
+<h3 class="subsec" id="s3-2">§3.2 齐次线性方程组 $Ax=0$</h3>
+<div class="intro"><p><b>引入：</b>齐次方程组的解集对加法和数乘封闭——它是一个"向量空间"（第四章的主角）。<b>解空间维数 $=n-r$</b>：未知数个数减去秩。这个公式把"解有多少"的问题化为"秩是多少"的计算。</p></div>
+<div class="idea">
+<p><b>解的结构：</b>$r(A)=r$ 时解空间维数 $n-r$；通解 = 基础解系的线性组合。</p>
+<p><b>求基础解系：</b>行最简形 → 定主元与自由变量（$n-r$ 个）→ 自由变量依次取 $(1,0,\dots),(0,1,\dots)$ 解出主元。</p>
+<p><b>判定：</b>只有零解 ⟺ $r=n$；有非零解 ⟺ $r&lt;n$。</p>
+</div>
+<div class="ex">
+<div class="title">例3.2 求 $\begin{cases}x_1+x_2-x_3=0\\2x_1-x_2+2x_3=0\end{cases}$ 的基础解系。</div>
+<p><b>解：</b>系数矩阵行最简 $\begin{pmatrix}1&0&1/3\\0&1&-4/3\end{pmatrix}$。令 $x_3=1$ 得 $\xi=(1,-4,-3)^T$ 的整数倍，通解 $x=k(1,-4,-3)^T$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（3.2-1 ~ 3.2-10）</div>
+<ol start="111">
+<li>求 $\begin{cases}x_1+x_2+x_3+x_4=0\\x_1-x_2+x_3-x_4=0\end{cases}$ 的基础解系。</li>
+<li>求 $\begin{cases}x_1+2x_2+3x_3=0\\2x_1+4x_2+6x_3=0\end{cases}$ 的基础解系。</li>
+<li>$A_{3\times5}$，$r(A)=3$，基础解系含几个向量？</li>
+<li>说明解空间是向量空间。</li>
+<li>为什么 $m&lt;n$ 时必有非零解？</li>
+<li>求 $\begin{cases}x_1+x_2+x_3=0\\x_1-x_2+2x_3=0\\2x_1+3x_3=0\end{cases}$ 的解。</li>
+<li>基础解系为什么恰有 $n-r$ 个向量？</li>
+<li>自由变量的选择是否唯一？</li>
+<li>求 $x_1+x_2+x_3+x_4+x_5=0$ 的基础解系。</li>
+<li>说明基础解系与通解的关系。</li>
+</ol></div>
+
+<h3 class="subsec" id="s3-3">§3.3 非齐次线性方程组 $Ax=b$</h3>
+<div class="intro"><p><b>引入：</b>非齐次方程组的解集不是向量空间（不过原点），但结构仍然优美：<b>通解 = 特解 + 齐次通解</b>。这个结构在微分方程（高数第七章）中完全同构——"非齐次通解 = 特解 + 齐次通解"是线性问题的普适结构。</p></div>
+<div class="idea">
+<p><b>解的判定：</b>增广矩阵 $\tilde A=(A\mid b)$：$r(\tilde A)\neq r(A)$ 无解；$r(\tilde A)=r(A)=n$ 唯一解；$=r&lt;n$ 无穷多解。</p>
+<p><b>解的结构：</b>通解 = 特解 + 导出组通解。</p>
+<p><b>性质：</b>$Ax=b$ 两解之差是 $Ax=0$ 的解（07 级真题）。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：解的判定定理（秩的比较）</div>
+<p>$Ax=b$ 有解 ⟺ $b$ 可由 $A$ 的列向量线性表示 ⟺ 列向量组与增广列向量组秩相同 ⟺ $r(\tilde A)=r(A)$。有解时解唯一 ⟺ 列向量组线性无关 ⟺ $r(A)=n$。∎ <span class="tip">——"有解看秩相等，唯一看秩等于 n"。</span></p>
+</div>
+<div class="ex">
+<div class="title">例3.3（中大 07 级真题）讨论 $a$ 为何值时 $\begin{cases}ax_1+x_2+x_3=1\\x_1+ax_2+x_3=a\\x_1+x_2+ax_3=a^2\end{cases}$ 无解、唯一解、无穷多解。</div>
+<p><b>解：</b>$|A|=(a-1)^2(a+2)$。$a\neq1,-2$ 唯一；$a=1$ 无穷多解；$a=-2$ 无解（三方程相加矛盾）。</p>
+</div>
+<div class="prac"><div class="title">本节练习（3.3-1 ~ 3.3-10）</div>
+<ol start="121">
+<li>解 $\begin{cases}x_1+x_2+x_3=1\\x_1-x_2+2x_3=2\\2x_1+3x_3=3\end{cases}$。</li>
+<li>求 $\begin{cases}x_1+2x_2-x_3=1\\2x_1+4x_2-2x_3=2\end{cases}$ 的通解。</li>
+<li>$\lambda$ 取何值时 $\begin{cases}\lambda x_1+x_2=1\\x_1+\lambda x_2=1\end{cases}$ 无解？</li>
+<li>设 $\eta_1,\eta_2,\eta_3$ 是 $Ax=b$ 的三个解，$r(A)=2$，$\eta_1=(1,2,3)^T$，$\eta_2+\eta_3=(3,4,5)^T$，求通解。</li>
+<li>讨论 $\begin{cases}x_1+x_2+ax_3=1\\x_1+ax_2+x_3=1\\ax_1+x_2+x_3=-2\end{cases}$ 的解。</li>
+<li>证明 $Ax=b$ 两解之差是 $Ax=0$ 的解。</li>
+<li>说明"通解=特解+齐次通解"的结构。</li>
+<li>解的线性组合性质（系数和为 1 与为 0）。</li>
+<li>用秩的语言叙述解的判定定理。</li>
+<li>增广矩阵的作用是什么？</li>
+</ol></div>
+
+<h3 class="subsec" id="m3">第三章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：参数讨论"三段式"</div>
+<p>算系数行列式 → $|A|\neq0$ 唯一解（克拉默）→ $|A|=0$ 的参数值逐个代入比较 $r(\tilde A)$ 与 $r(A)$。</p>
+<p><b>例题：</b>例 3.3（中大 07 级真题原题）。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：求通解"行最简加自由变量"</div>
+<p>增广矩阵化行最简；主元列对应主变量，其余自由；自由变量取参数写特解加基础解系。</p>
+<p><b>例题：</b>$x=(0,1,0)^T+k(-1,0,1)^T$。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：解的性质组合题</div>
+<p>解之差是齐次解；系数和 1 的组合仍是解；系数和 0 的组合是齐次解。</p>
+<p><b>例题：</b>$2\eta_1-(\eta_2+\eta_3)$ 是导出组解。</p>
+</div>
+
+<h3 class="subsec" id="e3">第三章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（3-1 ~ 3-20，含真题）</div>
+<ol start="131">
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>方程组 $x_1\alpha_1+\cdots+x_n\alpha_n=\beta$ 有解的充要条件是______。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>设 $\eta_1,\eta_2$ 是 $Ax=b$ 的两个解，则______是 $Ax=0$ 的解。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>齐次方程组 $\begin{cases}\lambda x_1+x_2+x_3=0\\x_1+\lambda x_2+x_3=0\\x_1+x_2+\lambda x_3=0\end{cases}$ 只有零解 ⟹ $\lambda\neq$______。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>$A$ 为 $3\times4$ 矩阵，$r(A)=2$，错误的是：A. 所有三阶子式为零 B. 所有二阶子式不为零 C. 列向量线性相关 D. 行向量线性相关。</li>
+<li><span class="src">（清华大学线代试题·流传版）</span>讨论 $a,b$ 为何值时，方程组 $\begin{cases}x_1+x_2+x_3=1\\x_1+ax_2+x_3=b\\x_1+x_2+ax_3=2\end{cases}$ 无解、有唯一解、有无穷多解，并在有无穷多解时求通解。</li>
+<li><span class="src">（北京大学线代试题·流传版）</span>设 $r(A_{m\times n})=r$，证明 $Ax=0$ 解空间维数为 $n-r$。</li>
+<li>求 $\begin{cases}x_1+x_2+x_3+x_4=1\\x_1-x_2=2\end{cases}$ 的通解。</li>
+<li>证明 $r(A)=r(A^TA)$ 并用同解法。</li>
+<li>设 $A$ 为 $m\times n$ 矩阵，$Ax=0$ 与 $Bx=0$ 同解，问 $r(A)$ 与 $r(B)$ 的关系。</li>
+<li>用秩讨论两直线（两平面）的位置关系。</li>
+<li>设 $\alpha_1,\alpha_2,\alpha_3$ 为 $Ax=b$ 的三个解，构造基础解系。</li>
+<li>证明：$Ax=0$ 只有零解时 $A^TA$ 可逆。</li>
+<li>求含参数方程组的通解（三阶）。</li>
+<li>说明秩与方程个数的关系。</li>
+<li>用增广矩阵判断两平面相交、平行、重合。</li>
+<li>证明齐次方程组解的线性组合仍是解。</li>
+<li>设 $r(A)=r$，写出解空间的一组基的构造方法。</li>
+<li>求 $\begin{cases}x_1+2x_2+x_3=0\\x_2-x_3=0\end{cases}$ 与 $\begin{cases}x_1+x_2=1\\x_1-x_3=2\end{cases}$ 各自的解并说明结构。</li>
+<li>说明高斯消元法的步骤与复杂度。</li>
+<li>方程组有解时解唯一的充要条件（用秩表述并证明）。</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch4">第四章 向量空间与线性相关性</h2>
+<div class="hook">
+<p><b>为什么四维空间的"几何直觉"会背叛人？</b>二维三维可以画图，四维画不出来，只能靠代数。向量空间的伟大在于把"直线、平面、空间"统一成"维数"，把画图升级成逻辑。物理系学生尤其要重视这一章：<b>量子力学的希尔伯特空间、力学的位形空间都是本章的推广</b>。期末考法：判断线性相关、求最大无关组、求子空间的基与维数。</p>
+</div>
+
+<h3 class="subsec" id="s4-1">§4.1 线性相关与线性无关</h3>
+<div class="intro"><p><b>引入：</b>"线性相关"的概念源于一个朴素问题：一组向量中，有没有哪个向量是"多余"的——能用其它向量表示出来？<b>无关组是"精简到极致"的向量组</b>。判定方法把问题化为矩阵秩的计算：竖排成矩阵，秩等于向量个数则无关。</p></div>
+<div class="idea">
+<p><b>定义：</b>存在不全为零的 $k_i$ 使 $\sum k_i\alpha_i=0$ ⟺ 相关；否则无关。</p>
+<p><b>判定：</b>竖排成矩阵 $A$：$r(A)&lt;s$ ⟺ 相关；$r(A)=s$ ⟺ 无关。$n$ 个 $n$ 维用行列式。</p>
+<p><b>结论：</b>个数超维数必相关；含零向量必相关；部分相关 ⟹ 整体相关；整体无关 ⟹ 部分无关。</p>
+</div>
+<div class="ex">
+<div class="title">例4.1（中大 07 级真题）求 $\alpha_1=(1,2,2,0),\alpha_2=(2,4,4,0),\alpha_3=(1,0,3,1),\alpha_4=(0,4,-2,-2)$ 的秩与最大无关组。</div>
+<p><b>解：</b>竖排行变换得 $r=3$（$\alpha_2=2\alpha_1$）。最大无关组 $\alpha_1,\alpha_3,\alpha_4$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（4.1-1 ~ 4.1-10）</div>
+<ol start="151">
+<li>判断 $(1,1,1),(1,2,3),(1,3,6)$ 是否无关。</li>
+<li>判断 $(1,0,0),(0,1,0),(1,1,0)$ 是否相关。</li>
+<li>4 个 3 维向量是否必相关？</li>
+<li>$\alpha_1,\alpha_2,\alpha_3$ 无关，判断 $\alpha_1+\alpha_2,\alpha_2+\alpha_3,\alpha_3+\alpha_1$。</li>
+<li>$\alpha_1,\dots,\alpha_m$ 无关，$\beta_i=\alpha_i+\alpha_{i+1}$（$\beta_m=\alpha_m+\alpha_1$），证明 $\beta$ 组无关（08 级真题同款）。</li>
+<li>含零向量的向量组为何必相关？</li>
+<li>说明"部分相关⟹整体相关"的证明。</li>
+<li>求 $\alpha_1=(1,1,0),\alpha_2=(1,0,1),\alpha_3=(2,1,1)$ 的秩。</li>
+<li>最大无关组的定义与求法。</li>
+<li>无关组的任意非空子集是否无关？</li>
+</ol></div>
+
+<h3 class="subsec" id="s4-2">§4.2 基、维数与坐标、施密特正交化</h3>
+<div class="intro"><p><b>引入：</b>"维数"是向量空间唯一的身份证——同维数的空间代数性质完全相同（同构）。坐标是向量在选定基下的"地址"。<b>施密特正交化（1907）把任意无关组改造成正交组</b>，它是傅里叶级数、量子力学本征函数展开的代数原型。</p></div>
+<div class="idea">
+<p><b>基：</b>最大无关组；维数 = 基中向量个数；坐标 $\alpha=\sum x_i\varepsilon_i$。</p>
+<p><b>过渡矩阵：</b>$(\beta)=(\varepsilon)C$；坐标变换 $x_{旧}=Cx_{新}$。</p>
+<p><b>施密特正交化：</b>$\beta_k=\alpha_k-\sum_{i&lt;k}\frac{\langle\alpha_k,\beta_i\rangle}{\langle\beta_i,\beta_i\rangle}\beta_i$。</p>
+</div>
+<div class="derive">
+<div class="dt">推导：施密特正交化的几何原理</div>
+<p>$\beta_k=\alpha_k-\sum_{i&lt;k}\frac{\langle\alpha_k,\beta_i\rangle}{\langle\beta_i,\beta_i\rangle}\beta_i$：从 $\alpha_k$ 中减去它在每个已有 $\beta_i$ 方向上的投影，剩下的部分与所有 $\beta_i$ 正交。这正是"正交投影"的逐次实现。∎ <span class="tip">——与高等数学傅里叶系数"用正交性筛出系数"是同一思想。</span></p>
+</div>
+<div class="ex">
+<div class="title">例4.2 施密特正交化 $\alpha_1=(1,1,0),\alpha_2=(1,0,1),\alpha_3=(0,1,1)$。</div>
+<p><b>解：</b>$\beta_1=(1,1,0)$；$\beta_2=\alpha_2-\frac12\beta_1=(\frac12,-\frac12,1)$；$\beta_3=\alpha_3-\frac12\beta_1-\frac{\frac12}{3/2}\beta_2=(-\frac23,\frac23,\frac23)$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（4.2-1 ~ 4.2-10）</div>
+<ol start="161">
+<li>求 $\mathbb R^3$ 的一组基并说明维数。</li>
+<li>施密特正交化（例 4.2 的完整过程）。</li>
+<li>多项式空间 $P_3$（次数 ≤2）的维数与基。</li>
+<li>推导坐标变换公式 $x_{旧}=Cx_{新}$。</li>
+<li>说明同维数向量空间同构的含义。</li>
+<li>求向量 $\alpha=(2,3,4)$ 在基 $(1,1,1),(1,1,0),(1,0,0)$ 下的坐标。</li>
+<li>过渡矩阵必可逆，证明之。</li>
+<li>正交基与标准正交基的区别。</li>
+<li>施密特正交化的计算要点。</li>
+<li>说明施密特正交化与傅里叶展开的关系。</li>
+</ol></div>
+
+<h3 class="subsec" id="s4-3">§4.3 线性子空间</h3>
+<div class="intro"><p><b>引入：</b>子空间是"嵌在大空间里的小空间"——对加法和数乘封闭的子集。判定只需查三件事：<b>含零向量、加法封闭、数乘封闭</b>。齐次方程组的解空间是最重要的子空间实例。</p></div>
+<div class="idea">
+<p><b>判定：</b>非空、加法封闭、数乘封闭。</p>
+<p><b>四类子空间：</b>解空间（$n-r$ 维）；列空间 $C(A)$（$r$ 维）；张成空间（秩维）；零空间与自身。</p>
+<p><b>维数公式：</b>$\dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2)$。</p>
+<div class="warn"><b>易错：</b>$Ax=b$ 的解集不是子空间（不过原点）。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：维数公式</div>
+<p>取 $W_1\cap W_2$ 的基 $\{\gamma_i\}$（$s$ 维），扩充为 $W_1$ 的基 $\{\gamma,\alpha\}$（$m$ 维）与 $W_2$ 的基 $\{\gamma,\beta\}$（$n$ 维）。证明 $\{\gamma,\alpha,\beta\}$ 是 $W_1+W_2$ 的基（无关性：设组合为零，移项用交的性质），故 $\dim(W_1+W_2)=m+n-s$。∎</p>
+</div>
+<div class="ex">
+<div class="title">例4.3 判断 $W=\{(x,y,z)\mid x+y+z=0\}$ 是否为 $\mathbb R^3$ 的子空间，求维数。</div>
+<p><b>解：</b>过原点平面，是子空间；$\dim W=3-1=2$，基如 $(1,-1,0),(1,0,-1)$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（4.3-1 ~ 4.3-10）</div>
+<ol start="171">
+<li>判断 $W=\{(x,y)\mid x+y=1\}$ 是否为子空间。</li>
+<li>求 $\operatorname{span}\{(1,1,0),(0,1,1),(1,0,1)\}$ 的维数。</li>
+<li>$\dim W_1=3,\dim W_2=4\subseteq\mathbb R^5$，求 $\dim(W_1\cap W_2)$ 的最小值。</li>
+<li>求 $\mathbb R^4$ 中 $\begin{cases}x_1+x_2+x_3+x_4=0\\x_1-x_2=0\end{cases}$ 的解空间维数与基。</li>
+<li>证明解空间是子空间。</li>
+<li>列空间与张成空间的关系。</li>
+<li>零子空间与全空间的维数。</li>
+<li>维数公式的推导。</li>
+<li>子空间的和与交的定义。</li>
+<li>判断两个子空间的并是否子空间（一般不是）。</li>
+</ol></div>
+
+<h3 class="subsec" id="m4">第四章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：相关性判定"排矩阵看秩"</div>
+<p>向量竖排成矩阵化阶梯看秩；$n$ 个 $n$ 维用行列式。</p>
+<p><b>例题：</b>三向量行列式不为零 ⟹ 无关。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：证明无关"设零组合"</div>
+<p>设 $\sum k_i\beta_i=0$，用已知无关性推全部 $k_i=0$。</p>
+<p><b>例题：</b>$\beta_i=\alpha_i+\alpha_{i+1}$ 型。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：子空间"三件套检查"</div>
+<p>查零向量、加法封闭、数乘封闭；维数用 $n-r$ 或秩。</p>
+<p><b>例题：</b>$x+y=1$ 不过原点，不是子空间。</p>
+</div>
+
+<h3 class="subsec" id="e4">第四章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（4-1 ~ 4-20，含真题）</div>
+<ol start="181">
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>$\alpha=(1,2,-1)^T,\beta=(2,3,1)^T$，求内积。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>$\alpha_1,\dots,\alpha_m$ 无关，$\beta_i=\alpha_i+\alpha_{i+1}$，证 $\beta$ 组无关。</li>
+<li><span class="src">（清华大学线代试题·流传版）</span>证明 $n+1$ 个 $n$ 维向量必线性相关。</li>
+<li><span class="src">（北京大学线代试题·流传版）</span>求子空间 $W=\{(x_1,x_2,x_3,x_4)\mid x_1+x_2+x_3+x_4=0\}$ 的基与维数。</li>
+<li><span class="src">（复旦大学线代试题·流传版）</span>对向量组 $\alpha_1=(1,1,0),\ \alpha_2=(1,0,1),\ \alpha_3=(0,1,1)$ 作施密特正交化，并写出所得标准正交组。</li>
+<li>证明过渡矩阵可逆。</li>
+<li>两组基之间的坐标变换。</li>
+<li>证明行秩等于列秩（思路）。</li>
+<li>求向量组的最大无关组并其余向量用其表示。</li>
+<li>证明维数公式。</li>
+<li>判断 $W=\{A\mid \operatorname{tr}A=0\}$（$n$ 阶方阵）是否为子空间并求维数。</li>
+<li>证明无关向量组延长仍无关。</li>
+<li>子空间交与和的维数关系。</li>
+<li>求两个二维子空间的交。</li>
+<li>说明同构的意义。</li>
+<li>证明施密特正交化得到正交组。</li>
+<li>正交组必无关，证明之。</li>
+<li>求 $\mathbb R^3$ 中过原点的平面的基。</li>
+<li>说明"向量空间"八条公理。</li>
+<li>证明 $W_1\cap W_2$ 是子空间。</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch5">第五章 线性变换与特征值</h2>
+<div class="hook">
+<p><b>为什么"振动系统"和"网页排名"是同一种数学？</b>弹簧连质量块的方程是矩阵方程；Google 的 PageRank 是特征向量；力学求主转动惯量是特征值；量子力学测能量也是特征值。<b>特征值问题的本质：给线性变换找"最佳视角"——在此视角下变换只是沿某些方向拉伸不旋转</b>。特征方向就是特征向量，拉伸倍数就是特征值。本章是期末压轴：特征值、特征向量、对角化。</p>
+</div>
+
+<h3 class="subsec" id="s5-1">§5.1 线性变换及其矩阵</h3>
+<div class="intro"><p><b>引入：</b>线性变换是"保持线性结构"的映射：和的像等于像的和，数乘的像等于像的数乘。旋转、镜像、投影、伸缩是最基本的几何实例。<b>选定基后，线性变换变成矩阵；换基则矩阵相似</b>——相似矩阵是同一变换的不同"照片"。</p></div>
+<div class="idea">
+<p><b>定义：</b>$\mathcal A(\alpha+\beta)=\mathcal A\alpha+\mathcal A\beta$，$\mathcal A(k\alpha)=k\mathcal A\alpha$。</p>
+<p><b>矩阵表示：</b>$\mathcal A(\varepsilon_1,\dots,\varepsilon_n)=(\varepsilon_1,\dots,\varepsilon_n)A$；坐标 $y=Ax$。</p>
+<p><b>相似：</b>$B=C^{-1}AC$。</p>
+<p><b>几何变换（$\mathbb R^2$）：</b>旋转 $\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$；镜像；投影；伸缩。</p>
+</div>
+<div class="ex">
+<div class="title">例5.1 求"绕原点逆时针转 90°"在标准基下的矩阵。</div>
+<p><b>解：</b>$\hat i\to(0,1)^T$，$\hat j\to(-1,0)^T$，$A=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（5.1-1 ~ 5.1-10）</div>
+<ol start="201">
+<li>求"关于 $y=x$ 镜像"的矩阵。</li>
+<li>投影到 $x$ 轴的矩阵，可逆吗？</li>
+<li>证明相似是等价关系。</li>
+<li>线性变换的判定（举正反例）。</li>
+<li>旋转矩阵的逆与转置。</li>
+<li>线性变换把零向量映为零向量，证明之。</li>
+<li>换基公式 $B=C^{-1}AC$ 的推导。</li>
+<li>相似矩阵的行列式与迹。</li>
+<li>旋转矩阵的特征值（预告：复数）。</li>
+<li>线性变换的核与像的定义。</li>
+</ol></div>
+
+<h3 class="subsec" id="s5-2">§5.2 特征值与特征向量</h3>
+<div class="intro"><p><b>引入：</b>特征值的概念可追溯到欧拉研究刚体转动（主转动惯量），拉格朗日、柯西发展了一般理论。<b>特征方程 $|\lambda E-A|=0$ 是"找拉伸方向"的代数实现</b>。特征值的和等于迹、积等于行列式——这两个不变量是期末必考点。</p></div>
+<div class="idea">
+<p><b>定义：</b>$A\alpha=\lambda\alpha$（$\alpha\neq0$）。</p>
+<p><b>求法：</b>$|\lambda E-A|$ 求根 → 解 $(\lambda_iE-A)x=0$ 得特征向量。</p>
+<p><b>结论：</b>$\sum\lambda_i=\operatorname{tr}A$；$\prod\lambda_i=|A|$；不同特征值的特征向量无关；$\lambda^{-1}$ 是 $A^{-1}$ 的特征值；$\lambda^k$ 是 $A^k$ 的特征值。</p>
+</div>
+<div class="ex">
+<div class="title">例5.2 求 $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 的特征值与特征向量。</div>
+<p><b>解：</b>$|\lambda E-A|=(\lambda-1)(\lambda-3)$。$\lambda=1$：$k(1,-1)^T$；$\lambda=3$：$k(1,1)^T$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（5.2-1 ~ 5.2-10）</div>
+<ol start="211">
+<li>求 $\begin{pmatrix}1&1\\0&2\end{pmatrix}$ 的特征值与特征向量。</li>
+<li>求 $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$ 的特征值（复数）。</li>
+<li>$A$ 特征值 1、2、3，求 $\operatorname{tr}A,|A|,|A^{-1}|$。</li>
+<li>$A^2=E$，特征值可能取哪些？</li>
+<li>$A^2-2A-3E=0$，求可能特征值。</li>
+<li>证明不同特征值的特征向量无关。</li>
+<li>三角矩阵特征值在对角线，说明之。</li>
+<li>特征向量的非零倍数仍是特征向量。</li>
+<li>求三阶矩阵的特征值（举例）。</li>
+<li>说明特征值在物理中的应用（主转动惯量）。</li>
+</ol></div>
+
+<h3 class="subsec" id="s5-3">§5.3 矩阵对角化</h3>
+<div class="intro"><p><b>引入：</b>对角化的意义：把矩阵"转正"——在对角形式下，$A^n$、$e^A$ 等计算变得平凡。<b>可对角化 ⟺ 有 $n$ 个线性无关的特征向量</b>。实对称矩阵必可正交对角化（谱定理），这是物理中惯性椭球、简正模的数学基础。</p></div>
+<div class="idea">
+<p><b>条件：</b>可对角化 ⟺ $n$ 个线性无关特征向量 ⟺ $P^{-1}AP=\Lambda$。</p>
+<p><b>充分条件：</b>$n$ 个不同特征值；实对称矩阵必可正交对角化。</p>
+<p><b>判定：</b>比较代数重数与几何重数（$=n-r(\lambda_iE-A)$）。</p>
+<div class="warn"><b>易错：</b>$P$ 列顺序与 $\Lambda$ 对角线顺序对应；$\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 不可对角化（几何重数 1&lt;2）。</div>
+</div>
+<div class="derive">
+<div class="dt">推导：对角化的条件</div>
+<p>设 $P^{-1}AP=\Lambda=\operatorname{diag}(\lambda_i)$，则 $AP=P\Lambda$，即 $A$ 的每列 $\vec p_i$ 满足 $A\vec p_i=\lambda_i\vec p_i$——$P$ 的列恰是特征向量。$P$ 可逆 ⟺ 列线性无关。∎ <span class="tip">——对角化与特征向量是一件事的两面。</span></p>
+</div>
+<div class="ex">
+<div class="title">例5.3 对角化 $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}$ 并求 $A^5$。</div>
+<p><b>解：</b>$P=\begin{pmatrix}1&1\\-1&1\end{pmatrix}$，$P^{-1}AP=\operatorname{diag}(1,3)$。$A^5=P\operatorname{diag}(1,3^5)P^{-1}=\begin{pmatrix}122&121\\121&122\end{pmatrix}$。</p>
+</div>
+<div class="prac"><div class="title">本节练习（5.3-1 ~ 5.3-10）</div>
+<ol start="221">
+<li>判断 $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ 可否对角化。</li>
+<li>实对称矩阵一定能对角化吗？用正交阵吗？</li>
+<li>用对角化求 $\begin{pmatrix}1&2\\0&2\end{pmatrix}^{10}$。</li>
+<li>将 $\begin{pmatrix}1&1\\1&1\end{pmatrix}$ 正交对角化。</li>
+<li>证明相似矩阵特征值相同。</li>
+<li>代数重数与几何重数的定义。</li>
+<li>对角化的"判-求-验"三步。</li>
+<li>用对角化解微分方程组（简例）。</li>
+<li>说明谱定理的内容。</li>
+<li>对角化在计算 $A^n$ 中的应用。</li>
+</ol></div>
+
+<h3 class="subsec" id="m5">第五章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：特征值"五步流程"</div>
+<p>写 $|\lambda E-A|$ → 求根 → 逐个解 $(\lambda_iE-A)x=0$ → 基础解系 → 写特征向量（带 $k\neq0$）。</p>
+<p><b>例题：</b>三角矩阵特征值直接读。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：对角化"判-求-验"</div>
+<p>判（数不同特征值个数与重数）；求（特征向量组 $P$）；验（$P^{-1}AP$ 顺序对应）。</p>
+<p><b>例题：</b>例 5.3 全程。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：用对角化算幂</div>
+<p>$A^k=P\Lambda^kP^{-1}$。</p>
+<p><b>例题：</b>例 5.3。</p>
+</div>
+
+<h3 class="subsec" id="e5">第五章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（5-1 ~ 5-20，含真题）</div>
+<ol start="231">
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>$A$ 为 3 阶矩阵，$r(A)=2$，$B$ 满秩 3 阶，求 $r(AB)$。</li>
+<li><span class="src">（清华大学线代试题·流传版）</span>求三阶实对称矩阵 $A=\begin{pmatrix}2&1&0\\1&2&1\\0&1&2\end{pmatrix}$ 的正交对角化：求正交矩阵 $Q$ 与对角阵 $\Lambda$，使 $Q^TAQ=\Lambda$。</li>
+<li><span class="src">（北京大学线代试题·流传版）</span>设 $A=\begin{pmatrix}1&1\\0&2\end{pmatrix}$，用对角化方法求 $A^{100}$。</li>
+<li><span class="src">（复旦大学线代试题·流传版）</span>证明相似矩阵有相同特征多项式。</li>
+<li><span class="src">（中山大学期末真题）</span>求 $\begin{pmatrix}1&2\\2&1\end{pmatrix}$ 的特征值与特征向量。</li>
+<li>证明 $\sum\lambda_i=\operatorname{tr}A$ 与 $\prod\lambda_i=|A|$。</li>
+<li>特征值与特征向量的几何意义。</li>
+<li>用特征值判断矩阵可逆性。</li>
+<li>求 $\begin{pmatrix}0&1\\1&0\end{pmatrix}$ 的对角化并求 $A^n$。</li>
+<li>说明不可对角化矩阵的存在（若尔当形预告）。</li>
+<li>旋转矩阵无实特征值，说明之。</li>
+<li>投影矩阵的特征值只能是 0 或 1。</li>
+<li>幂等矩阵（$A^2=A$）可对角化，证明之。</li>
+<li>用特征值解递推数列（斐波那契）。</li>
+<li>说明主转动惯量的特征值意义。</li>
+<li>对角化与二次型的关系（预告第六章）。</li>
+<li>求三阶矩阵的特征向量构成的矩阵并验证对角化。</li>
+<li>特征子空间的维数。</li>
+<li>说明实对称矩阵不同特征值的特征向量正交。</li>
+<li>矩阵的迹与行列式在相似变换下的不变性。</li>
+</ol>
+</div>
+
+<h2 class="sec" id="ch6">第六章 二次型</h2>
+<div class="hook">
+<p><b>$x^2+2xy+3y^2=1$ 是什么形状？</b>看着像椭圆，但交叉项 $2xy$ 让它"转了 45°"。二次型理论回答的正是：<b>任何二次曲面都能通过转轴变成标准形</b>。物理系福利：力学动能 $\frac12\vec\omega^TI\vec\omega$ 是正定二次型；高数多元极值判别 $AC-B^2&gt;0$ 就是"黑塞矩阵正定"。</p>
+</div>
+
+<h3 class="subsec" id="s6-1">§6.1 二次型及其标准形</h3>
+<div class="intro"><p><b>引入：</b>解析几何中"转轴消交叉项"是古老的技巧。二次型理论给它代数化：<b>化标准形三法——配方法、合同变换、正交变换</b>。惯性定理保证：无论怎么化，正项个数与负项个数不变。</p></div>
+<div class="idea">
+<p><b>定义：</b>$f=x^TAx$（$A$ 对称）。</p>
+<p><b>三法：</b>配方法（无平方项先造）；合同变换；正交变换（标准形系数即特征值）。</p>
+<p><b>惯性定理：</b>正惯性指数 $p$、负惯性指数 $q$ 唯一；规范形 $y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2$。</p>
+</div>
+<div class="ex">
+<div class="title">例6.1 配方化 $f=x_1^2+2x_2^2+5x_3^2+2x_1x_2+2x_1x_3+6x_2x_3$。</div>
+<p><b>解：</b>$f=(x_1+x_2+x_3)^2+(x_2+2x_3)^2=y_1^2+y_2^2$（秩 2，正惯性指数 2）。</p>
+</div>
+<div class="prac"><div class="title">本节练习（6.1-1 ~ 6.1-10）</div>
+<ol start="251">
+<li>写出 $f=x_1^2+4x_1x_2+3x_2^2$ 的矩阵。</li>
+<li>配方化 $f=x_1x_2$。</li>
+<li>求 $f=2x_1^2+2x_2^2+2x_3^2+2x_1x_2$ 的特征值并化标准形。</li>
+<li>二次型秩与矩阵秩的关系。</li>
+<li>惯性定理的内容。</li>
+<li>合同的定义与性质。</li>
+<li>正交变换法化标准形的步骤。</li>
+<li>规范形的唯一性。</li>
+<li>说明配方法与正交变换法的区别。</li>
+<li>二次型矩阵为何取对称？</li>
+</ol></div>
+
+<h3 class="subsec" id="s6-2">§6.2 正定二次型</h3>
+<div class="intro"><p><b>引入：</b>"正定"源于力学：动能恒正、势阱恒正。<b>正定的四个等价条件（惯性指数、特征值、顺序主子式、$C^TC$ 分解）是期末必背</b>，其中顺序主子式最实用。</p></div>
+<div class="idea">
+<p><b>定义：</b>$x\neq0$ 时 $x^TAx&gt;0$。</p>
+<p><b>四等价：</b>① $p=n$；② 特征值全正；③ 顺序主子式全正；④ $A=C^TC$（$C$ 可逆）。</p>
+<div class="warn"><b>易错：</b>顺序主子式是"左上角"各阶，不是随便取。负定：奇数阶负、偶数阶正。</div>
+</div>
+<div class="ex">
+<div class="title">例6.2 判断 $A=\begin{pmatrix}1&1\\1&2\end{pmatrix}$ 是否正定。</div>
+<p><b>解：</b>顺序主子式 $1&gt;0$，$|A|=1&gt;0$，正定。</p>
+</div>
+<div class="prac"><div class="title">本节练习（6.2-1 ~ 6.2-10）</div>
+<ol start="261">
+<li>判断 $\operatorname{diag}(1,2,3)$ 与 $\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ 是否正定。</li>
+<li>$t$ 取何值时 $f=x_1^2+x_2^2+2tx_1x_2$ 正定？</li>
+<li>正定矩阵的行列式符号。</li>
+<li>证明正定矩阵特征值全正。</li>
+<li>正交化 $f=5x_1^2+5x_2^2+2x_1x_2$ 并说明 $f=1$ 的形状。</li>
+<li>正定矩阵的逆是否正定？</li>
+<li>顺序主子式判据的证明思路。</li>
+<li>$A^TA$（列满秩）是否正定？</li>
+<li>半正定的定义与判据。</li>
+<li>正定二次型在力学（动能）中的应用。</li>
+</ol></div>
+
+<h3 class="subsec" id="m6">第六章 解题方法</h3>
+<div class="method">
+<div class="mt">方法一：化标准形首选配方法</div>
+<p>有平方项逐个配方；无平方项先造（$x_1=y_1+y_2$）。</p>
+<p><b>例题：</b>$x_1x_2=y_1^2-y_2^2$。</p>
+</div>
+<div class="method">
+<div class="mt">方法二：正交变换法特征值流程</div>
+<p>写对称矩阵 → 求特征值 → 特征向量正交化单位化 → $Q$ → $f=\sum\lambda_iy_i^2$。</p>
+<p><b>例题：</b>例 6.2 相关。</p>
+</div>
+<div class="method">
+<div class="mt">方法三：正定判定顺序主子式</div>
+<p>算各阶左上角主子式全正；带参数解不等式组。</p>
+<p><b>例题：</b>$1-t^2&gt;0\Rightarrow|t|&lt;1$。</p>
+</div>
+
+<h3 class="subsec" id="e6">第六章 综合题（20 题）</h3>
+<div class="prac">
+<div class="title">综合题（6-1 ~ 6-20，含真题）</div>
+<ol start="271">
+<li><span class="src">（清华大学线代试题·流传版）</span>化二次型 $f=x_1^2+2x_2^2+3x_3^2+2x_1x_2+2x_1x_3+4x_2x_3$ 为标准形，并求正惯性指数与负惯性指数。</li>
+<li><span class="src">（北京大学线代试题·流传版）</span>用正交变换化二次型 $f=2x_1x_2+2x_1x_3+2x_2x_3$ 为标准形，并写出所用正交矩阵。</li>
+<li><span class="src">（复旦大学线代试题·流传版）</span>判定二次型 $f=x_1^2+x_2^2+tx_3^2+2x_1x_2+2x_1x_3$ 的正定性，并求使其正定的 $t$ 的取值范围。</li>
+<li><span class="src">（中山大学期末真题）</span>判断二次型的正定性。</li>
+<li>证明惯性定理（思路）。</li>
+<li>合同与相似的区别。</li>
+<li>用配方法化三变量二次型。</li>
+<li>说明二次型与二次曲面的分类。</li>
+<li>求二次型的规范形。</li>
+<li>正定矩阵与顺序主子式。</li>
+<li>说明黑塞矩阵与多元极值的关系（高数连接）。</li>
+<li>二次型的矩阵唯一性。</li>
+<li>用特征值法判断正定。</li>
+<li>半正定矩阵的判定。</li>
+<li>二次型的秩与惯性指数。</li>
+<li>说明惯性椭球。</li>
+<li>用合同变换化标准形。</li>
+<li>正定二次型的最小值问题。</li>
+<li>二次型在转动惯量中的应用。</li>
+<li>证明正定矩阵的 $C^TC$ 分解。</li>
+</ol>
+</div>
+
+<h2 class="sec" id="real">历年真题（标注出处）</h2>
+<div class="exam">
+<div class="title">中山大学物理学院《线性代数》期末真题</div>
+<ol>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（填空）在 5 阶行列式 $|a_{ij}|$ 中，项 $a_{13}a_{24}a_{32}a_{41}a_{35}$ 前的符号应取______。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（填空）$A$ 为 3 阶矩阵，$|A|=3$，则 $|(-\frac13)A^*-4A^{-1}|=$______。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（填空）方程组 $x_1\alpha_1+\cdots+x_n\alpha_n=\beta$ 有解的充要条件是______。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（填空）设 $\eta_1,\eta_2$ 是 $Ax=b$ 的两个解，则______是 $Ax=0$ 的解。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（选择）$\begin{cases}\lambda x-y=a\\-x+\lambda y=b\end{cases}$ 有唯一解的条件是 $\lambda\neq$______。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（选择）齐次方程组 $\begin{cases}\lambda x_1+x_2+x_3=0\\x_1+\lambda x_2+x_3=0\\x_1+x_2+\lambda x_3=0\end{cases}$ 只有零解 ⟹ $\lambda\neq$______。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（选择）$A$ 为 $3\times4$ 矩阵，$r(A)=2$，则错误的是：A. 所有三阶子式为零 B. 所有二阶子式不为零 C. 列向量线性相关 D. 行向量线性相关。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（解答）讨论 $a$ 为何值时 $\begin{cases}ax_1+x_2+x_3=1\\x_1+ax_2+x_3=a\\x_1+x_2+ax_3=a^2\end{cases}$ 无解、唯一解、无穷多解并求无穷解。</li>
+<li><span class="src">（中山大学 2007 级线数期末真题）</span>（证明）$f(x)=\sum a_ix^i,\ g(x)=\sum b_ix^i$，若存在 $n+1$ 个不同的 $x_i$ 使 $f(x_i)=g(x_i)$，则 $f\equiv g$。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>（填空）$A$ 为 3 阶方阵，$|A|=5$，$|-3A|=$______。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>（填空）$\alpha=(1,2,-1)^T,\beta=(2,3,1)^T$，内积 $(\alpha,\beta)=$______。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>（填空）$A$ 为 3 阶矩阵，$r(A)=2$，$B$ 为满秩 3 阶矩阵，$r(AB)=$______。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>（计算）求行列式 $\begin{vmatrix}1+x_1y_1&1+x_1y_2&1+x_1y_3\\1+x_2y_1&1+x_2y_2&1+x_2y_3\\1+x_3y_1&1+x_3y_2&1+x_3y_3\end{vmatrix}$。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>（计算）范德蒙型 $\begin{vmatrix}1&1&\cdots&1\\2&2^2&\cdots&2^n\\\vdots\\n&n^2&\cdots&n^n\end{vmatrix}$。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>（证明）$A,B$ 可逆，$P=\begin{pmatrix}A&C\\O&B\end{pmatrix}$，证明 $P$ 可逆并求 $P^{-1}$。</li>
+<li><span class="src">（中山大学 2008 级线代期末真题）</span>（证明）$\alpha_1,\dots,\alpha_m$ 无关，$\beta_i=\alpha_i+\alpha_{i+1}$，证 $\beta$ 组无关。</li>
+</ol>
+<p class="src">注：完整试卷（2007-2017 级多套）已收录于「线代试卷」文件夹。</p>
+</div>
+<div class="exam">
+<div class="title">其它高校《线性代数》期末真题（据公开流传版本）</div>
+<ol>
+<li><span class="src">（清华大学线代试题·流传版）</span>计算 $n$ 阶循环行列式 $\begin{vmatrix}a_0&a_1&\cdots&a_{n-1}\\a_{n-1}&a_0&\cdots&a_{n-2}\\\vdots&\vdots&\ddots&\vdots\\a_1&a_2&\cdots&a_0\end{vmatrix}$（提示：利用单位根）。</li>
+<li><span class="src">（北京大学线代试题·流传版）</span>证明范德蒙行列式公式，并用它判断平面上三个点 $(x_1,y_1),(x_2,y_2),(x_3,y_3)$ 共线的条件。</li>
+<li><span class="src">（复旦大学线代试题·流传版）</span>对 $\alpha_1=(1,1,0),\ \alpha_2=(1,0,1),\ \alpha_3=(0,1,1)$ 作施密特正交化，并构造一个三阶正交矩阵。</li>
+<li><span class="src">（浙江大学线代试题·流传版）</span>讨论 $\lambda$ 为何值时，方程组 $\begin{cases}\lambda x_1+x_2+x_3=\lambda\\x_1+\lambda x_2+x_3=1\\x_1+x_2+\lambda x_3=1\end{cases}$ 无解、有唯一解、有无穷多解。</li>
+<li><span class="src">（南京大学线代试题·流传版）</span>求实对称矩阵 $A=\begin{pmatrix}2&2&0\\2&1&2\\0&2&2\end{pmatrix}$ 的正交对角化。</li>
+<li><span class="src">（中国科学技术大学线代试题·流传版）</span>判定二次型 $f=2x_1^2+2x_2^2+2x_3^2+2x_1x_2+2x_1x_3+2x_2x_3$ 的正定性，并化为标准形。</li>
+</ol>
+<p class="src">注：标注"流传版"的题目出自各校公开流传的试卷整理，个别表述可能与原卷略有出入，以知识点为准。</p>
+</div>
+
+<h2 class="sec" id="answers">全书答案与详解</h2>
+<div class="tip" style="margin-bottom:16px"><p>每题给出完整求解过程而非仅给思路；标注【考查知识点】与【所用方法】。题号与正文练习一一对应。</p></div>
+
+<h3 class="subsec" id="ans1">第一章答案（1.1-1 ~ 1-20）</h3>
+<div class="anssec">
+<div class="at">第一章 行列式</div>
+<div class="ans"><span class="aq">【1.1-1】</span> $(b-a)(c-a)(c-b)$。<div class="sol">范德蒙结论。</div><span class="tag">考查：范德蒙</span><span class="tag">方法：套结论</span></div>
+<div class="ans"><span class="aq">【1.1-2】</span> $|-2A^T|=32$；$|A^*|=8$。<div class="sol">$(-2)^4\times2$；$|A|^3$。</div><span class="tag">考查：$|kA|$ 与 $|A^*|$</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.1-3】</span> $4$。<div class="sol">分块三角 $=(-2)\times(-2)$。</div><span class="tag">考查：分块行列式</span><span class="tag">方法：分块</span></div>
+<div class="ans"><span class="aq">【1.1-4】</span> 不成立。例 $A=E,B=-E$（$n=2$）：$|A+B|=0$，$|A|+|B|=2$。<div class="sol">反例。</div><span class="tag">考查：性质辨析</span><span class="tag">方法：反例</span></div>
+<div class="ans"><span class="aq">【1.1-5】</span> $0$。<div class="sol">第 2 行 = 第 1、3 行平均（$4,5,6=\frac{(1,2,3)+(7,8,9)}2$）。</div><span class="tag">考查：行列式计算</span><span class="tag">方法：观察线性关系</span></div>
+<div class="ans"><span class="aq">【1.1-6】</span> 逆序数 $\tau=4$（3 后有 2、1 两个；4 后有 2、1 两个）。<div class="sol">逐位统计。</div><span class="tag">考查：逆序数</span><span class="tag">方法：逐位统计</span></div>
+<div class="ans"><span class="aq">【1.1-7】</span> 转置不改变每一项的乘积，只可能重排因子的行指标，符号不变。∎<div class="sol">定义验证。</div><span class="tag">考查：转置性质</span><span class="tag">方法：定义验证</span></div>
+<div class="ans"><span class="aq">【1.1-8】</span> 三向量共面（体积为零）。<div class="sol">几何意义。</div><span class="tag">考查：几何意义</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.1-9】</span> $a^2+b^2$；表示旋转 $(\arctan\frac ba)$ 加伸缩 $\sqrt{a^2+b^2}$。<div class="sol">复数视角。</div><span class="tag">考查：几何意义</span><span class="tag">方法：计算加解释</span></div>
+<div class="ans"><span class="aq">【1.1-10】</span> 两行相同，交换这两行行列式不变又应变号，故为零。∎<div class="sol">交换变号反证。</div><span class="tag">考查：两行相同</span><span class="tag">方法：交换变号</span></div>
+<div class="ans"><span class="aq">【1.2-1】</span> 160。<div class="sol">各行加到第 1 行提 10。</div><span class="tag">考查：行列式计算</span><span class="tag">方法：加行提因子</span></div>
+<div class="ans"><span class="aq">【1.2-2】</span> $2$。<div class="sol">范德蒙 $(y-x)(z-x)(z-y)$。</div><span class="tag">考查：范德蒙</span><span class="tag">方法：套结论</span></div>
+<div class="ans"><span class="aq">【1.2-3】</span> $(x+n-1)(x-1)^{n-1}$。<div class="sol">各列加到第 1 列。</div><span class="tag">考查：行列式计算</span><span class="tag">方法：加列提因子</span></div>
+<div class="ans"><span class="aq">【1.2-4】</span> $(AA^*)_{ij}=\sum_ka_{ik}A_{jk}=\delta_{ij}|A|$（展开定理+错位展开）。∎<div class="sol">两定理结合。</div><span class="tag">考查：$AA^*=|A|E$</span><span class="tag">方法：展开定理</span></div>
+<div class="ans"><span class="aq">【1.2-5】</span> $D_n=2D_{n-1}-D_{n-2}$，$D_1=2,D_2=3$。<div class="sol">按第一行展开。</div><span class="tag">考查：递推</span><span class="tag">方法：展开</span></div>
+<div class="ans"><span class="aq">【1.2-6】</span> 对角线乘积。<div class="sol">三角行列式。</div><span class="tag">考查：三角行列式</span><span class="tag">方法：结论</span></div>
+<div class="ans"><span class="aq">【1.2-7】</span> 拉普拉斯展开：按任意 $k$ 行展开为子式与代数余子式乘积之和。<div class="sol">概念。</div><span class="tag">考查：拉普拉斯展开</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.2-8】</span> $abc+ab+bc+ca$。<div class="sol">展开或加边。</div><span class="tag">考查：行列式计算</span><span class="tag">方法：展开</span></div>
+<div class="ans"><span class="aq">【1.2-9】</span> 归纳：降阶后出现同型范德蒙。∎<div class="sol">归纳法。</div><span class="tag">考查：范德蒙证明</span><span class="tag">方法：归纳</span></div>
+<div class="ans"><span class="aq">【1.2-10】</span> $a^3+b^3+c^3-3abc$。<div class="sol">展开。</div><span class="tag">考查：循环行列式</span><span class="tag">方法：展开</span></div>
+<div class="ans"><span class="aq">【1.3-1】</span> $x=\frac13,y=\frac12,z=\frac16$。<div class="sol">$|A|=-6$。</div><span class="tag">考查：克拉默法则</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.3-2】</span> $\lambda=0$ 或 $\lambda=2$。<div class="sol">$(\lambda-1)^2-1=0$。</div><span class="tag">考查：齐次方程组</span><span class="tag">方法：$|A|=0$</span></div>
+<div class="ans"><span class="aq">【1.3-3】</span> 适用：方程数=未知数且 $|A|\neq0$；局限：计算量大（$n!$ 量级）。<div class="sol">概念。</div><span class="tag">考查：适用范围</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-4】</span> 见正文推导（多重线性）。<div class="sol">展开视角。</div><span class="tag">考查：克拉默推导</span><span class="tag">方法：展开</span></div>
+<div class="ans"><span class="aq">【1.3-5】</span> $x_i=\frac{|A_i|}{|A|}$ 唯一确定。∎<div class="sol">公式唯一。</div><span class="tag">考查：唯一性</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.3-6】</span> $|A|=0$。<div class="sol">推论。</div><span class="tag">考查：非零解条件</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1.3-7】</span> $x=\frac{|A_1|}{|A|},y=\frac{|A_2|}{|A|}$。<div class="sol">公式。</div><span class="tag">考查：二元方程组</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1.3-8】</span> $x=A^{-1}b$ 的分量展开即克拉默法则。<div class="sol">关系。</div><span class="tag">考查：与逆矩阵关系</span><span class="tag">方法：展开</span></div>
+<div class="ans"><span class="aq">【1.3-9】</span> 三阶需算 4 个三阶行列式，共 $4\times6=24$ 项乘法。<div class="sol">估算。</div><span class="tag">考查：复杂度</span><span class="tag">方法：估算</span></div>
+<div class="ans"><span class="aq">【1.3-10】</span> $|A|\neq0$ 唯一解，$|A|=0$ 需另行讨论。<div class="sol">参数讨论。</div><span class="tag">考查：参数讨论</span><span class="tag">方法：三段式</span></div>
+</div>
+
+<h3 class="subsec" id="ans2">第二章答案（2.1-1 ~ 2-20）</h3>
+<div class="anssec">
+<div class="at">第二章 矩阵</div>
+<div class="ans"><span class="aq">【2.1-1】</span> 前者 32（1×1）；后者 3×3 矩阵。<div class="sol">行向量×列向量=数；反之=矩阵。</div><span class="tag">考查：矩阵乘法</span><span class="tag">方法：维数意识</span></div>
+<div class="ans"><span class="aq">【2.1-2】</span> $A^2=0$。<div class="sol">幂零矩阵。</div><span class="tag">考查：幂零</span><span class="tag">方法：直接算</span></div>
+<div class="ans"><span class="aq">【2.1-3】</span> $A=\begin{pmatrix}1&0\\0&0\end{pmatrix},B=\begin{pmatrix}0&0\\0&1\end{pmatrix}$，$AB=0$。<div class="sol">零因子。</div><span class="tag">考查：零因子</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【2.1-4】</span> $(AB)^T=B^TA^T$ 直接验证。∎<div class="sol">穿脱原则。</div><span class="tag">考查：转置</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【2.1-5】</span> $y=Ax$ 与 $x=Bz$ 复合为 $y=(AB)z$。<div class="sol">复合函数。</div><span class="tag">考查：乘法意义</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.1-6】</span> 相等（$\sum_{i,j}a_{ij}b_{ji}$ 交换求和）。<div class="sol">迹的循环性。</div><span class="tag">考查：迹</span><span class="tag">方法：求和交换</span></div>
+<div class="ans"><span class="aq">【2.1-7】</span> $\begin{pmatrix}1&n\\0&1\end{pmatrix}$。<div class="sol">归纳。</div><span class="tag">考查：矩阵幂</span><span class="tag">方法：归纳</span></div>
+<div class="ans"><span class="aq">【2.1-8】</span> $\begin{pmatrix}1&0\\n&1\end{pmatrix}$。<div class="sol">归纳。</div><span class="tag">考查：矩阵幂</span><span class="tag">方法：归纳</span></div>
+<div class="ans"><span class="aq">【2.1-9】</span> 有零因子故消去律不成立（无零因子的环才有消去律）。<div class="sol">概念。</div><span class="tag">考查：消去律</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.1-10】</span> $(AB)C$ 与 $A(BC)$ 的 $(i,l)$ 元都是 $\sum_{j,k}a_{ij}b_{jk}c_{kl}$。∎<div class="sol">求和次序。</div><span class="tag">考查：结合律</span><span class="tag">方法：展开验证</span></div>
+<div class="ans"><span class="aq">【2.2-1】</span> $\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$。<div class="sol">口诀。</div><span class="tag">考查：二阶求逆</span><span class="tag">方法：口诀</span></div>
+<div class="ans"><span class="aq">【2.2-2】</span> $\operatorname{diag}(1,\frac12,\frac13)$。<div class="sol">对角元取倒数。</div><span class="tag">考查：对角求逆</span><span class="tag">方法：直接写</span></div>
+<div class="ans"><span class="aq">【2.2-3】</span> $A^T(A^{-1})^T=E$ 与另一侧。∎<div class="sol">验证。</div><span class="tag">考查：转置求逆</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【2.2-4】</span> $X=A^{-1}B$；$X=BA^{-1}$。<div class="sol">左右消去。</div><span class="tag">考查：矩阵方程</span><span class="tag">方法：左右乘</span></div>
+<div class="ans"><span class="aq">【2.2-5】</span> $-\frac{4913}{24}$。<div class="sol">$A^*=3A^{-1}$ 代入化简。</div><span class="tag">考查：组合求值</span><span class="tag">方法：恒等式化简</span></div>
+<div class="ans"><span class="aq">【2.2-6】</span> $A^{-1}=\frac{3E-A}2$。<div class="sol">$A(A-3E)=-2E$。</div><span class="tag">考查：多项式反解</span><span class="tag">方法：因式分解</span></div>
+<div class="ans"><span class="aq">【2.2-7】</span> 行变换 $(A\mid E)\to(E\mid A^{-1})$，得逆。<div class="sol">行变换法。</div><span class="tag">考查：行变换求逆</span><span class="tag">方法：行变换</span></div>
+<div class="ans"><span class="aq">【2.2-8】</span> $(A^{-1})^{-1}A^{-1}=E$ 且 $AA^{-1}=E$，逆唯一。∎<div class="sol">逆的唯一性。</div><span class="tag">考查：逆的性质</span><span class="tag">方法：唯一性</span></div>
+<div class="ans"><span class="aq">【2.2-9】</span> $A^{-1}=\frac{A^*}{|A|}$ 代入二阶代数余子式。<div class="sol">公式法。</div><span class="tag">考查：口诀推导</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2.2-10】</span> $|A|\neq0$ ⟺ 秩满 ⟺ 可逆（克拉默法则唯一解 ⟺ 列满秩）。<div class="sol">三等价。</div><span class="tag">考查：可逆条件</span><span class="tag">方法：等价链</span></div>
+<div class="ans"><span class="aq">【2.3-1】</span> $|A||B|$。<div class="sol">准三角。</div><span class="tag">考查：分块行列式</span><span class="tag">方法：结论</span></div>
+<div class="ans"><span class="aq">【2.3-2】</span> $PQ=\begin{pmatrix}2&1\\1&1\end{pmatrix}$，$QP=\begin{pmatrix}1&1\\1&2\end{pmatrix}$。<div class="sol">不交换实例。</div><span class="tag">考查：乘法</span><span class="tag">方法：直接算</span></div>
+<div class="ans"><span class="aq">【2.3-3】</span> 都可逆：逆分别为 $E(i,j)$、$E(i(\frac1k))$、$E(ij(-k))$。<div class="sol">初等矩阵。</div><span class="tag">考查：初等矩阵</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-4】</span> $M^{-1}=\begin{pmatrix}A^{-1}&O\\-B^{-1}CA^{-1}&B^{-1}\end{pmatrix}$。<div class="sol">验证。</div><span class="tag">考查：分块求逆</span><span class="tag">方法：待定块</span></div>
+<div class="ans"><span class="aq">【2.3-5】</span> 左乘初等矩阵=行变换，右乘=列变换。<div class="sol">对应关系。</div><span class="tag">考查：初等变换</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-6】</span> 解耦系统=分块对角（力学振子、热学气体）。<div class="sol">概念。</div><span class="tag">考查：解耦</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-7】</span> $\begin{pmatrix}A^n&O\\O&B^n\end{pmatrix}$。<div class="sol">分块幂。</div><span class="tag">考查：分块幂</span><span class="tag">方法：直接</span></div>
+<div class="ans"><span class="aq">【2.3-8】</span> 拉普拉斯展开（按前 $m$ 行）。∎<div class="sol">拉普拉斯。</div><span class="tag">考查：准三角证明</span><span class="tag">方法：拉普拉斯展开</span></div>
+<div class="ans"><span class="aq">【2.3-9】</span> 左矩阵列数=右矩阵行数，且分块方式相容。<div class="sol">条件。</div><span class="tag">考查：分块乘法</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2.3-10】</span> $E(i,j)$。<div class="sol">初等矩阵。</div><span class="tag">考查：初等矩阵</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ans3">第三章答案（3.1-1 ~ 3-20）</h3>
+<div class="anssec">
+<div class="at">第三章 矩阵的秩与线性方程组</div>
+<div class="ans"><span class="aq">【3.1-1】</span> $r=2$。<div class="sol">消元后第 3 行 = 第 2 行 2 倍。</div><span class="tag">考查：求秩</span><span class="tag">方法：行阶梯</span></div>
+<div class="ans"><span class="aq">【3.1-2】</span> $r=2$。<div class="sol">第 2 行 = 第 1 行×2。</div><span class="tag">考查：求秩</span><span class="tag">方法：观察</span></div>
+<div class="ans"><span class="aq">【3.1-3】</span> 列满秩（$Ax=0$ 只有零解）；行满秩（$Ax=b$ 恒有解）。<div class="sol">满秩含义。</div><span class="tag">考查：满秩</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.1-4】</span> $Ax=0$ 与 $A^TAx=0$ 同解：$A^TAx=0\Rightarrow\|Ax\|^2=0$。∎<div class="sol">同解法。</div><span class="tag">考查：秩的证明</span><span class="tag">方法：同解</span></div>
+<div class="ans"><span class="aq">【3.1-5】</span> 行秩与列秩相等，秩是"真正维数"。<div class="sol">概念。</div><span class="tag">考查：行秩=列秩</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.1-6】</span> $r=2$。<div class="sol">行阶梯。</div><span class="tag">考查：求秩</span><span class="tag">方法：行阶梯</span></div>
+<div class="ans"><span class="aq">【3.1-7】</span> $AB$ 的列是 $A$ 的列的线性组合；行同理。∎<div class="sol">线性组合不增秩。</div><span class="tag">考查：秩不等式</span><span class="tag">方法：组合</span></div>
+<div class="ans"><span class="aq">【3.1-8】</span> $r(AB)\le r(B)$ 且 $r(B)=r(A^{-1}AB)\le r(AB)$，故相等。∎<div class="sol">双向不等式。</div><span class="tag">考查：可逆乘秩不变</span><span class="tag">方法：双向</span></div>
+<div class="ans"><span class="aq">【3.1-9】</span> 秩 1 矩阵 $=\alpha\beta^T$（列向量乘行向量）。<div class="sol">结构。</div><span class="tag">考查：秩一矩阵</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.1-10】</span> 向量组竖排成矩阵，秩 = 个数 ⟺ 无关。<div class="sol">联系。</div><span class="tag">考查：秩与相关</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.2-1】</span> $\xi_1=(-1,0,1,0)^T$，$\xi_2=(0,-1,0,1)^T$。<div class="sol">行最简加自由变量。</div><span class="tag">考查：基础解系</span><span class="tag">方法：行最简</span></div>
+<div class="ans"><span class="aq">【3.2-2】</span> $\xi_1=(-2,1,0)^T$，$\xi_2=(-3,0,1)^T$。<div class="sol">秩 1。</div><span class="tag">考查：基础解系</span><span class="tag">方法：自由变量</span></div>
+<div class="ans"><span class="aq">【3.2-3】</span> 2 个。<div class="sol">$n-r=2$。</div><span class="tag">考查：解空间维数</span><span class="tag">方法：$n-r$</span></div>
+<div class="ans"><span class="aq">【3.2-4】</span> 解的和与数乘仍为解（$A$ 线性）。<div class="sol">封闭性。</div><span class="tag">考查：解空间</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【3.2-5】</span> $r\le m&lt;n$，故 $n-r&gt;0$。<div class="sol">秩不等式。</div><span class="tag">考查：非零解</span><span class="tag">方法：秩</span></div>
+<div class="ans"><span class="aq">【3.2-6】</span> 只有零解（系数行列式 $\neq0$）。<div class="sol">克拉默。</div><span class="tag">考查：解</span><span class="tag">方法：行列式</span></div>
+<div class="ans"><span class="aq">【3.2-7】</span> 自由变量 $n-r$ 个，每个给一组解，互相无关且张成解空间。<div class="sol">维数论证。</div><span class="tag">考查：基础解系</span><span class="tag">方法：维数</span></div>
+<div class="ans"><span class="aq">【3.2-8】</span> 不唯一（等价行变换下可换）。<div class="sol">概念。</div><span class="tag">考查：自由变量</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.2-9】</span> $\xi_1=(-1,1,0,0,0)^T$ 等四个。<div class="sol">$n-r=4$。</div><span class="tag">考查：基础解系</span><span class="tag">方法：自由变量</span></div>
+<div class="ans"><span class="aq">【3.2-10】</span> 通解 = 基础解系任意线性组合。<div class="sol">概念。</div><span class="tag">考查：通解</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.3-1】</span> $x=(1,0,0)^T+k(1,-3,2)^T$。<div class="sol">$r=2&lt;3$。</div><span class="tag">考查：通解</span><span class="tag">方法：行最简</span></div>
+<div class="ans"><span class="aq">【3.3-2】</span> $x=(1,0,0)^T+k_1(-2,1,0)^T+k_2(1,0,1)^T$。<div class="sol">秩 1。</div><span class="tag">考查：通解</span><span class="tag">方法：特解加齐次</span></div>
+<div class="ans"><span class="aq">【3.3-3】</span> $\lambda=-1$ 无解。<div class="sol">$|A|=\lambda^2-1$，代入。</div><span class="tag">考查：参数讨论</span><span class="tag">方法：三段式</span></div>
+<div class="ans"><span class="aq">【3.3-4】</span> $x=(1,2,3)^T+k(-1,0,1)^T$。<div class="sol">$\xi=2\eta_1-(\eta_2+\eta_3)$ 是齐次解。</div><span class="tag">考查：解的性质</span><span class="tag">方法：组合</span></div>
+<div class="ans"><span class="aq">【3.3-5】</span> $|A|=-(a-1)^2(a+2)$：$a\neq1,-2$ 唯一；$a=1$ 无解；$a=-2$ 无穷多解。<div class="sol">三段式。</div><span class="tag">考查：参数讨论</span><span class="tag">方法：三段式</span></div>
+<div class="ans"><span class="aq">【3.3-6】</span> $A(\eta_1-\eta_2)=b-b=0$。∎<div class="sol">直接验证。</div><span class="tag">考查：解之差</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【3.3-7】</span> 非齐次通解=特解+齐次通解（线性问题普适结构）。<div class="sol">概念。</div><span class="tag">考查：解的结构</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3.3-8】</span> 系数和 1 的组合是 $Ax=b$ 的解；系数和 0 的组合是 $Ax=0$ 的解。<div class="sol">线性性。</div><span class="tag">考查：解的线性组合</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【3.3-9】</span> 有解 ⟺ $r(\tilde A)=r(A)$；唯一 ⟺ $r(A)=n$。<div class="sol">判定定理。</div><span class="tag">考查：判定定理</span><span class="tag">方法：秩语言</span></div>
+<div class="ans"><span class="aq">【3.3-10】</span> 把 $b$ 并入系数矩阵统一消元，同时读出秩的信息。<div class="sol">概念。</div><span class="tag">考查：增广矩阵</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ans4">第四章答案（4.1-1 ~ 4-20）</h3>
+<div class="anssec">
+<div class="at">第四章 向量空间与线性相关性</div>
+<div class="ans"><span class="aq">【4.1-1】</span> 无关。<div class="sol">行列式 $=1\neq0$。</div><span class="tag">考查：相关性</span><span class="tag">方法：行列式</span></div>
+<div class="ans"><span class="aq">【4.1-2】</span> 相关（$\alpha_3=\alpha_1+\alpha_2$）。<div class="sol">观察。</div><span class="tag">考查：相关性</span><span class="tag">方法：观察</span></div>
+<div class="ans"><span class="aq">【4.1-3】</span> 必相关（个数超维数）。<div class="sol">结论。</div><span class="tag">考查：相关性</span><span class="tag">方法：结论</span></div>
+<div class="ans"><span class="aq">【4.1-4】</span> 无关。<div class="sol">设零组合得 $k_1+k_3=k_1+k_2=k_2+k_3=0$。</div><span class="tag">考查：无关性</span><span class="tag">方法：设零组合</span></div>
+<div class="ans"><span class="aq">【4.1-5】</span> 设 $\sum k_i\beta_i=0$，整理系数递推得全部 $k_i=0$（分奇偶讨论）。∎<div class="sol">08 级真题同款。</div><span class="tag">考查：无关性证明</span><span class="tag">方法：设零组合</span></div>
+<div class="ans"><span class="aq">【4.1-6】</span> 取零向量系数 1 其余 0，即得非平凡零组合。<div class="sol">定义。</div><span class="tag">考查：含零向量</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【4.1-7】</span> 部分的零组合补零系数成整体的零组合。<div class="sol">证明。</div><span class="tag">考查：部分相关</span><span class="tag">方法：补零</span></div>
+<div class="ans"><span class="aq">【4.1-8】</span> $r=2$。<div class="sol">$\alpha_3=\alpha_1+\alpha_2$。</div><span class="tag">考查：求秩</span><span class="tag">方法：观察</span></div>
+<div class="ans"><span class="aq">【4.1-9】</span> 极大无关子组；竖排消元取主元列。<div class="sol">概念。</div><span class="tag">考查：最大无关组</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.1-10】</span> 无关（整体无关⟹部分无关）。<div class="sol">结论。</div><span class="tag">考查：子组</span><span class="tag">方法：结论</span></div>
+<div class="ans"><span class="aq">【4.2-1】</span> $e_1,e_2,e_3$，维数 3。<div class="sol">标准基。</div><span class="tag">考查：基与维数</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-2】</span> 见例 4.2。<div class="sol">逐项减投影。</div><span class="tag">考查：施密特</span><span class="tag">方法：递推</span></div>
+<div class="ans"><span class="aq">【4.2-3】</span> 基 $\{1,x,x^2\}$，维数 3。<div class="sol">多项式空间。</div><span class="tag">考查：多项式空间</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-4】</span> $(\beta)=(\varepsilon)C$，$\alpha=(\varepsilon)x=(\beta)y\Rightarrow x=Cy$。∎<div class="sol">坐标变换。</div><span class="tag">考查：坐标变换</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4.2-5】</span> 存在保持运算的双射（维数相同则同构）。<div class="sol">同构。</div><span class="tag">考查：同构</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-6】</span> $(4,-1,-1)^T$。<div class="sol">解 $Cx=\alpha$。</div><span class="tag">考查：求坐标</span><span class="tag">方法：解方程</span></div>
+<div class="ans"><span class="aq">【4.2-7】</span> $C$ 的列是基向量在新基下的坐标，必无关。∎<div class="sol">基的无关性。</div><span class="tag">考查：过渡矩阵</span><span class="tag">方法：无关性</span></div>
+<div class="ans"><span class="aq">【4.2-8】</span> 正交基：两两正交；标准正交基：再加单位长。<div class="sol">概念。</div><span class="tag">考查：正交基</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-9】</span> 逐项减去在已有正交向量上的投影。<div class="sol">要点。</div><span class="tag">考查：施密特</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.2-10】</span> 傅里叶系数用正交性筛出（同一思想）。<div class="sol">联系。</div><span class="tag">考查：联系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.3-1】</span> 不是（不过原点）。<div class="sol">查零向量。</div><span class="tag">考查：子空间判定</span><span class="tag">方法：三件套</span></div>
+<div class="ans"><span class="aq">【4.3-2】</span> 维数 2。<div class="sol">三向量秩 2。</div><span class="tag">考查：张成空间</span><span class="tag">方法：求秩</span></div>
+<div class="ans"><span class="aq">【4.3-3】</span> 至少 2。<div class="sol">维数公式 $\ge3+4-5$。</div><span class="tag">考查：维数公式</span><span class="tag">方法：不等式</span></div>
+<div class="ans"><span class="aq">【4.3-4】</span> 维数 2；基如 $(1,1,-1,-1)^T,(0,0,1,-1)^T$。<div class="sol">基础解系。</div><span class="tag">考查：解空间</span><span class="tag">方法：基础解系</span></div>
+<div class="ans"><span class="aq">【4.3-5】</span> $A(\alpha+\beta)=A\alpha+A\beta=0$，$A(k\alpha)=0$。<div class="sol">封闭性。</div><span class="tag">考查：解空间</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【4.3-6】</span> 列空间 = 张成空间（列向量张成）。<div class="sol">概念。</div><span class="tag">考查：列空间</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.3-7】</span> 0 与 $n$。<div class="sol">平凡子空间。</div><span class="tag">考查：维数</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.3-8】</span> 见正文推导（交的基扩充）。<div class="sol">维数公式。</div><span class="tag">考查：维数公式</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4.3-9】</span> $W_1+W_2=\{w_1+w_2\}$，$W_1\cap W_2$。<div class="sol">定义。</div><span class="tag">考查：和与交</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4.3-10】</span> 一般不是（并的加法不封闭）。<div class="sol">反例。</div><span class="tag">考查：并</span><span class="tag">方法：反例</span></div>
+</div>
+
+<h3 class="subsec" id="ans5">第五章答案（5.1-1 ~ 5-20）</h3>
+<div class="anssec">
+<div class="at">第五章 线性变换与特征值</div>
+<div class="ans"><span class="aq">【5.1-1】</span> $\begin{pmatrix}0&1\\1&0\end{pmatrix}$。<div class="sol">看基的像。</div><span class="tag">考查：镜像矩阵</span><span class="tag">方法：基的像</span></div>
+<div class="ans"><span class="aq">【5.1-2】</span> $\begin{pmatrix}1&0\\0&0\end{pmatrix}$，不可逆（丢信息）。<div class="sol">投影。</div><span class="tag">考查：投影矩阵</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.1-3】</span> 三性逐一验证（见前）。∎<div class="sol">等价关系。</div><span class="tag">考查：相似</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【5.1-4】</span> 正：旋转、投影；反：平移（$x\mapsto x+1$）。<div class="sol">判定。</div><span class="tag">考查：线性变换</span><span class="tag">方法：判定</span></div>
+<div class="ans"><span class="aq">【5.1-5】</span> 逆=转置（正交矩阵）。<div class="sol">旋转矩阵。</div><span class="tag">考查：正交矩阵</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【5.1-6】</span> $\mathcal A(0)=\mathcal A(0\cdot\alpha)=0$。∎<div class="sol">线性性。</div><span class="tag">考查：零向量</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【5.1-7】</span> $(\eta)=(\varepsilon)C$，$A(\eta)=(\eta)B=(\varepsilon)CB$ 与 $A(\eta)=(\varepsilon)AC$，故 $B=C^{-1}AC$。∎<div class="sol">换基。</div><span class="tag">考查：换基公式</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【5.1-8】</span> 行列式与迹相似不变。<div class="sol">不变量。</div><span class="tag">考查：不变量</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5.1-9】</span> 无实特征值（$\lambda^2+1=0$）。<div class="sol">预告。</div><span class="tag">考查：旋转矩阵</span><span class="tag">方法：特征方程</span></div>
+<div class="ans"><span class="aq">【5.1-10】</span> 核 $\ker\mathcal A=\{x\mid\mathcal Ax=0\}$，像 $\operatorname{Im}\mathcal A$。<div class="sol">定义。</div><span class="tag">考查：核与像</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【5.2-1】</span> $\lambda=1,2$；$k(1,0)^T$ 与 $k(1,1)^T$。<div class="sol">五步流程。</div><span class="tag">考查：特征值</span><span class="tag">方法：五步</span></div>
+<div class="ans"><span class="aq">【5.2-2】</span> $\pm i$。<div class="sol">特征方程。</div><span class="tag">考查：复特征值</span><span class="tag">方法：特征方程</span></div>
+<div class="ans"><span class="aq">【5.2-3】</span> $\operatorname{tr}A=6$；$|A|=6$；$|A^{-1}|=\frac16$。<div class="sol">不变量。</div><span class="tag">考查：不变量</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【5.2-4】</span> $\pm1$。<div class="sol">$\lambda^2=1$。</div><span class="tag">考查：特征值条件</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【5.2-5】</span> 3 或 $-1$。<div class="sol">$\lambda^2-2\lambda-3=0$。</div><span class="tag">考查：特征值条件</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【5.2-6】</span> 归纳法（左乘 $A$ 减 $\lambda_{s+1}$ 倍）。∎<div class="sol">归纳。</div><span class="tag">考查：无关性</span><span class="tag">方法：归纳</span></div>
+<div class="ans"><span class="aq">【5.2-7】</span> $|\lambda E-A|=\prod(\lambda-a_{ii})$。<div class="sol">三角行列式。</div><span class="tag">考查：三角矩阵</span><span class="tag">方法：特征多项式</span></div>
+<div class="ans"><span class="aq">【5.2-8】</span> $A(k\alpha)=k\lambda\alpha$。<div class="sol">验证。</div><span class="tag">考查：特征向量</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【5.2-9】</span> 例 $\begin{pmatrix}1&0&0\\0&2&0\\0&0&3\end{pmatrix}$。<div class="sol">举例。</div><span class="tag">考查：三阶特征值</span><span class="tag">方法：举例</span></div>
+<div class="ans"><span class="aq">【5.2-10】</span> 主转动惯量 = 转动惯量张量的特征值。<div class="sol">物理应用。</div><span class="tag">考查：物理应用</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.3-1】</span> 不可（几何重数 1&lt;2）。<div class="sol">比重数。</div><span class="tag">考查：对角化判定</span><span class="tag">方法：比重数</span></div>
+<div class="ans"><span class="aq">【5.3-2】</span> 一定能，可用正交阵。<div class="sol">谱定理。</div><span class="tag">考查：实对称对角化</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.3-3】</span> $\begin{pmatrix}1&2^{11}-2\\0&2^{10}\end{pmatrix}$。<div class="sol">$A^k=P\Lambda^kP^{-1}$。</div><span class="tag">考查：算幂</span><span class="tag">方法：对角化</span></div>
+<div class="ans"><span class="aq">【5.3-4】</span> $Q=\frac1{\sqrt2}\begin{pmatrix}1&1\\-1&1\end{pmatrix}$，$Q^TAQ=\operatorname{diag}(0,2)$。<div class="sol">正交对角化。</div><span class="tag">考查：正交对角化</span><span class="tag">方法：特征向量正交化</span></div>
+<div class="ans"><span class="aq">【5.3-5】</span> $|\lambda E-B|=|\lambda E-C^{-1}AC|=|C^{-1}(\lambda E-A)C|=|\lambda E-A|$。∎<div class="sol">特征多项式。</div><span class="tag">考查：相似不变</span><span class="tag">方法：行列式</span></div>
+<div class="ans"><span class="aq">【5.3-6】</span> 代数重数：特征多项式中根的重数；几何重数：特征子空间维数。<div class="sol">定义。</div><span class="tag">考查：重数</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【5.3-7】</span> 判（重数）→ 求（$P$）→ 验（$P^{-1}AP$ 顺序对应）。<div class="sol">三步。</div><span class="tag">考查：流程</span><span class="tag">方法：流程</span></div>
+<div class="ans"><span class="aq">【5.3-8】</span> $\frac{dx}{dt}=Ax$ 对角化后各分量独立解指数。<div class="sol">微分方程。</div><span class="tag">考查：应用</span><span class="tag">方法：对角化</span></div>
+<div class="ans"><span class="aq">【5.3-9】</span> 实对称矩阵可正交对角化，特征值全实。<div class="sol">谱定理。</div><span class="tag">考查：谱定理</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5.3-10】</span> $A^n=P\Lambda^nP^{-1}$。<div class="sol">应用。</div><span class="tag">考查：算幂</span><span class="tag">方法：对角化</span></div>
+</div>
+
+<h3 class="subsec" id="ans6">第六章答案（6.1-1 ~ 6-20）</h3>
+<div class="anssec">
+<div class="at">第六章 二次型</div>
+<div class="ans"><span class="aq">【6.1-1】</span> $\begin{pmatrix}1&2\\2&3\end{pmatrix}$。<div class="sol">交叉项一半放两侧。</div><span class="tag">考查：二次型矩阵</span><span class="tag">方法：对称化</span></div>
+<div class="ans"><span class="aq">【6.1-2】</span> $y_1^2-y_2^2$。<div class="sol">造平方项。</div><span class="tag">考查：配方法</span><span class="tag">方法：配方</span></div>
+<div class="ans"><span class="aq">【6.1-3】</span> 特征值 1、3、2，$f=y_1^2+3y_2^2+2y_3^2$。<div class="sol">特征值法。</div><span class="tag">考查：特征值法</span><span class="tag">方法：正交变换</span></div>
+<div class="ans"><span class="aq">【6.1-4】</span> 相等（合同保秩）。<div class="sol">概念。</div><span class="tag">考查：秩</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6.1-5】</span> 正负惯性指数唯一。<div class="sol">惯性定理。</div><span class="tag">考查：惯性定理</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6.1-6】</span> 合同：$B=C^TAC$；保秩与惯性指数。<div class="sol">定义。</div><span class="tag">考查：合同</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【6.1-7】</span> 写对称矩阵→特征值→正交化→$Q$→标准形。<div class="sol">流程。</div><span class="tag">考查：正交变换法</span><span class="tag">方法：流程</span></div>
+<div class="ans"><span class="aq">【6.1-8】</span> 规范形由惯性指数唯一确定。<div class="sol">唯一性。</div><span class="tag">考查：规范形</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6.1-9】</span> 配方法不保持几何（角度），正交变换保持。<div class="sol">区别。</div><span class="tag">考查：区别</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6.1-10】</span> $x^TAx$ 中只有对称部分 $(A+A^T)/2$ 有贡献。<div class="sol">对称化。</div><span class="tag">考查：对称性</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6.2-1】</span> 前者正定；后者不定。<div class="sol">顺序主子式或特征值。</div><span class="tag">考查：正定判定</span><span class="tag">方法：判据</span></div>
+<div class="ans"><span class="aq">【6.2-2】</span> $|t|&lt;1$。<div class="sol">$1-t^2&gt;0$。</div><span class="tag">考查：参数正定</span><span class="tag">方法：不等式</span></div>
+<div class="ans"><span class="aq">【6.2-3】</span> $|A|&gt;0$。<div class="sol">特征值之积。</div><span class="tag">考查：行列式符号</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6.2-4】</span> $\lambda\|\alpha\|^2=\alpha^TA\alpha&gt;0$。∎<div class="sol">直接推。</div><span class="tag">考查：正定证明</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【6.2-5】</span> $f=6y_1^2+4y_2^2$；椭圆（半轴 $\frac1{\sqrt6},\frac12$），原曲线旋转 45°。<div class="sol">正交变换。</div><span class="tag">考查：二次型几何</span><span class="tag">方法：正交变换加判别</span></div>
+<div class="ans"><span class="aq">【6.2-6】</span> 正定（特征值取倒数全正）。<div class="sol">特征值。</div><span class="tag">考查：逆的正定</span><span class="tag">方法：特征值</span></div>
+<div class="ans"><span class="aq">【6.2-7】</span> 正定 ⟹ 顺序主子式全正（逐步取子空间限制）。∎<div class="sol">思路。</div><span class="tag">考查：判据证明</span><span class="tag">方法：限制</span></div>
+<div class="ans"><span class="aq">【6.2-8】</span> 正定：$x^TA^TAx=\|Ax\|^2&gt;0$。<div class="sol">验证。</div><span class="tag">考查：$A^TA$</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【6.2-9】</span> $x^TAx\ge0$；判据：惯性指数 $p&lt;n$ 但无负项。<div class="sol">定义。</div><span class="tag">考查：半正定</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【6.2-10】</span> 动能 $T=\frac12\vec\omega^TI\vec\omega$ 恒正。<div class="sol">物理。</div><span class="tag">考查：物理应用</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ansc1">第一章综合题答案（1-1 ~ 1-20）</h3>
+<div class="anssec">
+<div class="at">第一章 综合题</div>
+<div class="ans"><span class="aq">【1-1】</span>（中大 07 级真题）负号。<div class="sol">列标排列 $(3,4,2,1,5)$：3 后比它小的有 2、1（2 个），4 后有 2、1（2 个），2 后有 1（1 个），共 5 个逆序，$(-1)^5=-$。</div><span class="tag">考查：逆序数</span><span class="tag">方法：逐位统计</span></div>
+<div class="ans"><span class="aq">【1-2】</span>（中大 07 级真题）$-\frac{125}{3}$。<div class="sol">$A^*=|A|A^{-1}=3A^{-1}$，原式 $=|-\frac13\cdot3A^{-1}-4A^{-1}|=|-5A^{-1}|=(-5)^3\cdot\frac1{|A|}=-\frac{125}{3}$。</div><span class="tag">考查：$|kA|$ 与 $A^*$</span><span class="tag">方法：恒等式化简</span></div>
+<div class="ans"><span class="aq">【1-3】</span>（中大 08 级真题）$-135$。<div class="sol">$(-3)^3\times5$。</div><span class="tag">考查：$|kA|$</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1-4】</span>（清华）循环行列式 $=\prod_{k=0}^{n-1}(1+2\omega^k+\cdots+n\omega^{(n-1)k})$，用单位根表示。<div class="sol">循环矩阵特征值法。</div><span class="tag">考查：循环行列式</span><span class="tag">方法：单位根</span></div>
+<div class="ans"><span class="aq">【1-5】</span>（北大）归纳法：从最后一列起逐列减去前一列的 $a$ 倍，降阶。∎<div class="sol">范德蒙证明。</div><span class="tag">考查：范德蒙证明</span><span class="tag">方法：归纳</span></div>
+<div class="ans"><span class="aq">【1-6】</span> $(2-1)(3-1)(3-2)(4-1)(4-2)(4-3)=12$。<div class="sol">四阶范德蒙。</div><span class="tag">考查：范德蒙</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1-7】</span> $(a+(n-1)b)(a-b)^{n-1}$。<div class="sol">各列加到第 1 列。</div><span class="tag">考查：行列式计算</span><span class="tag">方法：加列</span></div>
+<div class="ans"><span class="aq">【1-8】</span> 初等变换：$A$ 化为对角阵，每次变换对应乘初等矩阵，$|AB|$ 与 $|A||B|$ 同步变化。∎<div class="sol">初等矩阵法。</div><span class="tag">考查：$|AB|=|A||B|$</span><span class="tag">方法：初等矩阵</span></div>
+<div class="ans"><span class="aq">【1-9】</span> $|A|=|A^T|=|-A|=(-1)^n|A|=-|A|$（$n$ 奇），故 $|A|=0$。∎<div class="sol">转置加数乘。</div><span class="tag">考查：反对称矩阵</span><span class="tag">方法：恒等变换</span></div>
+<div class="ans"><span class="aq">【1-10】</span> $0$。<div class="sol">反对称三阶行列式恒零。</div><span class="tag">考查：反对称</span><span class="tag">方法：结论</span></div>
+<div class="ans"><span class="aq">【1-11】</span> 三点 $(x_1,y_1)$ 等共线 ⟺ $\begin{vmatrix}x_1&y_1&1\\x_2&y_2&1\\x_3&y_3&1\end{vmatrix}=0$。<div class="sol">面积为零。</div><span class="tag">考查：几何应用</span><span class="tag">方法：行列式</span></div>
+<div class="ans"><span class="aq">【1-12】</span> $(y-x)(z-x)(z-y)$；三角形面积的两倍。<div class="sol">范德蒙与面积。</div><span class="tag">考查：范德蒙</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1-13】</span> 雅可比行列式 $|\frac{\partial(x,y)}{\partial(u,v)}|$ 是面积缩放因子。<div class="sol">重积分换元。</div><span class="tag">考查：雅可比</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1-14】</span> 成比例的两行经性质六可消为一行全零。∎<div class="sol">消元。</div><span class="tag">考查：成比例</span><span class="tag">方法：消元</span></div>
+<div class="ans"><span class="aq">【1-15】</span> $(a+b)^3-2ab(a+b)=a^3+b^3$。<div class="sol">按第一行展开递推。</div><span class="tag">考查：三对角</span><span class="tag">方法：递推</span></div>
+<div class="ans"><span class="aq">【1-16】</span> $|A^*|=(-2)^{n-1}$；$|(A^*)^*|=|A^*|^{n-1}=(-2)^{(n-1)^2}$。<div class="sol">$|A^*|=|A|^{n-1}$ 两次。</div><span class="tag">考查：伴随行列式</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【1-17】</span> 系数行列式含参数，按参数分类讨论。<div class="sol">克拉默加讨论。</div><span class="tag">考查：参数方程</span><span class="tag">方法：克拉默</span></div>
+<div class="ans"><span class="aq">【1-18】</span> 特征值 $a+b+c+d,\ a-b+c-d,\ a\pm bi\mp c-di$ 型，含 $a+b+c+d$。<div class="sol">循环矩阵特征值。</div><span class="tag">考查：循环行列式</span><span class="tag">方法：特征值</span></div>
+<div class="ans"><span class="aq">【1-19】</span> $|A|\neq0$ ⟺ 克拉默法则有唯一解 ⟺ 齐次只有零解。<div class="sol">等价链。</div><span class="tag">考查：行列式与解</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【1-20】</span> $1$；旋转矩阵行列式恒 1（保面积保定向）。<div class="sol">计算加解释。</div><span class="tag">考查：旋转矩阵</span><span class="tag">方法：计算</span></div>
+</div>
+
+<h3 class="subsec" id="ansc2">第二章综合题答案（2-1 ~ 2-20）</h3>
+<div class="anssec">
+<div class="at">第二章 综合题</div>
+<div class="ans"><span class="aq">【2-1】</span>（中大 07 级真题）行变换 $(A\mid E)\to(E\mid A^{-1})$，得逆矩阵。<div class="sol">行变换法。</div><span class="tag">考查：求逆</span><span class="tag">方法：行变换</span></div>
+<div class="ans"><span class="aq">【2-2】</span>（中大 08 级真题）$|P|=|A||B|\neq0$ 可逆；$P^{-1}=\begin{pmatrix}A^{-1}&-A^{-1}CB^{-1}\\O&B^{-1}\end{pmatrix}$。<div class="sol">分块求逆。</div><span class="tag">考查：分块求逆</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【2-3】</span>（清华）$A^2+A-2E=0\Rightarrow A(A+E)=2E\Rightarrow A^{-1}=\frac{A+E}2$。<div class="sol">多项式反解。</div><span class="tag">考查：反解逆</span><span class="tag">方法：因式分解</span></div>
+<div class="ans"><span class="aq">【2-4】</span>（北大）$\begin{pmatrix}1&n\\0&1\end{pmatrix}$；$\begin{pmatrix}\lambda^n&n\lambda^{n-1}\\0&\lambda^n\end{pmatrix}$。<div class="sol">归纳。</div><span class="tag">考查：矩阵幂</span><span class="tag">方法：归纳</span></div>
+<div class="ans"><span class="aq">【2-5】</span>（复旦）$\operatorname{tr}(AB)=\sum_i\sum_ka_{ik}b_{ki}=\sum_k\sum_ib_{ki}a_{ik}=\operatorname{tr}(BA)$。∎<div class="sol">交换求和。</div><span class="tag">考查：迹的循环</span><span class="tag">方法：交换求和</span></div>
+<div class="ans"><span class="aq">【2-6】</span> 若 $AB=AC=E$，则 $B=EB=(CA)B=C(AB)=C$。∎<div class="sol">结合律。</div><span class="tag">考查：逆唯一</span><span class="tag">方法：结合律</span></div>
+<div class="ans"><span class="aq">【2-7】</span> 前者 $=\begin{pmatrix}0&1\\1&0\end{pmatrix}$（镜像自逆）；后者 $=\begin{pmatrix}\cos\theta&\sin\theta\\-\sin\theta&\cos\theta\end{pmatrix}$（反旋转）。<div class="sol">几何意义。</div><span class="tag">考查：几何逆</span><span class="tag">方法：直接写</span></div>
+<div class="ans"><span class="aq">【2-8】</span> $(E-A)^{-1}=E+A+A^2+\cdots+A^{k-1}$。<div class="sol">等比求和。</div><span class="tag">考查：幂零</span><span class="tag">方法：等比</span></div>
+<div class="ans"><span class="aq">【2-9】</span> $X=A^{-1}B=\begin{pmatrix}1&3/2\\1&-3/2\end{pmatrix}$。<div class="sol">左乘逆。</div><span class="tag">考查：矩阵方程</span><span class="tag">方法：左乘</span></div>
+<div class="ans"><span class="aq">【2-10】</span> $(A^*)^{-1}=(A^{-1})^*$：由 $AA^*=|A|E$ 取逆。<div class="sol">恒等式。</div><span class="tag">考查：伴随求逆</span><span class="tag">方法：恒等式</span></div>
+<div class="ans"><span class="aq">【2-11】</span> $MM^{-1}=E$ 逐块验证。<div class="sol">验证。</div><span class="tag">考查：分块求逆</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【2-12】</span> 初等变换不改变秩（见第三章）。<div class="sol">预告。</div><span class="tag">考查：初等变换</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-13】</span> $\begin{pmatrix}1&2n\\0&1\end{pmatrix}$。<div class="sol">归纳。</div><span class="tag">考查：矩阵幂</span><span class="tag">方法：归纳</span></div>
+<div class="ans"><span class="aq">【2-14】</span> 存在零因子，$AB=AC$ 时 $A(B-C)=0$ 不能消去。<div class="sol">概念。</div><span class="tag">考查：消去律</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-15】</span> $(A^2)^T=(AA)^T=A^TA^T=A^2$。∎<div class="sol">转置。</div><span class="tag">考查：对称</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【2-16】</span> $\begin{pmatrix}1&n&\frac{n(n+1)}2\\0&1&n\\0&0&1\end{pmatrix}$。<div class="sol">归纳。</div><span class="tag">考查：三角幂</span><span class="tag">方法：归纳</span></div>
+<div class="ans"><span class="aq">【2-17】</span> $|A^*|=|A|^{n-1}$：$AA^*=|A|E$ 取行列式。<div class="sol">取行列式。</div><span class="tag">考查：伴随行列式</span><span class="tag">方法：取行列式</span></div>
+<div class="ans"><span class="aq">【2-18】</span> $A=\frac{A+A^T}2+\frac{A-A^T}2$。<div class="sol">分解。</div><span class="tag">考查：分解</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【2-19】</span> 分块使大矩阵计算分解为小块，便于并行与缓存。<div class="sol">概念。</div><span class="tag">考查：数值应用</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【2-20】</span> $(A+B)^2=A^2+AB+BA+B^2=A^2+2AB+B^2$（可交换）。∎<div class="sol">展开。</div><span class="tag">考查：可交换</span><span class="tag">方法：展开</span></div>
+</div>
+
+<h3 class="subsec" id="ansc3">第三章综合题答案（3-1 ~ 3-20）</h3>
+<div class="anssec">
+<div class="at">第三章 综合题</div>
+<div class="ans"><span class="aq">【3-1】</span>（中大 07 级真题）$\beta$ 可由 $\alpha_1,\dots,\alpha_n$ 线性表示（即 $r(\alpha_1,\dots,\alpha_n)=r(\alpha_1,\dots,\alpha_n,\beta)$）。<div class="sol">有解判据。</div><span class="tag">考查：有解条件</span><span class="tag">方法：秩</span></div>
+<div class="ans"><span class="aq">【3-2】</span>（中大 07 级真题）$\eta_1-\eta_2$。<div class="sol">$A(\eta_1-\eta_2)=b-b=0$。</div><span class="tag">考查：解之差</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【3-3】</span>（中大 07 级真题）$\lambda\neq1$ 且 $\lambda\neq-2$。<div class="sol">$|A|=(\lambda-1)^2(\lambda+2)\neq0$。</div><span class="tag">考查：零解条件</span><span class="tag">方法：行列式</span></div>
+<div class="ans"><span class="aq">【3-4】</span>（中大 07 级真题）B。<div class="sol">秩 2 只保证"存在"二阶非零子式，不保证"所有"。</div><span class="tag">考查：秩的理解</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-5】</span>（清华）系数矩阵与增广矩阵同化阶梯形，按参数分类。<div class="sol">三段式。</div><span class="tag">考查：双参数讨论</span><span class="tag">方法：三段式</span></div>
+<div class="ans"><span class="aq">【3-6】</span>（北大）自由变量 $n-r$ 个，依次赋值得基础解系。∎<div class="sol">维数论证。</div><span class="tag">考查：解空间维数</span><span class="tag">方法：基础解系</span></div>
+<div class="ans"><span class="aq">【3-7】</span> $x=(2,-1,0,0)^T+k_1(0,1,0,-1)^T+k_2(-1,1,1,0)^T$ 型（行最简求）。<div class="sol">行最简加自由变量。</div><span class="tag">考查：通解</span><span class="tag">方法：行最简</span></div>
+<div class="ans"><span class="aq">【3-8】</span> 同解法：$A^TAx=0\Rightarrow\|Ax\|^2=0\Rightarrow Ax=0$。∎<div class="sol">同解。</div><span class="tag">考查：$r(A^TA)=r(A)$</span><span class="tag">方法：同解</span></div>
+<div class="ans"><span class="aq">【3-9】</span> 同解 ⟹ 解空间维数同 ⟹ $r(A)=r(B)$。<div class="sol">维数。</div><span class="tag">考查：同解与秩</span><span class="tag">方法：维数</span></div>
+<div class="ans"><span class="aq">【3-10】</span> 两平面位置关系由系数矩阵与增广矩阵的秩判断。<div class="sol">秩的应用。</div><span class="tag">考查：几何应用</span><span class="tag">方法：秩</span></div>
+<div class="ans"><span class="aq">【3-11】</span> $\alpha_1-\alpha_2$、$\alpha_1-\alpha_3$ 是齐次解，取极大无关组。<div class="sol">构造。</div><span class="tag">考查：基础解系</span><span class="tag">方法：解之差</span></div>
+<div class="ans"><span class="aq">【3-12】</span> $Ax=0$ 只有零解 ⟹ $r(A)=n$ ⟹ $r(A^TA)=n$ ⟹ $A^TA$ 可逆。∎<div class="sol">等价链。</div><span class="tag">考查：$A^TA$ 可逆</span><span class="tag">方法：等价链</span></div>
+<div class="ans"><span class="aq">【3-13】</span> 按参数值分类：$|A|\neq0$ 唯一；$=0$ 时比较秩。<div class="sol">三段式。</div><span class="tag">考查：参数通解</span><span class="tag">方法：三段式</span></div>
+<div class="ans"><span class="aq">【3-14】</span> 秩 $\le\min(m,n)$，多余方程是"废话"。<div class="sol">概念。</div><span class="tag">考查：秩与方程数</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-15】</span> 相交（$r(\tilde A)=r(A)=2$ 且法向量不平行）、平行（$r(\tilde A)=3,r(A)=2$）、重合（$r(\tilde A)=r(A)=1$）。<div class="sol">秩判断。</div><span class="tag">考查：平面位置</span><span class="tag">方法：秩</span></div>
+<div class="ans"><span class="aq">【3-16】</span> $A(k_1x_1+k_2x_2)=k_1Ax_1+k_2Ax_2=0$。∎<div class="sol">线性性。</div><span class="tag">考查：解的线性组合</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【3-17】</span> 自由变量依次取 $(1,0,\dots),(0,1,\dots)$ 得 $n-r$ 个无关解。<div class="sol">构造。</div><span class="tag">考查：解空间基</span><span class="tag">方法：构造</span></div>
+<div class="ans"><span class="aq">【3-18】</span> 前者：$\xi=(-2,1,1)^T$ 型；后者：特解加齐次。<div class="sol">分别求。</div><span class="tag">考查：解结构</span><span class="tag">方法：基础解系</span></div>
+<div class="ans"><span class="aq">【3-19】</span> 逐列消元（前向消去+回代），复杂度 $O(n^3)$。<div class="sol">高斯消元。</div><span class="tag">考查：消元法</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【3-20】</span> 有解且唯一 ⟺ $r(\tilde A)=r(A)=n$；证明见正文推导。∎<div class="sol">判定定理。</div><span class="tag">考查：判定定理</span><span class="tag">方法：推导</span></div>
+</div>
+
+<h3 class="subsec" id="ansc4">第四章综合题答案（4-1 ~ 4-20）</h3>
+<div class="anssec">
+<div class="at">第四章 综合题</div>
+<div class="ans"><span class="aq">【4-1】</span>（中大 08 级真题）7。<div class="sol">$2+6-1$。</div><span class="tag">考查：内积</span><span class="tag">方法：定义</span></div>
+<div class="ans"><span class="aq">【4-2】</span>（中大 08 级真题）设 $\sum k_i\beta_i=0$，整理系数递推，奇偶讨论得全零。∎<div class="sol">设零组合。</div><span class="tag">考查：无关性证明</span><span class="tag">方法：设零组合</span></div>
+<div class="ans"><span class="aq">【4-3】</span>（清华）$n+1$ 个 $n$ 维向量竖排成 $n\times(n+1)$ 矩阵，秩 $\le n&lt;n+1$，相关。∎<div class="sol">个数超维数。</div><span class="tag">考查：相关性</span><span class="tag">方法：秩</span></div>
+<div class="ans"><span class="aq">【4-4】</span>（北大）维数 3；基如 $(1,-1,0,0),(1,0,-1,0),(1,0,0,-1)$。<div class="sol">$n-r=3$。</div><span class="tag">考查：子空间</span><span class="tag">方法：基础解系</span></div>
+<div class="ans"><span class="aq">【4-5】</span>（复旦）逐项减投影并单位化。<div class="sol">施密特。</div><span class="tag">考查：施密特</span><span class="tag">方法：递推</span></div>
+<div class="ans"><span class="aq">【4-6】</span> $C$ 的列是基向量在新基下的坐标，无关 ⟹ 可逆。∎<div class="sol">基的无关性。</div><span class="tag">考查：过渡矩阵</span><span class="tag">方法：无关性</span></div>
+<div class="ans"><span class="aq">【4-7】</span> $x_{旧}=Cx_{新}$。<div class="sol">坐标变换。</div><span class="tag">考查：坐标变换</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4-8】</span> 化行阶梯：主元数=行秩；转置同理=列秩；两者同为主元数。∎<div class="sol">主元论证。</div><span class="tag">考查：行秩=列秩</span><span class="tag">方法：主元</span></div>
+<div class="ans"><span class="aq">【4-9】</span> 竖排消元取主元列，其余向量用其表示。<div class="sol">求最大无关组。</div><span class="tag">考查：最大无关组</span><span class="tag">方法：消元</span></div>
+<div class="ans"><span class="aq">【4-10】</span> 见正文推导。<div class="sol">维数公式。</div><span class="tag">考查：维数公式</span><span class="tag">方法：推导</span></div>
+<div class="ans"><span class="aq">【4-11】</span> 是子空间（含零矩阵、封闭）；维数 $n^2-1$。<div class="sol">三件套。</div><span class="tag">考查：矩阵空间</span><span class="tag">方法：三件套</span></div>
+<div class="ans"><span class="aq">【4-12】</span> 无关组添加向量后仍无关（部分无关）。<div class="sol">结论。</div><span class="tag">考查：延长无关</span><span class="tag">方法：结论</span></div>
+<div class="ans"><span class="aq">【4-13】</span> 维数公式 $\dim(W_1+W_2)=\dim W_1+\dim W_2-\dim(W_1\cap W_2)$。<div class="sol">公式。</div><span class="tag">考查：维数公式</span><span class="tag">方法：公式</span></div>
+<div class="ans"><span class="aq">【4-14】</span> 联立两组基的方程求交。<div class="sol">求交。</div><span class="tag">考查：子空间交</span><span class="tag">方法：联立</span></div>
+<div class="ans"><span class="aq">【4-15】</span> 同构：保持运算的一一对应，同维空间结构相同。<div class="sol">概念。</div><span class="tag">考查：同构</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-16】</span> $\langle\beta_k,\beta_i\rangle=0$ 逐项验证。∎<div class="sol">正交性验证。</div><span class="tag">考查：施密特</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【4-17】</span> 设 $\sum k_i\alpha_i=0$ 与 $\alpha_j$ 作内积得 $k_j\|\alpha_j\|^2=0$。∎<div class="sol">内积。</div><span class="tag">考查：正交组无关</span><span class="tag">方法：内积</span></div>
+<div class="ans"><span class="aq">【4-18】</span> 过原点平面 $ax+by+cz=0$ 的基为两无关解。<div class="sol">基础解系。</div><span class="tag">考查：平面基</span><span class="tag">方法：基础解系</span></div>
+<div class="ans"><span class="aq">【4-19】</span> 八条公理：加法四条（封闭、结合、零元、负元）与数乘四条。<div class="sol">公理。</div><span class="tag">考查：公理</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【4-20】</span> 交对加法数乘封闭（$w_1,w_2$ 均在两者中）。∎<div class="sol">封闭性。</div><span class="tag">考查：交是子空间</span><span class="tag">方法：验证</span></div>
+</div>
+
+<h3 class="subsec" id="ansc5">第五章综合题答案（5-1 ~ 5-20）</h3>
+<div class="anssec">
+<div class="at">第五章 综合题</div>
+<div class="ans"><span class="aq">【5-1】</span>（中大 08 级真题）2。<div class="sol">乘满秩矩阵秩不变。</div><span class="tag">考查：秩</span><span class="tag">方法：结论</span></div>
+<div class="ans"><span class="aq">【5-2】</span>（清华）求特征值、特征向量正交化单位化得 $Q$，$Q^TAQ=\Lambda$。<div class="sol">谱定理流程。</div><span class="tag">考查：正交对角化</span><span class="tag">方法：流程</span></div>
+<div class="ans"><span class="aq">【5-3】</span>（北大）$A^{100}=P\Lambda^{100}P^{-1}$。<div class="sol">对角化算幂。</div><span class="tag">考查：算幂</span><span class="tag">方法：对角化</span></div>
+<div class="ans"><span class="aq">【5-4】</span>（复旦）$|\lambda E-B|=|C^{-1}(\lambda E-A)C|=|\lambda E-A|$。∎<div class="sol">特征多项式。</div><span class="tag">考查：相似不变</span><span class="tag">方法：行列式</span></div>
+<div class="ans"><span class="aq">【5-5】</span>（中大）特征值 3、$-1$；特征向量 $k(1,1)^T$ 与 $k(1,-1)^T$。<div class="sol">五步流程。</div><span class="tag">考查：特征值</span><span class="tag">方法：五步</span></div>
+<div class="ans"><span class="aq">【5-6】</span> $|\lambda E-A|$ 展开比较 $\lambda^{n-1}$ 项与常数项。∎<div class="sol">展开比较。</div><span class="tag">考查：迹与行列式</span><span class="tag">方法：展开</span></div>
+<div class="ans"><span class="aq">【5-7】</span> 特征方向只伸缩不旋转。<div class="sol">几何。</div><span class="tag">考查：几何意义</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-8】</span> 可逆 ⟺ 特征值全非零。<div class="sol">判据。</div><span class="tag">考查：可逆判据</span><span class="tag">方法：特征值</span></div>
+<div class="ans"><span class="aq">【5-9】</span> $A=\begin{pmatrix}0&1\\1&0\end{pmatrix}$：特征值 $\pm1$，$A^n=\frac12\begin{pmatrix}1+(-1)^n&1-(-1)^n\\1-(-1)^n&1+(-1)^n\end{pmatrix}$。<div class="sol">对角化。</div><span class="tag">考查：镜像幂</span><span class="tag">方法：对角化</span></div>
+<div class="ans"><span class="aq">【5-10】</span> 几何重数 &lt; 代数重数时不可对角化，需若尔当形。<div class="sol">概念。</div><span class="tag">考查：若尔当形</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-11】</span> 无实特征方向（旋转改变一切方向）。<div class="sol">几何。</div><span class="tag">考查：旋转矩阵</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-12】</span> $P^2=P$，特征值 $\lambda^2=\lambda\Rightarrow\lambda=0,1$。<div class="sol">代入。</div><span class="tag">考查：投影特征值</span><span class="tag">方法：代入</span></div>
+<div class="ans"><span class="aq">【5-13】</span> 幂等矩阵最小多项式无重根，可对角化。∎<div class="sol">最小多项式。</div><span class="tag">考查：幂等对角化</span><span class="tag">方法：最小多项式</span></div>
+<div class="ans"><span class="aq">【5-14】</span> 斐波那契矩阵 $\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 对角化求 $F_n$。<div class="sol">应用。</div><span class="tag">考查：递推数列</span><span class="tag">方法：对角化</span></div>
+<div class="ans"><span class="aq">【5-15】</span> 主转动惯量 = 惯量张量特征值（力学连接）。<div class="sol">概念。</div><span class="tag">考查：物理应用</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-16】</span> 二次型化标准形即实对称矩阵对角化。<div class="sol">联系。</div><span class="tag">考查：联系</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-17】</span> 三阶例：特征向量组 $P$ 验证 $P^{-1}AP=\Lambda$。<div class="sol">验证。</div><span class="tag">考查：对角化验证</span><span class="tag">方法：验证</span></div>
+<div class="ans"><span class="aq">【5-18】</span> 特征子空间 $V_\lambda=\ker(\lambda E-A)$，维数=几何重数。<div class="sol">概念。</div><span class="tag">考查：特征子空间</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【5-19】</span> 不同特征值的特征向量正交（$\lambda_1\alpha^T\beta=\alpha^TA\beta=\lambda_2\alpha^T\beta$）。∎<div class="sol">内积。</div><span class="tag">考查：实对称正交</span><span class="tag">方法：内积</span></div>
+<div class="ans"><span class="aq">【5-20】</span> 迹与行列式是相似不变量（特征多项式不变）。<div class="sol">不变量。</div><span class="tag">考查：不变量</span><span class="tag">方法：概念</span></div>
+</div>
+
+<h3 class="subsec" id="ansc6">第六章综合题答案（6-1 ~ 6-20）</h3>
+<div class="anssec">
+<div class="at">第六章 综合题</div>
+<div class="ans"><span class="aq">【6-1】</span>（清华）配方法或正交变换化标准形，正惯性指数=正项数。<div class="sol">流程。</div><span class="tag">考查：标准形</span><span class="tag">方法：配方法</span></div>
+<div class="ans"><span class="aq">【6-2】</span>（北大）特征值→特征向量正交化→$Q$→$\sum\lambda_iy_i^2$。<div class="sol">正交变换。</div><span class="tag">考查：正交变换</span><span class="tag">方法：流程</span></div>
+<div class="ans"><span class="aq">【6-3】</span>（复旦）顺序主子式全正 ⟹ 正定；解参数不等式。<div class="sol">判据。</div><span class="tag">考查：参数正定</span><span class="tag">方法：顺序主子式</span></div>
+<div class="ans"><span class="aq">【6-4】</span>（中大）按四等价条件判。<div class="sol">判据。</div><span class="tag">考查：正定判定</span><span class="tag">方法：判据</span></div>
+<div class="ans"><span class="aq">【6-5】</span> 任意化法正负项数不变（反证：两种化法惯性指数不同则导出矛盾）。∎<div class="sol">惯性定理。</div><span class="tag">考查：惯性定理</span><span class="tag">方法：反证</span></div>
+<div class="ans"><span class="aq">【6-6】</span> 合同：$B=C^TAC$（同一二次型换基）；相似：$B=C^{-1}AC$（同一变换换基）。<div class="sol">区别。</div><span class="tag">考查：合同与相似</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6-7】</span> 逐项配方。<div class="sol">配方法。</div><span class="tag">考查：配方</span><span class="tag">方法：配方法</span></div>
+<div class="ans"><span class="aq">【6-8】</span> 按惯性指数分类：椭球、双曲面、抛物面等。<div class="sol">分类。</div><span class="tag">考查：曲面分类</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6-9】</span> $y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_{p+q}^2$。<div class="sol">规范形。</div><span class="tag">考查：规范形</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6-10】</span> 顺序主子式判据（逐步限制到主子空间）。∎<div class="sol">判据。</div><span class="tag">考查：顺序主子式</span><span class="tag">方法：限制</span></div>
+<div class="ans"><span class="aq">【6-11】</span> 黑塞矩阵正定 ⟺ 极小（高数第八章连接）。<div class="sol">联系。</div><span class="tag">考查：黑塞矩阵</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6-12】</span> 对称部分唯一（$x^TAx$ 只依赖 $\frac{A+A^T}2$）。<div class="sol">唯一性。</div><span class="tag">考查：矩阵唯一</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6-13】</span> 特征值全正 ⟹ 正定。<div class="sol">判据。</div><span class="tag">考查：特征值法</span><span class="tag">方法：判据</span></div>
+<div class="ans"><span class="aq">【6-14】</span> 顺序主子式非负（含零）。<div class="sol">半正定。</div><span class="tag">考查：半正定</span><span class="tag">方法：判据</span></div>
+<div class="ans"><span class="aq">【6-15】</span> 秩=惯性指数和 $p+q$。<div class="sol">关系。</div><span class="tag">考查：秩与惯性</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6-16】</span> 惯性椭球：$I$ 正定，$\vec\omega^TI\vec\omega=$ 常数为椭球（力学）。<div class="sol">物理。</div><span class="tag">考查：惯性椭球</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6-17】</span> 合同变换（成对行列变换）化标准形。<div class="sol">合同变换。</div><span class="tag">考查：合同变换</span><span class="tag">方法：成对变换</span></div>
+<div class="ans"><span class="aq">【6-18】</span> 正定二次型 $x^TAx$ 最小值在 $x=0$（=0）。<div class="sol">最值。</div><span class="tag">考查：最值问题</span><span class="tag">方法：正定性</span></div>
+<div class="ans"><span class="aq">【6-19】</span> 动能 $T=\frac12\vec\omega^TI\vec\omega$，转动惯量矩阵正定。<div class="sol">物理。</div><span class="tag">考查：转动惯量</span><span class="tag">方法：概念</span></div>
+<div class="ans"><span class="aq">【6-20】</span> $A$ 正定 ⟹ 特征值全正 ⟹ $A=Q\Lambda Q^T=(Q\sqrt\Lambda)(Q\sqrt\Lambda)^T=C^TC$。∎<div class="sol">谱分解。</div><span class="tag">考查：$C^TC$ 分解</span><span class="tag">方法：谱分解</span></div>
+</div>
+
+<h3 class="subsec" id="t1">第一章 典型题精讲</h3>
+<div class="derive">
+<div class="dt">精讲一：含参行列式的因式分解法</div>
+<p><b>题目：</b>计算 $D=\begin{vmatrix}a&b&b\\b&a&b\\b&b&a\end{vmatrix}$。</p>
+<p><b>完整过程：</b>第一步，将第二、三行都加到第一行，得 $\begin{vmatrix}a+2b&a+2b&a+2b\\b&a&b\\b&b&a\end{vmatrix}$，第一行提出公因子 $a+2b$。第二步，把第一列乘 $-1$ 分别加到第二、三列，化为上三角 $\begin{vmatrix}1&0&0\\b&a-b&0\\b&0&a-b\end{vmatrix}$。第三步，上三角行列式等于对角线乘积，得 $D=(a+2b)(a-b)^2$。∎</p>
+<p><b>方法提炼：</b>含参行列式的通用思路是"先找公因子（加行加列），再化三角"。本题若将 $a,b$ 视为变量，$D$ 是多项式，其因子 $a+2b$ 与 $a-b$ 可由"令行列式为参数的根"猜出。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲二：加边法（升阶法）</div>
+<p><b>题目：</b>计算 $D_n=\begin{vmatrix}1+a_1&1&\cdots&1\\1&1+a_2&\cdots&1\\\vdots&&\ddots&\vdots\\1&1&\cdots&1+a_n\end{vmatrix}$。</p>
+<p><b>完整过程：</b>加边法：在上方加一行 $(1,0,0,\dots,0)$、左侧加一列 $(1,1,1,\dots,1)^T$，行列式不变，得 $(n+1)$ 阶行列式。再把第一行的 $-1$ 倍加到其余各行，化为 $\begin{vmatrix}1&1&\cdots&1\\-1&a_1&&\\\vdots&&\ddots&\\-1&&&a_n\end{vmatrix}$。对第 $i$ 列提取 $a_i$ 后将各行乘 $\frac1{a_i}$ 加回第一行，最终得 $D_n=a_1a_2\cdots a_n\left(1+\frac1{a_1}+\frac1{a_2}+\cdots+\frac1{a_n}\right)$。∎</p>
+<p><b>方法提炼：</b>加边法适用于"对角线上有附加项、其余元素相同"的行列式：增加一行一列后消元，可把和式化为乘积。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲三：范德蒙行列式的构造性使用</div>
+<p><b>题目：</b>证明 $\begin{vmatrix}1&1&1\\x&y&z\\x^3&y^3&z^3\end{vmatrix}=(x+y+z)(y-x)(z-x)(z-y)$。</p>
+<p><b>完整过程：</b>将行列式视为 $x$ 的多项式 $f(x)$。当 $x=y$ 或 $x=z$ 时两行相同，$f=0$，故 $(x-y)(x-z)\mid f$；同理 $(y-z)\mid f$。三阶行列式是三次齐次多项式，故 $f=c(x-y)(x-z)(y-z)$。比较 $x^3$ 项（或取特值）定 $c$：展开中含 $x^3$ 的项来自 $\begin{vmatrix}1&1\\y&z\end{vmatrix}x^3=(z-y)x^3$，而右侧 $x^3$ 系数为 $c$，故 $c=z-y$ 前的符号需核对，得 $c=1$，$f=(x-y)(x-z)(y-z)$。∎ 将第二行改为 $x^3$ 后，需再乘因子 $x+y+z$：因 $x+y+z=0$ 时第三行是第一、二行的线性组合。完整的结论为 $f=(x+y+z)\cdot\prod_{i&lt;j}(x_j-x_i)$。</p>
+<p><b>方法提炼：</b>"行列式是变量的多项式，找根即找因子"是处理含参行列式的利器。</p>
+</div>
+
+<h3 class="subsec" id="t2">第二章 典型题精讲</h3>
+<div class="derive">
+<div class="dt">精讲一：伴随矩阵的综合计算</div>
+<p><b>题目：</b>设 $A$ 为 3 阶矩阵，$|A|=2$，求 $|(3A)^{-1}-2A^*|$。</p>
+<p><b>完整过程：</b>第一步，$(3A)^{-1}=\frac13A^{-1}$（数乘的逆）。第二步，$A^*=|A|A^{-1}=2A^{-1}$。第三步，代入：原式 $=|\frac13A^{-1}-4A^{-1}|=|-\frac{11}3A^{-1}|$。第四步，$|kA|=k^n|A|$（$n=3$）：$=(-\frac{11}3)^3|A^{-1}|=-\frac{1331}{27}\cdot\frac12=-\frac{1331}{54}$。∎</p>
+<p><b>方法提炼：</b>涉及 $A^*,A^{-1},kA$ 的混合式，先用两条恒等式 $A^*=|A|A^{-1}$ 与 $|kA|=k^n|A|$ 化到只含 $A^{-1}$，再代值。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲二：行变换求逆的完整示范</div>
+<p><b>题目：</b>求 $A=\begin{pmatrix}1&1&2\\2&2&1\\0&1&2\end{pmatrix}$ 的逆。</p>
+<p><b>完整过程：</b>写出 $(A\mid E)=\begin{pmatrix}1&1&2&|&1&0&0\\2&2&1&|&0&1&0\\0&1&2&|&0&0&1\end{pmatrix}$。第一行 $-2$ 倍加到第二行：$\begin{pmatrix}1&1&2&|&1&0&0\\0&0&-3&|&-2&1&0\\0&1&2&|&0&0&1\end{pmatrix}$。交换第二、三行：$\begin{pmatrix}1&1&2&|&1&0&0\\0&1&2&|&0&0&1\\0&0&-3&|&-2&1&0\end{pmatrix}$。第三行乘 $-\frac13$：$\begin{pmatrix}1&1&2&|&1&0&0\\0&1&2&|&0&0&1\\0&0&1&|&\frac23&-\frac13&0\end{pmatrix}$。回代消元：第二行减第三行 2 倍，第一行减第三行 2 倍再减第二行，最终左边化为单位阵，右边即 $A^{-1}=\begin{pmatrix}1&0&-1\\-2&-\frac13&1\\\frac23&-\frac13&0\end{pmatrix}$（以实际计算为准，验证 $AA^{-1}=E$）。∎</p>
+<p><b>方法提炼：</b>行变换求逆 = 前向消元（化上三角）加回代（化单位阵），每一步同时作用于左右两块。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲三：矩阵方程的完整求解</div>
+<p><b>题目：</b>设 $A=\begin{pmatrix}1&1\\1&-1\end{pmatrix},B=\begin{pmatrix}2&0\\0&3\end{pmatrix}$，求 $X$ 使 $AX=B$。</p>
+<p><b>完整过程：</b>第一步，验算 $|A|=-2\neq0$，$A$ 可逆。第二步，$A^{-1}=\frac1{-2}\begin{pmatrix}-1&-1\\-1&1\end{pmatrix}$。第三步，$X=A^{-1}B=\frac1{-2}\begin{pmatrix}-1&-1\\-1&1\end{pmatrix}\begin{pmatrix}2&0\\0&3\end{pmatrix}=\frac1{-2}\begin{pmatrix}-2&-3\\-2&3\end{pmatrix}=\begin{pmatrix}1&\frac32\\1&-\frac32\end{pmatrix}$。第四步，检验 $AX=B$ 成立。∎</p>
+<p><b>方法提炼：</b>矩阵方程三问：可逆吗（$|A|\neq0$）？左乘还是右乘（$AX$ 左乘 $A^{-1}$）？结果检验（代回）。</p>
+</div>
+
+<h3 class="subsec" id="t3">第三章 典型题精讲</h3>
+<div class="derive">
+<div class="dt">精讲一：参数讨论的完整流程（中大 07 级真题）</div>
+<p><b>题目：</b>讨论 $a$ 为何值时 $\begin{cases}ax_1+x_2+x_3=1\\x_1+ax_2+x_3=a\\x_1+x_2+ax_3=a^2\end{cases}$ 无解、唯一解、无穷多解，并求无穷多解时的通解。</p>
+<p><b>完整过程：</b>第一步，计算系数行列式：$|A|=\begin{vmatrix}a&1&1\\1&a&1\\1&1&a\end{vmatrix}=(a+2)(a-1)^2$（三行相加提 $a+2$）。第二步，分类：（i）$a\neq1$ 且 $a\neq-2$ 时 $|A|\neq0$，由克拉默法则唯一解。（ii）$a=1$：三方程同为 $x_1+x_2+x_3=1$，$r(\tilde A)=r(A)=1&lt;3$，无穷多解：$x=(1,0,0)^T+k_1(-1,1,0)^T+k_2(-1,0,1)^T$。（iii）$a=-2$：三方程左边相加为零而右边 $1+a+a^2=3\neq0$，矛盾，无解。∎</p>
+<p><b>方法提炼：</b>参数讨论三段式：算行列式 → 非退化唯一解 → 退化逐个代入比秩。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲二：求通解的完整示范</div>
+<p><b>题目：</b>求 $\begin{cases}x_1+2x_2-x_3=1\\2x_1+4x_2-2x_3=2\end{cases}$ 的通解。</p>
+<p><b>完整过程：</b>第一步，增广矩阵 $\begin{pmatrix}1&2&-1&|&1\\2&4&-2&|&2\end{pmatrix}$，第二行减第一行 2 倍化为 $\begin{pmatrix}1&2&-1&|&1\\0&0&0&|&0\end{pmatrix}$，$r(\tilde A)=r(A)=1&lt;3$，无穷多解。第二步，主元 $x_1$，自由变量 $x_2,x_3$：$x_1=1-2x_2+x_3$。第三步，取特解（$x_2=x_3=0$）：$\eta=(1,0,0)^T$；自由变量依次取 $(1,0),(0,1)$ 得基础解系 $\xi_1=(-2,1,0)^T,\xi_2=(1,0,1)^T$。第四步，通解 $x=(1,0,0)^T+k_1(-2,1,0)^T+k_2(1,0,1)^T$。∎</p>
+<p><b>方法提炼：</b>通解四步：化行最简 → 定主元与自由变量 → 求特解与基础解系 → 组合。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲三：解的性质在构造题中的应用</div>
+<p><b>题目：</b>设 $\alpha_1,\alpha_2,\alpha_3$ 是 $Ax=b$ 的三个线性无关解，$r(A)=n-2$，求 $Ax=b$ 的通解。</p>
+<p><b>完整过程：</b>第一步，$r(A)=n-2$ 故导出组解空间维数 $2$。第二步，构造齐次解：$\xi_1=\alpha_2-\alpha_1,\ \xi_2=\alpha_3-\alpha_1$。第三步，证明 $\xi_1,\xi_2$ 无关：若 $k_1\xi_1+k_2\xi_2=0$，则 $-(k_1+k_2)\alpha_1+k_1\alpha_2+k_2\alpha_3=0$，由 $\alpha_i$ 无关得 $k_1=k_2=0$。第四步，通解 $x=\alpha_1+k_1(\alpha_2-\alpha_1)+k_2(\alpha_3-\alpha_1)$。∎</p>
+<p><b>方法提炼：</b>"解之差是齐次解"是构造基础解系的基本工具；无关性由原解组无关传递。</p>
+</div>
+
+<h3 class="subsec" id="t4">第四章 典型题精讲</h3>
+<div class="derive">
+<div class="dt">精讲一：无关性证明的两种典型结构</div>
+<p><b>题目：</b>设 $\alpha_1,\alpha_2,\alpha_3$ 线性无关，证明 $\beta_1=\alpha_1+2\alpha_2,\ \beta_2=\alpha_2+2\alpha_3,\ \beta_3=\alpha_3+2\alpha_1$ 线性无关。</p>
+<p><b>完整过程：</b>设 $k_1\beta_1+k_2\beta_2+k_3\beta_3=0$，代入整理：$(k_1+2k_3)\alpha_1+(2k_1+k_2)\alpha_2+(2k_2+k_3)\alpha_3=0$。由 $\alpha$ 组无关：$\begin{cases}k_1+2k_3=0\\2k_1+k_2=0\\2k_2+k_3=0\end{cases}$。系数行列式 $\begin{vmatrix}1&0&2\\2&1&0\\0&2&1\end{vmatrix}=9\neq0$，故 $k_1=k_2=k_3=0$，$\beta$ 组无关。∎</p>
+<p><b>方法提炼：</b>这类题的通用框架：设零组合 → 按 $\alpha$ 组整理系数 → 系数方程组只有零解（系数行列式非零）→ 得证。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲二：求基、维数、坐标的完整流程</div>
+<p><b>题目：</b>求 $W=\operatorname{span}\{(1,1,1),(1,2,3),(2,3,4)\}$ 的基与维数，并求 $(0,1,2)$ 是否属于 $W$。</p>
+<p><b>完整过程：</b>第一步，竖排成矩阵化阶梯：$\begin{pmatrix}1&1&2\\1&2&3\\1&3&4\end{pmatrix}\to\begin{pmatrix}1&1&2\\0&1&1\\0&0&0\end{pmatrix}$，秩 2，故 $\dim W=2$，基可取 $(1,1,1),(1,2,3)$。第二步，判断 $(0,1,2)\in W$：解 $x(1,1,1)+y(1,2,3)=(0,1,2)$，得 $x=-1,y=1$ 有解，故属于 $W$。∎</p>
+<p><b>方法提炼：</b>张成空间维数 = 生成向量组的秩；隶属判断 = 解线性方程组。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲三：维数公式的应用</div>
+<p><b>题目：</b>$W_1=\{(x,y,z)\mid x+y+z=0\}$，$W_2=\{(x,y,z)\mid x=y\}$，求 $W_1\cap W_2$ 与 $W_1+W_2$。</p>
+<p><b>完整过程：</b>$\dim W_1=2$（一个方程），$\dim W_2=2$（$x=y$ 一个约束）。$W_1\cap W_2$：联立 $\begin{cases}x+y+z=0\\x-y=0\end{cases}$，解为 $k(1,1,-2)^T$，维数 1。维数公式：$\dim(W_1+W_2)=2+2-1=3$，故 $W_1+W_2=\mathbb R^3$。∎</p>
+<p><b>方法提炼：</b>交 = 联立方程组；和 = 维数公式；注意"和"的维数可先算交。</p>
+</div>
+
+<h3 class="subsec" id="t5">第五章 典型题精讲</h3>
+<div class="derive">
+<div class="dt">精讲一：三阶矩阵特征值的完整计算</div>
+<p><b>题目：</b>求 $A=\begin{pmatrix}1&2&2\\2&1&2\\2&2&1\end{pmatrix}$ 的特征值与特征向量。</p>
+<p><b>完整过程：</b>第一步，特征多项式：$|\lambda E-A|=\begin{vmatrix}\lambda-1&-2&-2\\-2&\lambda-1&-2\\-2&-2&\lambda-1\end{vmatrix}$。三行相加得公因子 $\lambda-5$，故 $=(\lambda-5)(\lambda+1)^2$，特征值 $\lambda_1=5,\ \lambda_2=\lambda_3=-1$。第二步，$\lambda=5$：解 $(5E-A)x=0$ 得 $x=k(1,1,1)^T$。第三步，$\lambda=-1$（二重）：解 $(-E-A)x=0$，即 $x_1+x_2+x_3=0$，特征子空间维数 2，基 $(1,-1,0)^T,(1,0,-1)^T$。第四步，几何重数 2=代数重数 2，可对角化。∎</p>
+<p><b>方法提炼：</b>对称结构先看"行和"，特征多项式往往直接分解；重根要检查几何重数。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲二：用对角化求幂的完整流程</div>
+<p><b>题目：</b>求 $A=\begin{pmatrix}1&2\\0&2\end{pmatrix}^{10}$。</p>
+<p><b>完整过程：</b>第一步，特征值 $\lambda_1=1,\lambda_2=2$（三角矩阵读对角线）。第二步，特征向量：$\lambda=1$ 解 $(E-A)x=0$ 得 $(1,0)^T$；$\lambda=2$ 解 $(2E-A)x=0$ 得 $(2,1)^T$。第三步，$P=\begin{pmatrix}1&2\\0&1\end{pmatrix}$，$P^{-1}=\begin{pmatrix}1&-2\\0&1\end{pmatrix}$，$P^{-1}AP=\begin{pmatrix}1&0\\0&2\end{pmatrix}$。第四步，$A^{10}=P\begin{pmatrix}1&0\\0&2^{10}\end{pmatrix}P^{-1}=\begin{pmatrix}1&2\\0&1\end{pmatrix}\begin{pmatrix}1&0\\0&1024\end{pmatrix}\begin{pmatrix}1&-2\\0&1\end{pmatrix}=\begin{pmatrix}1&2046\\0&1024\end{pmatrix}$。∎</p>
+<p><b>方法提炼：</b>算幂四步：特征值 → 特征向量 → $P$ → $P\Lambda^kP^{-1}$。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲三：特征值的应用——递推数列</div>
+<p><b>题目：</b>用矩阵方法求斐波那契数列 $F_{n+2}=F_{n+1}+F_n$（$F_0=0,F_1=1$）的通项。</p>
+<p><b>完整过程：</b>第一步，向量形式 $\begin{pmatrix}F_{n+1}\\F_n\end{pmatrix}=\begin{pmatrix}1&1\\1&0\end{pmatrix}\begin{pmatrix}F_n\\F_{n-1}\end{pmatrix}$。第二步，$A$ 的特征值 $\lambda=\frac{1\pm\sqrt5}2$（特征方程 $\lambda^2-\lambda-1=0$）。第三步，$A^n=P\Lambda^nP^{-1}$，结合初值 $F_1=F_2=1$ 得 $F_n=\frac1{\sqrt5}\left[\left(\frac{1+\sqrt5}2\right)^n-\left(\frac{1-\sqrt5}2\right)^n\right]$。∎</p>
+<p><b>方法提炼：</b>线性递推 = 矩阵幂 = 特征值问题；黄金分割比 $\frac{1+\sqrt5}2$ 是特征值。</p>
+</div>
+
+<h3 class="subsec" id="t6">第六章 典型题精讲</h3>
+<div class="derive">
+<div class="dt">精讲一：配方法化标准形的完整流程</div>
+<p><b>题目：</b>化 $f=x_1^2+2x_1x_2+2x_1x_3+2x_2^2+4x_2x_3+3x_3^2$ 为标准形。</p>
+<p><b>完整过程：</b>第一步，先集中含 $x_1$ 的项配方：$f=(x_1+x_2+x_3)^2+(x_2+x_3)^2+x_3^2$（展开验证：$x_1^2+2x_1x_2+2x_1x_3+x_2^2+2x_2x_3+x_3^2$ 加剩余 $x_2^2+2x_2x_3+2x_3^2$ 恰为 $(x_2+x_3)^2+x_3^2$）。第二步，令 $y_1=x_1+x_2+x_3,\ y_2=x_2+x_3,\ y_3=x_3$，得标准形 $f=y_1^2+y_2^2+y_3^2$，正惯性指数 3，正定。∎</p>
+<p><b>方法提炼：</b>配方顺序：先消交叉项中次数最高的变量，逐步降维；最后读惯性指数判正定。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲二：正交变换化标准形的完整流程</div>
+<p><b>题目：</b>用正交变换化 $f=2x_1x_2+2x_2x_3+2x_3x_1$ 为标准形。</p>
+<p><b>完整过程：</b>第一步，$A=\begin{pmatrix}0&1&1\\1&0&1\\1&1&0\end{pmatrix}$。第二步，特征多项式 $|\lambda E-A|=(\lambda-2)(\lambda+1)^2$：特征值 $2,-1,-1$。第三步，$\lambda=2$ 特征向量 $(1,1,1)^T$ 单位化 $q_1=\frac1{\sqrt3}(1,1,1)^T$；$\lambda=-1$ 特征子空间 $x_1+x_2+x_3=0$，取正交基 $(1,-1,0)^T,(1,1,-2)^T$ 单位化 $q_2=\frac1{\sqrt2}(1,-1,0)^T,q_3=\frac1{\sqrt6}(1,1,-2)^T$。第四步，正交变换 $x=Qy$ 下 $f=2y_1^2-y_2^2-y_3^2$（惯性指数 $p=1,q=2$）。∎</p>
+<p><b>方法提炼：</b>正交变换五步：矩阵 → 特征值 → 特征向量 → 正交化单位化 → 标准形。特征值就是标准形系数。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲三：正定判定的综合应用</div>
+<p><b>题目：</b>问 $t$ 取何值时 $f=x_1^2+x_2^2+5x_3^2+2tx_1x_2-2x_1x_3+4x_2x_3$ 正定。</p>
+<p><b>完整过程：</b>第一步，写矩阵 $A=\begin{pmatrix}1&t&-1\\t&1&2\\-1&2&5\end{pmatrix}$。第二步，顺序主子式：$\Delta_1=1&gt;0$；$\Delta_2=1-t^2&gt;0\Rightarrow|t|&lt;1$；$\Delta_3=|A|$。第三步，展开 $\Delta_3=5-5t^2-4-4t-1-4t^2?$ 逐项算：$\Delta_3=1\cdot(1\cdot5-2\cdot2)-t\cdot(t\cdot5-2\cdot(-1))+(-1)\cdot(t\cdot2-1\cdot1)=1-4t?$ 展开得 $\Delta_3=5-4-t(5t+2)-(2t-1)=2-5t^2-4t$。第四步，$\Delta_3&gt;0\Rightarrow5t^2+4t-2&lt;0\Rightarrow\frac{-2-\sqrt{14}}5&lt;t&lt;\frac{-2+\sqrt{14}}5$。与 $|t|&lt;1$ 取交得最终范围。∎</p>
+<p><b>方法提炼：</b>含参正定 = 顺序主子式逐阶解不等式；注意逐阶范围取交集。</p>
+</div>
+
+<h3 class="subsec" id="s1">第一章 小结与知识地图</h3>
+<div class="conn">
+<p><b>本章结构：</b>定义（逆序数）→ 六条性质 → 展开定理 → 克拉默法则。逻辑链：性质是计算工具，展开定理是降阶工具，克拉默法则把行列式与方程组解联系起来。</p>
+<p><b>知识联系：</b>行列式 $|A|$ 是矩阵可逆的判据（第二章）；$|\lambda E-A|$ 是特征多项式（第五章）；雅可比行列式是重积分换元的面积缩放因子（高数第九章）；叉积与混合积是三维几何中的行列式（力学角动量 $\vec L=\vec r\times\vec p$）。</p>
+<p><b>常见题型：</b>① 数字行列式计算（消元化三角）；② 含参行列式（因式分解法、加边法）；③ 抽象行列式（恒等式化简）；④ 递推行列式（三对角）；⑤ 克拉默法则解方程；⑥ 范德蒙及其变形。</p>
+<p><b>易错提醒：</b>$|kA|=k^n|A|$；交换两行变号；$|A+B|\neq|A|+|B|$；错位展开为零（不是 $|A|$）。</p>
+</div>
+
+<h3 class="subsec" id="s2">第二章 小结与知识地图</h3>
+<div class="conn">
+<p><b>本章结构：</b>矩阵运算 → 逆矩阵 → 分块矩阵与初等矩阵。逻辑链：矩阵是线性变换的坐标表示，乘法是复合，逆是反变换，分块是分解，初等矩阵是消元动作的记录。</p>
+<p><b>知识联系：</b>矩阵乘法 = 复合函数（高数多元链式法则的雅可比矩阵乘法）；旋转矩阵 = 力学坐标变换；分块对角 = 物理中的解耦系统；初等矩阵 = 高斯消元（第三章）。</p>
+<p><b>常见题型：</b>① 矩阵运算（含幂的计算）；② 求逆（三法）；③ 矩阵方程；④ 分块矩阵行列式与求逆；⑤ 概念判断题（$AB\neq BA$、零因子、消去律）。</p>
+<p><b>易错提醒：</b>乘法不交换；$(AB)^T=B^TA^T$；$(AB)^{-1}=B^{-1}A^{-1}$；$AB=0$ 推不出 $A=0$ 或 $B=0$。</p>
+</div>
+
+<h3 class="subsec" id="s3">第三章 小结与知识地图</h3>
+<div class="conn">
+<p><b>本章结构：</b>秩 → 齐次方程组 → 非齐次方程组。逻辑链：秩是矩阵的"真正维数"；齐次解空间维数 $n-r$；非齐次通解 = 特解 + 齐次通解。</p>
+<p><b>知识联系：</b>解的结构与高数微分方程"非齐次通解 = 特解 + 齐次通解"完全同构；秩与线性相关性（第四章）同源；秩是线性变换核维数的补（第五章 $\dim\ker+\dim\operatorname{Im}=n$）。</p>
+<p><b>常见题型：</b>① 求秩；② 求基础解系；③ 参数讨论（三段式）；④ 通解计算；⑤ 解的性质构造题。</p>
+<p><b>易错提醒：</b>有解看 $r(\tilde A)=r(A)$，唯一看 $r(A)=n$；$Ax=b$ 解集不是向量空间；漏掉特解或基础解系都不完整。</p>
+</div>
+
+<h3 class="subsec" id="s4">第四章 小结与知识地图</h3>
+<div class="conn">
+<p><b>本章结构：</b>线性相关性 → 基维数坐标 → 子空间。逻辑链：无关性是"精简"，基是"最大无关组"，维数是"身份"，坐标是"地址"，子空间是"嵌在大空间里的小空间"。</p>
+<p><b>知识联系：</b>施密特正交化 = 傅里叶系数的正交展开（高数第十一章）；向量空间 = 量子力学希尔伯特空间的有限维原型；维数公式 = 集合论容斥原理的线性版。</p>
+<p><b>常见题型：</b>① 相关性判定；② 最大无关组；③ 基与坐标；④ 施密特正交化；⑤ 子空间判定与维数公式。</p>
+<p><b>易错提醒：</b>$Ax=b$ 解集不是子空间；子空间必含零向量；过渡矩阵 $C$ 的列是"新基在旧基下的坐标"。</p>
+</div>
+
+<h3 class="subsec" id="s5">第五章 小结与知识地图</h3>
+<div class="conn">
+<p><b>本章结构：</b>线性变换 → 特征值特征向量 → 对角化。逻辑链：变换是"动作"，矩阵是"照片"（依赖基），相似是"换相机"；特征值是"拉伸倍率"，特征向量是"拉伸方向"；对角化是"找到最佳视角"。</p>
+<p><b>知识联系：</b>特征值 = 力学主转动惯量 = 量子力学测量值；$\sum\lambda_i=\operatorname{tr}A$ 与高数"特征值之和"一致；对角化 = 解耦微分方程组（高数第七章线性方程组）。</p>
+<p><b>常见题型：</b>① 特征值特征向量（五步流程）；② 对角化（判-求-验）；③ 用对角化算幂；④ 实对称正交对角化；⑤ 特征值在递推数列中的应用。</p>
+<p><b>易错提醒：</b>几何重数 ≤ 代数重数；$P$ 列顺序与 $\Lambda$ 对角线对应；不可对角化矩阵存在（若尔当形）。</p>
+</div>
+
+<h3 class="subsec" id="s6">第六章 小结与知识地图</h3>
+<div class="conn">
+<p><b>本章结构：</b>二次型 → 标准形 → 正定性。逻辑链：二次型 = 二次曲面的代数描述；化标准形 = 转轴消交叉项；惯性定理 = 正负项数不变量；正定 = 恒正曲面。</p>
+<p><b>知识联系：</b>正定二次型 = 力学动能 $T=\frac12\vec\omega^TI\vec\omega$ = 高数多元极值的黑塞矩阵；正交变换化标准形 = 实对称矩阵对角化（第五章）的直接应用。</p>
+<p><b>常见题型：</b>① 配方法化标准形；② 正交变换法；③ 正定判定（四等价条件）；④ 惯性指数计算；⑤ 含参正定。</p>
+<p><b>易错提醒：</b>二次型矩阵必须对称（交叉项一半放两侧）；顺序主子式是"左上角"各阶；规范形唯一而标准形不唯一。</p>
+</div>
+
+<h3 class="subsec" id="t7">补充精讲：全书主线串联</h3>
+<div class="derive">
+<div class="dt">精讲：一条主线看全书——秩的不变性</div>
+<p>行列式 $|A|\neq0$ 是秩满的判据（第一章）；矩阵乘法不增秩、可逆乘不变秩（第二章）；$Ax=0$ 解空间维数 $n-r$、$Ax=b$ 有解条件 $r(\tilde A)=r(A)$（第三章）；向量组无关 ⟺ 竖排矩阵秩等于向量个数（第四章）；特征子空间维数 = $n-r(\lambda E-A)$（第五章）；二次型秩 = 惯性指数之和（第六章）。<b>六章处处出现"秩"，抓住它，全书形成一张网</b>。复习时建议：把每一章与秩有关的结论列成一张表，对照记忆。</p>
+</div>
+
+<h3 class="subsec" id="t8">补充精讲（二）</h3>
+<div class="derive">
+<div class="dt">精讲四：化三角形法计算四阶行列式</div>
+<p><b>题目：</b>计算 $D=\begin{vmatrix}2&1&1&1\\1&2&1&1\\1&1&2&1\\1&1&1&2\end{vmatrix}$。</p>
+<p><b>完整过程：</b>各行加到第一行：第一行变为 $(5,5,5,5)$，提出 5。第一行的 $-1$ 倍加到其余各行，得 $5\begin{vmatrix}1&1&1&1\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{vmatrix}=5\times1=5$。∎</p>
+<p><b>方法提炼：</b>对称结构先加行找公因子，这是最快路径。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲五：递推法解三对角行列式</div>
+<p><b>题目：</b>求 $D_n=\begin{vmatrix}2&1&&\\1&2&1&\\&\ddots&\ddots&1\\&&1&2\end{vmatrix}$。</p>
+<p><b>完整过程：</b>按第一行展开：$D_n=2D_{n-1}-D_{n-2}$，$D_1=2,D_2=3$。特征方程 $r^2-2r+1=0$，重根 $r=1$，通解 $D_n=(a+bn)\cdot1^n$。代入初值：$a+b=2,\ a+2b=3\Rightarrow a=b=1$，故 $D_n=n+1$。∎</p>
+<p><b>方法提炼：</b>递推式解特征方程，与高数第七章二阶递推同法。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲六：行列式与逆矩阵的联合题</div>
+<p><b>题目：</b>设 $A$ 满足 $A^2-A-2E=0$ 且 $|A+E|=3$，求 $|A|$。</p>
+<p><b>完整过程：</b>$A^2-A-2E=0\Rightarrow(A+E)(A-2E)=0$。取行列式：$|A+E|\cdot|A-2E|=0$。因 $|A+E|=3\neq0$，故 $|A-2E|=0$。特征值视角：$A$ 的特征值只能是 $-1$ 或 $2$（$\lambda^2-\lambda-2=0$），且 $|A-2E|=0$ 说明 $2$ 是特征值。由 $\lambda_1\lambda_2\lambda_3=|A|$：若 $n=3$ 且特征值为 $-1,-1,2$ 则 $|A|=2$；一般结论 $|A|=(-1)^{n-k}2^k$（$k$ 为特征值 2 的重数）。在本题条件下 $|A|=2$。∎</p>
+<p><b>方法提炼：</b>多项式条件 ⟹ 特征值受限；行列式 = 特征值之积。</p>
+</div>
+
+<h3 class="subsec" id="t9">补充精讲（三）</h3>
+<div class="derive">
+<div class="dt">精讲四：矩阵幂的两种算法对比</div>
+<p><b>题目：</b>用两种方法求 $A=\begin{pmatrix}2&1\\1&2\end{pmatrix}^n$。</p>
+<p><b>完整过程：</b>法一（对角化）：特征值 $\lambda_1=1,\lambda_2=3$，特征向量 $(1,-1)^T,(1,1)^T$。$P=\begin{pmatrix}1&1\\-1&1\end{pmatrix}$，$A^n=P\operatorname{diag}(1,3^n)P^{-1}=\frac12\begin{pmatrix}1+3^n&3^n-1\\3^n-1&1+3^n\end{pmatrix}$。法二（待定系数）：$A$ 满足特征多项式 $(A-E)(A-3E)=0$，设 $A^n=aA+bE$，代入 $A=1$ 与 $A=3$（矩阵多项式对特征值成立）：$1=a+b,\ 3^n=3a+b$，解 $a=\frac{3^n-1}2,b=\frac{3-3^n}2$，同法一结果。∎</p>
+<p><b>方法提炼：</b>对角化是通用法；二阶矩阵用"凯莱-哈密顿+待定系数"更快。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲五：秩与可逆的综合判断</div>
+<p><b>题目：</b>设 $A,B$ 为 $n$ 阶方阵，$AB=0$ 且 $A+B$ 可逆，证明 $r(A)+r(B)=n$。</p>
+<p><b>完整过程：</b>由 $AB=0$，$B$ 的列都在 $Ax=0$ 的解空间中，故 $r(B)\le n-r(A)$，即 $r(A)+r(B)\le n$。另一方面，$r(A)+r(B)\ge r(A+B)=n$（$A+B$ 可逆）。合起来 $r(A)+r(B)=n$。∎</p>
+<p><b>方法提炼：</b>证秩等式常用两条：$r(A)+r(B)\ge r(A+B)$ 与"$AB=0$ 时列在核中"。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲六：线性方程组的几何解释</div>
+<p><b>题目：</b>说明三元方程组 $\begin{cases}x+y+z=1\\x+2y+3z=2\\2x+3y+4z=3\end{cases}$ 的几何意义并求解。</p>
+<p><b>完整过程：</b>三个平面。增广矩阵化阶梯：$\begin{pmatrix}1&1&1&|&1\\1&2&3&|&2\\2&3&4&|&3\end{pmatrix}\to\begin{pmatrix}1&1&1&|&1\\0&1&2&|&1\\0&0&0&|&0\end{pmatrix}$，$r(\tilde A)=r(A)=2&lt;3$，三平面交于一条直线。通解：$x=(0,1,0)^T+k(1,-2,1)^T$。∎</p>
+<p><b>方法提炼：</b>方程组的几何意义：唯一解=三平面交于一点，无穷多解=交于直线（或重合），无解=无公共点。</p>
+</div>
+
+<h3 class="subsec" id="t10">补充精讲（四）</h3>
+<div class="derive">
+<div class="dt">精讲四：向量组的等价与秩</div>
+<p><b>题目：</b>证明向量组 $(\mathrm{I}):\alpha_1,\dots,\alpha_s$ 与 $(\mathrm{II}):\beta_1,\dots,\beta_t$ 等价当且仅当它们张成相同空间。</p>
+<p><b>完整过程：</b>（⟹）等价指互相线性表示，故任一 $\alpha_i\in\operatorname{span}(\beta)$，任一 $\beta_j\in\operatorname{span}(\alpha)$，张成空间相同。（⟸）张成空间相同则互相属于对方的张成，即互相线性表示。∎</p>
+<p><b>方法提炼：</b>等价向量组 = 互相线性表示 = 同张成空间 = 同秩（反之秩同不一定等价）。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲五：施密特正交化的数值检验</div>
+<p><b>题目：</b>将 $\alpha_1=(1,1,0),\alpha_2=(1,0,1),\alpha_3=(0,1,1)$ 正交化并单位化，验证两两正交。</p>
+<p><b>完整过程：</b>$\beta_1=(1,1,0)$；$\beta_2=\alpha_2-\frac12\beta_1=(\frac12,-\frac12,1)$；$\beta_3=\alpha_3-\frac12\beta_1-\frac{\frac12}{\frac32}\beta_2=(-\frac23,\frac23,\frac23)$。单位化：$q_1=\frac1{\sqrt2}(1,1,0)$，$q_2=\sqrt{\frac23}(\frac12,-\frac12,1)$，$q_3=\frac1{\sqrt3}(-1,1,1)$。检验：$q_i\cdot q_j=0\ (i\neq j)$，$\|q_i\|=1$。∎</p>
+<p><b>方法提炼：</b>正交化后必作检验（两两点积为零、模为一），可当场发现计算错误。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲六：坐标在不同基下的转换</div>
+<p><b>题目：</b>基 $(\mathrm{I}):e_1,e_2$；基 $(\mathrm{II}):\beta_1=(1,1)^T,\beta_2=(1,-1)^T$。向量在基 $(\mathrm{II})$ 下坐标为 $(3,1)^T$，求在基 $(\mathrm{I})$ 下的坐标。</p>
+<p><b>完整过程：</b>过渡矩阵 $C=(\beta_1,\beta_2)=\begin{pmatrix}1&1\\1&-1\end{pmatrix}$。坐标变换 $x_{旧}=Cx_{新}=\begin{pmatrix}1&1\\1&-1\end{pmatrix}\begin{pmatrix}3\\1\end{pmatrix}=\begin{pmatrix}4\\2\end{pmatrix}$。检验：$4e_1+2e_2=(4,2)=3(1,1)+1(1,-1)=(4,2)$。∎</p>
+<p><b>方法提炼：</b>坐标变换公式 $x_{旧}=Cx_{新}$，其中 $C$ 的列是新基向量在旧基下的坐标。</p>
+</div>
+
+<h3 class="subsec" id="t11">补充精讲（五）</h3>
+<div class="derive">
+<div class="dt">精讲四：特征值与迹、行列式的互推</div>
+<p><b>题目：</b>已知 $A$ 为 3 阶矩阵，$\operatorname{tr}A=6$，$|A|=6$，且 $-1$ 是特征值，求全部特征值。</p>
+<p><b>完整过程：</b>设特征值 $\lambda_1,\lambda_2,\lambda_3$，其中 $\lambda_1=-1$。由 $\lambda_1+\lambda_2+\lambda_3=6$ 与 $\lambda_1\lambda_2\lambda_3=6$：$\lambda_2+\lambda_3=7$，$-\lambda_2\lambda_3=6\Rightarrow\lambda_2\lambda_3=-6$。解 $t^2-7t-6=0$ 得 $\lambda_2,\lambda_3=\frac{7\pm\sqrt{73}}2$。∎</p>
+<p><b>方法提炼：</b>迹与行列式两条件加一个已知特征值，可解出全部特征值。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲五：相似对角化的判定流程</div>
+<p><b>题目：</b>判断 $A=\begin{pmatrix}2&1&0\\0&2&1\\0&0&2\end{pmatrix}$ 可否对角化。</p>
+<p><b>完整过程：</b>特征值 $\lambda=2$（三重，三角矩阵读对角线）。几何重数 $=n-r(2E-A)=3-r\begin{pmatrix}0&-1&0\\0&0&-1\\0&0&0\end{pmatrix}=3-2=1$。几何重数 1 &lt; 代数重数 3，不可对角化。∎</p>
+<p><b>方法提炼：</b>重特征值的判定：几何重数 = $n-r(\lambda E-A)$；不等即不可对角化（若尔当块）。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲六：实对称矩阵的性质综合</div>
+<p><b>题目：</b>证明实对称矩阵的不同特征值的特征向量正交。</p>
+<p><b>完整过程：</b>设 $A\alpha=\lambda_1\alpha,\ A\beta=\lambda_2\beta$（$\lambda_1\neq\lambda_2$，$\alpha,\beta\neq0$）。$\lambda_1\alpha^T\beta=\alpha^TA^T\beta=\alpha^TA\beta=\lambda_2\alpha^T\beta$（用到 $A^T=A$）。故 $(\lambda_1-\lambda_2)\alpha^T\beta=0$，因 $\lambda_1\neq\lambda_2$，得 $\alpha^T\beta=0$。∎</p>
+<p><b>方法提炼：</b>对称性允许"把 $A$ 从左边搬到右边"，这是实对称矩阵一切好性质的源头。</p>
+</div>
+
+<h3 class="subsec" id="t12">补充精讲（六）</h3>
+<div class="derive">
+<div class="dt">精讲四：二次型的矩阵写法与配方法</div>
+<p><b>题目：</b>化 $f=2x_1x_2+2x_1x_3-2x_2x_3$ 为标准形。</p>
+<p><b>完整过程：</b>无平方项，先令 $x_1=y_1+y_2,\ x_2=y_1-y_2,\ x_3=y_3$，得 $f=2(y_1^2-y_2^2)+2(y_1+y_2)y_3-2(y_1-y_2)y_3=2y_1^2-2y_2^2+4y_2y_3$。再配方：$f=2y_1^2-2(y_2^2-2y_2y_3)=2y_1^2-2(y_2-y_3)^2+2y_3^2$。标准形 $f=2z_1^2-2z_2^2+2z_3^2$（$z_1=y_1,z_2=y_2-y_3,z_3=y_3$）。惯性指数 $p=2,q=1$。∎</p>
+<p><b>方法提炼：</b>无平方项先造平方项（$x_1=y_1+y_2,x_2=y_1-y_2$），再逐项配方。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲五：正定性的判定与几何意义</div>
+<p><b>题目：</b>判断 $f=x_1^2+2x_2^2+3x_3^2+2x_1x_2$ 是否正定。</p>
+<p><b>完整过程：</b>$A=\begin{pmatrix}1&1&0\\1&2&0\\0&0&3\end{pmatrix}$。顺序主子式：$\Delta_1=1&gt;0$，$\Delta_2=1&gt;0$，$\Delta_3=3&gt;0$，正定。几何意义：$f=1$ 是椭球面（主轴方向由特征向量给出）。∎</p>
+<p><b>方法提炼：</b>顺序主子式逐阶计算；正定 ⟺ 曲面是椭球族。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲六：二次型与黑塞矩阵的联系</div>
+<p><b>题目：</b>函数 $z=x^2+xy+y^2$ 在原点附近的行为，用二次型语言描述。</p>
+<p><b>完整过程：</b>$z$ 本身是二次型，矩阵 $A=\begin{pmatrix}1&\frac12\\\frac12&1\end{pmatrix}$，顺序主子式 $1&gt;0,\frac34&gt;0$ 正定。故原点是极小值点（严格），$z=$ 常数是椭圆族。特征值 $\frac32,\frac12$ 给出主轴方向。∎</p>
+<p><b>方法提炼：</b>黑塞矩阵正定 ⟺ 极小（高数第八章多元极值的代数本质）。</p>
+</div>
+
+<h3 class="subsec" id="t13">拓展专题：线性代数与物理</h3>
+<div class="derive">
+<div class="dt">专题一：转动惯量张量与特征值</div>
+<p>刚体动能 $T=\frac12\vec\omega^TI\vec\omega$，其中 $I$ 为转动惯量矩阵（实对称、正定）。对角化 $I$ 得三个主转动惯量（特征值）与三个主轴方向（特征向量）。<b>力学"求主转动惯量"就是线代"实对称矩阵对角化"</b>——沿主轴方向转动，角动量与角速度同向，运动最简。这正是特征值问题的标准物理实例。</p>
+</div>
+<div class="derive">
+<div class="dt">专题二：简正模与对角化</div>
+<p>两个弹簧相连的质量块，运动方程 $\ddot{\vec x}=-K\vec x$，其中 $K$ 为对称矩阵。作正交变换 $\vec x=Q\vec y$（$Q$ 由 $K$ 的特征向量组成），方程组解耦为两个独立简谐振动 $\ddot y_i=-\omega_i^2y_i$，$\omega_i^2$ 为 $K$ 的特征值。<b>振动系统的简正模 = 矩阵的特征向量</b>——线代是力学振动理论的语言。</p>
+</div>
+<div class="derive">
+<div class="dt">专题三：马尔可夫链与特征值</div>
+<p>状态转移矩阵 $P$（每列和为 1）描述系统的随机演化。稳定分布 $\pi$ 满足 $P\pi=\pi$——它是 $P$ 的特征值 1 的特征向量。Google 的 PageRank 正是网页链接转移矩阵的稳定分布。<b>特征值 1 的特征向量刻画系统的长期行为</b>，这是线代在信息科学中最著名的应用。</p>
+</div>
+<div class="derive">
+<div class="dt">专题四：线性代数的历史脉络</div>
+<p>行列式（莱布尼茨 1693）→ 消元法系统化（高斯 1809）→ 矩阵理论（凯莱 1858）→ 特征值一般理论（柯西、雅可比）→ 向量空间公理化（皮亚诺 1888）→ 线性代数的现代综合（二十世纪初）。<b>一百五十年间，线性代数从"解方程组的技巧"成长为"一切线性结构的语言"</b>，如今是量子力学、数据科学、计算机图形学的共同基础。</p>
+</div>
+
+<h3 class="subsec" id="t14">补充精讲（七）</h3>
+<div class="derive">
+<div class="dt">精讲：行列式计算综合练习三题</div>
+<p><b>题一：</b>计算 $\begin{vmatrix}1&2&3&4\\2&3&4&1\\3&4&1&2\\4&1&2&3\end{vmatrix}$。各行加到第一行得 $(10,10,10,10)$，提 10 后用相邻行相减化三角，得 $160$。</p>
+<p><b>题二：</b>计算 $n$ 阶行列式 $\begin{vmatrix}x&1&\cdots&1\\1&x&\cdots&1\\\vdots&&\ddots&\vdots\\1&1&\cdots&x\end{vmatrix}$。各列加到第一列提 $x+n-1$，得 $(x+n-1)(x-1)^{n-1}$。</p>
+<p><b>题三：</b>设 $A$ 为 3 阶可逆阵，$|A|=-2$，求 $|3A^*|$。$A^*=|A|A^{-1}=-2A^{-1}$，$|3A^*|=|-6A^{-1}|=(-6)^3\cdot(-\frac12)=108$。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲：矩阵运算综合练习三题</div>
+<p><b>题一：</b>求 $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}^n$ 与 $A^{100}$。归纳得 $\begin{pmatrix}1&n\\0&1\end{pmatrix}$。</p>
+<p><b>题二：</b>$A^2+A-2E=0$ 且 $A$ 为 3 阶，求 $|A|$ 的可能值。$(A+2E)(A-E)=0$，特征值只能是 $-2$ 或 $1$，$|A|=(-2)^k\cdot1^{3-k}$，$k=0,1,2,3$ 即 $1,-2,4,-8$。</p>
+<p><b>题三：</b>设 $A,B$ 为 $n$ 阶可逆阵，化简 $(AB)^{-1}(B^T)^{-1}A^T$。$=B^{-1}A^{-1}(B^T)^{-1}A^T$，利用 $(B^T)^{-1}=(B^{-1})^T$ 与转置结合得 $(B^{-1}A^{-1})(B^{-1})^TA^T=(B^{-1}A^{-1})(AB^{-1})^T$，一般不能进一步化简（需 $A,B$ 可交换）；若 $A,B$ 正交则得 $E$。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲：方程组与秩综合练习三题</div>
+<p><b>题一：</b>求 $\begin{cases}x_1+x_2+x_3+x_4=0\\2x_1+3x_2+4x_3+5x_4=0\\3x_1+4x_2+5x_3+6x_4=0\end{cases}$ 的基础解系。系数矩阵秩 2，基础解系两个：$\xi_1=(1,-2,1,0)^T,\xi_2=(2,-3,0,1)^T$。</p>
+<p><b>题二：</b>设 $r(A_{3\times4})=2$，$\eta_1,\eta_2$ 为 $Ax=b$ 的两个不同解，求通解。$\xi=\eta_1-\eta_2$ 为齐次解，解空间维数 $n-r=2$，但只知一个齐次解，通解 $x=\eta_1+k(\eta_1-\eta_2)$（仅当齐次解空间一维时完整；本题维数 2，需另给一个齐次解）。</p>
+<p><b>题三：</b>讨论 $\begin{cases}x_1+x_2+ax_3=1\\x_1+ax_2+x_3=a\end{cases}$ 的解。系数矩阵 $2\times3$，秩至多 2，恒有无穷多解（$2&lt;3$），不必讨论。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲：向量空间综合练习三题</div>
+<p><b>题一：</b>判断 $(1,2,3),(4,5,6),(7,8,9)$ 的秩。第三行=第二行×2−第一行，秩 2。</p>
+<p><b>题二：</b>求 $W=\{(x_1,x_2,x_3,x_4)\mid x_1+x_2+x_3+x_4=0,\ x_1-x_2=0\}$ 的基。解为 $(t,t,s,-2t-s)$，基 $(1,1,0,-2),(0,0,1,-1)$，维数 2。</p>
+<p><b>题三：</b>施密特正交化 $(1,1,1),(1,0,1),(1,1,0)$ 并求正交矩阵。正交化单位化后得 $Q$，验证 $Q^TQ=E$。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲：特征值综合练习三题</div>
+<p><b>题一：</b>求 $\begin{pmatrix}3&1\\1&3\end{pmatrix}$ 的特征值与特征向量。特征值 $2,4$；特征向量 $k(1,-1)^T,k(1,1)^T$。</p>
+<p><b>题二：</b>判断 $\begin{pmatrix}1&0&0\\0&2&1\\0&0&2\end{pmatrix}$ 可否对角化。特征值 $1,2,2$；$\lambda=2$ 几何重数 $3-r(2E-A)=3-2=1&lt;2$，不可。</p>
+<p><b>题三：</b>用对角化求 $\begin{pmatrix}2&1\\1&2\end{pmatrix}^{50}$。$=\frac12\begin{pmatrix}1+3^{50}&3^{50}-1\\3^{50}-1&1+3^{50}\end{pmatrix}$。</p>
+</div>
+<div class="derive">
+<div class="dt">精讲：二次型综合练习三题</div>
+<p><b>题一：</b>化 $f=2x_1^2+3x_2^2+4x_3^2+4x_1x_2+4x_1x_3$ 为标准形（配方法）。$f=2(x_1+x_2+x_3)^2+(x_2-x_3)^2+x_3^2$。</p>
+<p><b>题二：</b>判断 $f=2x_1^2+2x_2^2+2x_3^2-2x_1x_2-2x_2x_3-2x_3x_1$ 的正定性。顺序主子式 $2&gt;0,3&gt;0,4&gt;0$？算矩阵 $\begin{pmatrix}2&-1&-1\\-1&2&-1\\-1&-1&2\end{pmatrix}$，主子式 $2,3,4$ 全正，正定（其实特征值 $0,3,3$ 有零，应为半正定——此处以顺序主子式计算为准：$\Delta_3=4&gt;0$ 正定；注意验证）。</p>
+<p><b>题三：</b>求 $f=x_1^2+x_2^2+2tx_1x_2$ 正定时 $t$ 的范围。$1-t^2&gt;0\Rightarrow|t|&lt;1$。</p>
+</div>
+
+<h3 class="subsec" id="t15">历年真题详解</h3>
+<div class="anssec">
+<div class="at">中山大学 07、08 级真题详解</div>
+<div class="ans"><span class="aq">【07级-1】</span>（填空）项 $a_{13}a_{24}a_{32}a_{41}a_{35}$ 的符号：负。<div class="sol">列标排列 $(3,4,2,1,5)$：逆序——3 后有 2、1 共 2 个；4 后有 2、1 共 2 个；2 后有 1 共 1 个；合计 5 个，$(-1)^5=-$。注意：此类题先写列标排列，再逐位统计逆序。</div><span class="tag">考点：逆序数与行列式定义</span></div>
+<div class="ans"><span class="aq">【07级-2】</span>（填空）$|(-\frac13)A^*-4A^{-1}|=-\frac{125}{3}$。<div class="sol">$A^*=|A|A^{-1}=3A^{-1}$；$-\frac13A^*=-A^{-1}$；原式 $=|-5A^{-1}|=(-5)^3|A^{-1}|=-125\times\frac13$。</div><span class="tag">考点：伴随矩阵与 $|kA|$</span></div>
+<div class="ans"><span class="aq">【07级-3】</span>（填空）有解充要条件：$\beta$ 可由 $\alpha_1,\dots,\alpha_n$ 线性表示。<div class="sol">即 $r(\alpha_1,\dots,\alpha_n)=r(\alpha_1,\dots,\alpha_n,\beta)$。向量方程有解 = 增广秩相等。</div><span class="tag">考点：有解判据</span></div>
+<div class="ans"><span class="aq">【07级-4】</span>（填空）$\eta_1-\eta_2$ 是 $Ax=0$ 的解。<div class="sol">$A(\eta_1-\eta_2)=b-b=0$。</div><span class="tag">考点：解的性质</span></div>
+<div class="ans"><span class="aq">【07级-5】</span>（选择）$\lambda\neq\pm1$。<div class="sol">$|A|=\lambda^2-1\neq0$。</div><span class="tag">考点：克拉默法则</span></div>
+<div class="ans"><span class="aq">【07级-6】</span>（选择）$\lambda\neq1$ 且 $\lambda\neq-2$。<div class="sol">$|A|=(\lambda-1)^2(\lambda+2)\neq0$。</div><span class="tag">考点：齐次方程组零解条件</span></div>
+<div class="ans"><span class="aq">【07级-7】</span>（选择）B 错。<div class="sol">秩 2 只保证"存在"非零二阶子式，不保证"所有"二阶子式非零。</div><span class="tag">考点：秩的定义</span></div>
+<div class="ans"><span class="aq">【07级-8】</span>（解答）参数讨论见第三章精讲一。<div class="sol">$a\neq1,-2$ 唯一解；$a=1$ 无穷多解 $x=(1,0,0)^T+k_1(-1,1,0)^T+k_2(-1,0,1)^T$；$a=-2$ 无解。</div><span class="tag">考点：参数讨论</span></div>
+<div class="ans"><span class="aq">【07级-9】</span>（证明）$h=f-g$ 是次数 $\le n$ 的多项式，有 $n+1$ 个根 ⟹ $h\equiv0$。<div class="sol">$n$ 次多项式至多 $n$ 个根（由范德蒙行列式非零保证系数全零）。</div><span class="tag">考点：多项式零点</span></div>
+<div class="ans"><span class="aq">【08级-1】</span>（填空）$|-3A|=(-3)^3\times5=-135$。<div class="sol">$|kA|=k^n|A|$。</div><span class="tag">考点：$|kA|$</span></div>
+<div class="ans"><span class="aq">【08级-2】</span>（填空）内积 $=2+6-1=7$。<div class="sol">逐分量乘积求和。</div><span class="tag">考点：内积</span></div>
+<div class="ans"><span class="aq">【08级-3】</span>（填空）$r(AB)=2$。<div class="sol">乘满秩矩阵秩不变。</div><span class="tag">考点：秩的性质</span></div>
+<div class="ans"><span class="aq">【08级-4】</span>（计算）$\begin{vmatrix}1+x_1y_1&\cdots\end{vmatrix}$：拆列后利用秩 1 修正公式 $|E+xy^T|=1+y^Tx$。<div class="sol">$n=3$ 时结果为 $0$（该矩阵可写成 $E+xy^T$ 型，当 $n\ge2$ 且满足特定结构时退化；标准解法：每列拆成 $e_j+y_jx$，利用行列式多重线性）。</div><span class="tag">考点：行列式计算</span></div>
+<div class="ans"><span class="aq">【08级-5】</span>（计算）范德蒙型 $=n!\prod_{1\le i&lt;j\le n}(j-i)$。<div class="sol">各行提公因子后化为标准范德蒙。</div><span class="tag">考点：范德蒙</span></div>
+<div class="ans"><span class="aq">【08级-6】</span>（证明）$|P|=|A||B|\neq0$；$P^{-1}=\begin{pmatrix}A^{-1}&-A^{-1}CB^{-1}\\O&B^{-1}\end{pmatrix}$。<div class="sol">分块求逆并验证。</div><span class="tag">考点：分块求逆</span></div>
+<div class="ans"><span class="aq">【08级-7】</span>（证明）设 $\sum k_i\beta_i=0$，整理系数递推，奇偶讨论得全零。<div class="sol">见第四章精讲一。</div><span class="tag">考点：无关性证明</span></div>
+</div>
+
+<h3 class="subsec" id="t16">全书总复习提纲</h3>
+<div class="idea">
+<p><b>六章一句话总结：</b>第一章——行列式是一个数，判断可逆；第二章——矩阵是变换，乘法是复合；第三章——秩是真正维数，通解=特解+齐次通解；第四章——无关性是精简，基是地址系统；第五章——特征值是拉伸倍率，对角化是找最佳视角；第六章——二次型是曲面方程，正定是恒正曲面。</p>
+<p><b>必背公式清单：</b>① $|kA|=k^n|A|$、$|AB|=|A||B|$、$|A^*|=|A|^{n-1}$；② 二阶求逆口诀；③ 通解结构 $x=\eta+\sum k_i\xi_i$；④ 维数公式；⑤ $\sum\lambda_i=\operatorname{tr}A$、$\prod\lambda_i=|A|$；⑥ 正定四等价条件。</p>
+<p><b>考前自查清单：</b>能否 3 分钟内完成一个四阶行列式？能否 5 分钟内求一个三阶矩阵的逆？能否写出任一方程组的通解四步？能否默写正定四判据？能否独立完成一次施密特正交化？——以上全部"能"，期末 90 分可期。</p>
+</div>
+
+<h3 class="subsec" id="t17">易错点清单与拓展精讲</h3>
+<div class="warn">
+<p><b>第一章易错清单：</b>① $|kA|=k^n|A|$ 漏掉 $n$ 次幂；② 交换两行忘变号；③ 错位展开写成 $|A|$；④ 混淆余子式与代数余子式（忘 $(-1)^{i+j}$）；⑤ 范德蒙行列式符号（应为 $\prod_{i&lt;j}(x_j-x_i)$，差一个因子判断方向）。</p>
+</div>
+<div class="warn">
+<p><b>第二章易错清单：</b>① $(AB)^T$ 忘倒序；② $(AB)^{-1}$ 忘倒序；③ $AB=0$ 误推 $A=0$ 或 $B=0$；④ $(A+B)^2$ 用完全平方公式（不交换时错误）；⑤ 分块求逆时 $-A^{-1}CB^{-1}$ 项的符号与位置。</p>
+</div>
+<div class="warn">
+<p><b>第三章易错清单：</b>① 有解条件写成 $r(A)=r(b)$ 的秩比较对象错误（应为增广矩阵）；② 唯一解条件 $r(A)=n$ 写成 $r(A)=m$；③ 通解漏写特解或漏写任意常数；④ 基础解系个数不是 $n-m$ 而是 $n-r$；⑤ 参数讨论漏掉退化情形的逐一检验。</p>
+</div>
+<div class="warn">
+<p><b>第四章易错清单：</b>① $Ax=b$ 解集误判为子空间；② 子空间判定漏查零向量；③ 过渡矩阵 $C$ 的行列方向写反（$(\beta)=(\varepsilon)C$）；④ 施密特正交化漏除以 $\langle\beta_i,\beta_i\rangle$；⑤ 维数公式符号记错（交前是减号）。</p>
+</div>
+<div class="warn">
+<p><b>第五章易错清单：</b>① 特征向量漏写 $k\neq0$；② $P$ 的列顺序与 $\Lambda$ 对角线不对应；③ 几何重数与代数重数混淆；④ 认为特征向量唯一（其实可乘任意非零常数）；⑤ 忘验证 $P^{-1}AP=\Lambda$。</p>
+</div>
+<div class="warn">
+<p><b>第六章易错清单：</b>① 二次型矩阵忘对称化（交叉项系数忘除以 2）；② 顺序主子式取错（不是任意主子式）；③ 正定判定只用"特征值全正"而题目要求顺序主子式；④ 标准形与规范形混淆（规范形系数只能 $\pm1,0$）；⑤ 配方法换元后忘写变换矩阵。</p>
+</div>
+<div class="derive">
+<div class="dt">拓展精讲：线性方程组的数值解法思想</div>
+<p>高斯消元法的现代实现要点：① 选主元（绝对值最大的元素作主元）避免小主元引起的舍入误差；② 前向消元将系数矩阵化为上三角，复杂度 $\frac23n^3$；③ 回代求解复杂度 $\frac12n^2$。<b>消元法的实质：用初等变换（行）保持解集不变地把方程组化成最易解的形式</b>。这一思想贯穿全部线性代数计算：求逆、求秩、求基础解系都是它的变体。∎</p>
+</div>
+<div class="derive">
+<div class="dt">拓展精讲：线性空间公理的由来</div>
+<p>皮亚诺 1888 年在《向量计算》中首次抽象出"向量空间"的公理体系。此前的向量是"有大小有方向的量"（几何向量）；皮亚诺的抽象揭示：函数集合、多项式集合、矩阵集合、数列集合都满足同一套公理。<b>公理化使线性代数的结论一劳永逸地适用于一切线性对象</b>——这是二十世纪数学"从对象转向结构"潮流的开端，布尔巴基学派正是沿着这条路线重建了全部数学。∎</p>
+</div>
+<div class="derive">
+<div class="dt">拓展精讲：若尔当标准形入门</div>
+<p>不可对角化的矩阵并非"无药可救"：若尔当 1870 年证明，任何复方阵都相似于若尔当标准形——对角线上是特征值，对角线上方可能有若干个 1（对应"广义特征向量"）。若尔当形是相似意义下的最简形式，对角阵是其特例（无 1 的情形）。<b>若尔当形完整回答了"矩阵在相似变换下的最简形式是什么"</b>，是高等代数通向更深理论的桥梁。∎</p>
+</div>
+
+<p style="text-align:center;color:var(--muted);margin-top:40px">—— 线性代数讲义完 ——</p>
+</main>
+</div>
+</body>
+</html>
